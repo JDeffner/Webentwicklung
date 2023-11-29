@@ -1,0 +1,14 @@
+.navbar{
+    background-color: #002060;
+    height: 7em;
+}
+
+.nav-link{
+    color: #f8f9fa;
+}
+
+#menu:hover{
+   color: lightgray;
+
+}
+
