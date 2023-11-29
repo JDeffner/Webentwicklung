@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="Uebung02">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Uebung02/Spalten.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/Startseite.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Startseite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Uebung02/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Style1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -54,6 +55,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Uebung02" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Übung02/Bild" />
       <recent name="$PROJECT_DIR$/Übung02" />
     </key>
@@ -72,7 +74,7 @@
       <workItem from="1700566240582" duration="166000" />
       <workItem from="1700566431654" duration="10472000" />
       <workItem from="1701178897342" duration="10985000" />
-      <workItem from="1701261545853" duration="2845000" />
+      <workItem from="1701261545853" duration="8432000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1700567525111</created>
@@ -109,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701259555079</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Uebung02">
+      <created>1701264536366</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701264536366</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

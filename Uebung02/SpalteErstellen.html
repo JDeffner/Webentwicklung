@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spalte erstellen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="Style1.css">
+
+</head>
+<body>
+<script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<nav class="navbar navbar-expand-lg mb-4 ps-5">
+
+  <a class="navbar-brand" href="#">
+    <img src="06_-_WE_Logo.svg" alt="logo.svg" height="80">
+  </a>
+
+  <div class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" id="menu" href="#">Tasks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="menu" href="">Boards</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="menu" href="Spalten.html">Spalten</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<main class="container">
+  <div class="card" style="width: 100%;">
+    <div class="card-header">
+      <h4>Spalte erstellen</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+
+         <div class="mb-3 row">
+            <label for="Spaltenbezeichnung" class="col-sm-2 col-form-label">Spalten-bezeichnung</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="Spaltenbezeichnung" placeholder="Bezeichnung für Spalte">
+            </div>
+         </div>
+
+        <div class="mb-3 row">
+             <label for="Spaltenbeschreibung" class="col-sm-2 col-form-label ">Spaltenbeschreibung</label>
+             <div class="col-sm-10">
+               <textarea class="form-control" id="Spaltenbeschreibung" rows = 4></textarea>
+             </div>
+        </div>
+
+        <div class="mb-3 row">
+               <label for="Sortid" class="col-sm-2 col-form-label">Sortid</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="Sortid" placeholder="Sortid angeben">
+               </div>
+             </div>
+
+        <div class="mb-3 row">
+          <label for="Sortid" class="col-sm-2 col-form-label">Board auswählen</label>
+          <div class="dropdown col-sm-10">
+            <button class="btn btn-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item" type="button">Action</button></li>
+              <li><button class="dropdown-item" type="button">Another action</button></li>
+              <li><button class="dropdown-item" type="button">Something else here</button></li>
+            </ul>
+          </div>
+
+
+        </div>
+
+
+        <button type="button" class="btn btn-success mb-3">Speichern</button>
+        <button type="button" class="btn btn-secondary mb-3">Abbrechen</button>
+      </li>
+
+    </ul>
+  </div>
+</main>
+
+
+<footer>
+  <div class="container pt-5 pb-4">
+    <div class="row">
+      <div class="col-md-4">
+        © Web-Entwicklung Team 2023
+      </div>
+
+      <div class="col-md-auto ms-md-auto">
+        <p class="text-end">
+          Impressum
+        </p>
+      </div>
+      <div class="col-md-auto">
+        <p class="text-end">
+          Datenschutz
+        </p>
+      </div>
+      <div class="col-md-auto">
+        <p class="text-end">
+          Kontakt
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
