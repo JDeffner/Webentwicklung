@@ -5,13 +5,18 @@
 
 .nav-link{
     color: #f8f9fa;
-
 }
 
 #menu:hover{
-   color: lightgray;
+    color: lightgray;
 }
 
-.footer{
+footer{
     background-color: #002060;
+    color: white;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
 }
