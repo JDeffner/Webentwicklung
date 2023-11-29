@@ -5,10 +5,13 @@
 
 .nav-link{
     color: #f8f9fa;
+
 }
 
 #menu:hover{
    color: lightgray;
-
 }
 
+.footer{
+    background-color: #002060;
+}
