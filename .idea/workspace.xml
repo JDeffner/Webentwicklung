@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/Spalten.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Spalten.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Uebung02/Startseite.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Startseite.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +86,7 @@
       <workItem from="1701178897342" duration="10985000" />
       <workItem from="1701261545853" duration="12861000" />
       <workItem from="1701366824865" duration="1542000" />
-      <workItem from="1701371210956" duration="5360000" />
+      <workItem from="1701371210956" duration="6614000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1700567525111</created>
@@ -181,9 +182,9 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Uebung02" />
     <MESSAGE value="Button href to Create Row" />
-    <MESSAGE value="created the class menu-item instead of using IDs" />
     <MESSAGE value="Added the librarys for bootstrap and changed webserver setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the librarys for bootstrap and changed webserver setup" />
+    <MESSAGE value="created the class menu-item instead of using IDs" />
+    <option name="LAST_COMMIT_MESSAGE" value="created the class menu-item instead of using IDs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
