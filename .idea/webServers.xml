@@ -3,7 +3,6 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="7cc9ef36-cf9a-418e-b242-5d73f97232a6" name="WE-local" url="http://localhost/web-entwicklung">
-        <fileTransfer mountedRoot="/Applications/XAMPP/xamppfiles/htdocs/web-entwicklung" accessType="MOUNT" port="0" />
       </webServer>
       <webServer id="9763f425-4f5e-42c9-a4d4-a8db93633532" name="WE-uni" url="http://hosting.wi1cm.uni-trier.de">
         <fileTransfer accessType="FTPS" host="hosting.wi1cm.uni-trier.de" port="21">

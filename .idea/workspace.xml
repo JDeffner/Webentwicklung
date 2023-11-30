@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="Uebung02">
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/Spalten.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Spalten.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Uebung02/Style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Style1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +37,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2XtQisGpo4SZQ7GhaHR6Kj7rGwW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,6 +53,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -74,6 +84,8 @@
       <workItem from="1700566431654" duration="10472000" />
       <workItem from="1701178897342" duration="10985000" />
       <workItem from="1701261545853" duration="12861000" />
+      <workItem from="1701366824865" duration="1542000" />
+      <workItem from="1701371210956" duration="4507000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1700567525111</created>
