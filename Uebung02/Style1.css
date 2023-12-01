@@ -88,8 +88,8 @@ body::-webkit-scrollbar-thumb:active {
     color: var(--text-color);
 }
 
-.card-body {
-    background-color: var(--tertiary-color);
+.list-group {
+    --bs-list-group-bg:  var(--tertiary-color);;
 }
 
 
