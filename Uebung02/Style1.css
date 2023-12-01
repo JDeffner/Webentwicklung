@@ -24,10 +24,6 @@
         color: var(--highlight-color); /* Change the color to your desired hover color */
     }
 
-    #menu:hover{
-        color: var(--highlight-color);
-    }
-
 
 
 /* Footer Style*/
