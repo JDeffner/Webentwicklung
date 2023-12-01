@@ -14,16 +14,10 @@
     .navbar{
         background-color: var(--primary-color);
         height: 7em;
+        --bs-navbar-color: var(--tertiary-color);
+        --bs-navbar-active-color: var(--text-color);
+        --bs-navbar-hover-color: var(--highlight-color) !important;
     }
-
-    .nav-link{
-        color: var(--text-color);
-    }
-
-    .navbar .navbar-nav .nav-link:hover {
-        color: var(--highlight-color); /* Change the color to your desired hover color */
-    }
-
 
 
 /* Footer Style*/
@@ -68,7 +62,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background: var(--text-color); /* Thumb color */
+    background: var(--tertiary-color); /* Thumb color */
     border-radius: 10px; /* Rounded corners */
 }
 
