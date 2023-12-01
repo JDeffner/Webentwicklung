@@ -3,8 +3,8 @@
     --primary-color: #25274D;
     --secondary-color: #464866;
     --tertiary-color: #AAABB8;
-    --quaternary-color: #2E9CCA;
-    --quinary-color: #29648A;
+    --highlight-color: #2E9CCA;
+    --hover-highlight-color: #29648A;
     --text-color: white;
     --text-color-contrast: black;
 }
@@ -21,11 +21,11 @@
     }
 
     .navbar .navbar-nav .nav-link:hover {
-        color: var(--quaternary-color); /* Change the color to your desired hover color */
+        color: var(--highlight-color); /* Change the color to your desired hover color */
     }
 
     #menu:hover{
-        color: var(--quaternary-color);
+        color: var(--highlight-color);
     }
 
 
@@ -77,7 +77,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-thumb:hover {
-    background: var(--quaternary-color); /* Thumb color on hover */
+    background: var(--highlight-color); /* Thumb color on hover */
 }
 
 /* Card Styling */
@@ -126,8 +126,8 @@ body::-webkit-scrollbar-thumb:hover {
 .btn-success {
     /*normal*/
     --bs-btn-color: var(--text-color-contrast);
-    --bs-btn-bg: var(--quaternary-color);
-    --bs-btn-border-color: var(--quaternary-color);
+    --bs-btn-bg: var(--highlight-color);
+    --bs-btn-border-color: var(--highlight-color);
     /*on hover*/
     /*--bs-btn-hover-color: var(--quaternary-color);*/
     --bs-btn-hover-bg: var(--secondary-color);
@@ -159,6 +159,65 @@ body::-webkit-scrollbar-thumb:hover {
     color: var(--primary-color);
     margin-left: 0.3em;
     margin-right: 0.1em;
+}
+
+.fa-solid:hover {
+    color: var(--primary-color) !important;
+}
+
+/*Table Styling*/
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    /*Normal*/
+    --bs-table-color: var(--text-color-contrast);
+    --bs-table-bg: var(--tertiary-color);
+    --bs-table-border-color: var(--primary-color);
+
+    /*On hover*/
+    --bs-table-hover-bg: var(--secondary-color);
+    --bs-table-hover-color: var(--text-color);
+}
+
+/* Apply rounded corners to the table */
+.rounded-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px; /* Adjust the value as needed */
+    overflow: hidden; /* Ensures border-radius is applied */
+}
+
+/* Apply rounded corners to the table cells (thead, tbody, th, td) */
+.rounded-table th,
+.rounded-table td {
+    border-radius: 0; /* Reset default border-radius for cells */
+}
+
+/* Apply rounded corners only to specific corners of the first and last cells in the table */
+.rounded-table thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.rounded-table thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.rounded-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.rounded-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+thead {
+    --bs-table-color: var(--text-color);
+    --bs-table-bg: var(--primary-color);
+    --bs-table-border-color: var(--primary-color);
+}
+
+.table tbody tr:hover .fa-solid {
+    color: var(--text-color);
 }
 
 /*ID based CSS*/
