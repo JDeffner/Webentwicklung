@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="Dropdown menu CSS Styling">
+    <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="More Dropdown menu CSS Styling &amp; Awesomefont styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Uebung02/Spalten.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Spalten.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/Style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Style1.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701396461442</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="More Dropdown menu CSS Styling &amp; Awesomefont styling">
+      <option name="closed" value="true" />
+      <created>1701397854533</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701397854533</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +217,8 @@
     <MESSAGE value="The footer is now nearly perfect (sufficient for the current state of dev)" />
     <MESSAGE value="CSS Styling" />
     <MESSAGE value="Dropdown menu CSS Styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dropdown menu CSS Styling" />
+    <MESSAGE value="More Dropdown menu CSS Styling &amp; Awesomefont styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="More Dropdown menu CSS Styling &amp; Awesomefont styling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

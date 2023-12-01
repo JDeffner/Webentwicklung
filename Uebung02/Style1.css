@@ -116,7 +116,7 @@ body::-webkit-scrollbar-thumb:hover {
     /*normal*/
     --bs-btn-color: var(--text-color-contrast);
     --bs-btn-bg: var(--tertiary-color);
-    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-border-color: var(--tertiary-color);
     /*on hover*/
     /*--bs-btn-hover-color: var(--quaternary-color);*/
     --bs-btn-hover-bg: var(--secondary-color);
@@ -127,7 +127,7 @@ body::-webkit-scrollbar-thumb:hover {
     /*normal*/
     --bs-btn-color: var(--text-color-contrast);
     --bs-btn-bg: var(--quaternary-color);
-    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-border-color: var(--quaternary-color);
     /*on hover*/
     /*--bs-btn-hover-color: var(--quaternary-color);*/
     --bs-btn-hover-bg: var(--secondary-color);
