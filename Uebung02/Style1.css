@@ -84,6 +84,9 @@ body::-webkit-scrollbar-thumb:hover {
 .card {
     --bs-card-color: var(--primary-color);
     --bs-card-bg: var(--primary-color);
+    --bs-card-border-width: 0.3em;
+    --bs-card-border-color: var(--primary-color);
+    /*background-color: var(--tertiary-color);*/
     /*--bs-card-title-color: var(--text-color);*/
 
 }
@@ -140,6 +143,22 @@ body::-webkit-scrollbar-thumb:hover {
     --bs-btn-hover-color: var(--text-color);
     --bs-btn-hover-bg: var(--secondary-color);
     --bs-btn-hover-border-color: var(--secondary-color);
+    /*on activation*/
+    --bs-btn-active-color:  var(--text-color-contrast);
+    --bs-btn-active-bg:  var(--tertiary-color);
+    --bs-btn-active-border-color:  var(--tertiary-color);
+}
+
+.dropdown-item:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/*Icon Styling*/
+.fa-solid {
+    color: var(--primary-color);
+    margin-left: 0.3em;
+    margin-right: 0.1em;
 }
 
 /*ID based CSS*/

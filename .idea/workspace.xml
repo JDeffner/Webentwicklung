@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="CSS Styling">
+    <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="Dropdown menu CSS Styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Uebung02/Spalten.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Spalten.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/Style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Style1.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701395801192</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Dropdown menu CSS Styling">
+      <option name="closed" value="true" />
+      <created>1701396461442</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701396461442</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +210,8 @@
     <MESSAGE value="created the class menu-item instead of using IDs" />
     <MESSAGE value="The footer is now nearly perfect (sufficient for the current state of dev)" />
     <MESSAGE value="CSS Styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS Styling" />
+    <MESSAGE value="Dropdown menu CSS Styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dropdown menu CSS Styling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
