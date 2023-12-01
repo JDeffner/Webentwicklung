@@ -220,6 +220,31 @@ thead {
     color: var(--text-color);
 }
 
+/* Textarea Styling */
+textarea {
+    /*Hide default scrollbar*/
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+/* Scrollbar style */
+/* Create a custom scrollbar for Webkit-based browsers */
+textarea::-webkit-scrollbar {
+    width: 12px; /* Set width of the scrollbar */
+}
+
+textarea::-webkit-scrollbar-track {
+    background: none; /* Track color */
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: var(--primary-color); /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color); /* Thumb color on hover */
+}
+
 /*ID based CSS*/
 #Spaltenbeschreibung {
     resize: none;
