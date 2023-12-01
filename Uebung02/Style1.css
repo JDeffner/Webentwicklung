@@ -131,6 +131,17 @@ body::-webkit-scrollbar-thumb:hover {
     --bs-btn-hover-border-color: var(--secondary-color);
 }
 
+.btn-light {
+    /*normal*/
+    --bs-btn-color: var(--text-color-contrast);
+    --bs-btn-bg: white;
+    --bs-btn-border-color: lightgrey;
+    /*on hover*/
+    --bs-btn-hover-color: var(--text-color);
+    --bs-btn-hover-bg: var(--secondary-color);
+    --bs-btn-hover-border-color: var(--secondary-color);
+}
+
 /*ID based CSS*/
 #Spaltenbeschreibung {
     resize: none;
