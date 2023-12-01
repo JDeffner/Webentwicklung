@@ -89,7 +89,7 @@ body::-webkit-scrollbar-thumb:active {
 }
 
 .list-group {
-    --bs-list-group-bg:  var(--tertiary-color);;
+    /*--bs-list-group-bg:  var(--tertiary-color);*/
 }
 
 
