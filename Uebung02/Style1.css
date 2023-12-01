@@ -258,9 +258,15 @@ textarea::-webkit-scrollbar-thumb:active {
 }
 
 .form-select:focus {
-    border-color: #b40000;
+    border-color: var(--secondary-color);
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(180, 0, 138, 0.25);
+    box-shadow: 0 0 0 0.2rem var(--tertiary-color);
+}
+
+.form-control:focus {
+    border-color: var(--secondary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem var(--tertiary-color);
 }
 
 .form-select option {
