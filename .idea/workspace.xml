@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="created the class menu-item instead of using IDs">
+    <list default="true" id="4495a90f-bdd2-4b0c-86df-34a1e2266297" name="Changes" comment="The footer is now nearly perfect (sufficient for the current state of dev)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/SpalteErstellen.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Uebung02/Style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Uebung02/Style1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701383418260</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="The footer is now nearly perfect (sufficient for the current state of dev)">
+      <option name="closed" value="true" />
+      <created>1701388025653</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701388025653</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +191,8 @@
     <MESSAGE value="Button href to Create Row" />
     <MESSAGE value="Added the librarys for bootstrap and changed webserver setup" />
     <MESSAGE value="created the class menu-item instead of using IDs" />
-    <option name="LAST_COMMIT_MESSAGE" value="created the class menu-item instead of using IDs" />
+    <MESSAGE value="The footer is now nearly perfect (sufficient for the current state of dev)" />
+    <option name="LAST_COMMIT_MESSAGE" value="The footer is now nearly perfect (sufficient for the current state of dev)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

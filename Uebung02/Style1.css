@@ -1,34 +1,137 @@
-.navbar{
-    background-color: #002060;
-    height: 7em;
+/* Set color variables*/
+:root {
+    --primary-color: #25274D;
+    --secondary-color: #464866;
+    --tertiary-color: #AAABB8;
+    --quaternary-color: #2E9CCA;
+    --quinary-color: #29648A;
+    --text-color: white;
+    --text-color-contrast: black;
 }
 
-.nav-link{
-    color: #f8f9fa;
-}
 
-#menu:hover{
-    color: lightgray;
-}
+/* Navbar style*/
+    .navbar{
+        background-color: var(--primary-color);
+        height: 7em;
+    }
 
+    .nav-link{
+        color: var(--text-color);
+    }
+
+    .navbar .navbar-nav .nav-link:hover {
+        color: var(--quaternary-color); /* Change the color to your desired hover color */
+    }
+
+    #menu:hover{
+        color: var(--quaternary-color);
+    }
+
+
+
+/* Footer Style*/
 footer{
-    background-color: #002060;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
 
     position: relative;
     bottom: 0;
     width: 100%;
     height: auto;
-    padding: 10px 0;
+    /*padding: 5px 0;*/
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+    overflow-y: scroll;
+    background-color: var(--secondary-color);
+
+    /*Hide default scrollbar*/
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
 
 main {
     flex: 1; /* Allow main content to grow and take remaining space */
-    padding-bottom: 100px; /* Adjust to the height of the footer */
+    padding-bottom: 2em; /* Adjust to the height of the footer */
+}
+
+
+
+/* Scrollbar style*/
+/* Create a custom scrollbar for Webkit-based browsers */
+body::-webkit-scrollbar {
+    width: 12px; /* Set width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--primary-color); /* Track color */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--text-color); /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--quaternary-color); /* Thumb color on hover */
+}
+
+/* Card Styling */
+.card {
+    --bs-card-color: var(--primary-color);
+    --bs-card-bg: var(--primary-color);
+    /*--bs-card-title-color: var(--text-color);*/
+
+}
+.card-header {
+    color: var(--text-color);
+}
+
+.card-body {
+    background-color: var(--tertiary-color);
+}
+
+
+
+/* Button Styling */
+.btn {
+    /*normal*/
+    --bs-btn-color: var(--text-color);
+    --bs-btn-bg: var(--primary-color);
+    --bs-btn-border-color: var(--primary-color);
+    /*on hover*/
+    /*--bs-btn-hover-color: var(--quaternary-color);*/
+    --bs-btn-hover-bg: var(--secondary-color);
+    --bs-btn-hover-border-color: var(--secondary-color);
+}
+
+.btn-secondary {
+    /*normal*/
+    --bs-btn-color: var(--text-color-contrast);
+    --bs-btn-bg: var(--tertiary-color);
+    --bs-btn-border-color: var(--primary-color);
+    /*on hover*/
+    /*--bs-btn-hover-color: var(--quaternary-color);*/
+    --bs-btn-hover-bg: var(--secondary-color);
+    --bs-btn-hover-border-color: var(--secondary-color);
+}
+
+.btn-success {
+    /*normal*/
+    --bs-btn-color: var(--text-color-contrast);
+    --bs-btn-bg: var(--quaternary-color);
+    --bs-btn-border-color: var(--primary-color);
+    /*on hover*/
+    /*--bs-btn-hover-color: var(--quaternary-color);*/
+    --bs-btn-hover-bg: var(--secondary-color);
+    --bs-btn-hover-border-color: var(--secondary-color);
+}
+
+/*ID based CSS*/
+#Spaltenbeschreibung {
+    resize: none;
 }
