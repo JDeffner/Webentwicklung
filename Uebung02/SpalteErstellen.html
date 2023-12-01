@@ -42,26 +42,26 @@
     <div class="list-group list-group-flush">
       <div class="list-group-item">
 
-         <div class="mb-3 row">
-            <label for="Spaltenbezeichnung" class="col-sm-2 col-form-label">Spalten-bezeichnung</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="Spaltenbezeichnung" placeholder="Bezeichnung für Spalte">
-            </div>
-         </div>
-
         <div class="mb-3 row">
-             <label for="Spaltenbeschreibung" class="col-sm-2 col-form-label ">Spaltenbeschreibung</label>
-             <div class="col-sm-10">
-               <textarea class="form-control" id="Spaltenbeschreibung" rows = 14></textarea>
-             </div>
+          <label for="Spaltenbezeichnung" class="col-sm-2 col-form-label">Spalten-bezeichnung</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Spaltenbezeichnung" placeholder="Bezeichnung für Spalte">
+          </div>
         </div>
 
         <div class="mb-3 row">
-               <label for="Sortid" class="col-sm-2 col-form-label">Sortid</label>
-               <div class="col-sm-10">
-                 <input type="text" class="form-control" id="Sortid" placeholder="Sortid angeben">
-               </div>
-             </div>
+          <label for="Spaltenbeschreibung" class="col-sm-2 col-form-label ">Spaltenbeschreibung</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" id="Spaltenbeschreibung" style="height: 22em"></textarea>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="Sortid" class="col-sm-2 col-form-label">Sortid</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Sortid" placeholder="Sortid angeben">
+          </div>
+        </div>
 
         <!--Hier unser alter code: -->
         <!--<div class="mb-3 row">
@@ -79,22 +79,15 @@
         </div>-->
 
         <!--neuer code für den dropdown button um den text links und den pfeil rechts zu haben-->
-        <div class="mb-3 row align-items-center">
-          <label for="sortid" class="col-sm-2 col-form-label">Board auswählen</label>
-          <div class="dropdown col-sm-10 text-end">
-            <button class="btn btn-light w-100 text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Allgemeine Todos
-              <span class="float-end">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
-                    <path d="M8 10.535 1 3.536 2.414 2.12 8 7.694 13.586 2.12 15 3.536z"/>
-                </svg>
-              </span>
-            </button>
-            <ul class="dropdown-menu w-100">
-              <li><button class="dropdown-item" type="button">Option 1</button></li>
-              <li><button class="dropdown-item" type="button">Option 2</button></li>
-              <li><button class="dropdown-item" type="button">Option 3</button></li>
-            </ul>
+        <div class="mb-3 row">
+          <label for="BoardAuswaehlen" class="col-sm-2 col-form-label">Board auswählen</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="BoardAuswaehlen">
+              <option selected>Allgemeine Todos</option>
+              <option value="1">Wichtige Todos</option>
+              <option value="2">Unwichtige Todos</option>
+              <option value="3">Erledigte Todos??!</option>
+            </select>
           </div>
         </div>
 
