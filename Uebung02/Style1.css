@@ -13,10 +13,9 @@
 /* Navbar style*/
     .navbar{
         background-color: var(--primary-color);
-        height: 7em;
         --bs-navbar-color: var(--tertiary-color);
         --bs-navbar-active-color: var(--text-color);
-        --bs-navbar-hover-color: var(--highlight-color) !important;
+        --bs-navbar-hover-color: var(--highlight-color);
     }
 
 
