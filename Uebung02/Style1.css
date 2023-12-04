@@ -166,6 +166,12 @@ body::-webkit-scrollbar-thumb:active {
 
 .fa-solid:hover {
     color: var(--primary-color) !important;
+    cursor: pointer;
+}
+
+.fa-solid:active {
+    color: var(--tertiary-color) !important;
+
 }
 
 /*Table Styling*/
