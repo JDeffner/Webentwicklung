@@ -172,12 +172,17 @@ body::-webkit-scrollbar-thumb:active {
     --bs-table-hover-color: var(--text-color);
 }
 
+.header{
+    position: sticky;
+    top: 0 ;
+}
+
 /* Apply rounded corners to the table */
 .rounded-table {
-    border-collapse: separate;
+    /*border-collapse: separate;*/
     border-spacing: 0;
     border-radius: 10px; /* Adjust the value as needed */
-    overflow: hidden; /* Ensures border-radius is applied */
+    /*overflow: hidden; !* Ensures border-radius is applied *!*/
 }
 
 /* Apply rounded corners to the table cells (thead, tbody, th, td) */
@@ -195,7 +200,7 @@ body::-webkit-scrollbar-thumb:active {
     border-top-right-radius: 10px;
 }
 
-.rounded-table tbody tr:last-child td:first-child {
+.rounded-table tbody tr:last-child th:first-child {
     border-bottom-left-radius: 10px;
 }
 
