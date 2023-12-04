@@ -58,7 +58,7 @@ main {
 
 
 
-/* Scrollbar style */
+/* Scrollbar style*/
 /* Create a custom scrollbar for Webkit-based browsers */
 body::-webkit-scrollbar {
     width: 12px; /* Set width of the scrollbar */
@@ -75,12 +75,10 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover {
     background: var(--highlight-color); /* Thumb color on hover */
-    cursor: grab;
 }
 
 body::-webkit-scrollbar-thumb:active {
     background: var(--hover-highlight-color); /* Thumb color on active */
-    cursor: grabbing;
 }
 
 /* Card Styling */
@@ -269,12 +267,10 @@ textarea::-webkit-scrollbar-thumb {
 
 textarea::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color); /* Thumb color on hover */
-    cursor: grab;
 }
 
 textarea::-webkit-scrollbar-thumb:active {
     background: var(--primary-color); /* Thumb color on hover */
-    cursor: grabbing;
 }
 
 /*Form select styling*/
