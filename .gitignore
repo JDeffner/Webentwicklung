@@ -2,7 +2,7 @@
 /_site/
 # Hugo files
 /.hugo_build.lock
-
+/Uebung02
 # Numerous always-ignore extensions
 *.diff
 *.err
