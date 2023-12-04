@@ -52,7 +52,7 @@ body {
 }
 
 main {
-    flex: 1; /* Allow main content to grow and take remaining space */
+    flex: auto; /* Allow main content to grow and take remaining space */
     padding-bottom: 1.5em; /* Adjust to the height of the footer */
 }
 
@@ -81,7 +81,7 @@ body::-webkit-scrollbar-thumb:active {
     background: var(--hover-highlight-color); /* Thumb color on active */
 }
 
-    /* Card Styling */
+/* Card Styling */
 .card {
     --bs-card-color: var(--primary-color);
     --bs-card-bg: var(--primary-color);
