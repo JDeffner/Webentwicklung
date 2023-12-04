@@ -282,6 +282,7 @@ textarea::-webkit-scrollbar-thumb:active {
 .form-select:focus {
     border-color: var(--secondary-color);
     outline: 0;
+    box-shadow: 0 0 0 0.2rem var(--tertiary-color);
 }
 
 .form-select option {
