@@ -83,13 +83,23 @@ body::-webkit-scrollbar-thumb:active {
     /*--bs-card-title-color: var(--text-color);*/
 
 }
+
+.card-body {
+    background-color: var(--text-color);
+}
 .card-header {
     color: var(--text-color);
 }
 
-.list-group {
-    /*--bs-list-group-bg:  var(--tertiary-color);*/
-}
+
+/*.list-group {*/
+/*    !*--bs-list-group-bg:  var(--tertiary-color);*!*/
+/*    overflow-x: auto;*/
+/*}*/
+
+/*.list-group list-group-item {*/
+/*    overflow: hidden;*/
+/*}*/
 
 
 
@@ -172,9 +182,10 @@ body::-webkit-scrollbar-thumb:active {
     --bs-table-hover-color: var(--text-color);
 }
 
-.header{
+.sticky-header-on-header{
     position: sticky;
     top: 0 ;
+    z-index: 1;
 }
 
 /* Apply rounded corners to the table */
@@ -192,13 +203,14 @@ body::-webkit-scrollbar-thumb:active {
 }
 
 /* Apply rounded corners only to specific corners of the first and last cells in the table */
-.rounded-table thead th:first-child {
-    border-top-left-radius: 10px;
-}
+/*gonna use this later once we use more .js*/
+/*.rounded-table thead th:first-child {*/
+/*    border-top-left-radius: 10px;*/
+/*}*/
 
-.rounded-table thead th:last-child {
-    border-top-right-radius: 10px;
-}
+/*.rounded-table thead th:last-child {*/
+/*    border-top-right-radius: 10px;*/
+/*}*/
 
 .rounded-table tbody tr:last-child th:first-child {
     border-bottom-left-radius: 10px;
