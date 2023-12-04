@@ -11,14 +11,21 @@
 
 
 /* Navbar style*/
-    .navbar{
-        background-color: var(--primary-color);
-        height: 7em;
-        --bs-navbar-color: var(--tertiary-color);
-        --bs-navbar-active-color: var(--text-color);
-        --bs-navbar-hover-color: var(--highlight-color) !important;
-    }
+.navbar{
+    background-color: var(--primary-color);
+    --bs-navbar-color: var(--tertiary-color);
+    --bs-navbar-active-color: var(--text-color);
+    --bs-navbar-hover-color: var(--highlight-color);
+    --bs-navbar-toggler-border-color: var(--secondary-color);
+}
 
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(163,163,210, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: var(--tertiary-color);
+}
 
 /* Footer Style*/
 footer{
@@ -45,7 +52,7 @@ body {
 }
 
 main {
-    flex: 1; /* Allow main content to grow and take remaining space */
+    flex: auto; /* Allow main content to grow and take remaining space */
     padding-bottom: 1.5em; /* Adjust to the height of the footer */
 }
 
@@ -74,7 +81,7 @@ body::-webkit-scrollbar-thumb:active {
     background: var(--hover-highlight-color); /* Thumb color on active */
 }
 
-    /* Card Styling */
+/* Card Styling */
 .card {
     --bs-card-color: var(--primary-color);
     --bs-card-bg: var(--primary-color);
@@ -84,13 +91,23 @@ body::-webkit-scrollbar-thumb:active {
     /*--bs-card-title-color: var(--text-color);*/
 
 }
+
+.card-body {
+    background-color: var(--text-color);
+}
 .card-header {
     color: var(--text-color);
 }
 
-.list-group {
-    /*--bs-list-group-bg:  var(--tertiary-color);*/
-}
+
+/*.list-group {*/
+/*    !*--bs-list-group-bg:  var(--tertiary-color);*!*/
+/*    overflow-x: auto;*/
+/*}*/
+
+/*.list-group list-group-item {*/
+/*    overflow: hidden;*/
+/*}*/
 
 
 
@@ -157,6 +174,12 @@ body::-webkit-scrollbar-thumb:active {
 
 .fa-solid:hover {
     color: var(--primary-color) !important;
+    cursor: pointer;
+}
+
+.fa-solid:active {
+    color: var(--tertiary-color) !important;
+
 }
 
 /*Table Styling*/
@@ -173,12 +196,18 @@ body::-webkit-scrollbar-thumb:active {
     --bs-table-hover-color: var(--text-color);
 }
 
+.sticky-header-on-header{
+    position: sticky;
+    top: 0 ;
+    z-index: 1;
+}
+
 /* Apply rounded corners to the table */
 .rounded-table {
-    border-collapse: separate;
+    /*border-collapse: separate;*/
     border-spacing: 0;
     border-radius: 10px; /* Adjust the value as needed */
-    overflow: hidden; /* Ensures border-radius is applied */
+    /*overflow: hidden; !* Ensures border-radius is applied *!*/
 }
 
 /* Apply rounded corners to the table cells (thead, tbody, th, td) */
@@ -188,15 +217,16 @@ body::-webkit-scrollbar-thumb:active {
 }
 
 /* Apply rounded corners only to specific corners of the first and last cells in the table */
-.rounded-table thead th:first-child {
-    border-top-left-radius: 10px;
-}
+/*gonna use this later once we use more .js*/
+/*.rounded-table thead th:first-child {*/
+/*    border-top-left-radius: 10px;*/
+/*}*/
 
-.rounded-table thead th:last-child {
-    border-top-right-radius: 10px;
-}
+/*.rounded-table thead th:last-child {*/
+/*    border-top-right-radius: 10px;*/
+/*}*/
 
-.rounded-table tbody tr:last-child td:first-child {
+.rounded-table tbody tr:last-child th:first-child {
     border-bottom-left-radius: 10px;
 }
 
@@ -260,6 +290,7 @@ textarea::-webkit-scrollbar-thumb:active {
 .form-select:focus {
     border-color: var(--secondary-color);
     outline: 0;
+    box-shadow: 0 0 0 0.2rem var(--tertiary-color);
 }
 
 .form-select option {
@@ -285,7 +316,6 @@ textarea::-webkit-scrollbar-thumb:active {
     outline: 0;
     box-shadow: 0 0 0 0.2rem var(--tertiary-color);
 }
-
 
 
 

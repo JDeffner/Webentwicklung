@@ -6,36 +6,44 @@
   <title>Spalte erstellen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="Style1.css">
-
+  <script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<nav class="navbar navbar-expand-lg mb-4 ps-5">
 
-  <a class="navbar-brand" href="Startseite.html">
-    <img src="06_-_WE_Logo.svg" alt="logo.svg" height="60">
-  </a>
+<header>
+  <nav class="navbar navbar-expand-md mb-4 ps-5">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="Startseite.html">
+        <img src="06_-_WE_Logo.svg" alt="logo.svg" height="60">
+      </a>
 
-  <div class="collapse navbar-collapse" >
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="Startseite.html">Tasks</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Boards</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Spalten.html">Spalten</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+      <button class="navbar-toggler custom-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdown"
+              aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse collapse" id="navbarDropdown">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="Startseite.html">Tasks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Boards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Spalten.html">Spalten</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
 
 <main class="container">
-  <div class="card" style="width: 100%;">
+  <div class="card">
     <div class="card-header">
       <h4>Spalte erstellen</h4>
     </div>
@@ -95,8 +103,8 @@
 
 
 
-        <button type="button" class="btn btn-success mb-3">Speichern</button>
-        <button type="button" class="btn btn-secondary mb-3">Abbrechen</button>
+        <a role="button" class="btn btn-success mb-3" href="Spalten.html">Speichern</a>
+        <a role="button" class="btn btn-secondary mb-3" href="Spalten.html">Abbrechen</a>
       </div>
 
     </div>
