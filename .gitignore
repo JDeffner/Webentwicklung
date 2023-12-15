@@ -2,7 +2,7 @@
 /_site/
 # Hugo files
 /.hugo_build.lock
-/Uebung02
+
 # Numerous always-ignore extensions
 *.diff
 *.err
@@ -40,3 +40,4 @@ Thumbs.db
 /dist-sass/
 /js/coverage/
 /node_modules/
+/system/
