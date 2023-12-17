@@ -12,4 +12,10 @@ class viewGruppennummer extends BaseController
     public function getgruppennummer(){
         var_dump(04);
     }
+
+    public function getviews(){
+        return view('templates/index');
+    }
+
+
 }
