@@ -4,12 +4,26 @@ namespace App\Controllers;
 
 class Spalten extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('templates/Spalten');
+        $data = [
+            'title' => 'Spalten',
+        ];
+        echo view('templates/Header', $data);
+        echo view('pages/Spalten');
+        echo view('templates/Footer');
     }
 
     public function getSpalteErstellen(){
-        return view('templates/SpalteErstellen');
+        $data = [
+            'title' => 'Spalte Erstellen',
+        ];
+        echo view('templates/Header', $data);
+        echo view('pages/SpalteErstellen');
+        echo view('templates/Footer');
+    }
+
+    public function getgruppennummer(){
+        var_dump(04);
     }
 }
