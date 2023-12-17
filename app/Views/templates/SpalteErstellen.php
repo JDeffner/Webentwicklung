@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spalte erstellen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../../public/main.css">
+    <link href="<?php echo base_url();?>resources/css/main.css" rel="stylesheet" type="text/css">
   <script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -15,8 +15,8 @@
 <header>
   <nav class="navbar navbar-expand-md mb-4 ps-5">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php">
-        <img src="../../../public/resources/images/WE_Logo.svg" alt="logo.svg" height="60">
+      <a class="navbar-brand" href="<?php echo base_url();?>">
+        <img src="<?php echo base_url();?>resources/images/WE_Logo.svg" alt="logo.svg" height="60">
       </a>
 
       <button class="navbar-toggler custom-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdown"
@@ -27,13 +27,13 @@
       <div class="navbar-collapse collapse" id="navbarDropdown">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">Tasks</a>
+            <a class="nav-link" href="<?php echo base_url();?>">Tasks</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Boards</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Spalten.php">Spalten</a>
+            <a class="nav-link active" aria-current="page" href="<?php echo base_url('/spalten');?>">Spalten</a>
           </li>
         </ul>
       </div>
@@ -103,8 +103,8 @@
 
 
 
-        <a role="button" class="btn btn-success mb-3" href="Spalten.php">Speichern</a>
-        <a role="button" class="btn btn-secondary mb-3" href="Spalten.php">Abbrechen</a>
+        <a role="button" class="btn btn-success mb-3" href="<?php echo base_url('/spalten');?>">Speichern</a>
+        <a role="button" class="btn btn-secondary mb-3" href="<?php echo base_url('/spalten');?>">Abbrechen</a>
       </div>
 
     </div>
