@@ -12,8 +12,5 @@ class Home extends BaseController
         echo view('pages/index', $data);
     }
 
-    public function getgruppennummer(){
-        var_dump(04);
-    }
 
 }

@@ -12,8 +12,5 @@ class Boards extends BaseController
         echo view('pages/Boards', $data);
     }
 
-    public function getgruppennummer(){
-        var_dump(04);
-    }
 
 }

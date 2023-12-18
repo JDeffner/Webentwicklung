@@ -10,3 +10,4 @@ $routes->get('/spalten', 'Spalten::index');
 $routes->get('/spalten/erstellen', 'Spalten::getSpalteErstellen');
 $routes->get('/boards', 'Boards::index');
 $routes->get('/welcome', 'Welcome::index');
+$routes->get('(:any)/viewGruppennummer', 'Welcome::viewGruppennummer');
