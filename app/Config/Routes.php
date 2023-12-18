@@ -5,6 +5,15 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+//Default route Setup
+$routes->setDefaultNamespace('App\Controllers');
+$routes->setDefaultController('Home');
+$routes->setDefaultMethod('index');
+$routes->setTranslateURIDashes(false);
+$routes->set404Override();
+$routes->setAutoRoute(true);
+
+//Route Definitions
 $routes->get('/', 'Home::index');
 $routes->get('/spalten', 'Spalten::index');
 $routes->get('/spalten/erstellen', 'Spalten::getSpalteErstellen');
