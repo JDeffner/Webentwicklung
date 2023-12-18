@@ -39,6 +39,10 @@ footer{
     /*padding: 5px 0;*/
 }
 
+.footer-link {
+    color: var(--text-color);
+}
+
 body {
     display: flex;
     flex-direction: column;

@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+class Boards extends BaseController
 {
     public function index()
     {
         $data = [
-            'title' => 'Startseite',
+            'title' => 'Boards',
         ];
-        echo view('pages/index', $data);
+        echo view('pages/Boards', $data);
     }
 
     public function getgruppennummer(){
