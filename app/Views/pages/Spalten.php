@@ -1,4 +1,6 @@
+<?= $this->extend('layouts/DefaultLayout') ?>
 
+<?= $this->section('content') ?>
 <main class="container-fluid">
     <div class="card ms-3 me-3">
         <div class="card-header">
@@ -70,3 +72,4 @@
         </ul>
     </div>
 </main>
+<?= $this->endSection() ?>

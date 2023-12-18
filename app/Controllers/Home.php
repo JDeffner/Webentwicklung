@@ -9,9 +9,7 @@ class Home extends BaseController
         $data = [
             'title' => 'Startseite',
         ];
-        echo view('templates/Header', $data);
-        echo view('pages/index');
-        echo view('templates/Footer');
+        echo view('pages/index', $data);
     }
 
     public function getgruppennummer(){

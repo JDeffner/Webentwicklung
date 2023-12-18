@@ -9,18 +9,14 @@ class Spalten extends BaseController
         $data = [
             'title' => 'Spalten',
         ];
-        echo view('templates/Header', $data);
-        echo view('pages/Spalten');
-        echo view('templates/Footer');
+        echo view('pages/Spalten', $data);
     }
 
     public function getSpalteErstellen(){
         $data = [
             'title' => 'Spalte Erstellen',
         ];
-        echo view('templates/Header', $data);
-        echo view('pages/SpalteErstellen');
-        echo view('templates/Footer');
+        echo view('pages/SpalteErstellen', $data);
     }
 
     public function getgruppennummer(){

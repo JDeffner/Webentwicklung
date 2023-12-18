@@ -9,9 +9,7 @@ class Boards extends BaseController
         $data = [
             'title' => 'Boards',
         ];
-        echo view('templates/Header', $data);
-        echo view('pages/Boards');
-        echo view('templates/Footer');
+        echo view('pages/Boards', $data);
     }
 
     public function getgruppennummer(){
