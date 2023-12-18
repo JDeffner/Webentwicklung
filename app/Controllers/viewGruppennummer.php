@@ -6,7 +6,7 @@ class viewGruppennummer extends BaseController
 {
     public function index(): string
     {
-        return view('templates/index');
+        return view('welcome_message');
     }
 
     public function getgruppennummer(){
