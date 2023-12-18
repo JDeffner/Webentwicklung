@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class viewGruppennummer extends BaseController
+class Welcome extends BaseController
 {
     public function index(): string
     {
