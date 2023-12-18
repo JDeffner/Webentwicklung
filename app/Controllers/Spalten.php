@@ -19,7 +19,4 @@ class Spalten extends BaseController
         echo view('pages/SpalteErstellen', $data);
     }
 
-    public function getgruppennummer(){
-        var_dump(04);
-    }
 }

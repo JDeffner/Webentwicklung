@@ -9,7 +9,7 @@ class Welcome extends BaseController
         return view('welcome_message');
     }
 
-    public function getgruppennummer(){
+    public function viewGruppennummer(){
         var_dump(04);
     }
 
