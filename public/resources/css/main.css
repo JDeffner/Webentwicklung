@@ -321,6 +321,14 @@ textarea::-webkit-scrollbar-thumb:active {
     box-shadow: 0 0 0 0.2rem var(--tertiary-color);
 }
 
+.col-form-label {
+    white-space: nowrap; /* Prevent label text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show ellipsis (...) for truncated text */
+    /*max-width: 100%; !* Limit label width *!*/
+    display: inline-block; /* Ensure label remains inline */;
+}
+
 
 
 
