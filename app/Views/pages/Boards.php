@@ -6,10 +6,8 @@
         <div class="card-header">
             <h4>Boards</h4>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+        <div class="card-body">
                 <a role="button" class="btn btn-primary mb-2" href="#">Erstellen</a>
-                
 
                 <table class="table table-hover table-bordered table-responsive rounded-table">
                     <thead class="sticky-header-on-header">
@@ -39,11 +37,7 @@
                         </tr>
                     </tbody>
                 </table>
-
-
-
-            </li>
-        </ul>
+        </div>
     </div>
 </main>
 <?= $this->endSection() ?>
