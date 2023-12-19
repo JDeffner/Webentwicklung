@@ -6,8 +6,7 @@
     <div class="card-header">
       <h4>Spalte erstellen</h4>
     </div>
-    <div class="list-group list-group-flush">
-      <div class="list-group-item">
+    <div class="card-body">
 
         <div class="mb-3 row">
           <label for="Spaltenbezeichnung" class="col-sm-2 col-form-label">Spalten-bezeichnung</label>
@@ -64,7 +63,6 @@
 
         <a role="button" class="btn btn-success mb-3" href="<?php echo base_url('/spalten');?>">Speichern</a>
         <a role="button" class="btn btn-secondary mb-3" href="<?php echo base_url('/spalten');?>">Abbrechen</a>
-      </div>
 
     </div>
   </div>
