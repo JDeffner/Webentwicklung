@@ -10,7 +10,7 @@
             <a role="button" class="btn btn-primary mb-2" href="<?php echo base_url('/spalten/erstellen');?>">Erstellen</a>
 
             <table class="table table-hover table-bordered table-responsive rounded-table">
-                <thead class="sticky-header-on-header">
+                <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Board</th>
@@ -45,7 +45,7 @@
                             <i class="fa-solid fa-trash"></i>
                         </td>
                     </tr>
-                    <?php for ($i = 3; $i <= 10; $i++) { ?>
+                    <?php for ($i = 3; $i <= 30; $i++) { ?>
                         <tr>
                             <th scope="row">
                                 <?php echo $i; ?>
