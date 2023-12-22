@@ -98,38 +98,38 @@ body::-webkit-scrollbar-thumb:active {
     overflow-y: visible;
 
     /* Other styles */
-    overflow-x: auto; /* Enable horizontal scrolling */
+    /*overflow-x: auto; !* Enable horizontal scrolling *!*/
     white-space: nowrap; /* Prevent table cells from wrapping */
 
     /*Hide default scrollbar*/
-    /*scrollbar-width: none; !* Firefox *!*/
-    /*-ms-overflow-style: none; !* IE/Edge *!*/
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
 .card-header {
     color: var(--text-color);
 }
 
-/* Card Scrollbar style */
-/*.card-header::-webkit-scrollbar {*/
-/*    width: 12px; !* Set width of the scrollbar *!*/
-/*}*/
+ /*Card Scrollbar style*/
+.card-body::-webkit-scrollbar {
+    width: 12px; /* Set width of the scrollbar */
+}
 
-/*.card-header::-webkit-scrollbar-track {*/
-/*    background: none; !* Track color *!*/
-/*}*/
+.card-body::-webkit-scrollbar-track {
+    background: var(--primary-color); /* Track color */
+}
 
-/*.card-header::-webkit-scrollbar-thumb {*/
-/*    background: var(--primary-color); !* Thumb color *!*/
-/*    border-radius: 10px; !* Rounded corners *!*/
-/*}*/
+.card-body::-webkit-scrollbar-thumb {
+    background: var(--tertiary-color); /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
 
-/*.card-header::-webkit-scrollbar-thumb:hover {*/
-/*    background: var(--secondary-color); !* Thumb color on hover *!*/
-/*}*/
+.card-body::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight-color); /* Thumb color on hover */
+}
 
-/*.card-header::-webkit-scrollbar-thumb:active {*/
-/*    background: var(--primary-color); !* Thumb color on hover *!*/
-/*}*/
+.card-body::-webkit-scrollbar-thumb:active {
+    background: var(--hover-highlight-color); /* Thumb color on hover */
+}
 
 
 /* Button Styling */
