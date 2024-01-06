@@ -49,4 +49,4 @@ Options -Indexes
 # Disable server signature end
 
 # SetEnv CI_ENVIRONMENT production
-    SetEnv CI_ENVIRONMENT development
+#    SetEnv CI_ENVIRONMENT development

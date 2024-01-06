@@ -41,9 +41,9 @@ class Routing extends BaseRouting
      * The default controller to use when no other controller has been
      * specified.
      *
-     * Default: 'Home'
+     * Default: 'TaskController'
      */
-    public string $defaultController = 'Home';
+    public string $defaultController = 'TaskController';
 
     /**
      * The default method to call on the controller when no other
