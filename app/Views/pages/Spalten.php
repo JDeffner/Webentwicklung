@@ -9,7 +9,12 @@
         <div class="card-body">
             <a role="button" class="btn btn-primary mb-2" href="<?php echo base_url('/spalten/erstellen');?>">Erstellen</a>
 
-            <table class="table table-hover table-bordered table-responsive rounded-table">
+            <table class="table table-hover table-bordered table-responsive rounded-table"
+                   data-show-columns="true"
+                   data-show-toggle="true"
+                   data-toggle="table"
+                   data-search="true"
+                   data-toolbar="#toolbar">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>

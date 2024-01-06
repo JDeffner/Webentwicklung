@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Test;
+use App\Models\Personen;
+
 
 class Welcome extends BaseController
 {
@@ -20,8 +21,8 @@ class Welcome extends BaseController
 //        print_r($query->result()); // Print the query result to verify the connection
 //    }
 public function testDatabase() {
-        $testModel = new Test();
-        $data['personen'] = $testModel->getData();
+        $testModel = new Personen();
+        $data['personen'] = $testModel->getAllData();
         echo view('pages/TestDatabase', $data);
 }
 

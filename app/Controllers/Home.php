@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Tasks;
 
 class Home extends BaseController
 {
@@ -9,10 +10,12 @@ class Home extends BaseController
         $data = [
             'title' => 'Startseite',
         ];
-        echo view('pages/index', $data);
+        echo view('pages/Startseite', $data);
     }
 
-    public function NewUser(){
+
+
+    public function newUser(){
         $data = [
             'title' => 'Neuer Benutzer',
 
