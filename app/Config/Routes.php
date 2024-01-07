@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 //Default route Setup
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('TaskController');
+$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -25,5 +25,6 @@ $routes->get('/viewGruppennummer', 'Welcome::viewGruppennummer');
 $routes->get('/testDatabase', 'Welcome::testDatabase');
 $routes->get('/newUser', 'Home::newUser');
 $routes->post('/newUser', 'Home::newUser');
+$routes->get('/dashboard', 'Admin::index');
 
 

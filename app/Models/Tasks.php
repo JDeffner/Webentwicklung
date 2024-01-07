@@ -19,7 +19,7 @@ class Tasks extends Model
         return $result->getResultArray();
     }
 
-    public function getDataFromBoard(string $boardName)
+    public function getDataFromBoard(string $boardName): array
     {
         $result = $this->db->query(
             'SELECT t.id as id, p.vorname as vorname, p.nachname as nachname, ta.taskart as taskart, 

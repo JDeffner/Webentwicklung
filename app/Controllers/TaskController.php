@@ -12,7 +12,7 @@ class TaskController extends BaseController
         ];
         $tasksModel = new Tasks();
         $data['tasks'] = $tasksModel->getDataFromBoard('Default');
-        echo view('pages/tasks', $data);
+        echo view('pages/Tasks', $data);
     }
 
 }
