@@ -29,7 +29,7 @@
             </button>
 
             <div class="navbar-collapse collapse" id="navbarDropdown">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <ul class="navbar-nav nav-underline me-auto mb-2 mb-md-0">
                     <li class="nav-item active">
                         <a class="nav-link active" aria-current="page" href="<?php echo base_url('/tasks');?>">Tasks</a>
                     </li>
