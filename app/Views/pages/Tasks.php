@@ -8,21 +8,30 @@
         </div>
         <div class="card-body">
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Status Initial</h5>
-                    </div>
-                    <div class="card-body">
-                        <?php foreach ((isset($tasks) ? $tasks : null) as $item): ?>
-                            <tr>
-                                <td><?= $item["spalte"] ?></td>
-                                <td><?= $item["sortid"] ?></td>
-                                <td><?= $item["notizen"] ?></td>
-                                <td><?= $item["erinnerungsdatum"] ?></td>
-                                <td><?= $item["vorname"] ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </div>
+
+                <div class="d-flex flex-row flex-nowrap overflow-auto">
+                    <?php foreach (($spalten ?? null) as $spalte):
+                        if ($spalte['boardsid'] == ($thisBoard ?? 0)) ?>
+                        <div class="me-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3><?= $spalte['spalte'] ?></h3>
+                                    <small class="mb-0"><?= $spalte['spaltenbeschreibung'] ?></small>
+                                </div>
+                                <div class="card-body">
+                                    <?php foreach (($tasks ?? null) as $oneTask): ?>
+                                        <tr>
+                                            <td><?= $oneTask["tasks"] ?></td>
+                                            <td><?= $oneTask["sortid"] ?></td>
+                                            <td><?= $oneTask["notizen"] ?></td>
+                                            <td><?= $oneTask["erinnerungsdatum"] ?></td>
+                                            <td><?= $oneTask["vorname"] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

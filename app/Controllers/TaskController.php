@@ -12,6 +12,7 @@ class TaskController extends BaseController
         ];
         $tasksModel = new Tasks();
         $data['tasks'] = $tasksModel->getDataFromBoard('Default');
+        $data['spalten'] = $tasksModel->getAllSpalten();
         echo view('pages/Tasks', $data);
     }
 

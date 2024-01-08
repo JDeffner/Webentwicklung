@@ -38,4 +38,11 @@ class Tasks extends Model
                 [$boardName]);
         return $result->getResultArray();
     }
+
+    public function getAllSpalten():array
+    {
+        $result = $this->db->query('SELECT * FROM spalten order by sortid');
+        return $result->getResultArray();
+    }
+
 }
