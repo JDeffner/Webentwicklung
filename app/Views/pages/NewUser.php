@@ -24,8 +24,8 @@
                     <input type="password" class="form-control" id="PW" placeholder="Password">
                     <label for="PW" class="col-form-label">Password</label>
                 </div>
-                <button type="submit" class="btn btn-success mb-4">Speichern</button>
-                <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('/');?>">Abbrechen</a>
+                <button type="submit" class="btn btn-success mb-2">Speichern</button>
+                <a role="button" class="btn btn-secondary mb-2" href="<?php echo base_url('/');?>">Abbrechen</a>
             </form>
         </div>
     </div>
