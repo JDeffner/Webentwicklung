@@ -2,9 +2,10 @@
 use CodeIgniter\Model;
 class Tasks extends Model
 {
-//    protected $table = 'personen';
-//    protected $primaryKey = 'id';
-//    protected $allowedFields = ['vorname', 'nachname', 'email', 'passwort'];
+    protected $table = 'tasks';
+    protected $primaryKey = 'id';
+
+    protected $allowedFields = ['sordid', 'tasks', 'erstelldatum', 'erinnerungsdatum', 'erinnerung', 'notizen', 'erledigt', 'geloescht'];
     public function getAllData()
     {
         $result = $this->db->query(
@@ -43,6 +44,11 @@ class Tasks extends Model
     {
         $result = $this->db->query('SELECT * FROM spalten order by sortid');
         return $result->getResultArray();
+    }
+
+    public function createTask()
+    {
+
     }
 
 }
