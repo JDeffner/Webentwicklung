@@ -26,9 +26,9 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => '127.0.0.1',
-        'username'     => 'root',
-        'password'     => '',
+        'hostname'     => 'localhost',
+        'username'     => 'team04',
+        'password'     => 'kGOt_team04',
         'database'     => 'db_team04',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
