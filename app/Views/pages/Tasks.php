@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <?php foreach (($tasks ?? null) as $oneTask):
                                     if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
-                                    <div class="card">
+                                    <div class="card mb-3">
                                         <div class="card-body">
                                             <table>
                                                 <tbody>
