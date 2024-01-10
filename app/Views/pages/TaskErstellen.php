@@ -48,7 +48,7 @@
                     <div class="col-sm-10">
                         <!--                        // databank access-->
                         <select class="form-select" id="ZustaendigePerson" name="personenid">
-                            <option selected>Joel Deffner</option>
+                            <option selected>1</option>
                             <option value="1">a</option>
                             <option value="2">b</option>
                             <option value="3">c</option>

@@ -35,10 +35,10 @@ class TaskController extends BaseController
         $data = [
             'title' => 'Task Erstellen',
         ];
-        var_dump($_POST);
-//        $TaskModel = new Tasks();
-//        $TaskModel->save($_POST);
-//        echo view('pages/TaskErstellen', $data);
+//        var_dump($_POST);
+        $TaskModel = new Tasks();
+        $TaskModel->save($_POST);
+        echo view('pages/TaskErstellen', $data);
 
     }
 
