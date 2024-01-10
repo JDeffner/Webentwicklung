@@ -13,16 +13,17 @@
                     <div class="col-sm-10">
                         <div class="input-group">
                             <input type="text" class="form-control rounded-end" id="TaskName" placeholder="Bezeichnung der Task..." name="tasks">
-                            <div class="dropdown ms-2">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="taskartenid">
-                                    1
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><button class="dropdown-item" type="button">Option 1</button></li>
-                                    <li><button class="dropdown-item" type="button">Option 2</button></li>
-                                    <li><button class="dropdown-item" type="button">Option 3</button></li>
-                                </ul>
-                            </div>
+<!--                            <div class="dropdown ms-2">-->
+<!--                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="taskartenid">-->
+<!--                                    1-->
+<!--                                </button>-->
+<!--                                <ul class="dropdown-menu dropdown-menu-end">-->
+<!--                                    <li><button class="dropdown-item" type="button">Option 1</button></li>-->
+<!--                                    <li><button class="dropdown-item" type="button">Option 2</button></li>-->
+<!--                                    <li><button class="dropdown-item" type="button">Option 3</button></li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+                            <input type="number" class="form-control rounded-end" value="1" name="taskartenid">
                         </div>
 
                     </div>
@@ -48,7 +49,7 @@
                     <div class="col-sm-10">
                         <!--                        // databank access-->
                         <select class="form-select" id="ZustaendigePerson" name="personenid">
-                            <option selected>1</option>
+                            <option selected>Joel Deffner</option>
                             <option value="1">a</option>
                             <option value="2">b</option>
                             <option value="3">c</option>

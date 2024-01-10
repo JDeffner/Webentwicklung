@@ -32,6 +32,22 @@ class TaskController extends BaseController
      */
     public function postTaskErstellen()
     {
+
+//        $myPost = [
+//            'sortid' => '1',
+//            'tasks' => 'Meine Task',
+//            'erstelldatum' => '',
+//            'erinnerungsdatum' => '2024-01-10T20:43',
+//            'erinnerung' => '1',
+//            'notizen' => 'Note',
+//            'erledigt' => '1',
+//            'geloescht' => '0',
+//            'personenid' => '1',
+//            'taskartenid' => '1',
+//            'spaltenid' => '1',
+//
+//
+//        ];
         $data = [
             'title' => 'Task Erstellen',
         ];
