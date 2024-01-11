@@ -26,4 +26,9 @@ public function testDatabase() {
         echo view('pages/TestDatabase', $data);
 }
 
+public function test($string)
+{
+    var_dump($string);
+}
+
 }
