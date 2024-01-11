@@ -4,10 +4,13 @@
 <main class="container justify-content-center align-items-center d-flex">
     <div class="card ms-3 me-3 col-sm-8">
         <div class="card-header">
-            <h4>Neue Task erstellen</h4>
+            <h4>Neue Task erstellen oder bearbeiten</h4>
         </div>
         <div class="card-body">
-            <form method="post" action="<?php echo base_url();?>tasks/erstellen">
+            <form method="post" action="<?php
+                if(isset($id))
+                    echo base_url('tasks/bearbeiten/'.$id);
+                    else echo base_url('tasks/erstellen');?>">
                 <div class="mb-3 row">
                     <label for="TaskName" class="col-sm-2 col-form-label">Name der Task:</label>
                     <div class="col-sm-10">
@@ -49,7 +52,7 @@
                     <div class="col-sm-10">
                         <!--                        // databank access-->
                         <select class="form-select" id="ZustaendigePerson" name="personenid">
-                            <option selected>Joel Deffner</option>
+                            <option selected>1</option>
                             <option value="1">a</option>
                             <option value="2">b</option>
                             <option value="3">c</option>

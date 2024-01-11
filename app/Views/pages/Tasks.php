@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <?php foreach (($tasks ?? null) as $oneTask):
                                     if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
-                                    <div class="card">
+                                    <div class="card mb-3">
                                         <div class="card-body">
                                             <table>
                                                 <tbody>
@@ -42,9 +42,30 @@
                                                     <td><?= $oneTask['vorname'] ?> <?= $oneTask['nachname'] ?></td>
                                                 </tbody>
                                             </table>
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            <i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deletionModal"></i>
 
+                                            <a href="<?php echo base_url('/tasks/bearbeiten/'.$oneTask['id']); ?>">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deletionModal<?= $oneTask['id'] ?>" data-task-id="<?= $oneTask['id'] ?>"></i>
+                                            <div class="modal fade" id="deletionModal<?= $oneTask['id'] ?>" tabindex="-1" aria-labelledby="deletionModal<?= $oneTask['id'] ?>" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="deleteModalLabel<?= $oneTask['id'] ?>">Willst du die Task "<?= $oneTask['tasks'] ?>" wirklich löschen?</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <!--                                                        <div class="modal-body">-->
+                                                        <!--                                                            -->
+                                                        <!--                                                        </div>-->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                                                            <form id="deleteTaskForm<?= $oneTask['id'] ?>" method="post" action="<?php echo base_url('/tasks/loeschen/' . $oneTask['id']); ?> ">
+                                                                <button type="submit" class="btn btn-warning delete-task-btn">Task löschen</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -56,22 +77,26 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="deletionModal" tabindex="-1" aria-labelledby="deletionModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Willst du die Task wirklich löschen?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <!--                                                        <div class="modal-body">-->
-                <!--                                                            -->
-                <!--                                                        </div>-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                    <button type="button" class="btn btn-warning">Task löschen</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="modal fade" id="deletionModal" tabindex="-1" aria-labelledby="deletionModal" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-dialog-centered">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h1 class="modal-title fs-5" id="exampleModalLabel">Willst du die Task wirklich löschen?</h1>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <!--                                                        <div class="modal-body">-->-->
+<!--                <!--                                                            -->-->
+<!--                <!--                                                        </div>-->-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>-->
+<!--                    <form id="deleteTaskForm" method="post" action="">-->
+<!--                        <button type="submit" class="btn btn-warning delete-task-btn" data-task-id="">Task löschen</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
  </main>
 <?= $this->endSection() ?>
