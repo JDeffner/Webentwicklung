@@ -38,7 +38,7 @@ class TaskController extends BaseController
 //        var_dump($_POST);
         $TaskModel = new Tasks();
         $TaskModel->save($_POST);
-        echo view('pages/TaskErstellen', $data);
+        return redirect()->to(base_url().'/tasks');
 
     }
 
@@ -56,8 +56,21 @@ class TaskController extends BaseController
     {
         $data = [
             'title' => 'Task Erstellen',
+            'id' => $id,
         ];
         echo view('pages/TaskErstellen', $data);
+
+    }
+
+    public function postTaskBearbeiten($id)
+    {
+        $data = [
+            'title' => 'Task Erstellen',
+        ];
+//        var_dump($_POST);
+        $TaskModel = new Tasks();
+        $TaskModel->update($id, $_POST);
+        return redirect()->to(base_url().'/tasks');
 
     }
 

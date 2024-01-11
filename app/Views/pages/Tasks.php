@@ -42,7 +42,10 @@
                                                     <td><?= $oneTask['vorname'] ?> <?= $oneTask['nachname'] ?></td>
                                                 </tbody>
                                             </table>
-                                            <i class="fa-solid fa-pen-to-square"></i>
+
+                                            <a href="<?php echo base_url('/tasks/bearbeiten/'.$oneTask['id']); ?>">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
                                             <i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#deletionModal<?= $oneTask['id'] ?>" data-task-id="<?= $oneTask['id'] ?>"></i>
                                             <div class="modal fade" id="deletionModal<?= $oneTask['id'] ?>" tabindex="-1" aria-labelledby="deletionModal<?= $oneTask['id'] ?>" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
