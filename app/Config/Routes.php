@@ -15,7 +15,8 @@ $routes->setAutoRoute(true);
 
 //Route Definitions
 $routes->get('/', 'Home::index');
-$routes->get('/tasks', 'TaskController::index');
+$routes->get('/tasks', 'TaskController::index/1');
+$routes->get('/tasks/(:num)', 'TaskController::index/$1');
 $routes->get('/tasks/erstellen', 'TaskController::getTaskErstellen');
 $routes->post('/tasks/erstellen', 'TaskController::postTaskErstellen');
 $routes->post('/tasks/loeschen/(:num)', 'TaskController::postTaskLoeschen/$1');

@@ -7,7 +7,7 @@ use ReflectionException;
 class TaskController extends BaseController
 {
 
-    public function index()
+    public function index($id)
     {
         $data = [
             'title' => 'Tasks',
@@ -32,9 +32,6 @@ class TaskController extends BaseController
      */
     public function postTaskErstellen()
     {
-        $data = [
-            'title' => 'Task Erstellen',
-        ];
 //        var_dump($_POST);
         $TaskModel = new Tasks();
         $TaskModel->save($_POST);

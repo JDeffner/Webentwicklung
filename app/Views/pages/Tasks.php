@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             <a role="button" class="btn btn-primary mb-3" href="<?php echo base_url('/tasks/erstellen');?>"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
-            <div class="d-flex flex-row flex-nowrap overflow-auto">
+            <div class="d-flex flex-row flex-nowrap overflow-auto prettyScrollbar">
                 <?php foreach (($spalten ?? null) as $oneSpalte):
 //                        if ($oneSpalte['boardsid'] == ($thisBoard ?? 0))
                         ?>
@@ -84,9 +84,7 @@
 <!--                    <h1 class="modal-title fs-5" id="exampleModalLabel">Willst du die Task wirklich löschen?</h1>-->
 <!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 <!--                </div>-->
-<!--                <!--                                                        <div class="modal-body">-->-->
-<!--                <!--                                                            -->-->
-<!--                <!--                                                        </div>-->-->
+
 <!--                <div class="modal-footer">-->
 <!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>-->
 <!--                    <form id="deleteTaskForm" method="post" action="">-->
