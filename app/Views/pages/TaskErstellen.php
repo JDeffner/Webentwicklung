@@ -26,7 +26,11 @@
 <!--                                    <li><button class="dropdown-item" type="button">Option 3</button></li>-->
 <!--                                </ul>-->
 <!--                            </div>-->
-                            <input type="number" class="form-control rounded-end" value="1" name="taskartenid">
+                            <select class="form-select ms-2 rounded-start" id="TaskArt" name="taskartenid">
+                                <?php foreach (($taskarten ?? null) as $taskart): ?>
+                                    <option value="<?= $taskart['id'] ?>"><?= $taskart['taskart'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                     </div>
@@ -39,10 +43,14 @@
                     <div class="col-sm-10">
 <!--                        // databank access-->
                         <select class="form-select" id="Spalte" name="spaltenid">
-                            <option selected>1</option>
-                            <option value="1">Default - Wichtige Todos</option>
-                            <option value="2">Default - Unwichtige Todos</option>
-                            <option value="3">Default - Erledigte Todos??!</option>
+                            <option selected>Board und Spalte auswählen</option>
+                            <?php foreach (($spalten ?? null) as $spalte): ?>
+                                <?php foreach (($boards ?? null) as $board): ?>
+                                    <?php if ($spalte['boardsid'] == $board['id']): ?>
+                                        <option value="<?= $spalte['id'] ?>"><?= $board['board'] . ' - ' . $spalte['spalte'] ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
@@ -52,10 +60,10 @@
                     <div class="col-sm-10">
                         <!--                        // databank access-->
                         <select class="form-select" id="ZustaendigePerson" name="personenid">
-                            <option selected>1</option>
-                            <option value="1">a</option>
-                            <option value="2">b</option>
-                            <option value="3">c</option>
+                            <option selected>Person auswählen</option>
+                            <?php foreach (($personen ?? null) as $item): ?>
+                                <option value="<?= $item["id"] ?>"><?= $item["vorname"] ?> <?= $item["nachname"] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
@@ -64,7 +72,7 @@
                     <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerung:</label>
                     <div class="col input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" name="erinnerung">
+                            <input class="form-check-input mt-0" type="checkbox" value="1" aria-label="Checkbox for following text input" name="erinnerung">
                         </div>
 
                         <!--                        <span class="input-group-text">am</span>-->

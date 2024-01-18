@@ -2,6 +2,10 @@
 
 namespace App\Controllers;
 use App\Models\Tasks;
+use App\Models\Personen;
+use App\Models\Spalten;
+use App\Models\Boards;
+use App\Models\Taskarten;
 use ReflectionException;
 
 class TaskController extends BaseController
@@ -23,6 +27,16 @@ class TaskController extends BaseController
         $data = [
             'title' => 'Task Erstellen',
         ];
+
+        $personenModel = new Personen();
+        $data['personen'] = $personenModel->getSecureData();
+        $spaltenModel = new Spalten();
+        $data['spalten'] = $spaltenModel->getAllData();
+        $boardsModel = new Boards();
+        $data['boards'] = $boardsModel->getAllData();
+        $taskartenModel = new Taskarten();
+        $data['taskarten'] = $taskartenModel->getAllData();
+
         echo view('pages/TaskErstellen', $data);
 
     }
@@ -32,6 +46,10 @@ class TaskController extends BaseController
      */
     public function postTaskErstellen()
     {
+        if (!isset($postData['erinnerung'])) {
+            // If 'erinnerung' is not set, set it to 0
+            $postData['erinnerung'] = 0;
+        }
 //        var_dump($_POST);
         $TaskModel = new Tasks();
         $TaskModel->save($_POST);

@@ -18,7 +18,7 @@
                             <label for="PW" class="col-form-label">Password</label>
                         </div>
                         <div class="justify-content-between align-items-center d-flex">
-                            <button type="submit" class="btn btn-success mb-4">Speichern</button>
+                            <button type="submit" class="btn btn-success mb-4">Anmelden</button>
                             <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('/tasks');?>">Als Gast fortfahren</a>
                         </div>
                     </form>
