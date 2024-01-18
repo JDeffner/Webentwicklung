@@ -14,4 +14,9 @@ class Spalten extends Model
     {
         return $this->db->table($this->table)->get()->getResultArray();
     }
+
+    public function getSpaltenForBoard($boardID)
+    {
+        return $this->db->table($this->table)->where('boardsid', $boardID)->get()->getResultArray();
+    }
 }

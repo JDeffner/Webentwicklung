@@ -11,14 +11,24 @@ use ReflectionException;
 class TaskController extends BaseController
 {
 
-    public function index($id)
+    public function index($boardID)
     {
         $data = [
             'title' => 'Tasks',
+            'boardID' => $boardID,
         ];
         $tasksModel = new Tasks();
-        $data['tasks'] = $tasksModel->getDataFromBoard('Default');
-        $data['spalten'] = $tasksModel->getAllSpalten();
+        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
+        $personenModel = new Personen();
+        $data['personen'] = $personenModel->getSecureData();
+        $spaltenModel = new Spalten();
+        $data['spalten'] = $spaltenModel->getAllData();
+        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
+        $boardsModel = new Boards();
+        $data['boards'] = $boardsModel->getAllData();
+        $taskartenModel = new Taskarten();
+        $data['taskarten'] = $taskartenModel->getAllData();
+
         echo view('pages/Tasks', $data);
     }
 
@@ -40,6 +50,7 @@ class TaskController extends BaseController
         echo view('pages/TaskErstellen', $data);
 
     }
+
 
     /**
      * @throws ReflectionException
@@ -66,17 +77,20 @@ class TaskController extends BaseController
         return redirect()->to(base_url().'/tasks');
 
     }
+//
+//    public function getTaskBearbeiten($id)
+//    {
+//        $data = [
+//            'title' => 'Task Erstellen',
+//            'id' => $id,
+//        ];
+//        echo view('pages/TaskErstellen', $data);
+//
+//    }
 
-    public function getTaskBearbeiten($id)
-    {
-        $data = [
-            'title' => 'Task Erstellen',
-            'id' => $id,
-        ];
-        echo view('pages/TaskErstellen', $data);
-
-    }
-
+    /**
+     * @throws ReflectionException
+     */
     public function postTaskBearbeiten($id)
     {
         $data = [
