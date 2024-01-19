@@ -1,27 +1,46 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Tasks;
+use App\Models\Personen;
 
 class Home extends BaseController
 {
     public function index()
     {
         $data = [
-            'title' => 'Startseite',
+            'title' => 'Login',
         ];
-        echo view('pages/Startseite', $data);
+        echo view('pages/BenutzerAnmelden', $data);
     }
 
 
 
-    public function newUser(){
+    public function getBenutzerErstellen(){
         $data = [
             'title' => 'Neuer Benutzer',
 
         ];
 //        if($this->request->getMethod() == 'post')
-        echo view('pages/NewUser', $data);
+        echo view('pages/BenutzerErstellen', $data);
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function postBenutzerErstellen(){
+        $personenModel = new Personen();
+        $personenModel->save($_POST);
+        $userid = $personenModel->insertID();
+        return redirect()->to(base_url().'benutzer/'.$userid);
+    }
+
+    public function getBenutzer($userid){
+        $personenModel = new Personen();
+        $data = [
+            'title' => 'Profil',
+        ];
+        $data['person'] = $personenModel->select('id, vorname, nachname, email')->where('id', $userid)->first();
+        echo view('pages/Benutzer', $data);
     }
 
 }

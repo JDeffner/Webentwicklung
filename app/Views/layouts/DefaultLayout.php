@@ -28,13 +28,13 @@
             <div class="navbar-collapse collapse" id="navbarDropdown">
                 <ul class="navbar-nav nav-underline me-auto mb-2 mb-md-0">
                     <li class="nav-item active">
-                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('/tasks');?>">Tasks</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('tasks');?>">Tasks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('/boards');?>">Boards</a>
+                        <a class="nav-link" href="<?php echo base_url('boards');?>">Boards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('/spalten');?>">Spalten</a>
+                        <a class="nav-link" href="<?php echo base_url('spalten');?>">Spalten</a>
                     </li>
                 </ul>
             </div>

@@ -7,21 +7,21 @@
             <h4>Neuen Account Erstellen</h4>
         </div>
         <div class="card-body">
-            <form method="post" action="<?php echo base_url();?>newUser">
+            <form method="post" action="<?php echo base_url();?>benutzer/erstellen">
                 <div class="form-floating mb-4 mt-1">
-                    <input type="text" class="form-control" id="Vorname" placeholder="Vorname">
+                    <input type="text" class="form-control" id="Vorname" placeholder="Vorname" name="vorname">
                     <label for="Vorname" class="col-form-label">Vorname</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="text" class="form-control" id="Nachname" placeholder="Nachname">
+                    <input type="text" class="form-control" id="Nachname" placeholder="Nachname" name="nachname">
                     <label for="Nachname" class="col-form-label">Nachname</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="email" class="form-control" id="Mail" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="Mail" placeholder="name@example.com" name="email">
                     <label for="Mail" class="col-form-label">E-Mail</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="PW" placeholder="Password">
+                    <input type="password" class="form-control" id="PW" placeholder="Password" name="password">
                     <label for="PW" class="col-form-label">Password</label>
                 </div>
                 <button type="submit" class="btn btn-success mb-2">Speichern</button>

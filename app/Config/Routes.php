@@ -13,8 +13,14 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
-//Route Definitions
+//login routes
 $routes->get('/', 'Home::index');
+$routes->get('/benutzer/erstellen', 'Home::getBenutzerErstellen');
+$routes->post('/benutzer/erstellen', 'Home::postBenutzerErstellen');
+$routes->get('/benutzer/anmelden', 'Home::getBenutzerAnmelden');
+$routes->get('/benutzer/(:num)', 'Home::getBenutzer/$1');
+
+//task routes
 $routes->get('/tasks', 'TaskController::index/1');
 $routes->get('/tasks/(:num)', 'TaskController::index/$1');
 $routes->get('/tasks/erstellen', 'TaskController::getTaskErstellen');
@@ -23,13 +29,12 @@ $routes->post('/tasks/loeschen/(:num)', 'TaskController::postTaskLoeschen/$1');
 $routes->get('/tasks/bearbeiten/(:num)', 'TaskController::getTaskBearbeiten/$1');
 $routes->post('/tasks/bearbeiten/(:num)', 'TaskController::postTaskBearbeiten/$1');
 
+//spalten routes
 $routes->get('/spalten', 'Spalten::index');
 $routes->get('/spalten/erstellen', 'Spalten::getSpalteErstellen');
 
+//board routes
 $routes->get('/boards', 'Boards::index');
-
-$routes->get('/newUser', 'Home::newUser');
-$routes->post('/newUser', 'Home::newUser');
 
 // Admin routes
 $routes->get('/dashboard', 'Admin::index');
