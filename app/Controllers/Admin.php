@@ -12,7 +12,7 @@ class Admin extends BaseController
         ];
         $personenModel = new Personen();
         $data['personen'] = $personenModel->getSecureData();
-        echo view('pages/AdminDashboard', $data);
+        echo view('pages/admin/Dashboard', $data);
     }
 
 }

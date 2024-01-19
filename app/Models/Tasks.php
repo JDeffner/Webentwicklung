@@ -25,7 +25,7 @@ class Tasks extends Model
         return $result->getResultArray();
     }
 
-    public function getDataFromBoard(string $boardName): array
+    public function getTasksFromBoard(string $BoardID): array
     {
         $result = $this->db->query(
             'SELECT t.id as id, p.vorname as vorname, p.nachname as nachname, ta.taskart as taskart, 
@@ -37,29 +37,12 @@ class Tasks extends Model
                 JOIN taskarten ta ON t.taskartenid = ta.id
                 JOIN spalten s ON t.spaltenid = s.id
                 JOIN boards b ON s.boardsid = b.id
-                WHERE t.spaltenid = s.id
-                  AND s.boardsid = b.id
-                  AND b.board = ?
+                WHERE s.boardsid = b.id
+                  AND b.id = ?
                 ORDER BY t.tasks DESC',
-                [$boardName]);
+                [$BoardID]);
         return $result->getResultArray();
     }
 
-    public function getAllSpalten():array
-    {
-        $result = $this->db->query('SELECT * FROM spalten order by sortid');
-        return $result->getResultArray();
-    }
-
-    public function getDataFromBoardSmall(string $inputBoardID): array
-    {
-        $result = $this->db->query('SELECT t.id as id, t.personenid as personenid, t.taskartenid as personenid, t.spaltenid as spaltenid, t.sortid as sortid, t.tasks as tasks, t.erstelldatum as erstelldatum, t.erinnerungsdatum as erinnerungsdatum, t.erinnerung as erinnerung, t.notizen as notizen, t.erledigt as erledigt, t.geloescht as geloescht, 
-        p.vorname as vorname, p.nachname as nachname
-                FROM tasks t 
-                JOIN personen p ON p.id = t.personenid
-                JOIN spalten s 
-                order by t.tasks DESC');
-        return $result->getResultArray();
-    }
 
 }

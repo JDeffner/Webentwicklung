@@ -8,21 +8,21 @@
                     <h4>Bitte Melden Sie sich an</h4>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="<?php echo base_url();?>logIn">
+                    <form method="post" action="<?php echo base_url();?>benutzer/anmelden">
                         <div class="form-floating mb-4 mt-1">
-                            <input type="email" class="form-control" id="Mail" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="Mail" placeholder="name@example.com" name="email">
                             <label for="Mail" class="col-form-label">E-Mail</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="PW" placeholder="Password">
+                            <input type="password" class="form-control" id="PW" placeholder="Password" name="password">
                             <label for="PW" class="col-form-label">Password</label>
                         </div>
                         <div class="justify-content-between align-items-center d-flex">
-                            <button type="submit" class="btn btn-success mb-4">Speichern</button>
+                            <button type="submit" class="btn btn-success mb-4">Anmelden</button>
                             <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('/tasks');?>">Als Gast fortfahren</a>
                         </div>
                     </form>
-                    <a href="<?php echo base_url('/newUser');?>">Ich will einen neuen Account erstellen</a>
+                    <a href="<?php echo base_url('benutzer/erstellen');?>">Ich will einen neuen Account erstellen</a>
                 </div>
             </div>
         </div>

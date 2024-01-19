@@ -296,6 +296,36 @@ textarea::-webkit-scrollbar-thumb:active {
     background: var(--primary-color); /* Thumb color on hover */
 }
 
+.prettyScrollbar {
+    /*overflow-x: auto; !* Enable horizontal scrolling *!*/
+    white-space: nowrap; /* Prevent table cells from wrapping */
+
+    /*Hide default scrollbar*/
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.prettyScrollbar::-webkit-scrollbar {
+    width: 12px; /* Set width of the scrollbar */
+}
+
+.prettyScrollbar::-webkit-scrollbar-track {
+    background: none; /* Track color */
+}
+
+.prettyScrollbar::-webkit-scrollbar-thumb {
+    background: var(--tertiary-color); /* Thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.prettyScrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight-color); /* Thumb color on hover */
+}
+
+.prettyScrollbar::-webkit-scrollbar-thumb:active {
+    background: var(--hover-highlight-color); /* Thumb color on hover */
+}
+
 /*Form select styling*/
 .form-select {
     appearance: none;

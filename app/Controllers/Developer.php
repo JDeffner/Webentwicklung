@@ -4,11 +4,11 @@ namespace App\Controllers;
 use App\Models\Personen;
 
 
-class Welcome extends BaseController
+class Developer extends BaseController
 {
     public function index()
     {
-        echo view('welcome_message');
+        echo view('pages/dev/welcome_message');
     }
 
     public function viewGruppennummer(){
@@ -23,12 +23,20 @@ class Welcome extends BaseController
 public function testDatabase() {
         $testModel = new Personen();
         $data['personen'] = $testModel->getAllData();
-        echo view('pages/TestDatabase', $data);
+        echo view('pages/dev/TestDatabase', $data);
 }
 
 public function test($string)
 {
     var_dump($string);
+}
+
+public function abweisung()
+{
+    $data = [
+        'title' => 'Login',
+    ];
+    echo view('pages/dev/Abweisung', $data);
 }
 
 }
