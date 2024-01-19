@@ -14,11 +14,11 @@ $routes->set404Override();
 $routes->setAutoRoute(true);
 
 //login routes
-$routes->get('/', 'Home::index');
-$routes->get('/benutzer/erstellen', 'Home::getBenutzerErstellen');
-$routes->post('/benutzer/erstellen', 'Home::postBenutzerErstellen');
-$routes->get('/benutzer/anmelden', 'Home::getBenutzerAnmelden');
-$routes->get('/benutzer/(:num)', 'Home::getBenutzer/$1');
+$routes->get('/', 'Benutzer::index');
+$routes->get('/benutzer/erstellen', 'Benutzer::getBenutzerErstellen');
+$routes->post('/benutzer/erstellen', 'Benutzer::postBenutzerErstellen');
+$routes->get('/benutzer/anmelden', 'Benutzer::getBenutzerAnmelden');
+$routes->get('/benutzer/(:num)', 'Benutzer::getBenutzer/$1');
 
 //task routes
 $routes->get('/tasks', 'TaskBoard::index/1');
