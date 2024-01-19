@@ -43,6 +43,6 @@ class Tasks extends Model
                 [$BoardID]);
         return $result->getResultArray();
     }
-    
+
 
 }

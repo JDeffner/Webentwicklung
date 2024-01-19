@@ -31,4 +31,12 @@ public function test($string)
     var_dump($string);
 }
 
+public function abweisung()
+{
+    $data = [
+        'title' => 'Login',
+    ];
+    echo view('pages/Abweisung', $data);
+}
+
 }

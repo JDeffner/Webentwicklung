@@ -41,7 +41,11 @@
                                                 </tbody>
                                             </table>
 
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTaskModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['tasks'] ?>">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTaskModal" data-task-id="<?= $oneTask['id'] ?>"
+                                                data-task-name="<?= $oneTask['tasks'] ?>" data-task-person="<?= $oneTask['personenid'] ?>"
+                                                data-task-spalte="<?= $oneTask['spaltenid'] ?>"
+                                                data-task-erinnerung-datum="<?= $oneTask['erinnerungsdatum'] ?>" data-task-erinnerung="<?= $oneTask['erinnerung'] ?>"
+                                                data-task-notiz="<?= $oneTask['notizen'] ?>" data-task-taskart="<?= $oneTask['taskartenid'] ?>">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <i class="fa-solid fa-trash delete-button" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['tasks'] ?>"></i>
@@ -67,7 +71,7 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    $formAction = base_url('tasks/erstellen');
+                    $formAction = base_url('tasks/erstellen/');
                     include APPPATH . 'Views/components/TaskForm.php';
                     ?>
                 </div>
@@ -85,7 +89,7 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    $formAction = base_url('tasks/bearbeiten');
+                    $formAction = base_url('tasks/bearbeiten/');
                     include APPPATH . 'Views/components/TaskForm.php';
                     ?>
                 </div>
@@ -113,56 +117,9 @@
 
 
 
-    <script>
-        // Get all edit buttons
-        const editButtons = document.querySelectorAll('.fa-pen-to-square');
 
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const taskId = this.getAttribute('data-task-id');
 
-                // Fetch the task data from the server
-                fetch(`<?php echo base_url('/tasks/getTaskData/'); ?>${taskId}`)
-                    .then(response => response.json())
-                    .then(taskData => {
-                        // Populate the form fields
-                        document.querySelector('#editTaskModal #TaskName').value = taskData.tasks;
-                        document.querySelector('#editTaskModal #ZustaendigePerson').value = taskData.personenid;
-                        document.querySelector('#editTaskModal #Spalte').value = taskData.spaltenid;
-                        document.querySelector('#editTaskModal #TaskArt').value = taskData.taskartenid;
-                        document.querySelector('#editTaskModal #erinnerungsdatum').value = taskData.erinnerungsdatum;
-                        document.querySelector('#editTaskModal #Notizen').value = taskData.notizen;
-                        document.querySelector('#editTaskModal input[name="erinnerung"]').checked = taskData.erinnerung;
 
-                        // Show the edit modal
-                        const editTaskModal = new bootstrap.Modal(document.querySelector('#editTaskModal'));
-                        editTaskModal.show();
-                    });
-            });
-        });
-    </script>
-
-    <script>
-        // Get all delete buttons
-        const deleteButtons = document.querySelectorAll('.delete-button');
-
-        // Add click event listener to each delete button
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Get the task ID and name from the data-task-id and data-task-name attributes
-                const taskId = this.getAttribute('data-task-id');
-                const taskName = this.getAttribute('data-task-name');
-
-                // Get the form in the modal and the modal title
-                const form = document.querySelector('#deleteTaskForm');
-                const modalTitle = document.querySelector('#deleteModalLabel');
-
-                // Set the action of the form and the modal title dynamically
-                form.action = `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`;
-                modalTitle.textContent = `Willst du die Task "${taskName}" wirklich löschen?`;
-            });
-        });
-    </script>
 
 
  </main>

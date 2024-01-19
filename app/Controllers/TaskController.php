@@ -68,10 +68,10 @@ class TaskController extends BaseController
 
     }
 
-    public function postTaskLoeschen($id)
+    public function postTaskLoeschen($taskid)
     {
         $TaskModel = new Tasks();
-        $TaskModel->delete($id);
+        $TaskModel->delete($taskid);
 //        var_dump($id);
 
         return redirect()->to(base_url().'/tasks');
@@ -91,14 +91,14 @@ class TaskController extends BaseController
     /**
      * @throws ReflectionException
      */
-    public function postTaskBearbeiten($id)
+    public function postTaskBearbeiten($taskid)
     {
         $data = [
             'title' => 'Task Erstellen',
         ];
 //        var_dump($_POST);
         $TaskModel = new Tasks();
-        $TaskModel->update($id, $_POST);
+        $TaskModel->update($taskid, $_POST);
         return redirect()->to(base_url().'/tasks');
 
     }
