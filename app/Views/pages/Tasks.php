@@ -21,6 +21,14 @@
                                     if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
                                     <div class="card mb-3">
                                         <div class="card-body">
+                                            <input type="hidden" id="taskid" name="id" value="<?php echo $oneTask['id'] ?>">
+                                            <input type="hidden" id="taskname" name="tasks" value="<?php echo $oneTask['tasks'] ?>">
+                                            <input type="hidden" id="taskperson" name="personenid" value="<?php echo $oneTask['personenid'] ?>">
+                                            <input type="hidden" id="taskspalte" name="spaltenid" value="<?php echo $oneTask['spaltenid'] ?>">
+                                            <input type="hidden" id="taskerinnerung-datum" name="erinnerungsdatum" value="<?php echo $oneTask['erinnerungsdatum'] ?>">
+                                            <input type="hidden" id="taskerinnerung" name="erinnerung" value="<?php echo $oneTask['erinnerung'] ?>">
+                                            <input type="hidden" id="tasknotiz" name="notizen" value="<?php echo $oneTask['notizen'] ?>">
+                                            <input type="hidden" id="tasktaskart" name="taskartenid" value="<?php echo $oneTask['taskartenid'] ?>">
                                             <table>
                                                 <tbody>
                                                 <tr>
@@ -40,15 +48,16 @@
                                                     <td><?= $oneTask['vorname'] ?> <?= $oneTask['nachname'] ?></td>
                                                 </tbody>
                                             </table>
-
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTaskModal" data-task-id="<?= $oneTask['id'] ?>"
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTaskModal"
+                                                data-task-id="<?= $oneTask['id'] ?>"
                                                 data-task-name="<?= $oneTask['tasks'] ?>" data-task-person="<?= $oneTask['personenid'] ?>"
                                                 data-task-spalte="<?= $oneTask['spaltenid'] ?>"
                                                 data-task-erinnerung-datum="<?= $oneTask['erinnerungsdatum'] ?>" data-task-erinnerung="<?= $oneTask['erinnerung'] ?>"
-                                                data-task-notiz="<?= $oneTask['notizen'] ?>" data-task-taskart="<?= $oneTask['taskartenid'] ?>">
+                                                data-task-notiz="<?= $oneTask['notizen'] ?>" data-task-taskart="<?= $oneTask['taskartenid'] ?>"
+                                                class="editTaskButton">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <i class="fa-solid fa-trash delete-button" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['tasks'] ?>"></i>
+                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['tasks'] ?>"></i>
 
                                         </div>
                                     </div>
@@ -71,7 +80,7 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    $formAction = base_url('tasks/erstellen/');
+                    $formAction = base_url('tasks/erstellen');
                     include APPPATH . 'Views/components/TaskForm.php';
                     ?>
                 </div>
@@ -89,13 +98,16 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    $formAction = base_url('tasks/bearbeiten/');
+//                    $formAction = base_url('tasks/bearbeiten/');
                     include APPPATH . 'Views/components/TaskForm.php';
                     ?>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <!-- Deletion Modal -->
     <div class="modal fade" id="deletionModal" tabindex="-1" aria-labelledby="deletionModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -114,13 +126,64 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
  </main>
+ <script>
+     $(document).on('click','.editTaskButton', function (e){
+         e.preventDefault();
+         var id = $(this).siblings()[0].value;
+         var name = $(this).siblings()[1].value;
+         var person = $(this).siblings()[2].value;
+         var spalte = $(this).siblings()[3].value;
+         var erinnerungDatum = $(this).siblings()[4].value;
+         var erinnerung = $(this).siblings()[5].value;
+         var notiz = $(this).siblings()[6].value;
+         var taskart = $(this).siblings()[7].value;
+
+         $('#editTaskModal').find('#TaskName').val(name);
+         $('#editTaskModal').find('#TaskArt').val(taskart);
+         $('#editTaskModal').find('#Spalte').val(spalte);
+         $('#editTaskModal').find('#ZustaendigePerson').val(person);
+         $('#editTaskModal').find('#erinnerungsdatum').val(erinnerungDatum);
+         // if (erinnerung == 1) {
+         //     console.log(erinnerung + " if");
+         //     $('#editTaskModal').find('#erinnerung').prop('checked', true);
+         // } else {
+         //     console.log(erinnerung + " else");
+         //     $('#editTaskModal').find('#erinnerung').prop('checked', false);
+         // }
+         $('#editTaskModal').find('#Notizen').val(notiz);
+         $('#editTaskModal').find('form').attr('action', '<?= base_url('tasks/bearbeiten/') ?>'+id);
+
+     });
+
+     // i want to make an event listener such that when the checkbox with the ID erinnerung is checked, the date input is enabled
+        // and when it is unchecked, the date input is disabled
+        // $('#editTaskModal').find('#erinnerung').on('change', function() {
+        //     if ($(this).is(':checked')) {
+        //         $('#editTaskModal').find('#erinnerungsdatum').prop('disabled', false);
+        //     } else {
+        //         $('#editTaskModal').find('#erinnerungsdatum').prop('disabled', true);
+        //     }
+
+
+     // Get all delete buttons
+     const deleteButtons = document.querySelectorAll('.deleteTaskButton');
+
+     // Add click event listener to each delete button
+     deleteButtons.forEach(button => {
+         button.addEventListener('click', function() {
+             // Get the task ID and name from the data-task-id and data-task-name attributes
+             const taskId = this.getAttribute('data-task-id');
+             const taskName = this.getAttribute('data-task-name');
+
+             // Get the form in the modal and the modal title
+             const form = document.querySelector('#deleteTaskForm');
+             const modalTitle = document.querySelector('#deleteModalLabel');
+
+             // Set the action of the form and the modal title dynamically
+             form.action = `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`;
+             modalTitle.textContent = `Willst du die Task "${taskName}" wirklich löschen?`;
+         });
+     });
+ </script>
 <?= $this->endSection() ?>

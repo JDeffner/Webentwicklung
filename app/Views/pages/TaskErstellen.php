@@ -11,7 +11,27 @@
                 if(isset($id))
                     echo base_url('tasks/bearbeiten/'.$id);
                     else echo base_url('tasks/erstellen');?>">
-
+<!--                //$.ajax({-->
+<!--                //    url: '--><?php ////echo base_url('tasks/bearbeiten/'); ?><!--//'+id,-->
+<!--                //    method: "GET",-->
+<!--                //    success: function (response){-->
+<!--                //        console.log(JSON.parse(response));-->
+<!--                //    }-->
+<!--                // type: 'post',-->
+<!--                // data: {-->
+<!--                //     id: id,-->
+<!--                //     tasks: name,-->
+<!--                //     personenid: person,-->
+<!--                //     spaltenid: spalte,-->
+<!--                //     erinnerungsdatum: erinnerungDatum,-->
+<!--                //     erinnerung: erinnerung,-->
+<!--                //     notizen: notiz,-->
+<!--                //     taskartenid: taskart-->
+<!--                // },-->
+<!--                // success: function (response){-->
+<!--                //     console.log(response);-->
+<!--                // }-->
+<!--                // })-->
             </form>
         </div>
     </div>

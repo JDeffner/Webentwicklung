@@ -11,6 +11,7 @@ use ReflectionException;
 class TaskBoard extends BaseController
 {
 
+
     public function index($boardID)
     {
         $data = [
@@ -57,14 +58,21 @@ class TaskBoard extends BaseController
      */
     public function postTaskErstellen()
     {
-        if (!isset($postData['erinnerung'])) {
-            // If 'erinnerung' is not set, set it to 0
-            $postData['erinnerung'] = 0;
-        }
-//        var_dump($_POST);
-        $TaskModel = new Tasks();
-        $TaskModel->save($_POST);
-        return redirect()->to(base_url().'/tasks');
+        var_dump($_POST);
+//        if (!isset($_POST['erinnerung'])) {
+//            // If 'erinnerung' is not set, set it to 0
+//            $postData['erinnerung'] = 0;
+//        } else if ($_POST['erinnerung'] == true) {
+//            // If 'erinnerung' is set and is 'on', set it to 1
+//            $postData['erinnerung'] = 1;
+//        } else {
+//            // If 'erinnerung' is set and is not 'on', set it to 0
+//            $postData['erinnerung'] = 0;
+//        }
+////        var_dump($_POST);
+//        $TaskModel = new Tasks();
+//        $TaskModel->save($_POST);
+//        return redirect()->to(base_url().'/tasks');
 
     }
 
@@ -77,30 +85,23 @@ class TaskBoard extends BaseController
         return redirect()->to(base_url().'/tasks');
 
     }
-//
-//    public function getTaskBearbeiten($id)
-//    {
-//        $data = [
-//            'title' => 'Task Erstellen',
-//            'id' => $id,
-//        ];
-//        echo view('pages/TaskErstellen', $data);
-//
-//    }
+
+    public function getTaskBearbeiten($taskid)
+    {
+//        $TaskModel = new Tasks();
+//        $data = $TaskModel->find($taskid);
+//        echo json_encode($data);
+    }
 
     /**
      * @throws ReflectionException
      */
     public function postTaskBearbeiten($taskid)
     {
-        $data = [
-            'title' => 'Task Erstellen',
-        ];
-//        var_dump($_POST);
         $TaskModel = new Tasks();
         $TaskModel->update($taskid, $_POST);
         return redirect()->to(base_url().'/tasks');
-
     }
+
 
 }
