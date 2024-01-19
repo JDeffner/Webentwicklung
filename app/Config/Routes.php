@@ -21,13 +21,13 @@ $routes->get('/benutzer/anmelden', 'Home::getBenutzerAnmelden');
 $routes->get('/benutzer/(:num)', 'Home::getBenutzer/$1');
 
 //task routes
-$routes->get('/tasks', 'TaskController::index/1');
-$routes->get('/tasks/(:num)', 'TaskController::index/$1');
-$routes->get('/tasks/erstellen', 'TaskController::getTaskErstellen');
-$routes->post('/tasks/erstellen', 'TaskController::postTaskErstellen');
-$routes->post('/tasks/loeschen/(:num)', 'TaskController::postTaskLoeschen/$1');
-$routes->get('/tasks/bearbeiten/(:num)', 'TaskController::getTaskBearbeiten/$1');
-$routes->post('/tasks/bearbeiten/(:num)', 'TaskController::postTaskBearbeiten/$1');
+$routes->get('/tasks', 'TaskBoard::index/1');
+$routes->get('/tasks/(:num)', 'TaskBoard::index/$1');
+$routes->get('/tasks/erstellen', 'TaskBoard::getTaskErstellen');
+$routes->post('/tasks/erstellen', 'TaskBoard::postTaskErstellen');
+$routes->post('/tasks/loeschen/(:num)', 'TaskBoard::postTaskLoeschen/$1');
+$routes->get('/tasks/bearbeiten/(:num)', 'TaskBoard::getTaskBearbeiten/$1');
+$routes->post('/tasks/bearbeiten/(:num)', 'TaskBoard::postTaskBearbeiten/$1');
 
 //spalten routes
 $routes->get('/spalten', 'Spalten::index');

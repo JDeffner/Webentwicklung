@@ -8,7 +8,7 @@ use App\Models\Boards;
 use App\Models\Taskarten;
 use ReflectionException;
 
-class TaskController extends BaseController
+class TaskBoard extends BaseController
 {
 
     public function index($boardID)
