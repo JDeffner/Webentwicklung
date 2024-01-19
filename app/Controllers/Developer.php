@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Personen;
+use App\Models\tasks;
 
 
 class Developer extends BaseController
@@ -15,14 +15,9 @@ class Developer extends BaseController
         var_dump(04);
     }
 
-
-//    public function testConnection() {
-//        $query = $this->db->get('tasks'); // Replace 'your_table_name' with an actual table name
-//        print_r($query->result()); // Print the query result to verify the connection
-//    }
 public function testDatabase() {
-        $testModel = new Personen();
-        $data['personen'] = $testModel->getAllData();
+        $testTasksModel = new Tasks();
+        $data['tasks'] = $testTasksModel->getAllData();
         echo view('pages/dev/TestDatabase', $data);
 }
 
