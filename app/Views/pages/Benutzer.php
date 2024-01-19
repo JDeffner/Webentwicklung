@@ -5,7 +5,7 @@
     <div class="card ms-3 me-3">
         <div class="card-header">
             <h3>
-                Wilkommen
+                Willkommen
                 <?php if (isset($person['vorname']) && isset($person['nachname'])) {
                     echo $person['vorname']. " " . $person['nachname'];
                 } else {
