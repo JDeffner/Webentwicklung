@@ -402,3 +402,23 @@ textarea::-webkit-scrollbar-thumb:active {
     outline: 0;
     box-shadow: 0 0 0 0.2rem var(--tertiary-color);
 }
+
+/*input:disabled,*/
+/*select:disabled,*/
+/*textarea:disabled {*/
+/*    !* Set the background color to a light grey *!*/
+/*    background-color: #E0E0E0;*/
+/*    !* Set the text color to a darker grey *!*/
+/*    color: #808080;*/
+/*    !* Set the cursor to not-allowed to indicate the input is disabled *!*/
+/*    !*cursor: not-allowed;*!*/
+/*}*/
+
+input[type="datetime-local"]:disabled {
+    /* Set the background color to a light grey */
+    background-color: #E0E0E0;
+    /*Set the text color to a darker grey */
+    color: #808080;
+    /* Set the cursor to not-allowed to indicate the input is disabled */
+    /*cursor: not-allowed; */
+}
