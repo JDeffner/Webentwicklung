@@ -21,14 +21,14 @@
                                     if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <input type="hidden" id="taskid" name="id" value="<?php echo $oneTask['id'] ?>">
-                                            <input type="hidden" id="taskname" name="tasks" value="<?php echo $oneTask['tasks'] ?>">
-                                            <input type="hidden" id="taskperson" name="personenid" value="<?php echo $oneTask['personenid'] ?>">
-                                            <input type="hidden" id="taskspalte" name="spaltenid" value="<?php echo $oneTask['spaltenid'] ?>">
-                                            <input type="hidden" id="taskerinnerung-datum" name="erinnerungsdatum" value="<?php echo $oneTask['erinnerungsdatum'] ?>">
-                                            <input type="hidden" id="taskerinnerung" name="erinnerung" value="<?php echo $oneTask['erinnerung'] ?>">
-                                            <input type="hidden" id="tasknotiz" name="notizen" value="<?php echo $oneTask['notizen'] ?>">
-                                            <input type="hidden" id="tasktaskart" name="taskartenid" value="<?php echo $oneTask['taskartenid'] ?>">
+                                            <input type="hidden" id="taskid" value="<?php echo $oneTask['id'] ?>">
+                                            <input type="hidden" id="taskname" value="<?php echo $oneTask['tasks'] ?>">
+                                            <input type="hidden" id="taskperson" value="<?php echo $oneTask['personenid'] ?>">
+                                            <input type="hidden" id="taskspalte" value="<?php echo $oneTask['spaltenid'] ?>">
+                                            <input type="hidden" id="taskerinnerung-datum" value="<?php echo $oneTask['erinnerungsdatum'] ?>">
+                                            <input type="hidden" id="taskerinnerung" value="<?php echo $oneTask['erinnerung'] ?>">
+                                            <input type="hidden" id="tasknotiz" value="<?php echo $oneTask['notizen'] ?>">
+                                            <input type="hidden" id="tasktaskart" value="<?php echo $oneTask['taskartenid'] ?>">
                                             <table>
                                                 <tbody>
                                                 <tr>
@@ -128,7 +128,8 @@
 
  </main>
  <script>
-
+     var wantReminder = false;
+        // Get all edit buttons
      $('.editTaskButton').on('click', function() {
          var id = $(this).siblings()[0].value;
          var name = $(this).siblings()[1].value;
@@ -146,44 +147,28 @@
          $('#editTaskModal').find('#erinnerungsdatum').val(erinnerungDatum);
          if(erinnerung == '1') {
              $('#editTaskModal').find('#erinnerung').attr('checked', '');
+             wantReminder = true;
          } else {
              $('#editTaskModal').find('#erinnerung').removeAttr('checked');
+             wantReminder = false;
          }
-         $('#editTaskModal').find('#erinnerungCheckbox').prop('checked', true);
+         console.log(wantReminder);
          $('#editTaskModal').find('#Notizen').val(notiz);
          $('#editTaskModal').find('form').attr('action', '<?= base_url('tasks/bearbeiten/') ?>'+id);
 
      });
 
-     // $('#erinnerungCheckbox').on('change', function() {
-     //     if ($(this).is(':checked')) {
-     //         $('#erinnerung').val(1);
-     //     } else {
-     //         $('#erinnerung').val(0);
-     //     }
-     // });
+     $('#erinnerung').on('change', function() {
+         console.log('click');
+         if (wantReminder) {
 
-     // function updateCheckboxState() {
-     //     var erinnerungValue = $('#erinnerung').val();
-     //     console.log(erinnerungValue);
-     //     if (erinnerungValue == '1') {
-     //         console.log(erinnerungValue + " if");
-     //         $('#erinnerungCheckbox').prop('checked', true);
-     //     } else {
-     //         console.log(erinnerungValue + " else");
-     //         $('#erinnerungCheckbox').prop('checked', false);
-     //     }
-     // }
-
-     // i want to make an event listener such that when the checkbox with the ID erinnerung is checked, the date input is enabled
-        // and when it is unchecked, the date input is disabled
-        // $('#editTaskModal').find('#erinnerung').on('change', function() {
-        //     if ($(this).is(':checked')) {
-        //         $('#editTaskModal').find('#erinnerungsdatum').prop('disabled', false);
-        //     } else {
-        //         $('#editTaskModal').find('#erinnerungsdatum').prop('disabled', true);
-        //     }
-
+             $('#erinnerungsdatum').attr('disabled', '');
+             wantReminder = false;
+         } else {
+             $('#erinnerungsdatum').removeAttr('disabled');
+             wantReminder = true;
+         }
+     });
 
      // Get all delete buttons
      $('.deleteTaskButton').on('click', function() {

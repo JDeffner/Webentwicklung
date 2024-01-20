@@ -65,7 +65,7 @@
             <!--                        <span class="input-group-text">am</span>-->
             <input type="datetime-local" data-provide="datepicker" class="form-control" id="erinnerungsdatum"
                    placeholder="Datum" name="erinnerungsdatum"
-                   data-np-intersection-state="observed" value="<?php echo date('Y-m-d\TH:i', strtotime('+1 hour')); ?>">
+                   data-np-intersection-state="observed" disabled>
 
         </div>
     </div>

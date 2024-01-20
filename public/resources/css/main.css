@@ -415,10 +415,9 @@ textarea::-webkit-scrollbar-thumb:active {
 /*}*/
 
 input[type="datetime-local"]:disabled {
-    /* Set the background color to a light grey */
     background-color: #E0E0E0;
-    /*Set the text color to a darker grey */
     color: #808080;
+    border: 2px solid #cccccc;
     /* Set the cursor to not-allowed to indicate the input is disabled */
     /*cursor: not-allowed; */
 }
