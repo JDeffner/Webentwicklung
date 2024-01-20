@@ -17,14 +17,7 @@ class SpaltenController extends BaseController
         $data['boards'] = $boardsModel->getAllData();
         echo view('pages/Spalten', $data);
     }
-
-    public function getSpalteErstellen(){
-        $data = [
-            'title' => 'Spalte Erstellen',
-        ];
-        echo view('pages/SpalteErstellen', $data);
-    }
-
+    
     /**
      * @throws \ReflectionException
      */
