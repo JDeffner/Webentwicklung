@@ -132,25 +132,26 @@
          var erinnerung = $(this).siblings()[5].value;
          var notiz = $(this).siblings()[6].value;
          var taskart = $(this).siblings()[7].value;
+         var editTaskModal = $('#editTaskModal');
 
-         $('#editTaskModal').find('#TaskName').val(name);
-         $('#editTaskModal').find('#TaskArt').val(taskart);
-         $('#editTaskModal').find('#Spalte').val(spalte);
-         $('#editTaskModal').find('#ZustaendigePerson').val(person);
-         $('#editTaskModal').find('#erinnerungsdatum').val(erinnerungDatum);
-         if(erinnerung == '1') {
-             $('#editTaskModal').find('#erinnerung').attr('checked', '');
+         editTaskModal.find('#TaskName').val(name);
+         editTaskModal.find('#TaskArt').val(taskart);
+         editTaskModal.find('#Spalte').val(spalte);
+         editTaskModal.find('#ZustaendigePerson').val(person);
+         editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
+         if(erinnerung === '1') {
+             editTaskModal.find('#erinnerung').attr('checked', '');
 
              // $('#erinnerungsdatum').removeAttr('disabled');
              wantReminder = true;
          } else {
-             $('#editTaskModal').find('#erinnerung').removeAttr('checked');
+             editTaskModal.find('#erinnerung').removeAttr('checked');
              // $('#erinnerungsdatum').attr('disabled', '');
              wantReminder = false;
          }
          console.log(wantReminder);
-         $('#editTaskModal').find('#Notizen').val(notiz);
-         $('#editTaskModal').find('form').attr('action', '<?= base_url('tasks/bearbeiten/') ?>'+id);
+         editTaskModal.find('#Notizen').val(notiz);
+         editTaskModal.find('form').attr('action', '<?= base_url('tasks/bearbeiten/') ?>'+id);
 
      });
 

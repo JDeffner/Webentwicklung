@@ -118,13 +118,14 @@
                 var sortid = $(this).data('sortid');
                 var spalte = $(this).data('spalte');
                 var spaltenbeschreibung = $(this).data('spaltenbeschreibung');
-                $('#editModalLabel').text('Spalte ' + spalte + ' bearbeiten');
-                $('#editSpalteModal').find('#SpaltenName').val(spalte);
-                $('#editSpalteModal').find('#spaltenBeschreibung').val(spaltenbeschreibung);
-                $('#editSpalteModal').find('#sortid').val(sortid);
+                var editSpalteModal = $('#editSpalteModal');
+                editSpalteModal.find('#editModalLabel').text('Spalte ' + spalte + ' bearbeiten');
+                editSpalteModal.find('#SpaltenName').val(spalte);
+                editSpalteModal.find('#spaltenBeschreibung').val(spaltenbeschreibung);
+                editSpalteModal.find('#sortid').val(sortid);
                 console.log(board);
-                $('#editSpalteModal').find('#Board').val(board);
-                $('#editSpalteModal').find('form').attr('action', '<?php echo base_url('spalten/bearbeiten/'); ?>' + id);
+                editSpalteModal.find('#Board').val(board);
+                editSpalteModal.find('form').attr('action', '<?php echo base_url('spalten/bearbeiten/'); ?>' + id);
             });
         });
 
