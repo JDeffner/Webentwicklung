@@ -76,5 +76,5 @@
         <textarea class="form-control" id="Notizen" style="height: 5em" placeholder="Notizen..." name="notizen"></textarea>
     </div>
     <button type="submit" class="btn btn-success mb-2">Speichern</button>
-    <a role="button" class="btn btn-secondary mb-2" href="<?php echo base_url('/tasks');?>">Abbrechen</a>
+    <button type="button" class="btn btn-secondary mb-2" data-bs-dismiss="modal">Abbrechen</button>
 </form>

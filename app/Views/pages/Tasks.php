@@ -48,15 +48,8 @@
                                                     <td><?= $oneTask['vorname'] ?> <?= $oneTask['nachname'] ?></td>
                                                 </tbody>
                                             </table>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTaskModal"
-                                                data-task-id="<?= $oneTask['id'] ?>"
-                                                data-task-name="<?= $oneTask['tasks'] ?>" data-task-person="<?= $oneTask['personenid'] ?>"
-                                                data-task-spalte="<?= $oneTask['spaltenid'] ?>"
-                                                data-task-erinnerung-datum="<?= $oneTask['erinnerungsdatum'] ?>" data-task-erinnerung="<?= $oneTask['erinnerung'] ?>"
-                                                data-task-notiz="<?= $oneTask['notizen'] ?>" data-task-taskart="<?= $oneTask['taskartenid'] ?>"
-                                                class="editTaskButton">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
+
+                                            <i data-bs-toggle="modal" data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"></i>
                                             <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['tasks'] ?>"></i>
 
                                         </div>
@@ -147,9 +140,12 @@
          $('#editTaskModal').find('#erinnerungsdatum').val(erinnerungDatum);
          if(erinnerung == '1') {
              $('#editTaskModal').find('#erinnerung').attr('checked', '');
+
+             // $('#erinnerungsdatum').removeAttr('disabled');
              wantReminder = true;
          } else {
              $('#editTaskModal').find('#erinnerung').removeAttr('checked');
+             // $('#erinnerungsdatum').attr('disabled', '');
              wantReminder = false;
          }
          console.log(wantReminder);
