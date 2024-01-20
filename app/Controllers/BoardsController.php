@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Boards extends BaseController
+class BoardsController extends BaseController
 {
     public function index()
     {

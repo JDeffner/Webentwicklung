@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Models\Personen;
 
-class Benutzer extends BaseController
+class BenutzerController extends BaseController
 {
     public function index()
     {

@@ -8,7 +8,7 @@ use App\Models\Boards;
 use App\Models\Taskarten;
 use ReflectionException;
 
-class TaskBoard extends BaseController
+class TasksController extends BaseController
 {
 
 
@@ -69,10 +69,10 @@ class TaskBoard extends BaseController
 //            // If 'erinnerung' is set and is not 'on', set it to 0
 //            $postData['erinnerung'] = 0;
 //        }
-        var_dump($_POST);
-//        $TaskModel = new Tasks();
-//        $TaskModel->save($_POST);
-//        return redirect()->to(base_url().'/tasks');
+
+        $TaskModel = new Tasks();
+        $TaskModel->save($_POST);
+        return redirect()->to(base_url().'/tasks');
 
     }
 

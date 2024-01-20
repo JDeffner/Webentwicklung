@@ -14,27 +14,27 @@ $routes->set404Override();
 $routes->setAutoRoute(true);
 
 //login routes
-$routes->get('/', 'Benutzer::index');
-$routes->get('/benutzer/erstellen', 'Benutzer::getBenutzerErstellen');
-$routes->post('/benutzer/erstellen', 'Benutzer::postBenutzerErstellen');
-$routes->get('/benutzer/anmelden', 'Benutzer::getBenutzerAnmelden');
-$routes->get('/benutzer/(:num)', 'Benutzer::getBenutzer/$1');
+$routes->get('/', 'BenutzerController::index');
+$routes->get('/benutzer/erstellen', 'BenutzerController::getBenutzerErstellen');
+$routes->post('/benutzer/erstellen', 'BenutzerController::postBenutzerErstellen');
+$routes->get('/benutzer/anmelden', 'BenutzerController::getBenutzerAnmelden');
+$routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 
 //task routes
-$routes->get('/tasks', 'TaskBoard::index/1');
-$routes->get('/tasks/(:num)', 'TaskBoard::index/$1');
-$routes->get('/tasks/erstellen', 'TaskBoard::getTaskErstellen');
-$routes->post('/tasks/erstellen', 'TaskBoard::postTaskErstellen');
-$routes->post('/tasks/loeschen/(:num)', 'TaskBoard::postTaskLoeschen/$1');
-$routes->get('/tasks/bearbeiten/(:num)', 'TaskBoard::getTaskBearbeiten/$1');
-$routes->post('/tasks/bearbeiten/(:num)', 'TaskBoard::postTaskBearbeiten/$1');
+$routes->get('/tasks', 'TasksController::index/1');
+$routes->get('/tasks/(:num)', 'TasksController::index/$1');
+$routes->get('/tasks/erstellen', 'TasksController::getTaskErstellen');
+$routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
+$routes->post('/tasks/loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
+$routes->get('/tasks/bearbeiten/(:num)', 'TasksController::getTaskBearbeiten/$1');
+$routes->post('/tasks/bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
 
 //spalten routes
-$routes->get('/spalten', 'Spalten::index');
-$routes->get('/spalten/erstellen', 'Spalten::getSpalteErstellen');
+$routes->get('/spalten', 'SpaltenController::index');
+$routes->get('/spalten/erstellen', 'SpaltenController::getSpalteErstellen');
 
 //board routes
-$routes->get('/boards', 'Boards::index');
+$routes->get('/boards', 'BoardsController::index');
 
 // Admin routes
 $routes->get('/dashboard', 'Admin::index');
