@@ -23,10 +23,8 @@ $routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 //task routes
 $routes->get('/tasks', 'TasksController::index/1');
 $routes->get('/tasks/(:num)', 'TasksController::index/$1');
-$routes->get('/tasks/erstellen', 'TasksController::getTaskErstellen');
 $routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
 $routes->post('/tasks/loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
-$routes->get('/tasks/bearbeiten/(:num)', 'TasksController::getTaskBearbeiten/$1');
 $routes->post('/tasks/bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
 
 //spalten routes
