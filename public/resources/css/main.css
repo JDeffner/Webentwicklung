@@ -21,6 +21,7 @@
 
 .custom-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(163,163,210, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(163,163,210, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .custom-toggler.navbar-toggler {
@@ -364,6 +365,7 @@ textarea::-webkit-scrollbar-thumb:active {
     cursor: text;
 }
 
+
 .form-control:focus {
     border-color: var(--secondary-color);
     outline: 0;
@@ -378,3 +380,25 @@ textarea::-webkit-scrollbar-thumb:active {
     display: inline-block; /* Ensure label remains inline */;
 }
 
+.input-group-text {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Add padding and other styles */
+    /*padding: 0.375rem 2rem 0.375rem 0.75rem;*/
+    border: 2px solid var(--tertiary-color);
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--secondary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem var(--tertiary-color);
+}

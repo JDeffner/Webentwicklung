@@ -128,8 +128,8 @@
 
  </main>
  <script>
-     $(document).on('click','.editTaskButton', function (e){
-         e.preventDefault();
+
+     $('.editTaskButton').on('click', function() {
          var id = $(this).siblings()[0].value;
          var name = $(this).siblings()[1].value;
          var person = $(this).siblings()[2].value;
@@ -144,17 +144,36 @@
          $('#editTaskModal').find('#Spalte').val(spalte);
          $('#editTaskModal').find('#ZustaendigePerson').val(person);
          $('#editTaskModal').find('#erinnerungsdatum').val(erinnerungDatum);
-         // if (erinnerung == 1) {
-         //     console.log(erinnerung + " if");
-         //     $('#editTaskModal').find('#erinnerung').prop('checked', true);
-         // } else {
-         //     console.log(erinnerung + " else");
-         //     $('#editTaskModal').find('#erinnerung').prop('checked', false);
-         // }
+         if(erinnerung == '1') {
+             $('#editTaskModal').find('#erinnerung').attr('checked', '');
+         } else {
+             $('#editTaskModal').find('#erinnerung').removeAttr('checked');
+         }
+         $('#editTaskModal').find('#erinnerungCheckbox').prop('checked', true);
          $('#editTaskModal').find('#Notizen').val(notiz);
          $('#editTaskModal').find('form').attr('action', '<?= base_url('tasks/bearbeiten/') ?>'+id);
 
      });
+
+     // $('#erinnerungCheckbox').on('change', function() {
+     //     if ($(this).is(':checked')) {
+     //         $('#erinnerung').val(1);
+     //     } else {
+     //         $('#erinnerung').val(0);
+     //     }
+     // });
+
+     // function updateCheckboxState() {
+     //     var erinnerungValue = $('#erinnerung').val();
+     //     console.log(erinnerungValue);
+     //     if (erinnerungValue == '1') {
+     //         console.log(erinnerungValue + " if");
+     //         $('#erinnerungCheckbox').prop('checked', true);
+     //     } else {
+     //         console.log(erinnerungValue + " else");
+     //         $('#erinnerungCheckbox').prop('checked', false);
+     //     }
+     // }
 
      // i want to make an event listener such that when the checkbox with the ID erinnerung is checked, the date input is enabled
         // and when it is unchecked, the date input is disabled
@@ -167,23 +186,12 @@
 
 
      // Get all delete buttons
-     const deleteButtons = document.querySelectorAll('.deleteTaskButton');
+     $('.deleteTaskButton').on('click', function() {
+         var taskId = $(this).data('task-id');
+         var taskName = $(this).data('task-name');
 
-     // Add click event listener to each delete button
-     deleteButtons.forEach(button => {
-         button.addEventListener('click', function() {
-             // Get the task ID and name from the data-task-id and data-task-name attributes
-             const taskId = this.getAttribute('data-task-id');
-             const taskName = this.getAttribute('data-task-name');
-
-             // Get the form in the modal and the modal title
-             const form = document.querySelector('#deleteTaskForm');
-             const modalTitle = document.querySelector('#deleteModalLabel');
-
-             // Set the action of the form and the modal title dynamically
-             form.action = `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`;
-             modalTitle.textContent = `Willst du die Task "${taskName}" wirklich löschen?`;
-         });
+         $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`);
+         $('#deleteModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
      });
  </script>
 <?= $this->endSection() ?>

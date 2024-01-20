@@ -69,10 +69,10 @@ class TaskBoard extends BaseController
 //            // If 'erinnerung' is set and is not 'on', set it to 0
 //            $postData['erinnerung'] = 0;
 //        }
-////        var_dump($_POST);
-        $TaskModel = new Tasks();
-        $TaskModel->save($_POST);
-        return redirect()->to(base_url().'/tasks');
+        var_dump($_POST);
+//        $TaskModel = new Tasks();
+//        $TaskModel->save($_POST);
+//        return redirect()->to(base_url().'/tasks');
 
     }
 
@@ -98,6 +98,10 @@ class TaskBoard extends BaseController
      */
     public function postTaskBearbeiten($taskid)
     {
+        if (!isset($_POST['erinnerung'])) {
+            // If 'erinnerung' is not set, set it to 0
+            $_POST['erinnerung'] = '0';
+        }
         $TaskModel = new Tasks();
         $TaskModel->update($taskid, $_POST);
         return redirect()->to(base_url().'/tasks');

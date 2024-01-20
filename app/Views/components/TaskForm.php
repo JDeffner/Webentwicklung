@@ -55,7 +55,11 @@
         <label for="erinnerungsdatum" class="form-label">Erinnerung:</label>
         <div class="col input-group">
             <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="" id="erinnerung" aria-label="Checkbox that determines if a reminder is saved" name="erinnerung">
+                <input class="form-check-input mt-0" type="checkbox" value="1" id="erinnerung" aria-label="Checkbox that determines if a reminder is saved" name="erinnerung">
+
+
+<!--                <input title="Erinnerung" id="erinnerungCheckbox" class="form-check-input mt-0" type="checkbox" value="1">-->
+<!--                <input type="hidden" id="erinnerung" name="erinnerung" value="0">-->
             </div>
 
             <!--                        <span class="input-group-text">am</span>-->
