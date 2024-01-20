@@ -12,4 +12,5 @@
     </div>
 </footer>
 </body>
+<script src="<?php echo base_url('resources/js/main.js');?>"></script>
 </html>
