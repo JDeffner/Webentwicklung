@@ -82,3 +82,11 @@ $(document).ready(function () {
 
     });
 });
+
+function Taskartupdate(id, taskartenicon, taskart) {
+    taskartenid = id;
+    // look for an element with a value of name="taskartenid"
+    $('input[name="taskartenid"]').val(taskartenid);
+
+    $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+}

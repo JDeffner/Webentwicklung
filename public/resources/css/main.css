@@ -6,7 +6,7 @@
     --highlight-color: #2E9CCA;
     --hover-highlight-color: #29648A;
     --text-color: white;
-    --text-color-contrast: black;
+    --text-color-contrast: #25274D;
 }
 
 
@@ -187,6 +187,10 @@ body::-webkit-scrollbar-thumb:active {
     color: var(--text-color);
 }
 
+.dropdown-item:hover .fa-solid {
+    color: var(--text-color);
+}
+
 /*Icon Styling*/
 .fa-solid {
     color: var(--primary-color);
@@ -194,8 +198,9 @@ body::-webkit-scrollbar-thumb:active {
     margin-right: 0.1em;
 }
 
+
 .fa-solid:hover {
-    color: var(--primary-color) !important;
+    color: var(--secondary-color);
     cursor: pointer;
 }
 
@@ -267,6 +272,12 @@ thead {
 .table tbody tr:hover .fa-solid {
     color: var(--text-color);
 }
+
+.table tbody tr:hover .fa-solid:hover {
+    color: var(--primary-color) !important;
+    cursor: pointer;
+}
+
 
 /* Textarea Styling */
 textarea {

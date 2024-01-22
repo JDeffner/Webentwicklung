@@ -44,13 +44,15 @@
                                             <i data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"
                                                 data-task="<?= $oneTask['task'] ?>"
                                                 data-taskartenid="<?= $oneTask['taskartenid'] ?>"
+                                                data-taskartenicon="<?= $oneTask['taskartenicon'] ?>"
+                                                data-taskart="<?= $oneTask['taskart'] ?>"
                                                 data-spaltenid="<?= $oneTask['spaltenid'] ?>"
                                                 data-personenid="<?= $oneTask['personenid'] ?>"
                                                 data-erinnerungsdatum="<?= $oneTask['erinnerungsdatum'] ?>"
                                                 data-erinnerung="<?= $oneTask['erinnerung'] ?>"
                                                 data-notizen="<?= $oneTask['notizen'] ?>"
                                                 data-id="<?= $oneTask['id'] ?>"
-                                               data-bs-toggle="modal"></i>
+                                                data-bs-toggle="modal"></i>
                                             <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
@@ -136,7 +138,9 @@
     $('.editTaskButton').click(function() {
         var id = $(this).data('id');
         var name = $(this).data('task');
-        var taskart = $(this).data('taskartenid');
+        var taskartenid = $(this).data('taskartenid');
+        var taskartenicon = $(this).data('taskartenicon');
+        var taskart = $(this).data('taskart');
         var spalte = $(this).data('spaltenid');
         var person = $(this).data('personenid');
         var erinnerungDatum = $(this).data('erinnerungsdatum');
@@ -145,7 +149,8 @@
         var editTaskModal = $('#editTaskModal');
 
         editTaskModal.find('#task').val(name);
-        editTaskModal.find('#taskartenid').val(taskart);
+        editTaskModal.find('#taskartenid').val(taskartenid);
+        editTaskModal.find("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
         editTaskModal.find('#spaltenid').val(spalte);
         editTaskModal.find('#personenid').val(person);
         editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
