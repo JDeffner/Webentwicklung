@@ -55,13 +55,13 @@ class TasksController extends BaseController
 
     }
 
-    public function postTaskLoeschen($taskid)
+    public function postTaskLoeschen($boardid,$taskid)
     {
         $TaskModel = new Tasks();
         $TaskModel->delete($taskid);
 //        var_dump($id);
 
-        return redirect()->to(base_url().'/tasks');
+        return redirect()->to(base_url().'/tasks/'.$boardid);
 
     }
 

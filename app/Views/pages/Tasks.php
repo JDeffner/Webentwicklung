@@ -63,7 +63,7 @@
                                                 data-notizen="<?= $oneTask['notizen'] ?>"
                                                 data-id="<?= $oneTask['id'] ?>"
                                                 data-bs-toggle="modal"></i>
-                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
+                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
                                     </div>
@@ -195,8 +195,9 @@ $(document).ready(function () {
  $('.deleteTaskButton').click(function() {
      var taskId = $(this).data('task-id');
      var taskName = $(this).data('task-name');
+        var boardId = $(this).data('boards-id');
 
-     $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`);
+     $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${boardId}/${taskId}`);
      $('#deleteModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
  });
 });
