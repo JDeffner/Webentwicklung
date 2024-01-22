@@ -20,10 +20,10 @@ class BenutzerController extends BaseController
             $person = $personenModel->where('email', $_POST['email'])->first();
             if ($person != null) {
                 if (password_verify($_POST['passwort'], $person['passwort'])) {
-                    setcookie('userid', $person['id'], "0");
-                    setcookie('username', $person['vorname'], "0");
-                    setcookie('userlastname', $person['nachname'], "0");
-                    setcookie('useremail', $person['email'], "0");
+                    setcookie('userid', $person['id'], "0", "/");
+                    setcookie('username', $person['vorname'], "0", "/");
+                    setcookie('userlastname', $person['nachname'], "0", "/");
+                    setcookie('useremail', $person['email'], "0", "/");
                     $data['successfulValidation'] = true;
                     $data['redirect'] = base_url('benutzer/'.$person['id']);
                     return json_encode($data);
@@ -58,9 +58,9 @@ class BenutzerController extends BaseController
         if($this->validation->run($_POST, 'benutzerErstellen')){
             $_POST['passwort'] = password_hash($_POST['passwort'], PASSWORD_DEFAULT);
             $personenModel = new Personen();
-            setcookie('username', $_POST['vorname'], "0");
-            setcookie('userlastname', $_POST['nachname'], "0");
-            setcookie('useremail', $_POST['email'], "0");
+            setcookie('username', $_POST['vorname'], "0", "/");
+            setcookie('userlastname', $_POST['nachname'], "0", "/");
+            setcookie('useremail', $_POST['email'], "0", "/");
             $personenModel->save($_POST);
             $data['successfulValidation'] = true;
             $userid = $personenModel->insertID();

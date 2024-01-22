@@ -27,6 +27,8 @@ class TasksController extends BaseController
         $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
         $boardsModel = new Boards();
         $data['boards'] = $boardsModel->getAllData();
+        $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
+//        var_dump($data['boardName']);
         $taskartenModel = new Taskarten();
         $data['taskarten'] = $taskartenModel->getAllData();
 
