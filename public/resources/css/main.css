@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Varela:700|Varela:400'); /* Set color variables*/
 :root {
-    --primary-color: #251a46;
-    --secondary-color: #413464;
-    --tertiary-color: #a494be;
-    --highlight-color: #6448b7;
-    --hover-highlight-color: #453085;
-    --text-color: #cfc5de;
-    --text-color-contrast: #271e3f;
+    --primary-color: #181434;
+    --secondary-color: #2f2a50;
+    --tertiary-color: #8a80a4;
+    --highlight-color: #5b449f;
+    --hover-highlight-color: #3e2e72;
+    --text-color: #ddd7e8;
+    --text-color-contrast: #201933;
 }
 
 /*:root {*/
