@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 //Default route Setup
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('BenutzerController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();

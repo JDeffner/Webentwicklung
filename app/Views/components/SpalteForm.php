@@ -1,4 +1,4 @@
-<form id="UpdateSpalte" data-sent-to="place url here">
+<form class="crudForm" data-send-to="place url here">
     <div class="mb-3">
         <label for="spalte" class="form-label">Name der Spalte:</label>
         <div class="input-group">

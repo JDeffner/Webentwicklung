@@ -66,7 +66,6 @@
                 </div>
                 <div class="modal-body">
                     <?php
-//                    $formAction = base_url('spalten/erstellen');
                     include APPPATH . 'Views/components/SpalteForm.php';
                     ?>
                 </div>
@@ -84,7 +83,6 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    //                    $formAction = base_url('tasks/bearbeiten/');
                     include APPPATH . 'Views/components/SpalteForm.php';
                     ?>
                 </div>
@@ -126,11 +124,10 @@
                 var spalte = $(this).data('spalte');
                 var spaltenbeschreibung = $(this).data('spaltenbeschreibung');
                 var editSpalteModal = $('#editSpalteModal');
-                editSpalteModal.find('#editModalLabel').text('Spalte ' + spalte + ' bearbeiten');
+                editSpalteModal.find('#editModalLabel').text('Spalte "' + spalte + '" bearbeiten');
                 editSpalteModal.find('#spalte').val(spalte);
                 editSpalteModal.find('#spaltenbeschreibung').val(spaltenbeschreibung);
                 editSpalteModal.find('#sortid').val(sortid);
-                console.log(boardsid);
                 editSpalteModal.find('#boardsid').val(boardsid);
                 editSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/bearbeiten/'); ?>' + id);
             });
@@ -140,7 +137,7 @@
             $('.deleteSpalteButton').click(function () {
                 var id = $(this).data('task-id');
                 var name = $(this).data('task-name');
-                $('#deleteModalLabel').text('Spalte ' + name + ' löschen?');
+                $('#deleteModalLabel').text('Spalte "' + name + '" löschen?');
                 $('#deleteTaskForm').attr('action', '<?php echo base_url('spalten/loeschen/'); ?>' + id);
             });
         });
@@ -148,7 +145,7 @@
         var request;
 
         $(document).ready(function () {
-            $('#UpdateSpalte').submit(function (e) {
+            $('.crudForm').submit(function (e) {
                 e.preventDefault();
 
                 if (request) {
@@ -161,7 +158,7 @@
                 var formInputElements = thisForm.find("input, select, button, textarea");
 
                 // Serialize the data in the form
-                var serializedData = thisForm.serialize();
+                var serializedFormData = thisForm.serialize();
 
                 // Let's disable the inputs for the duration of the Ajax request.
                 // Note: we disable elements AFTER the form data has been serialized.
@@ -176,12 +173,13 @@
                 request = $.ajax({
                     url: thisForm.data('send-to'),
                     type: "post",
-                    data: serializedData
+                    data: serializedFormData
                 });
 
                 // Callback handler that will be called on success
                 request.done(function (response, textStatus, jqXHR){
                     resultingData = JSON.parse(response);
+                    console.log(response);
                     if (resultingData['successfulValidation']) {
                         location.reload();
                     } else {
@@ -206,10 +204,10 @@
                 // Callback handler that will be called on failure
                 request.fail(function (jqXHR, textStatus, errorThrown){
                     // Log the error to the console
-                    console.error(
-                        "Your request failed\nThe following error occurred: "+
-                        textStatus, errorThrown
-                    );
+                    // console.error(
+                    //     "Your request failed\nThe following error occurred: "+
+                    //     textStatus, errorThrown
+                    // );
                 });
 
                 // Callback handler that will be called regardless

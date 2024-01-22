@@ -28,26 +28,29 @@ class SpaltenController extends BaseController
             $SpaltenModel->save($_POST);
             // update website base_url().'/spalten' without reloading it
             $data['successfulValidation'] = true;
-            return json_encode($data);
         } else {
             $data['error'] = $this->validation->getErrors();
 //            var_dump($data['error']);
             $data['successfulValidation'] = false;
-            return json_encode($data);
 
         }
+        return json_encode($data);
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function postSpalteBearbeiten($spaltenid)
     {
         if($this->validation->run($_POST, 'spaltenBearbeiten')){
             $SpaltenModel = new Spalten();
             $SpaltenModel->update($spaltenid, $_POST);
-            return redirect()->to(base_url().'spalten');
+            $data['successfulValidation'] = true;
         } else {
             $data['error'] = $this->validation->getErrors();
-            return json_encode($data);
+            $data['successfulValidation'] = false;
         }
+        return json_encode($data);
     }
 
     public function postSpalteLoeschen($spaltenid)
