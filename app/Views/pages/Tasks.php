@@ -139,14 +139,14 @@
          editTaskModal.find('#Spalte').val(spalte);
          editTaskModal.find('#ZustaendigePerson').val(person);
          editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
-         if(erinnerung === '1') {
+         if(erinnerung == '1') {
              editTaskModal.find('#erinnerung').attr('checked', '');
 
-             // $('#erinnerungsdatum').removeAttr('disabled');
+             $('#erinnerungsdatum').removeAttr('disabled');
              wantReminder = true;
          } else {
              editTaskModal.find('#erinnerung').removeAttr('checked');
-             // $('#erinnerungsdatum').attr('disabled', '');
+             $('#erinnerungsdatum').attr('disabled', '');
              wantReminder = false;
          }
          console.log(wantReminder);
