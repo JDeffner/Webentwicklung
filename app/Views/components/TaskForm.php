@@ -2,7 +2,7 @@
     <div class="mb-3">
         <label for="task" class="form-label">Name der Task:</label>
         <div class="input-group">
-            <input type="text" class="form-control rounded-end" id="task" placeholder="Bezeichnung der Task..." name="tasks" >
+            <input type="text" class="form-control rounded-end" id="task" placeholder="Bezeichnung der Task..." name="task" >
             <!--                            <div class="dropdown ms-2">-->
             <!--                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="taskartenid">-->
             <!--                                    1-->

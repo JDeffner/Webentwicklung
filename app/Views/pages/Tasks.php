@@ -22,7 +22,7 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <input type="hidden" id="taskid" value="<?php echo $oneTask['id'] ?>">
-                                            <input type="hidden" id="taskname" value="<?php echo $oneTask['tasks'] ?>">
+                                            <input type="hidden" id="taskname" value="<?php echo $oneTask['task'] ?>">
                                             <input type="hidden" id="taskperson" value="<?php echo $oneTask['personenid'] ?>">
                                             <input type="hidden" id="taskspalte" value="<?php echo $oneTask['spaltenid'] ?>">
                                             <input type="hidden" id="taskerinnerung-datum" value="<?php echo $oneTask['erinnerungsdatum'] ?>">
@@ -33,7 +33,7 @@
                                                 <tbody>
                                                 <tr>
                                                     <th scope="row">Name</th>
-                                                    <td><?= $oneTask['tasks'] ?></td>
+                                                    <td><?= $oneTask['task'] ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Notiz</th>
@@ -50,7 +50,7 @@
                                             </table>
 
                                             <i data-bs-toggle="modal" data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"></i>
-                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['tasks'] ?>"></i>
+                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
                                     </div>
