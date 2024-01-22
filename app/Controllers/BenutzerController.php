@@ -24,6 +24,7 @@ class BenutzerController extends BaseController
                     setcookie('username', $person['vorname'], "0", "/");
                     setcookie('userlastname', $person['nachname'], "0", "/");
                     setcookie('useremail', $person['email'], "0", "/");
+                    setcookie('permissionLevel', $person['permission'], "0", "/");
                     $data['successfulValidation'] = true;
                     $data['redirect'] = base_url('benutzer/'.$person['id']);
                     return json_encode($data);
@@ -61,6 +62,7 @@ class BenutzerController extends BaseController
             setcookie('username', $_POST['vorname'], "0", "/");
             setcookie('userlastname', $_POST['nachname'], "0", "/");
             setcookie('useremail', $_POST['email'], "0", "/");
+            setcookie('permissionLevel', "0", "0", "/");
             $personenModel->save($_POST);
             $data['successfulValidation'] = true;
             $userid = $personenModel->insertID();
