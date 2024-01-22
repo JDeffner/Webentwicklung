@@ -259,9 +259,9 @@ thead {
     --bs-table-bg: var(--primary-color);
     --bs-table-border-color: var(--primary-color);
     /*Sticky Header*/
-    position: sticky;
-    top: 0 ;
-    z-index: 1;
+    /*position: sticky;*/
+    /*top: 0 ;*/
+    /*z-index: 1;*/
 }
 
 .table tbody tr:hover .fa-solid {
@@ -272,7 +272,7 @@ thead {
 textarea {
     /*resize: none;*/
     /*Hide default scrollbar*/
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none; /* Firjefox */
     -ms-overflow-style: none; /* IE/Edge */
 }
 /* Textarea Scrollbar style */

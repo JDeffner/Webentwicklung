@@ -68,6 +68,13 @@ class Validation extends BaseConfig
                 'integer' => 'Bitte geben Sie eine {field} an.',
             ],
         ],
+        'spaltenbeschreibung' => [
+            'label' => 'Spaltenbeschreibung',
+            'rules' => 'max_length[60]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
     ];
 
     public array $spaltenBearbeiten = [
@@ -94,6 +101,13 @@ class Validation extends BaseConfig
             'errors' => [
                 'required' => 'Bitte geben Sie eine {field} an.',
                 'integer' => 'Bitte geben Sie eine {field} an.',
+            ],
+        ],
+        'spaltenbeschreibung' => [
+            'label' => 'Spaltenbeschreibung',
+            'rules' => 'max_length[60]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
             ],
         ],
     ];
@@ -180,6 +194,30 @@ class Validation extends BaseConfig
             'rules' => 'max_length[255]',
             'errors' => [
                 'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $boardsErstellen = [
+        'board' => [
+            'label' => 'Boardname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $boardsBearbeiten = [
+        'board' => [
+            'label' => 'Boardname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
             ],
         ],
     ];

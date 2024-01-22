@@ -7,15 +7,18 @@
             <h4>Spalten</h4>
         </div>
         <div class="card-body">
-<!--            <a role="button" class="btn btn-primary mb-2" href="--><?php //echo base_url('/spalten/erstellen');?><!--">Erstellen</a>-->
-            <a role="button" class="btn btn-primary mb-3 createSpalteButton" data-bs-toggle="modal" data-bs-target="#createSpalteModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
+            <div class="d-flex">
+                <a role="button" class="btn btn-primary mb-3 me-1 createSpalteButton" data-bs-toggle="modal" data-bs-target="#createSpalteModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
+                <div class="buttons-toolbar">
+                </div>
+            </div>
 
             <table class="table table-hover table-bordered table-responsive rounded-table"
                    data-show-columns="true"
                    data-show-toggle="true"
                    data-toggle="table"
                    data-search="true"
-                   data-toolbar="#toolbar">
+                   data-buttons-toolbar=".buttons-toolbar">
                 <thead>
                     <tr>
                         <th scope="col" data-sortable="true">ID</th>

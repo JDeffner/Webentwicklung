@@ -35,6 +35,10 @@ $routes->post('/spalten/loeschen/(:num)', 'SpaltenController::postSpalteLoeschen
 
 //board routes
 $routes->get('/boards', 'BoardsController::index');
+$routes->get('/boards/raw', 'BoardsController::getRawData');
+$routes->post('/boards/erstellen', 'BoardsController::postBoardErstellen');
+$routes->post('/boards/bearbeiten/(:num)', 'BoardsController::postBoardBearbeiten/$1');
+$routes->post('/boards/loeschen/(:num)', 'BoardsController::postBoardLoeschen/$1');
 
 // Admin routes
 $routes->get('/dashboard', 'Admin::index');
