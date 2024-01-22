@@ -1,14 +1,14 @@
-<form method="post" action="<?php echo $formAction; ?>">
+<form id="UpdateSpalte" data-sent-to="place url here">
     <div class="mb-3">
-        <label for="SpaltenName" class="form-label">Name der Spalte:</label>
+        <label for="spalte" class="form-label">Name der Spalte:</label>
         <div class="input-group">
-            <input type="text" class="form-control rounded-end" id="SpaltenName" placeholder="Bezeichnung der Spalte..." name="spalte" >
+            <input type="text" class="form-control rounded-end" id="spalte" placeholder="Bezeichnung der Spalte..." name="spalte" >
         </div>
     </div>
 
     <div class="mb-3">
-        <label for="Board" class="form-label">Board:</label>
-        <select class="form-select" id="Board" name="boardsid">
+        <label for="boardsid" class="form-label">Board:</label>
+        <select class="form-select" id="boardsid" name="boardsid">
             <option selected>Board auswählen</option>
             <?php foreach (($boards ?? null) as $board): ?>
                 <option value="<?= $board['id'] ?>"><?= $board['board'] ?></option>
@@ -18,8 +18,8 @@
 
 
     <div class="mb-3">
-        <label for="spaltenBeschreibung" class="form-label">Spaltenbeschreibung:</label>
-        <textarea class="form-control" id="spaltenBeschreibung" style="height: 5em" placeholder="Spaltenbeschreibung..." name="spaltenbeschreibung"></textarea>
+        <label for="spaltenbeschreibung" class="form-label">Spaltenbeschreibung:</label>
+        <textarea class="form-control" id="spaltenbeschreibung" style="height: 5em" placeholder="Spaltenbeschreibung..." name="spaltenbeschreibung"></textarea>
 
     </div>
 
