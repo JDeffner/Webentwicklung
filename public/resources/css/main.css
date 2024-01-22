@@ -1,13 +1,73 @@
-/* Set color variables*/
+@import url('https://fonts.googleapis.com/css?family=Varela:700|Varela:400'); /* Set color variables*/
 :root {
-    --primary-color: #25274D;
-    --secondary-color: #464866;
-    --tertiary-color: #a3a3d2; /*#AAABB8*/
-    --highlight-color: #2E9CCA;
-    --hover-highlight-color: #29648A;
-    --text-color: white;
-    --text-color-contrast: #25274D;
+    --primary-color: #251a46;
+    --secondary-color: #413464;
+    --tertiary-color: #a494be;
+    --highlight-color: #6448b7;
+    --hover-highlight-color: #453085;
+    --text-color: #cfc5de;
+    --text-color-contrast: #271e3f;
 }
+
+/*:root {*/
+/*    --primary-color: #1c0e25;*/
+/*    --secondary-color: #443279;*/
+/*    --tertiary-color: #65366c;*/
+/*    --highlight-color: #d698e1;*/
+/*    --hover-highlight-color: #cfb8e5;*/
+/*    --text-color: #d5cbe0;*/
+/*    --text-color-contrast: #070716;*/
+/*}*/
+
+/*:root {*/
+/*    --primary-color: #642697;*/
+/*    --secondary-color: #070716;*/
+/*    --tertiary-color: #311a47;*/
+/*    --highlight-color: #5c1e67;*/
+/*    --hover-highlight-color: #d698e1;*/
+/*    --text-color: #e8daf1;*/
+/*    --text-color-contrast: #070716;*/
+/*}*/
+
+/*:root[data-theme="light"] {*/
+/*    --text: #1c0e25;*/
+/*    --background: #e8e8f8;*/
+/*    --primary: #a668d9;*/
+/*    --secondary: #cfb8e5;*/
+/*    --accent: #d698e1;*/
+/*}*/
+/*:root[data-theme="dark"] {*/
+/*    --text: #e8daf1;*/
+/*    --background: #070716;*/
+/*    --primary: #642697;*/
+/*    --secondary: #311a47;*/
+/*    --accent: #5c1e67;*/
+/*}*/
+
+
+body {
+    font-family: 'Varela';
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Varela';
+    font-weight: 700;
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 4.210rem; /* 67.36px */}
+
+h2 {font-size: 3.158rem; /* 50.56px */}
+
+h3 {font-size: 2.369rem; /* 37.92px */}
+
+h4 {font-size: 1.777rem; /* 28.48px */}
+
+h5 {font-size: 1.333rem; /* 21.28px */}
+
+small {font-size: 0.750rem; /* 12px */}
 
 
 /* Navbar style*/
@@ -424,6 +484,10 @@ textarea::-webkit-scrollbar-thumb:active {
 /*    !* Set the cursor to not-allowed to indicate the input is disabled *!*/
 /*    !*cursor: not-allowed;*!*/
 /*}*/
+
+.modal-content {
+    background-color: var(--text-color);
+}
 
 input[type="datetime-local"]:disabled {
     background-color: #E0E0E0;
