@@ -8,8 +8,9 @@ use App\Models\Boards;
 use App\Models\Taskarten;
 use ReflectionException;
 
-class TaskController extends BaseController
+class TasksController extends BaseController
 {
+
 
     public function index($boardID)
     {
@@ -32,24 +33,6 @@ class TaskController extends BaseController
         echo view('pages/Tasks', $data);
     }
 
-    public function getTaskErstellen()
-    {
-        $data = [
-            'title' => 'Task Erstellen',
-        ];
-
-        $personenModel = new Personen();
-        $data['personen'] = $personenModel->getSecureData();
-        $spaltenModel = new Spalten();
-        $data['spalten'] = $spaltenModel->getAllData();
-        $boardsModel = new Boards();
-        $data['boards'] = $boardsModel->getAllData();
-        $taskartenModel = new Taskarten();
-        $data['taskarten'] = $taskartenModel->getAllData();
-
-        echo view('pages/TaskErstellen', $data);
-
-    }
 
 
     /**
@@ -57,14 +40,16 @@ class TaskController extends BaseController
      */
     public function postTaskErstellen()
     {
-        if (!isset($postData['erinnerung'])) {
-            // If 'erinnerung' is not set, set it to 0
-            $postData['erinnerung'] = 0;
+        if($this->validation->run($_POST, 'tasksErstellen')){
+            $TaskModel = new Tasks();
+            $TaskModel->save($_POST);
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $this->validation->getErrors();
+            $data['successfulValidation'] = false;
+
         }
-//        var_dump($_POST);
-        $TaskModel = new Tasks();
-        $TaskModel->save($_POST);
-        return redirect()->to(base_url().'/tasks');
+        return json_encode($data);
 
     }
 
@@ -77,30 +62,29 @@ class TaskController extends BaseController
         return redirect()->to(base_url().'/tasks');
 
     }
-//
-//    public function getTaskBearbeiten($id)
-//    {
-//        $data = [
-//            'title' => 'Task Erstellen',
-//            'id' => $id,
-//        ];
-//        echo view('pages/TaskErstellen', $data);
-//
-//    }
 
     /**
      * @throws ReflectionException
      */
     public function postTaskBearbeiten($taskid)
     {
-        $data = [
-            'title' => 'Task Erstellen',
-        ];
-//        var_dump($_POST);
-        $TaskModel = new Tasks();
-        $TaskModel->update($taskid, $_POST);
-        return redirect()->to(base_url().'/tasks');
+        if (!isset($_POST['erinnerung'])) {
+            // If 'erinnerung' is not set, set it to 0
+            $_POST['erinnerung'] = '0';
+        }
 
+
+        if($this->validation->run($_POST, 'tasksBearbeiten')){
+            $TaskModel = new Tasks();
+            $TaskModel->update($taskid, $_POST);
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $this->validation->getErrors();
+            $data['successfulValidation'] = false;
+
+        }
+        return json_encode($data);
     }
+
 
 }

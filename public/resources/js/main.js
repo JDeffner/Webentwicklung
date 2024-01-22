@@ -1,64 +1,84 @@
-let baseurl = 'https://team04.wi1cm.uni-trier.de/public/';
 
-// Path: public/resources/js/main.js
-// $(document).ready(function() {
-//     $('.delete-task-btn').on('click', function() {
-//         var taskId = $(this).data('task-id');
-//         console.log('Task ID:', taskId);
-//         $('#deleteTaskForm').attr('action', '<?php echo base_url('/tasks/loeschen/'); ?>' + taskId);
-//     });
-// });
+// Form Validation using AJAX
+var request;
 
+$(document).ready(function () {
+    $('.crudForm').submit(function (e) {
+        e.preventDefault();
 
-// Get all edit buttons
-const editButtons = document.querySelectorAll('.fa-pen-to-square');
+        if (request) {
+            request.abort();
+        }
 
-editButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        // Get the task data from the data attributes
-        const taskData = {
-            tasks: this.getAttribute('data-task-name'),
-            personenid: this.getAttribute('data-task-person'),
-            spaltenid: this.getAttribute('data-task-spalte'),
-            taskartenid: this.getAttribute('data-task-taskart'),
-            erinnerungsdatum: this.getAttribute('data-task-erinnerung-datum'),
-            notizen: this.getAttribute('data-task-notiz'),
-            erinnerung: this.getAttribute('data-task-erinnerung') === '1'
-        };
+        var thisForm = $(this);
 
-        // Populate the form fields
-        document.querySelector('#editTaskModal #TaskName').value = taskData.tasks;
-        document.querySelector('#editTaskModal #ZustaendigePerson').value = taskData.personenid;
-        document.querySelector('#editTaskModal #Spalte').value = taskData.spaltenid;
-        document.querySelector('#editTaskModal #TaskArt').value = taskData.taskartenid;
-        document.querySelector('#editTaskModal #erinnerungsdatum').value = taskData.erinnerungsdatum;
-        document.querySelector('#editTaskModal #Notizen').value = taskData.notizen;
-        document.querySelector('#editTaskModal input[name="erinnerung"]').checked = taskData.erinnerung;
+        // Let's select and cache all the fields
+        var formInputElements = thisForm.find("input, select, button, textarea");
 
-        // Show the edit modal
-        const editTaskModal = new bootstrap.Modal(document.querySelector('#editTaskModal'));
-        editTaskModal.show();
-    });
-});
+        // Serialize the data in the form
+        var serializedFormData = thisForm.serialize();
 
+        // Let's disable the inputs for the duration of the Ajax request.
+        // Note: we disable elements AFTER the form data has been serialized.
+        // Disabled form elements will not be serialized.
 
+        // remove already disabled elements from formInputElements
+        formInputElements = formInputElements.filter(function() {
+            return !$(this).attr("disabled");
+        });
 
-// Get all delete buttons
-const deleteButtons = document.querySelectorAll('.delete-button');
+        formInputElements.attr("disabled", "");
 
-// Add click event listener to each delete button
-deleteButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        // Get the task ID and name from the data-task-id and data-task-name attributes
-        const taskId = this.getAttribute('data-task-id');
-        const taskName = this.getAttribute('data-task-name');
+        // Remove existing validation error messages
+        thisForm.find('.invalid-feedback').remove();
+        thisForm.find('.is-invalid').removeClass('is-invalid');
 
-        // Get the form in the modal and the modal title
-        const form = document.querySelector('#deleteTaskForm');
-        const modalTitle = document.querySelector('#deleteModalLabel');
+        // Fire off the request
+        request = $.ajax({
+            url: thisForm.data('send-to'),
+            type: "post",
+            data: serializedFormData
+        });
 
-        // Set the action of the form and the modal title dynamically
-        form.action = `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`;
-        modalTitle.textContent = `Willst du die Task "${taskName}" wirklich löschen?`;
+        // Callback handler that will be called on success
+        request.done(function (response, textStatus, jqXHR){
+            resultingData = JSON.parse(response);
+            if (resultingData['successfulValidation']) {
+                location.reload();
+            } else {
+                let errors = Object.entries(resultingData['error']);
+                formInputElements.each(function() {
+                    let input = $(this);
+
+                    errors.forEach(error => {
+                        if (input.attr('id') === error[0]) {
+                            input.addClass('is-invalid');
+                            let errorElement = document.createElement('div');
+                            errorElement.classList.add('invalid-feedback');
+                            errorElement.innerText = error[1];
+                            errorElement.classList.add('customFeedback');
+                            input.parent().append(errorElement);
+                        }
+                    });
+                });
+            }
+        });
+
+        // Callback handler that will be called on failure
+        request.fail(function (jqXHR, textStatus, errorThrown){
+            // Log the error to the console
+            // console.error(
+            //     "Your request failed\nThe following error occurred: "+
+            //     textStatus, errorThrown
+            // );
+        });
+
+        // Callback handler that will be called regardless
+        // if the request failed or succeeded
+        request.always(function () {
+            // Reenable the inputs
+            formInputElements.prop("disabled", false);
+        });
+
     });
 });

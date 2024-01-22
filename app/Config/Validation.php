@@ -41,4 +41,186 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+
+    public array $spaltenErstellen = [
+        'spalte' => [
+            'label' => 'Spaltenname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'boardsid' => [
+            'label' => 'Board',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie ein {field} aus.',
+                'integer' => 'Bitte wählen Sie ein {field} aus.',
+            ],
+        ],
+        'sortid' => [
+            'label' => 'Sortierungsnummer',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte geben Sie eine {field} an.',
+                'integer' => 'Bitte geben Sie eine {field} an.',
+            ],
+        ],
+        'spaltenbeschreibung' => [
+            'label' => 'Spaltenbeschreibung',
+            'rules' => 'max_length[60]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $spaltenBearbeiten = [
+        'spalte' => [
+            'label' => 'Spaltenname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'boardsid' => [
+            'label' => 'Board',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie ein {field} aus.',
+                'integer' => 'Bitte wählen Sie ein {field} aus.',
+            ],
+        ],
+        'sortid' => [
+            'label' => 'Sortierungsnummer',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte geben Sie eine {field} an.',
+                'integer' => 'Bitte geben Sie eine {field} an.',
+            ],
+        ],
+        'spaltenbeschreibung' => [
+            'label' => 'Spaltenbeschreibung',
+            'rules' => 'max_length[60]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $tasksErstellen = [
+        'task' => [
+            'label' => 'Taskname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'taskartenid' => [
+            'label' => 'Taskart',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'spaltenid' => [
+            'label' => 'Spalte',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'personenid' => [
+            'label' => 'Person',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'notizen' => [
+            'label' => 'Notizen',
+            'rules' => 'max_length[255]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $tasksBearbeiten = [
+        'task' => [
+            'label' => 'Taskname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'taskartenid' => [
+            'label' => 'Taskart',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'spaltenid' => [
+            'label' => 'Spalte',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'personenid' => [
+            'label' => 'Person',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'notizen' => [
+            'label' => 'Notizen',
+            'rules' => 'max_length[255]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $boardsErstellen = [
+        'board' => [
+            'label' => 'Boardname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $boardsBearbeiten = [
+        'board' => [
+            'label' => 'Boardname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+
 }

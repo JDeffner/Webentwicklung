@@ -19,4 +19,12 @@ class Spalten extends Model
     {
         return $this->db->table($this->table)->where('boardsid', $boardID)->get()->getResultArray();
     }
+
+    public function getSpaltenWithBoardName()
+    {
+        return $this->db->table($this->table)
+            ->select('spalten.id as id, boards.id as boardid, spalten.spalte as spalte, spalten.spaltenbeschreibung as spaltenbeschreibung, boards.board as board, spalten.sortid as sortid')
+            ->join('boards', 'boards.id = spalten.boardsid')
+            ->get()->getResultArray();
+    }
 }

@@ -7,34 +7,38 @@ use CodeIgniter\Router\RouteCollection;
  */
 //Default route Setup
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('BenutzerController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
 //login routes
-$routes->get('/', 'Home::index');
-$routes->get('/benutzer/erstellen', 'Home::getBenutzerErstellen');
-$routes->post('/benutzer/erstellen', 'Home::postBenutzerErstellen');
-$routes->get('/benutzer/anmelden', 'Home::getBenutzerAnmelden');
-$routes->get('/benutzer/(:num)', 'Home::getBenutzer/$1');
+$routes->get('/', 'BenutzerController::index');
+$routes->get('/benutzer/erstellen', 'BenutzerController::getBenutzerErstellen');
+$routes->post('/benutzer/erstellen', 'BenutzerController::postBenutzerErstellen');
+$routes->get('/benutzer/anmelden', 'BenutzerController::getBenutzerAnmelden');
+$routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 
 //task routes
-$routes->get('/tasks', 'TaskController::index/1');
-$routes->get('/tasks/(:num)', 'TaskController::index/$1');
-$routes->get('/tasks/erstellen', 'TaskController::getTaskErstellen');
-$routes->post('/tasks/erstellen', 'TaskController::postTaskErstellen');
-$routes->post('/tasks/loeschen/(:num)', 'TaskController::postTaskLoeschen/$1');
-$routes->get('/tasks/bearbeiten/(:num)', 'TaskController::getTaskBearbeiten/$1');
-$routes->post('/tasks/bearbeiten/(:num)', 'TaskController::postTaskBearbeiten/$1');
+$routes->get('/tasks', 'TasksController::index/1');
+$routes->get('/tasks/(:num)', 'TasksController::index/$1');
+$routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
+$routes->post('/tasks/loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
+$routes->post('/tasks/bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
 
 //spalten routes
-$routes->get('/spalten', 'Spalten::index');
-$routes->get('/spalten/erstellen', 'Spalten::getSpalteErstellen');
+$routes->get('/spalten', 'SpaltenController::index');
+$routes->post('/spalten/erstellen', 'SpaltenController::postSpalteErstellen');
+$routes->post('/spalten/bearbeiten/(:num)', 'SpaltenController::postSpalteBearbeiten/$1');
+$routes->post('/spalten/loeschen/(:num)', 'SpaltenController::postSpalteLoeschen/$1');
 
 //board routes
-$routes->get('/boards', 'Boards::index');
+$routes->get('/boards', 'BoardsController::index');
+$routes->get('/boards/raw', 'BoardsController::getRawData');
+$routes->post('/boards/erstellen', 'BoardsController::postBoardErstellen');
+$routes->post('/boards/bearbeiten/(:num)', 'BoardsController::postBoardBearbeiten/$1');
+$routes->post('/boards/loeschen/(:num)', 'BoardsController::postBoardLoeschen/$1');
 
 // Admin routes
 $routes->get('/dashboard', 'Admin::index');
