@@ -26,11 +26,9 @@ class SpaltenController extends BaseController
         if($this->validation->run($_POST, 'spaltenErstellen')){
             $SpaltenModel = new Spalten();
             $SpaltenModel->save($_POST);
-            // update website base_url().'/spalten' without reloading it
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $this->validation->getErrors();
-//            var_dump($data['error']);
             $data['successfulValidation'] = false;
 
         }

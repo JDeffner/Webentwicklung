@@ -7,7 +7,7 @@
             <h4>Tasks</h4>
         </div>
         <div class="card-body">
-            <a role="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createTaskModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
+            <a role="button" class="btn btn-primary mb-3 createTaskButton" data-bs-toggle="modal" data-bs-target="#createTaskModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
             <div class="d-flex flex-row flex-nowrap overflow-auto prettyScrollbar">
                 <?php foreach (($spaltenForBoard ?? null) as $oneSpalte): ?>
                     <div class="me-3">
@@ -122,7 +122,17 @@
  </main>
  <script>
      var wantReminder = false;
-        // Get all edit buttons
+
+     // Create Task Modal
+     $(document).ready(function () {
+         $('.createTaskButton').click(function () {
+             var createTaskModal = $('#createTaskModal');
+             createTaskModal.find('form').attr('data-send-to', '<?php echo base_url('tasks/erstellen'); ?>');
+         });
+     });
+
+
+    // Get all edit buttons
      $('.editTaskButton').on('click', function() {
          var id = $(this).siblings()[0].value;
          var name = $(this).siblings()[1].value;
@@ -134,10 +144,10 @@
          var taskart = $(this).siblings()[7].value;
          var editTaskModal = $('#editTaskModal');
 
-         editTaskModal.find('#TaskName').val(name);
-         editTaskModal.find('#TaskArt').val(taskart);
-         editTaskModal.find('#Spalte').val(spalte);
-         editTaskModal.find('#ZustaendigePerson').val(person);
+         editTaskModal.find('#task').val(name);
+         editTaskModal.find('#taskartenid').val(taskart);
+         editTaskModal.find('#spaltenid').val(spalte);
+         editTaskModal.find('#personenid').val(person);
          editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
          if(erinnerung == '1') {
              editTaskModal.find('#erinnerung').attr('checked', '');
@@ -150,12 +160,12 @@
              wantReminder = false;
          }
          console.log(wantReminder);
-         editTaskModal.find('#Notizen').val(notiz);
-         editTaskModal.find('form').attr('action', '<?= base_url('tasks/bearbeiten/') ?>'+id);
+         editTaskModal.find('#notizen').val(notiz);
+         editTaskModal.find('form').attr('data-send-to', '<?= base_url('tasks/bearbeiten/') ?>'+id);
 
      });
 
-     $('#erinnerung').on('change', function() {
+     $('.form-check-input').on('change', function() {
          console.log('click');
          if (wantReminder) {
 

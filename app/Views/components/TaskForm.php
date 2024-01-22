@@ -1,8 +1,8 @@
-<form method="post" action="<?php echo $formAction; ?>">
+<form class="crudForm" data-send-to="place url here">
     <div class="mb-3">
-        <label for="TaskName" class="form-label">Name der Task:</label>
+        <label for="task" class="form-label">Name der Task:</label>
         <div class="input-group">
-            <input type="text" class="form-control rounded-end" id="TaskName" placeholder="Bezeichnung der Task..." name="tasks" >
+            <input type="text" class="form-control rounded-end" id="task" placeholder="Bezeichnung der Task..." name="tasks" >
             <!--                            <div class="dropdown ms-2">-->
             <!--                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="taskartenid">-->
             <!--                                    1-->
@@ -13,7 +13,7 @@
             <!--                                    <li><button class="dropdown-item" type="button">Option 3</button></li>-->
             <!--                                </ul>-->
             <!--                            </div>-->
-            <select class="form-select ms-2 rounded-start" id="TaskArt" name="taskartenid">
+            <select class="form-select ms-2 rounded-start" id="taskartenid" name="taskartenid">
                 <?php foreach (($taskarten ?? null) as $taskart): ?>
                     <option value="<?= $taskart['id'] ?>"><?= $taskart['taskart'] ?></option>
                 <?php endforeach; ?>
@@ -25,9 +25,9 @@
 
     <div class="mb-3">
 
-        <label for="BoardSpalte" class="form-label">Board & Spalte:</label>
+        <label for="spaltenid" class="form-label">Board & Spalte:</label>
         <!--                        // databank access-->
-        <select class="form-select" id="Spalte" name="spaltenid">
+        <select class="form-select" id="spaltenid" name="spaltenid">
             <option selected>Board und Spalte auswählen</option>
             <?php foreach (($spalten ?? null) as $spalte): ?>
                 <?php foreach (($boards ?? null) as $board): ?>
@@ -41,9 +41,9 @@
     </div>
 
     <div class="mb-3">
-        <label for="ZustaendigePerson" class="form-label">Zugeteilt an:</label>
+        <label for="personenid" class="form-label">Zugeteilt an:</label>
         <!--                        // databank access-->
-        <select class="form-select" id="ZustaendigePerson" name="personenid">
+        <select class="form-select" id="personenid" name="personenid">
             <option selected>Person auswählen</option>
             <?php foreach (($personen ?? null) as $item): ?>
                 <option value="<?= $item["id"] ?>"><?= $item["vorname"] ?> <?= $item["nachname"] ?></option>
@@ -72,8 +72,8 @@
 
 
     <div class="mb-3">
-        <label for="Notizen" class="form-label ">Notizen:</label>
-        <textarea class="form-control" id="Notizen" style="height: 5em" placeholder="Notizen..." name="notizen"></textarea>
+        <label for="notizen" class="form-label ">Notizen:</label>
+        <textarea class="form-control" id="notizen" style="height: 5em" placeholder="Notizen..." name="notizen"></textarea>
     </div>
     <button type="submit" class="btn btn-success mb-2">Speichern</button>
     <button type="button" class="btn btn-secondary mb-2" data-bs-dismiss="modal">Abbrechen</button>

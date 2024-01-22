@@ -40,9 +40,16 @@ class TasksController extends BaseController
      */
     public function postTaskErstellen()
     {
-        $TaskModel = new Tasks();
-        $TaskModel->save($_POST);
-        return redirect()->to(base_url().'/tasks');
+        if($this->validation->run($_POST, 'tasksErstellen')){
+            $TaskModel = new Tasks();
+            $TaskModel->save($_POST);
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $this->validation->getErrors();
+            $data['successfulValidation'] = false;
+
+        }
+        return json_encode($data);
 
     }
 
