@@ -3,7 +3,7 @@
 var request;
 
 $(document).ready(function () {
-    $('.crudFrom').submit(function (e) {
+    $('.crudForm').submit(function (e) {
         e.preventDefault();
 
         if (request) {
