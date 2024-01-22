@@ -3,8 +3,18 @@
 <?= $this->section('content') ?>
 <main class="container-fluid">
     <div class="card ms-3 me-3">
-        <div class="card-header">
+        <div class="card-header d-flex align-items-center">
             <h4>Tasks</h4>
+            <div class="dropdown ms-auto">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?= $boardName ?>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <?php foreach (($boards ?? null) as $oneBoard): ?>
+                        <li><a class="dropdown-item" href="<?= base_url('tasks/').$oneBoard['id'] ?>"><?= $oneBoard['board'] ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         </div>
         <div class="card-body">
             <a role="button" class="btn btn-primary mb-3 createTaskButton" data-bs-toggle="modal" data-bs-target="#createTaskModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
@@ -44,14 +54,16 @@
                                             <i data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"
                                                 data-task="<?= $oneTask['task'] ?>"
                                                 data-taskartenid="<?= $oneTask['taskartenid'] ?>"
+                                                data-taskartenicon="<?= $oneTask['taskartenicon'] ?>"
+                                                data-taskart="<?= $oneTask['taskart'] ?>"
                                                 data-spaltenid="<?= $oneTask['spaltenid'] ?>"
                                                 data-personenid="<?= $oneTask['personenid'] ?>"
                                                 data-erinnerungsdatum="<?= $oneTask['erinnerungsdatum'] ?>"
                                                 data-erinnerung="<?= $oneTask['erinnerung'] ?>"
                                                 data-notizen="<?= $oneTask['notizen'] ?>"
                                                 data-id="<?= $oneTask['id'] ?>"
-                                               data-bs-toggle="modal"></i>
-                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
+                                                data-bs-toggle="modal"></i>
+                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
                                     </div>
@@ -136,7 +148,9 @@
     $('.editTaskButton').click(function() {
         var id = $(this).data('id');
         var name = $(this).data('task');
-        var taskart = $(this).data('taskartenid');
+        var taskartenid = $(this).data('taskartenid');
+        var taskartenicon = $(this).data('taskartenicon');
+        var taskart = $(this).data('taskart');
         var spalte = $(this).data('spaltenid');
         var person = $(this).data('personenid');
         var erinnerungDatum = $(this).data('erinnerungsdatum');
@@ -145,7 +159,8 @@
         var editTaskModal = $('#editTaskModal');
 
         editTaskModal.find('#task').val(name);
-        editTaskModal.find('#taskartenid').val(taskart);
+        editTaskModal.find('#taskartenid').val(taskartenid);
+        editTaskModal.find("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
         editTaskModal.find('#spaltenid').val(spalte);
         editTaskModal.find('#personenid').val(person);
         editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
@@ -180,8 +195,9 @@ $(document).ready(function () {
  $('.deleteTaskButton').click(function() {
      var taskId = $(this).data('task-id');
      var taskName = $(this).data('task-name');
+        var boardId = $(this).data('boards-id');
 
-     $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`);
+     $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${boardId}/${taskId}`);
      $('#deleteModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
  });
 });

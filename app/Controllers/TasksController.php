@@ -27,6 +27,8 @@ class TasksController extends BaseController
         $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
         $boardsModel = new Boards();
         $data['boards'] = $boardsModel->getAllData();
+        $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
+//        var_dump($data['boardName']);
         $taskartenModel = new Taskarten();
         $data['taskarten'] = $taskartenModel->getAllData();
 
@@ -53,13 +55,13 @@ class TasksController extends BaseController
 
     }
 
-    public function postTaskLoeschen($taskid)
+    public function postTaskLoeschen($boardid,$taskid)
     {
         $TaskModel = new Tasks();
         $TaskModel->delete($taskid);
 //        var_dump($id);
 
-        return redirect()->to(base_url().'/tasks');
+        return redirect()->to(base_url().'tasks/'.$boardid);
 
     }
 

@@ -3,21 +3,23 @@
         <label for="task" class="form-label">Name der Task:</label>
         <div class="input-group">
             <input type="text" class="form-control rounded-end" id="task" placeholder="Bezeichnung der Task..." name="task" >
-            <!--                            <div class="dropdown ms-2">-->
-            <!--                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="taskartenid">-->
-            <!--                                    1-->
-            <!--                                </button>-->
-            <!--                                <ul class="dropdown-menu dropdown-menu-end">-->
-            <!--                                    <li><button class="dropdown-item" type="button">Option 1</button></li>-->
-            <!--                                    <li><button class="dropdown-item" type="button">Option 2</button></li>-->
-            <!--                                    <li><button class="dropdown-item" type="button">Option 3</button></li>-->
-            <!--                                </ul>-->
-            <!--                            </div>-->
-            <select class="form-select ms-2 rounded-start" id="taskartenid" name="taskartenid">
+<!--            <select class="form-select ms-2 rounded-start" id="taskartenid" name="taskartenid">-->
+<!---->
+<!--            </select>-->
+            <input type="hidden" id="taskartenid" name="taskartenid" value="1">
+            <button class="btn btn-secondary ms-2 dropdown-toggle rounded" type="button" id="btnTaskart" data-bs-toggle="dropdown" aria-expanded="false">
+                <span><i class="fa-solid fa-house-chimney"></i> Besuch</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
                 <?php foreach (($taskarten ?? null) as $taskart): ?>
-                    <option value="<?= $taskart['id'] ?>"><?= $taskart['taskart'] ?></option>
+                <li>
+                <a class="dropdown-item" onclick="javascript:Taskartupdate('<?= $taskart['id'] ?>','<?= $taskart['taskartenicon'] ?>','<?= $taskart['taskart'] ?>');"><i class="<?= $taskart['taskartenicon'] ?>"></i> <?= $taskart['taskart'] ?></a>
+                </li>
                 <?php endforeach; ?>
-            </select>
+<!--                <li>-->
+<!--                    <a class="dropdown-item" href="#" onclick="Taskartupdate('3', 'fa-solid fa-house-chimney', 'Besuch');"><i class="fa-solid fa-house-chimney"></i> Besuch </a>-->
+<!--                </li>-->
+            </ul>
         </div>
 
     </div>

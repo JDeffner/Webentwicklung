@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2023 at 01:54 PM
+-- Generation Time: Jan 22, 2024 at 02:25 PM
 -- Server version: 10.6.12-MariaDB-0ubuntu0.22.04.1
--- PHP Version: 8.2.13
+-- PHP Version: 8.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,13 +84,13 @@ CREATE TABLE `tasks` (
   `taskartenid` int(11) NOT NULL,
   `spaltenid` int(11) NOT NULL,
   `sortid` int(11) NOT NULL DEFAULT 0,
-  `tasks` varchar(100) NOT NULL,
+  `task` varchar(100) NOT NULL,
   `erstelldatum` date NOT NULL,
   `erinnerungsdatum` datetime NOT NULL,
-  `erinnerung` smallint(6) NOT NULL,
+  `erinnerung` smallint(6) NOT NULL DEFAULT 0,
   `notizen` text NOT NULL,
-  `erledigt` smallint(6) NOT NULL,
-  `geloescht` smallint(6) NOT NULL
+  `erledigt` smallint(6) DEFAULT 0,
+  `geloescht` smallint(6) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -127,9 +127,9 @@ ALTER TABLE `taskarten`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `spaltenid` (`spaltenid`),
   ADD KEY `tasks_ibfk_3` (`personenid`),
-  ADD KEY `tasks_ibfk_2` (`taskartenid`);
+  ADD KEY `tasks_ibfk_2` (`taskartenid`),
+  ADD KEY `tasks_ibfk_1` (`spaltenid`);
 
 --
 -- AUTO_INCREMENT for dumped tables

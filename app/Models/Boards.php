@@ -14,4 +14,9 @@ class Boards extends Model
     {
         return $this->db->table($this->table)->get()->getResultArray();
     }
+
+    public function getBoardName($boardID)
+    {
+        return $this->db->table($this->table)->select('board')->where('id', $boardID)->get()->getResultArray();
+    }
 }

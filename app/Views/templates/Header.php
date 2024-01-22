@@ -23,6 +23,18 @@
                     </li>
                 </ul>
             </div>
+
+            <span class="navbar-text me-4" data-bs-toggle="collapse" href="#userCollapse" aria-expanded="false" aria-controls="userCollapse">
+                <?php echo isset($_COOKIE['userid']) ?  $_COOKIE['username'].' '.$_COOKIE['userlastname'] : 'Gast' ?>
+<!--                Joel Deffner-->
+<!--                    <a href="--><?php //echo base_url('/examples'); ?><!--">-->
+<!--                        <i class="fa-solid fa-user-shield" style="color: #e21d1d;"></i>-->
+<!--                    </a>-->
+                <!--                <i class="fa-solid fa-user" style="color: #e21d1d;"></i>-->
+                <div class="collapse" id="userCollapse">
+                    <a class="" href="<?php echo base_url('/login');?>">Logout</a>
+                </div>
+            </span>
         </div>
     </nav>
 </header>
