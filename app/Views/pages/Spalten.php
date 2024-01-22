@@ -18,10 +18,10 @@
                    data-toolbar="#toolbar">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Spalte</th>
-                        <th scope="col">Board</th>
-                        <th scope="col">Sortid</th>
+                        <th scope="col" data-sortable="true">ID</th>
+                        <th scope="col" data-sortable="true">Spalte</th>
+                        <th scope="col" data-sortable="true">Board</th>
+                        <th scope="col" data-sortable="true">Sortid</th>
                         <th scope="col">Spaltenbeschreibung</th>
                         <th scope="col">Bearbeiten</th>
                     </tr>

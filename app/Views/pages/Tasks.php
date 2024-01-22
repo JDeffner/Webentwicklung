@@ -21,14 +21,6 @@
                                     if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <input type="hidden" id="taskid" value="<?php echo $oneTask['id'] ?>">
-                                            <input type="hidden" id="taskname" value="<?php echo $oneTask['task'] ?>">
-                                            <input type="hidden" id="taskperson" value="<?php echo $oneTask['personenid'] ?>">
-                                            <input type="hidden" id="taskspalte" value="<?php echo $oneTask['spaltenid'] ?>">
-                                            <input type="hidden" id="taskerinnerung-datum" value="<?php echo $oneTask['erinnerungsdatum'] ?>">
-                                            <input type="hidden" id="taskerinnerung" value="<?php echo $oneTask['erinnerung'] ?>">
-                                            <input type="hidden" id="tasknotiz" value="<?php echo $oneTask['notizen'] ?>">
-                                            <input type="hidden" id="tasktaskart" value="<?php echo $oneTask['taskartenid'] ?>">
                                             <table>
                                                 <tbody>
                                                 <tr>
@@ -82,7 +74,6 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    $formAction = base_url('tasks/erstellen');
                     include APPPATH . 'Views/components/TaskForm.php';
                     ?>
                 </div>
@@ -100,7 +91,6 @@
                 </div>
                 <div class="modal-body">
                     <?php
-//                    $formAction = base_url('tasks/bearbeiten/');
                     include APPPATH . 'Views/components/TaskForm.php';
                     ?>
                 </div>
@@ -141,7 +131,7 @@
  });
 
 
-// Get all edit buttons
+// Edit Task Modal
  $(document).ready(function () {
     $('.editTaskButton').click(function() {
         var id = $(this).data('id');
@@ -185,7 +175,7 @@
     }
     });
 
-// Get all delete buttons
+// Delete Task Modal
 $(document).ready(function () {
  $('.deleteTaskButton').click(function() {
      var taskId = $(this).data('task-id');
