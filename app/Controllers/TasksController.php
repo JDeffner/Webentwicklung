@@ -61,7 +61,7 @@ class TasksController extends BaseController
         $TaskModel->delete($taskid);
 //        var_dump($id);
 
-        return redirect()->to(base_url().'/tasks/'.$boardid);
+        return redirect()->to(base_url().'tasks/'.$boardid);
 
     }
 
