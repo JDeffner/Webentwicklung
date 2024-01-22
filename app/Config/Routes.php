@@ -17,7 +17,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'BenutzerController::index');
 $routes->get('/benutzer/erstellen', 'BenutzerController::getBenutzerErstellen');
 $routes->post('/benutzer/erstellen', 'BenutzerController::postBenutzerErstellen');
-$routes->get('/benutzer/anmelden', 'BenutzerController::getBenutzerAnmelden');
+$routes->post('/benutzer/anmelden', 'BenutzerController::postBenutzerAnmelden');
 $routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 
 //task routes
@@ -39,6 +39,9 @@ $routes->get('/boards/raw', 'BoardsController::getRawData');
 $routes->post('/boards/erstellen', 'BoardsController::postBoardErstellen');
 $routes->post('/boards/bearbeiten/(:num)', 'BoardsController::postBoardBearbeiten/$1');
 $routes->post('/boards/loeschen/(:num)', 'BoardsController::postBoardLoeschen/$1');
+
+// Error routes
+$routes->get('/denied', 'Error::index');
 
 // Admin routes
 $routes->get('/dashboard', 'Admin::index');

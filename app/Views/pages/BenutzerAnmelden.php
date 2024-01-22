@@ -8,14 +8,14 @@
                     <h4>Bitte Melden Sie sich an</h4>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="<?php echo base_url();?>benutzer/anmelden">
+                    <form class="userForm" data-send-to="<?php echo base_url();?>benutzer/anmelden">
                         <div class="form-floating mb-4 mt-1">
-                            <input type="email" class="form-control" id="Mail" placeholder="name@example.com" name="email">
-                            <label for="Mail" class="col-form-label">E-Mail</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                            <label for="email" class="col-form-label">E-Mail</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="PW" placeholder="Password" name="password">
-                            <label for="PW" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="passwort" placeholder="Passwort" name="passwort">
+                            <label for="passwort" class="col-form-label">Password</label>
                         </div>
                         <div class="justify-content-between align-items-center d-flex">
                             <button type="submit" class="btn btn-success mb-4">Anmelden</button>

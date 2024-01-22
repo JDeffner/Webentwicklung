@@ -222,5 +222,52 @@ class Validation extends BaseConfig
         ],
     ];
 
+    public array $benutzerErstellen = [
+        'vorname' => [
+            'label' => 'Vorname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field} an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'nachname' => [
+            'label' => 'Nachname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field} an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'email' => [
+            'label' => 'E-Mail',
+            'rules' => 'required|valid_email|is_unique[personen.email]',
+            'errors' => [
+                'required' => 'Bitte geben Sie eine {field} an.',
+                'valid_email' => 'Bitte geben Sie eine gültige {field} an.',
+                'is_unique' => 'Diese {field} ist bereits vergeben.',
+            ],
+        ],
+        'passwort' => [
+            'label' => 'Passwort',
+            'rules' => 'required|min_length[4]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie ein {field} an.',
+                'min_length' => 'Das {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Das {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'passwortWiederholen' => [
+            'label' => 'Passwort wiederholen',
+            'rules' => 'required|matches[passwort]',
+            'errors' => [
+                'required' => 'Bitte geben Sie das Passwort erneut ein.',
+                'matches' => 'Die Passwörter stimmen nicht überein.',
+            ],
+        ],
+    ];
+
 
 }
