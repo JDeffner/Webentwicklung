@@ -43,46 +43,58 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
 
     public array $spaltenErstellen = [
-        'spalte' => 'required|min_length[3]|max_length[40]',
-        'boardsid' => 'required|integer',
-        'sortid' => 'required|integer',
+        'spalte' => [
+            'label' => 'Spaltenname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'boardsid' => [
+            'label' => 'Board',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie ein {field} aus.',
+                'integer' => 'Bitte wählen Sie ein {field} aus.',
+            ],
+        ],
+        'sortid' => [
+            'label' => 'Sortierungsnummer',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte geben Sie eine {field} an.',
+                'integer' => 'Bitte geben Sie eine {field} an.',
+            ],
+        ],
     ];
 
     public array $spaltenBearbeiten = [
-        'spalte' => 'required|min_length[3]|max_length[40]',
-        'boardsid' => 'required|integer',
-        'sortid' => 'required|integer',
-    ];
-
-    public array $spaltenErstellen_errors = [
         'spalte' => [
-            'required' => 'Bitte geben Sie einen Spaltenname ein.',
-            'min_length' => 'Der Spaltenname muss mindestens 3 Zeichen lang sein.',
-            'max_length' => 'Der Spaltenname darf maximal 40 Zeichen lang sein.',
+            'label' => 'Spaltenname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
         ],
         'boardsid' => [
-            'required' => 'Bitte wählen Sie ein Board aus.',
-            'integer' => 'Bitte wählen Sie ein Board aus.',
+            'label' => 'Board',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie ein {field} aus.',
+                'integer' => 'Bitte wählen Sie ein {field} aus.',
+            ],
         ],
         'sortid' => [
-            'required' => 'Bitte geben Sie eine Sortierungsnummer ein.',
-            'integer' => 'Bitte geben Sie eine Sortierungsnummer ein.',
-        ],
-    ];
-
-    public array $spaltenBearbeiten_errors = [
-        'spalte' => [
-            'required' => 'Bitte geben Sie einen Spaltenname ein.',
-            'min_length' => 'Der Spaltenname muss mindestens 3 Zeichen lang sein.',
-            'max_length' => 'Der Spaltenname darf maximal 40 Zeichen lang sein.',
-        ],
-        'boardsid' => [
-            'required' => 'Bitte wählen Sie ein Board aus.',
-            'integer' => 'Bitte wählen Sie ein Board aus.',
-        ],
-        'sortid' => [
-            'required' => 'Bitte geben Sie eine Sortierungsnummer ein.',
-            'integer' => 'Bitte geben Sie eine Sortierungsnummer ein.',
+            'label' => 'Sortierungsnummer',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte geben Sie eine {field} an.',
+                'integer' => 'Bitte geben Sie eine {field} an.',
+            ],
         ],
     ];
 
