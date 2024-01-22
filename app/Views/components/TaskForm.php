@@ -63,7 +63,7 @@
             </div>
 
             <!--                        <span class="input-group-text">am</span>-->
-            <input type="datetime-local" data-provide="datepicker" class="form-control" id="erinnerungsdatum"
+            <input type="datetime-local" data-provide="datepicker" class="form-control erinnerungsdatum" id="erinnerungsdatum"
                    placeholder="Datum" name="erinnerungsdatum"
                    data-np-intersection-state="observed" disabled>
 

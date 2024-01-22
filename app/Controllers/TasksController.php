@@ -72,9 +72,18 @@ class TasksController extends BaseController
             // If 'erinnerung' is not set, set it to 0
             $_POST['erinnerung'] = '0';
         }
-        $TaskModel = new Tasks();
-        $TaskModel->update($taskid, $_POST);
-        return redirect()->to(base_url().'/tasks');
+
+
+        if($this->validation->run($_POST, 'tasksBearbeiten')){
+            $TaskModel = new Tasks();
+            $TaskModel->update($taskid, $_POST);
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $this->validation->getErrors();
+            $data['successfulValidation'] = false;
+
+        }
+        return json_encode($data);
     }
 
 

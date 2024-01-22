@@ -108,7 +108,50 @@ class Validation extends BaseConfig
                 'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
             ],
         ],
-        'taskartid' => [
+        'taskartenid' => [
+            'label' => 'Taskart',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'spaltenid' => [
+            'label' => 'Spalte',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'personenid' => [
+            'label' => 'Person',
+            'rules' => 'required|integer',
+            'errors' => [
+                'required' => 'Bitte wählen Sie eine {field} aus.',
+                'integer' => 'Bitte wählen Sie eine {field} aus.',
+            ],
+        ],
+        'notizen' => [
+            'label' => 'Notizen',
+            'rules' => 'max_length[255]',
+            'errors' => [
+                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+    ];
+
+    public array $tasksBearbeiten = [
+        'task' => [
+            'label' => 'Taskname',
+            'rules' => 'required|min_length[3]|max_length[40]',
+            'errors' => [
+                'required' => 'Bitte geben Sie einen {field}n an.',
+                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
+                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
+            ],
+        ],
+        'taskartenid' => [
             'label' => 'Taskart',
             'rules' => 'required|integer',
             'errors' => [

@@ -49,7 +49,16 @@
                                                 </tbody>
                                             </table>
 
-                                            <i data-bs-toggle="modal" data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"></i>
+                                            <i data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"
+                                                data-task="<?= $oneTask['task'] ?>"
+                                                data-taskartenid="<?= $oneTask['taskartenid'] ?>"
+                                                data-spaltenid="<?= $oneTask['spaltenid'] ?>"
+                                                data-personenid="<?= $oneTask['personenid'] ?>"
+                                                data-erinnerungsdatum="<?= $oneTask['erinnerungsdatum'] ?>"
+                                                data-erinnerung="<?= $oneTask['erinnerung'] ?>"
+                                                data-notizen="<?= $oneTask['notizen'] ?>"
+                                                data-id="<?= $oneTask['id'] ?>"
+                                               data-bs-toggle="modal"></i>
                                             <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
@@ -119,71 +128,72 @@
         </div>
     </div>
 
- </main>
- <script>
-     var wantReminder = false;
+</main>
+<script>
 
-     // Create Task Modal
-     $(document).ready(function () {
-         $('.createTaskButton').click(function () {
-             var createTaskModal = $('#createTaskModal');
-             createTaskModal.find('form').attr('data-send-to', '<?php echo base_url('tasks/erstellen'); ?>');
-         });
+
+ // Create Task Modal
+ $(document).ready(function () {
+     $('.createTaskButton').click(function () {
+         var createTaskModal = $('#createTaskModal');
+         createTaskModal.find('form').attr('data-send-to', '<?php echo base_url('tasks/erstellen'); ?>');
      });
+ });
 
 
-    // Get all edit buttons
-     $('.editTaskButton').on('click', function() {
-         var id = $(this).siblings()[0].value;
-         var name = $(this).siblings()[1].value;
-         var person = $(this).siblings()[2].value;
-         var spalte = $(this).siblings()[3].value;
-         var erinnerungDatum = $(this).siblings()[4].value;
-         var erinnerung = $(this).siblings()[5].value;
-         var notiz = $(this).siblings()[6].value;
-         var taskart = $(this).siblings()[7].value;
-         var editTaskModal = $('#editTaskModal');
+// Get all edit buttons
+ $(document).ready(function () {
+    $('.editTaskButton').click(function() {
+        var id = $(this).data('id');
+        var name = $(this).data('task');
+        var taskart = $(this).data('taskartenid');
+        var spalte = $(this).data('spaltenid');
+        var person = $(this).data('personenid');
+        var erinnerungDatum = $(this).data('erinnerungsdatum');
+        var erinnerung = $(this).data('erinnerung');
+        var notiz = $(this).data('notizen');
+        var editTaskModal = $('#editTaskModal');
 
-         editTaskModal.find('#task').val(name);
-         editTaskModal.find('#taskartenid').val(taskart);
-         editTaskModal.find('#spaltenid').val(spalte);
-         editTaskModal.find('#personenid').val(person);
-         editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
-         if(erinnerung == '1') {
-             editTaskModal.find('#erinnerung').attr('checked', '');
+        editTaskModal.find('#task').val(name);
+        editTaskModal.find('#taskartenid').val(taskart);
+        editTaskModal.find('#spaltenid').val(spalte);
+        editTaskModal.find('#personenid').val(person);
+        editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
+        if(erinnerung == '1') {
+            editTaskModal.find('#erinnerung').prop('checked', true)
+            editTaskModal.find('#erinnerungsdatum').removeAttr('disabled');
+        } else {
+            editTaskModal.find('#erinnerung').prop('checked', false)
+            editTaskModal.find('#erinnerungsdatum').attr('disabled', '');
 
-             $('#erinnerungsdatum').removeAttr('disabled');
-             wantReminder = true;
-         } else {
-             editTaskModal.find('#erinnerung').removeAttr('checked');
-             $('#erinnerungsdatum').attr('disabled', '');
-             wantReminder = false;
-         }
-         console.log(wantReminder);
-         editTaskModal.find('#notizen').val(notiz);
-         editTaskModal.find('form').attr('data-send-to', '<?= base_url('tasks/bearbeiten/') ?>'+id);
+        }
+        editTaskModal.find('#notizen').val(notiz);
+        editTaskModal.find('#editModalLabel').text('Task "'+name+'" bearbeiten');
+        editTaskModal.find('form').attr('data-send-to', '<?= base_url('tasks/bearbeiten/') ?>'+id);
 
-     });
+    });
+});
 
-     $('.form-check-input').on('change', function() {
-         console.log('click');
-         if (wantReminder) {
+ // Erinnerung Checkbox disable/enable Erinnerungsdatum
+ $('.form-check-input').on('change', function() {
 
-             $('#erinnerungsdatum').attr('disabled', '');
-             wantReminder = false;
-         } else {
-             $('#erinnerungsdatum').removeAttr('disabled');
-             wantReminder = true;
-         }
-     });
+    if ($(this).prop('checked')) {
+        $('.erinnerungsdatum').removeAttr('disabled');
+    } else {
 
-     // Get all delete buttons
-     $('.deleteTaskButton').on('click', function() {
-         var taskId = $(this).data('task-id');
-         var taskName = $(this).data('task-name');
+        $('.erinnerungsdatum').attr('disabled', '');
+    }
+    });
 
-         $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`);
-         $('#deleteModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
-     });
- </script>
+// Get all delete buttons
+$(document).ready(function () {
+ $('.deleteTaskButton').click(function() {
+     var taskId = $(this).data('task-id');
+     var taskName = $(this).data('task-name');
+
+     $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${taskId}`);
+     $('#deleteModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
+ });
+});
+</script>
 <?= $this->endSection() ?>

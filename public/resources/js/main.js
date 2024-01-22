@@ -21,6 +21,12 @@ $(document).ready(function () {
         // Let's disable the inputs for the duration of the Ajax request.
         // Note: we disable elements AFTER the form data has been serialized.
         // Disabled form elements will not be serialized.
+
+        // remove already disabled elements from formInputElements
+        formInputElements = formInputElements.filter(function() {
+            return !$(this).attr("disabled");
+        });
+
         formInputElements.attr("disabled", "");
 
         // Remove existing validation error messages
@@ -37,7 +43,6 @@ $(document).ready(function () {
         // Callback handler that will be called on success
         request.done(function (response, textStatus, jqXHR){
             resultingData = JSON.parse(response);
-            console.log(response);
             if (resultingData['successfulValidation']) {
                 location.reload();
             } else {
