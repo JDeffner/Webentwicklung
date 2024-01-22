@@ -7,7 +7,12 @@
             <h4>Boards</h4>
         </div>
         <div class="card-body">
-            <a role="button" class="btn btn-primary mb-2 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal">Neu</a>
+            <div class="d-flex">
+                <a role="button" class="btn btn-primary mb-2 me-1 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
+                <div class="buttons-toolbar">
+            </div>
+
+            </div>
 
                 <table class="table table-hover table-bordered table-responsive rounded-table"
                        id="table"
@@ -15,7 +20,8 @@
                        data-height="460"
                        data-ajax="ajaxRequest"
                        data-search="true"
-                       data-pagination="true">
+                       data-pagination="true"
+                       data-buttons-toolbar=".buttons-toolbar">
                     <thead>
                         <tr>
                             <th scope="col" data-sortable="true" data-field="id">ID</th>
