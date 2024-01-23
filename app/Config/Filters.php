@@ -26,6 +26,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'adminAuth'     => \App\Filters\adminAuth::class,
+        'userAuth'      => \App\Filters\userAuth::class,
     ];
 
     /**
@@ -41,7 +42,7 @@ class Filters extends BaseConfig
             // 'csrf',
             // 'invalidchars',
             // 'secureheaders',
-            'adminAuth'
+//            'adminAuth'
 
         ],
         'after' => [

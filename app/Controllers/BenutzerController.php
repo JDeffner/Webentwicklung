@@ -10,6 +10,11 @@ class BenutzerController extends BaseController
         $data = [
             'title' => 'Login',
         ];
+        setcookie('userid', "", time() - 3600, "/");
+        setcookie('username', "", time() - 3600, "/");
+        setcookie('userlastname', "", time() - 3600, "/");
+        setcookie('useremail', "", time() - 3600, "/");
+        setcookie('permissionLevel', "", time() - 3600, "/");
         echo view('pages/BenutzerAnmelden', $data);
     }
 
@@ -62,7 +67,7 @@ class BenutzerController extends BaseController
             setcookie('username', $_POST['vorname'], "0", "/");
             setcookie('userlastname', $_POST['nachname'], "0", "/");
             setcookie('useremail', $_POST['email'], "0", "/");
-            setcookie('permissionLevel', "0", "0", "/");
+            setcookie('permissionLevel', "1", "0", "/");
             $personenModel->save($_POST);
             $data['successfulValidation'] = true;
             $userid = $personenModel->insertID();
@@ -86,6 +91,18 @@ class BenutzerController extends BaseController
         ];
 //        $data['person'] = $personenModel->select('id, vorname, nachname, email')->where('id', $userid)->first();
         echo view('pages/Benutzer', $data);
+    }
+
+    public function getGastAnmelden(){
+//        $data = [
+//            'title' => 'Login',
+//        ];
+        setcookie('userid', "", "0", "/");
+        setcookie('username', "", "0", "/");
+        setcookie('userlastname', "", "0", "/");
+        setcookie('useremail', "", "0", "/");
+        setcookie('permissionLevel', "0", "0", "/");
+        return redirect()->to(base_url('tasks'));
     }
 
 }
