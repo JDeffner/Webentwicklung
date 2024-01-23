@@ -48,16 +48,19 @@ $routes->group('', ['filter' => 'userAuth'], function($routes) {
     // Error routes
     $routes->get('/denied', 'Error::index');
 
-    // Admin routes
-    $routes->get('/dashboard', 'Admin::index');
+    $routes->group('', ['filter' => 'adminAuth'], function($routes) {
+        // Admin routes
+        $routes->get('/dashboard', 'Admin::index');
 
-    // Developer routes
-    $routes->get('/welcome', 'Developer::index');
-    $routes->get('/test/(:any)', 'Developer::test/$1');
-    $routes->get('(:any)/viewGruppennummer', 'Developer::viewGruppennummer');
-    $routes->get('/viewGruppennummer', 'Developer::viewGruppennummer');
-    $routes->get('/testDatabase', 'Developer::testDatabase');
-    $routes->get('/login', 'Developer::abweisung');
+        // Developer routes
+        $routes->get('/welcome', 'Developer::index');
+        $routes->get('/test/(:any)', 'Developer::test/$1');
+        $routes->get('(:any)/viewGruppennummer', 'Developer::viewGruppennummer');
+        $routes->get('/viewGruppennummer', 'Developer::viewGruppennummer');
+        $routes->get('/testDatabase', 'Developer::testDatabase');
+        $routes->get('/login', 'Developer::abweisung');
+    });
+    
 });
 
 
