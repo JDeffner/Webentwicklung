@@ -26,11 +26,7 @@
 
             <span class="navbar-text me-4" data-bs-toggle="collapse" href="#userCollapse" aria-expanded="false" aria-controls="userCollapse">
                 <?php echo isset($_COOKIE['userid']) ?  $_COOKIE['username'].' '.$_COOKIE['userlastname'] : 'Gast' ?>
-<!--                Joel Deffner-->
-                <?php if(isset($_COOKIE['permissionLevel'])) { ?>
-                    <i class="fa-solid fa-user" style="color: #21d50d;"></i>
-
-                <?php } else if($_COOKIE['permissionLevel'] == '2') { ?>
+                <?php if($_COOKIE['permissionLevel'] == '2') { ?>
                     <a href="<?php echo base_url('dashboard'); ?>">
                         <i class="fa-solid fa-user-shield" style="color: #e21d1d;"></i>
                     </a>
@@ -39,7 +35,7 @@
                         <i class="fa-solid fa-user" style="color: #0d46d5;"></i>
                     </a>
                 <?php } else { ?>
-
+                    <i class="fa-solid fa-user" style="color: #21d50d;"></i>
                 <?php } ?>
 
                 <!--                <i class="fa-solid fa-user" style="color: #e21d1d;"></i>-->
