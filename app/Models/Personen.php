@@ -12,7 +12,7 @@ class Personen extends Model
     }
     public function getSecureData(): array
     {
-        $result = $this->db->query('SELECT id, vorname, nachname, email FROM personen');
+        $result = $this->db->query('SELECT id, vorname, nachname, email, permission FROM personen');
         return $result->getResultArray();
     }
 }

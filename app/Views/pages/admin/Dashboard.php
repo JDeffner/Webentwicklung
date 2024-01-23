@@ -19,6 +19,7 @@
                         <th>Vorname</th>
                         <th>Nachname</th>
                         <th>Email</th>
+                        <th data-sortable="true">Rolle</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,7 @@
                             <td><?= $item["vorname"] ?></td>
                             <td><?= $item["nachname"] ?></td>
                             <td><?= $item["email"] ?></td>
+                            <td><?= ($item["permission"]=='2') ? 'Administrator' : 'Benutzer' ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
