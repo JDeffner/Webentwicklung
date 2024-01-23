@@ -2,7 +2,7 @@
 :root {
     --primary-color: #181434;
     --secondary-color: #2f2a50;
-    --tertiary-color: #8a80a4;
+    --tertiary-color: #9e92bd;
     --highlight-color: #5b449f;
     --hover-highlight-color: #3e2e72;
     --text-color: #ddd7e8;
@@ -151,6 +151,10 @@ body::-webkit-scrollbar-thumb:active {
     --bs-card-bg: var(--primary-color);
     --bs-card-border-width: 0.3em;
     --bs-card-border-color: var(--primary-color);
+}
+
+.spaltenBody {
+    background-color: var(--primary-color) !important;
 }
 
 .card-body {
