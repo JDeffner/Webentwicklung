@@ -26,7 +26,7 @@
                                 <h3><?= $oneSpalte['spalte'] ?></h3>
                                 <small class="mb-0"><?= $oneSpalte['spaltenbeschreibung'] ?></small>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body spaltenBody">
                                 <?php foreach (($tasks ?? null) as $oneTask):
                                     if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
                                     <div class="card mb-3">
