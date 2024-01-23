@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/BlankLayout') ?>
+<?= $this->extend('layouts/DefaultLayout') ?>
 
 <?= $this->section('content') ?>
 <main class="container justify-content-center align-items-center d-flex">
@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="container text-wrap">
                 <h5>
-                    Sie haben keine Berechtigung diese Seite zu sehen!
+                    Sie haben nicht die Berechtigung diese Seite zu sehen!
                 </h5>
             </div>
         </div>

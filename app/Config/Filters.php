@@ -42,7 +42,6 @@ class Filters extends BaseConfig
             // 'csrf',
             // 'invalidchars',
             // 'secureheaders',
-//            'adminAuth'
 
         ],
         'after' => [

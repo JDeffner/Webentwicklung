@@ -11,6 +11,7 @@
             </button>
 
             <div class="navbar-collapse collapse" id="navbarDropdown">
+                <?php isset($title) ? $title : $title = 'No Title Set'; ?>
                 <ul class="navbar-nav nav-underline me-auto mb-2 mb-md-0">
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($title == 'Tasks') ? 'active" aria-current="page"' : '"' ?> href="<?php echo base_url('tasks');?>">Tasks</a>
