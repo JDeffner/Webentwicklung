@@ -144,6 +144,27 @@
                 $('#deleteTaskForm').attr('action', '<?php echo base_url('spalten/loeschen/'); ?>' + id);
             });
         });
+
+        // do something
+        function ajaxRequest(params) {
+            $.ajax({
+                url: '<?= base_url('spalten/raw') ?>',
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    params.success({
+                        "total": response.total,
+                        "rows": response.rows
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    params.error({
+                        "total": 0,
+                        "rows": []
+                    })
+                }
+            })
+        }
     </script>
 
 
