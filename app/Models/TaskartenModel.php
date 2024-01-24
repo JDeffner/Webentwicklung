@@ -4,6 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+/**
+ * @method insertID()
+ */
+
 class TaskartenModel extends Model
 {
     protected $table = 'taskarten';

@@ -1,6 +1,10 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 class TasksModel extends Model
+
+    /**
+     * @method insertID()
+     */
 {
     protected $table = 'tasks';
     protected $primaryKey = 'id';
@@ -11,6 +15,8 @@ class TasksModel extends Model
     protected $dateFormat = 'datetime';
     protected $createdField = 'erstelldatum';
     protected $updatedField = '';
+    protected $cleanValidationRules = false;
+    protected $validationRules = 'tasks';
     public function getCuratedData(): array
     {
         return $this->db->table($this->table)

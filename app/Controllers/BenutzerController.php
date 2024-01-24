@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\PersonenModel;
+use ReflectionException;
 
 class BenutzerController extends BaseController
 {
@@ -31,8 +32,8 @@ class BenutzerController extends BaseController
                     setcookie('userlastname', $person['nachname'], "0", "/");
                     setcookie('useremail', $person['email'], "0", "/");
                     setcookie('permissionLevel', $person['permission'], "0", "/");
-                    $data['successfulValidation'] = true;
                     $data['redirect'] = base_url('benutzer/'.$person['id']);
+                    $data['successfulValidation'] = true;
                     return json_encode($data);
                 } else {
                     $data['error'] = [ 'passwort' => 'Das Passwort ist falsch'];
@@ -59,27 +60,25 @@ class BenutzerController extends BaseController
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function postBenutzerErstellen(){
-        if($this->validation->run($_POST, 'benutzerErstellen')){
+        $personenModel = new PersonenModel();
+        if($personenModel->save($_POST)){
             $_POST['passwort'] = password_hash($_POST['passwort'], PASSWORD_DEFAULT);
-            $personenModel = new PersonenModel();
             setcookie('username', $_POST['vorname'], "0", "/");
             setcookie('userlastname', $_POST['nachname'], "0", "/");
             setcookie('useremail', $_POST['email'], "0", "/");
             setcookie('permissionLevel', "1", "0", "/");
-            $personenModel->save($_POST);
-            $data['successfulValidation'] = true;
             $userid = $personenModel->insertID();
             setcookie('userid', $userid, "0", "/");
             $data['redirect'] = base_url('benutzer/'.$userid);
-            return json_encode($data);
+            $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $personenModel->errors();
             $data['successfulValidation'] = false;
-            return json_encode($data);
         }
+        return json_encode($data);
     }
 
     public function getBenutzer($userid){

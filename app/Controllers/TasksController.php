@@ -41,12 +41,11 @@ class TasksController extends BaseController
      */
     public function postTaskErstellen()
     {
-        if($this->validation->run($_POST, 'tasksErstellen')){
-            $TaskModel = new TasksModel();
-            $TaskModel->save($_POST);
+        $taskModel = new TasksModel();
+        if($taskModel->save($_POST)){
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $taskModel->errors();
             $data['successfulValidation'] = false;
 
         }
@@ -74,15 +73,12 @@ class TasksController extends BaseController
             $_POST['erinnerung'] = '0';
         }
 
-
-        if($this->validation->run($_POST, 'tasksBearbeiten')){
-            $TaskModel = new TasksModel();
-            $TaskModel->update($taskid, $_POST);
+        $taskModel = new TasksModel();
+        if($taskModel->update($taskid, $_POST)){
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $taskModel->errors();
             $data['successfulValidation'] = false;
-
         }
         return json_encode($data);
     }
