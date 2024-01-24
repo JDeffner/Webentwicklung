@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\SpaltenModel;
 use App\Models\BoardsModel;
+use ReflectionException;
 
 class SpaltenController extends BaseController
 {
@@ -19,33 +20,30 @@ class SpaltenController extends BaseController
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function postSpalteErstellen()
     {
-        if($this->validation->run($_POST, 'spaltenErstellen')){
-            $SpaltenModel = new SpaltenModel();
-            $SpaltenModel->save($_POST);
+        $spaltenModel = new SpaltenModel();
+        if($spaltenModel->save($_POST)){
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $spaltenModel->errors();
             $data['successfulValidation'] = false;
-
         }
         return json_encode($data);
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function postSpalteBearbeiten($spaltenid)
     {
-        if($this->validation->run($_POST, 'spaltenBearbeiten')){
-            $SpaltenModel = new SpaltenModel();
-            $SpaltenModel->update($spaltenid, $_POST);
+        $spaltenModel = new SpaltenModel();
+        if($spaltenModel->update($spaltenid, $_POST)){
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $spaltenModel->errors();
             $data['successfulValidation'] = false;
         }
         return json_encode($data);
@@ -53,8 +51,8 @@ class SpaltenController extends BaseController
 
     public function postSpalteLoeschen($spaltenid)
     {
-        $SpaltenModel = new SpaltenModel();
-        $SpaltenModel->delete($spaltenid);
+        $spaltenModel = new SpaltenModel();
+        $spaltenModel->delete($spaltenid);
         return redirect()->to(base_url().'spalten');
     }
 
