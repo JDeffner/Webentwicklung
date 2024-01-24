@@ -5,13 +5,6 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-//Default route Setup
-$routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('BenutzerController');
-$routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
-$routes->set404Override();
-$routes->setAutoRoute(true);
 
 //login routes
 $routes->get('/', 'BenutzerController::index');
@@ -46,19 +39,19 @@ $routes->group('', ['filter' => 'userAuth'], function($routes) {
     $routes->post('/boards/loeschen/(:num)', 'BoardsController::postBoardLoeschen/$1');
 
     // Error routes
-    $routes->get('/denied', 'Error::index');
+    $routes->get('/denied', 'ErrorController::index');
 
     $routes->group('', ['filter' => 'adminAuth'], function($routes) {
         // Admin routes
-        $routes->get('/dashboard', 'Admin::index');
+        $routes->get('/dashboard', 'AdminController::index');
 
         // Developer routes
-        $routes->get('/welcome', 'Developer::index');
-        $routes->get('/test/(:any)', 'Developer::test/$1');
-        $routes->get('(:any)/viewGruppennummer', 'Developer::viewGruppennummer');
-        $routes->get('/viewGruppennummer', 'Developer::viewGruppennummer');
-        $routes->get('/testDatabase', 'Developer::testDatabase');
-        $routes->get('/login', 'Developer::abweisung');
+        $routes->get('/welcome', 'DeveloperController::index');
+        $routes->get('/test/(:any)', 'DeveloperController::test/$1');
+        $routes->get('(:any)/viewGruppennummer', 'DeveloperController::viewGruppennummer');
+        $routes->get('/viewGruppennummer', 'DeveloperController::viewGruppennummer');
+        $routes->get('/testDatabase', 'DeveloperController::testDatabase');
+        $routes->get('/login', 'DeveloperController::abweisung');
     });
     
 });

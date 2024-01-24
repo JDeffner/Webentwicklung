@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\TasksModel;
 
 
-class Developer extends BaseController
+class DeveloperController extends BaseController
 {
     public function index()
     {

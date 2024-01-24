@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Models\PersonenModel;
 
-class Admin extends BaseController
+class AdminController extends BaseController
 {
     public function index()
     {
