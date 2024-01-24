@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Personen;
+use App\Models\PersonenModel;
 
 class BenutzerController extends BaseController
 {
@@ -21,7 +21,7 @@ class BenutzerController extends BaseController
     public function postBenutzerAnmelden()
     {
 
-            $personenModel = new Personen();
+            $personenModel = new PersonenModel();
             $person = $personenModel->getPersonenRowByEmail($_POST['email']);
             // $person = $personenModel->where('email', $_POST['email'])->first();
             if ($person != null) {
@@ -64,7 +64,7 @@ class BenutzerController extends BaseController
     public function postBenutzerErstellen(){
         if($this->validation->run($_POST, 'benutzerErstellen')){
             $_POST['passwort'] = password_hash($_POST['passwort'], PASSWORD_DEFAULT);
-            $personenModel = new Personen();
+            $personenModel = new PersonenModel();
             setcookie('username', $_POST['vorname'], "0", "/");
             setcookie('userlastname', $_POST['nachname'], "0", "/");
             setcookie('useremail', $_POST['email'], "0", "/");
@@ -86,7 +86,7 @@ class BenutzerController extends BaseController
         if ($userid != $_COOKIE['userid']) {
             return redirect()->to(base_url('denied'));
         }
-        $personenModel = new Personen();
+        $personenModel = new PersonenModel();
         $data = [
             'title' => 'Profil',
         ];

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\tasks;
+use App\Models\TasksModel;
 
 
 class Developer extends BaseController
@@ -16,8 +16,8 @@ class Developer extends BaseController
     }
 
 public function testDatabase() {
-        $testTasksModel = new Tasks();
-        $data['tasks'] = $testTasksModel->getAllData();
+        $testTasksModel = new TasksModel();
+        $data['tasks'] = $testTasksModel->getCuratedData();
         echo view('pages/dev/TestDatabase', $data);
 }
 

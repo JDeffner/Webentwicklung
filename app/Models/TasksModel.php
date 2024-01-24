@@ -1,6 +1,6 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
-class Tasks extends Model
+class TasksModel extends Model
 {
     protected $table = 'tasks';
     protected $primaryKey = 'id';
@@ -11,7 +11,7 @@ class Tasks extends Model
     protected $dateFormat = 'datetime';
     protected $createdField = 'erstelldatum';
     protected $updatedField = '';
-    public function getAllData(): array
+    public function getCuratedData(): array
     {
         return $this->db->table($this->table)
             ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, spalten.spalte, tasks.personenid, 

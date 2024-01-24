@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Spalten;
+use App\Models\SpaltenModel;
 use App\Models\BoardsModel;
 
 class SpaltenController extends BaseController
@@ -11,10 +11,10 @@ class SpaltenController extends BaseController
         $data = [
             'title' => 'Spalten',
         ];
-        $spaltenModel = new Spalten();
+        $spaltenModel = new SpaltenModel();
         $data['spalten'] = $spaltenModel->getSpaltenWithBoardName();
         $boardsModel = new BoardsModel();
-        $data['boards'] = $boardsModel->getAllData();
+        $data['boards'] = $boardsModel->findAll();
         echo view('pages/Spalten', $data);
     }
 
@@ -24,7 +24,7 @@ class SpaltenController extends BaseController
     public function postSpalteErstellen()
     {
         if($this->validation->run($_POST, 'spaltenErstellen')){
-            $SpaltenModel = new Spalten();
+            $SpaltenModel = new SpaltenModel();
             $SpaltenModel->save($_POST);
             $data['successfulValidation'] = true;
         } else {
@@ -41,7 +41,7 @@ class SpaltenController extends BaseController
     public function postSpalteBearbeiten($spaltenid)
     {
         if($this->validation->run($_POST, 'spaltenBearbeiten')){
-            $SpaltenModel = new Spalten();
+            $SpaltenModel = new SpaltenModel();
             $SpaltenModel->update($spaltenid, $_POST);
             $data['successfulValidation'] = true;
         } else {
@@ -53,7 +53,7 @@ class SpaltenController extends BaseController
 
     public function postSpalteLoeschen($spaltenid)
     {
-        $SpaltenModel = new Spalten();
+        $SpaltenModel = new SpaltenModel();
         $SpaltenModel->delete($spaltenid);
         return redirect()->to(base_url().'spalten');
     }

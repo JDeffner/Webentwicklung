@@ -17,7 +17,7 @@ class BoardsController extends BaseController
     public function getRawData()
     {
         $BoardsModel = new BoardsModel();
-        $data['boards'] = $BoardsModel->getAllData();
+        $data['boards'] = $BoardsModel->findAll();
         return json_encode($data);
     }
 

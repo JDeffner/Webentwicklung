@@ -10,10 +10,6 @@ class BoardsModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['board'];
 
-    public function getAllData(): array
-    {
-        return $this->db->table($this->table)->get()->getResultArray();
-    }
 
     public function getBoardName($boardID): array
     {

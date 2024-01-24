@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Tasks;
-use App\Models\Personen;
-use App\Models\Spalten;
+use App\Models\TasksModel;
+use App\Models\PersonenModel;
+use App\Models\SpaltenModel;
 use App\Models\BoardsModel;
-use App\Models\Taskarten;
+use App\Models\TaskartenModel;
 use ReflectionException;
 
 class TasksController extends BaseController
@@ -18,18 +18,18 @@ class TasksController extends BaseController
             'title' => 'Tasks',
             'boardID' => $boardID,
         ];
-        $tasksModel = new Tasks();
+        $tasksModel = new TasksModel();
         $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
-        $personenModel = new Personen();
+        $personenModel = new PersonenModel();
         $data['personen'] = $personenModel->getSecureData();
-        $spaltenModel = new Spalten();
-        $data['spalten'] = $spaltenModel->getAllData();
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->findAll();
         $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
         $boardsModel = new BoardsModel();
-        $data['boards'] = $boardsModel->getAllData();
+        $data['boards'] = $boardsModel->findAll();
         $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
-        $taskartenModel = new Taskarten();
-        $data['taskarten'] = $taskartenModel->getAllData();
+        $taskartenModel = new TaskartenModel();
+        $data['taskarten'] = $taskartenModel->findAll();
 
         echo view('pages/Tasks', $data);
     }
@@ -42,7 +42,7 @@ class TasksController extends BaseController
     public function postTaskErstellen()
     {
         if($this->validation->run($_POST, 'tasksErstellen')){
-            $TaskModel = new Tasks();
+            $TaskModel = new TasksModel();
             $TaskModel->save($_POST);
             $data['successfulValidation'] = true;
         } else {
@@ -56,7 +56,7 @@ class TasksController extends BaseController
 
     public function postTaskLoeschen($boardid,$taskid)
     {
-        $TaskModel = new Tasks();
+        $TaskModel = new TasksModel();
         $TaskModel->delete($taskid);
 //        var_dump($id);
 
@@ -76,7 +76,7 @@ class TasksController extends BaseController
 
 
         if($this->validation->run($_POST, 'tasksBearbeiten')){
-            $TaskModel = new Tasks();
+            $TaskModel = new TasksModel();
             $TaskModel->update($taskid, $_POST);
             $data['successfulValidation'] = true;
         } else {

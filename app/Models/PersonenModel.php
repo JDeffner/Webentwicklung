@@ -1,14 +1,11 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
-class Personen extends Model
+class PersonenModel extends Model
 {
     protected $table = 'personen';
     protected $primaryKey = 'id';
     protected $allowedFields = ['vorname', 'nachname', 'email', 'passwort'];
-    public function getAllData(): array
-    {
-        return $this->db->table($this->table)->get()->getResultArray();
-    }
+
 
     public function getSecureData(): array
     {
