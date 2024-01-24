@@ -22,7 +22,8 @@ class BenutzerController extends BaseController
     {
 
             $personenModel = new Personen();
-            $person = $personenModel->where('email', $_POST['email'])->first();
+            $person = $personenModel->getPersonenRowByEmail($_POST['email']);
+            // $person = $personenModel->where('email', $_POST['email'])->first();
             if ($person != null) {
                 if (password_verify($_POST['passwort'], $person['passwort'])) {
                     setcookie('userid', $person['id'], "0", "/");

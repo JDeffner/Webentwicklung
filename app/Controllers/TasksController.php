@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\Tasks;
 use App\Models\Personen;
 use App\Models\Spalten;
-use App\Models\Boards;
+use App\Models\BoardsModel;
 use App\Models\Taskarten;
 use ReflectionException;
 
@@ -25,10 +25,9 @@ class TasksController extends BaseController
         $spaltenModel = new Spalten();
         $data['spalten'] = $spaltenModel->getAllData();
         $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
-        $boardsModel = new Boards();
+        $boardsModel = new BoardsModel();
         $data['boards'] = $boardsModel->getAllData();
         $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
-//        var_dump($data['boardName']);
         $taskartenModel = new Taskarten();
         $data['taskarten'] = $taskartenModel->getAllData();
 

@@ -7,12 +7,23 @@ class Personen extends Model
     protected $allowedFields = ['vorname', 'nachname', 'email', 'passwort'];
     public function getAllData(): array
     {
-        $result = $this->db->query('SELECT * FROM personen');
-        return $result->getResultArray();
+        return $this->db->table($this->table)->get()->getResultArray();
     }
+
     public function getSecureData(): array
     {
-        $result = $this->db->query('SELECT id, vorname, nachname, email, permission FROM personen');
-        return $result->getResultArray();
+
+        return $this->db->table($this->table)
+            ->select('id, vorname, nachname, email, permission')
+            ->get()->getResultArray();
     }
+
+    public function getPersonenRowByEmail($email): array
+    {
+        // $person = $personenModel->where('email', $_POST['email'])->first();
+        return $this->db->table($this->table)
+            ->where('email', $email)
+            ->get()->getRowArray();
+    }
+
 }

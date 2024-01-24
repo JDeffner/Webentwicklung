@@ -10,7 +10,7 @@ class Taskarten extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['taskart', 'taskartenicon'];
 
-    public function getAllData()
+    public function getAllData(): array
     {
         return $this->db->table($this->table)->get()->getResultArray();
     }

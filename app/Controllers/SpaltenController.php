@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Spalten;
-use App\Models\Boards;
+use App\Models\BoardsModel;
 
 class SpaltenController extends BaseController
 {
@@ -13,7 +13,7 @@ class SpaltenController extends BaseController
         ];
         $spaltenModel = new Spalten();
         $data['spalten'] = $spaltenModel->getSpaltenWithBoardName();
-        $boardsModel = new Boards();
+        $boardsModel = new BoardsModel();
         $data['boards'] = $boardsModel->getAllData();
         echo view('pages/Spalten', $data);
     }
