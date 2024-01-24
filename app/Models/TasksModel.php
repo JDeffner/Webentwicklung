@@ -1,6 +1,6 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
-class Tasks extends Model
+class TasksModel extends Model
 {
     protected $table = 'tasks';
     protected $primaryKey = 'id';
@@ -11,19 +11,21 @@ class Tasks extends Model
     protected $dateFormat = 'datetime';
     protected $createdField = 'erstelldatum';
     protected $updatedField = '';
-    public function getAllData()
+    public function getCuratedData(): array
     {
-        return $this->db->table('tasks')
-            ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, spalten.spalte, tasks.personenid, tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht')
+        return $this->db->table($this->table)
+            ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, spalten.spalte, tasks.personenid, 
+                tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, 
+                tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht')
             ->join('personen', 'tasks.personenid = personen.id')
             ->join('taskarten', 'tasks.taskartenid = taskarten.id')
             ->join('spalten', 'tasks.spaltenid = spalten.id')
             ->get()->getResultArray();
     }
 
-    public function getTasksFromBoard(string $BoardID): array
+    public function getTasksFromBoard($BoardID): array
     {
-        return $this->db->table('tasks')
+        return $this->db->table($this->table)
             ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, tasks.personenid, tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht, boards.id as boardsid')
             ->join('personen', 'tasks.personenid = personen.id')
             ->join('taskarten', 'tasks.taskartenid = taskarten.id')

@@ -1,14 +1,10 @@
 <header>
-    <nav class="navbar navbar-expand-md mb-4 ps-5">
+    <nav class="navbar navbar-expand-md mb-4">
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?php echo base_url();?>">
+            <a class="navbar-brand ps-4" href="<?php echo base_url();?>">
                 <img src="<?php echo base_url();?>resources/images/MinMaxLogo.svg" alt="logo.svg" height="60">
             </a>
 
-            <button class="navbar-toggler custom-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdown"
-                    aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
             <div class="navbar-collapse collapse" id="navbarDropdown">
                 <?php isset($title) ? $title : $title = 'No Title Set'; ?>
@@ -24,7 +20,6 @@
                     </li>
                 </ul>
             </div>
-
             <span class="navbar-text me-4" data-bs-toggle="collapse" href="#userCollapse" aria-expanded="false" aria-controls="userCollapse">
                 <?php echo isset($_COOKIE['userid']) ?  $_COOKIE['username'].' '.$_COOKIE['userlastname'] : 'Gast' ?>
                 <?php if($_COOKIE['permissionLevel'] == '2') { ?>
@@ -44,6 +39,11 @@
                     <a class="" href="<?php echo base_url('/login');?>">Logout</a>
                 </div>
             </span>
+
+            <button class="navbar-toggler custom-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdown"
+                    aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
 </header>

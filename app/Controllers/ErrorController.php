@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 
 
-class Error extends BaseController
+class ErrorController extends BaseController
 {
     public function index()
     {

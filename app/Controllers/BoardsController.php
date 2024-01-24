@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Boards;
+use App\Models\BoardsModel;
 
 class BoardsController extends BaseController
 {
@@ -16,15 +16,15 @@ class BoardsController extends BaseController
 
     public function getRawData()
     {
-        $BoardsModel = new Boards();
-        $data['boards'] = $BoardsModel->getAllData();
+        $BoardsModel = new BoardsModel();
+        $data['boards'] = $BoardsModel->findAll();
         return json_encode($data);
     }
 
     public function postBoardErstellen()
     {
         if($this->validation->run($_POST, 'boardsErstellen')){
-            $BoardsModel = new Boards();
+            $BoardsModel = new BoardsModel();
             $BoardsModel->save($_POST);
             $data['successfulValidation'] = true;
         } else {
@@ -39,7 +39,7 @@ class BoardsController extends BaseController
     public function postBoardBearbeiten($boardid)
     {
         if($this->validation->run($_POST, 'boardsBearbeiten')){
-            $BoardsModel = new Boards();
+            $BoardsModel = new BoardsModel();
             $BoardsModel->update($boardid, $_POST);
             $data['successfulValidation'] = true;
         } else {
@@ -53,7 +53,7 @@ class BoardsController extends BaseController
 
     public function postBoardLoeschen($boardid)
     {
-        $BoardsModel = new Boards();
+        $BoardsModel = new BoardsModel();
         $BoardsModel->delete($boardid);
         return redirect()->to(base_url().'boards');
     }
