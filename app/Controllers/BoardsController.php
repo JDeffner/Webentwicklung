@@ -59,7 +59,13 @@ class BoardsController extends BaseController
     public function postBoardLoeschen($boardid)
     {
         $boardsModel = new BoardsModel();
-        $boardsModel->delete($boardid);
+        if($boardsModel->delete($boardid)){
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = [ 'deletion' => 'Sie können dieses Board nicht löschen, da es noch Spalten enthält'];
+            $data['successfulValidation'] = false;
+        }
+//        return json_encode($data);
         return redirect()->to(base_url().'boards');
     }
 
