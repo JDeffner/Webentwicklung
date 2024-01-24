@@ -1,6 +1,6 @@
 /*@import url('https://fonts.googleapis.com/css?family=Varela:700|Varela:400'); !* Set color variables*!*/
 ///*@import url('https://fonts.googleapis.com/css?family=Lato:700|Lato:400');*/
-:root[data-theme="dark"] {
+:root {
   --primary-color: #181434;
   --secondary-color: #2f2a50;
   --tertiary-color: #9e92bd;
@@ -398,3 +398,5 @@ main {
 /*    !* Set the cursor to not-allowed to indicate the input is disabled *!*/
 /*    !*cursor: not-allowed; *!*/
 /*}*/
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
