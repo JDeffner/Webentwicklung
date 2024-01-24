@@ -53,8 +53,5 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-         // preload validation
-        $this->validation = \Config\Services::validation();
-        $this->session = \Config\Services::session();
     }
 }
