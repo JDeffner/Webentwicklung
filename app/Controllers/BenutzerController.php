@@ -24,7 +24,6 @@ class BenutzerController extends BaseController
 
             $personenModel = new PersonenModel();
             $person = $personenModel->getPersonenRowByEmail($_POST['email']);
-            // $person = $personenModel->where('email', $_POST['email'])->first();
             if ($person != null) {
                 if (password_verify($_POST['passwort'], $person['passwort'])) {
                     setcookie('userid', $person['id'], "0", "/");
@@ -53,9 +52,7 @@ class BenutzerController extends BaseController
     public function getBenutzerErstellen(){
         $data = [
             'title' => 'Neuer Benutzer',
-
         ];
-//        if($this->request->getMethod() == 'post')
         echo view('pages/BenutzerErstellen', $data);
     }
 
@@ -89,14 +86,10 @@ class BenutzerController extends BaseController
         $data = [
             'title' => 'Profil',
         ];
-//        $data['person'] = $personenModel->select('id, vorname, nachname, email')->where('id', $userid)->first();
         echo view('pages/Benutzer', $data);
     }
 
     public function getGastAnmelden(){
-//        $data = [
-//            'title' => 'Login',
-//        ];
         setcookie('userid', "", "0", "/");
         setcookie('username', "", "0", "/");
         setcookie('userlastname', "", "0", "/");
