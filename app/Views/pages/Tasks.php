@@ -63,7 +63,7 @@
                                                 data-notizen="<?= $oneTask['notizen'] ?>"
                                                 data-id="<?= $oneTask['id'] ?>"
                                                 data-bs-toggle="modal"></i>
-                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deletionModal" data-task-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
+                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" data-task-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
 
 
     <!-- Deletion Modal -->
-    <div class="modal fade" id="deletionModal" tabindex="-1" aria-labelledby="deletionModal" aria-hidden="true">
+    <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
