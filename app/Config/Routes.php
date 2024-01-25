@@ -27,6 +27,7 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
 
     //spalten routes
     $routes->get('/spalten', 'SpaltenController::index');
+    $routes->get('/spalten/raw', 'SpaltenController::getRawData');
     $routes->post('/spalten/erstellen', 'SpaltenController::postSpalteErstellen');
     $routes->post('/spalten/bearbeiten/(:num)', 'SpaltenController::postSpalteBearbeiten/$1');
     $routes->post('/spalten/loeschen/(:num)', 'SpaltenController::postSpalteLoeschen/$1');

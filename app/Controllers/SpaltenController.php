@@ -52,8 +52,20 @@ class SpaltenController extends BaseController
     public function postSpalteLoeschen($spaltenid)
     {
         $spaltenModel = new SpaltenModel();
-        $spaltenModel->delete($spaltenid);
-        return redirect()->to(base_url().'spalten');
+        if($spaltenModel->delete($spaltenid)) {
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = [ 'deletion' => 'Spalte konnte nicht gelöscht werden, da sie noch Tasks enthält'];
+            $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
+    }
+
+    public function getRawData()
+    {
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->getSpaltenWithBoardName();
+        return json_encode($data);
     }
 
 }
