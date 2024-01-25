@@ -87,9 +87,8 @@ class TasksController extends BaseController
     {
         $taskModel = new TasksModel();
         $data['task'] = $taskModel->find($taskid);
-//        $data['taskart'] = $taskModel->getTaskarten();
-//        $data['personen'] = $taskModel->getPersonen();
-//        $data['spalten'] = $taskModel->getSpalten();
+        $taskartenModel = new TaskartenModel();
+        $data['taskarten'] = $taskartenModel->find($data['task']['taskartenid']);
         return json_encode($data);
     }
 

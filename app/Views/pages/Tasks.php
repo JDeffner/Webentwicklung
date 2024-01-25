@@ -63,7 +63,7 @@
                                                 data-notizen="<?= $oneTask['notizen'] ?>"
                                                 data-id="<?= $oneTask['id'] ?>"
                                                 data-bs-toggle="modal"></i>
-                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" data-task-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task-name="<?= $oneTask['task'] ?>"></i>
+                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" data-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task="<?= $oneTask['task'] ?>"></i>
 
                                         </div>
                                     </div>

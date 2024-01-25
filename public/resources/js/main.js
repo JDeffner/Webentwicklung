@@ -42,7 +42,7 @@ $(document).ready(function () {
 
         // Callback handler that will be called on success
         request.done(function (response, textStatus, jqXHR){
-            resultingData = JSON.parse(response);
+            let resultingData = JSON.parse(response);
             if (resultingData['successfulValidation']) {
                 location.reload();
             } else {
@@ -90,6 +90,7 @@ function Taskartupdate(id, taskartenicon, taskart) {
 
     $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
 }
+
 $(document).ready(function () {
     $('.userForm').submit(function (e) {
         e.preventDefault();
@@ -197,30 +198,29 @@ function handleCrud(typeName, pluralTypeName) {
             type: 'post',
             dataType: 'json',
             success: function (response) {
-                resultingData = response[typeName.toLowerCase()];
-                for (const column in resultingData) {
-                    const value = resultingData[column];
-                    if (column === 'erinnerung') {
-                        if(value === '1') {
-                            editModal.find('#erinnerung').prop('checked', true)
-                            editModal.find('#erinnerungsdatum').removeAttr('disabled');
-                        } else {
-                            editModal.find('#erinnerung').prop('checked', false)
-                            editModal.find('#erinnerungsdatum').attr('disabled', '');
-                        }
-                    } else {
-                        editModal.find(`#${column}`).val(value);
+                let tableRow = response[typeName.toLowerCase()];
+                for (const column in tableRow) {
+                    const value = tableRow[column];
+                    switch (column) {
+                        case 'taskartenid':
+                            editModal.find('#taskartenid').val(value);
+                            let taskartenicon = response['taskarten']['taskartenicon'];
+                            let taskart = response['taskarten']['taskart'];
+                            editModal.find('#btnTaskart span').html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+                            break;
+                        case 'erinnerung':
+                            if (value === '1') {
+                                editModal.find('#erinnerung').prop('checked', true)
+                                editModal.find('#erinnerungsdatum').removeAttr('disabled');
+                            } else {
+                                editModal.find('#erinnerung').prop('checked', false)
+                                editModal.find('#erinnerungsdatum').attr('disabled', '');
+                            }
+                            break;
+                        default:
+                            editModal.find(`#${column}`).val(value);
                     }
-                    // Object.entries(entity).forEach(([key, value]) => {
-                    //     editModal.find(`#${key}`).val(value);
-                    // });
                 }
-                console.log(response[typeName.toLowerCase()]);
-                // response[pluralTypeName.toLowerCase()].forEach(function(entity) {
-                //     if (entity.id === id) {
-                //         editModal.find(`#${typeName.toLowerCase()}`).val(entity[typeName.toLowerCase()]);
-                //     }
-                // });
             }
         });
 
