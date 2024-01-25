@@ -16,7 +16,7 @@
                    id="table"
                    data-toggle="table"
                    data-height="460"
-                   data-ajax="boardAjaxRequest"
+                   data-ajax="boardsAjaxRequest"
                    data-search="true"
                    data-pagination="true"
                    data-buttons-toolbar=".buttons-toolbar">
@@ -84,7 +84,7 @@
     </div>
 </div>
 <script>
-    function boardAjaxRequest(params) {
+    function boardsAjaxRequest(params) {
         $.ajax({
             url: '<?= base_url('boards/raw') ?>',
             type: 'get',

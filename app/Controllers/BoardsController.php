@@ -66,7 +66,6 @@ class BoardsController extends BaseController
             $data['successfulValidation'] = false;
         }
         return json_encode($data);
-//        return redirect()->to(base_url().'boards');
     }
 
 }

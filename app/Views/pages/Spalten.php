@@ -7,54 +7,30 @@
             <h4>Spalten</h4>
         </div>
         <div class="card-body">
-            <div class="d-flex">
+            <div class="d-flex" id="table-toolbar">
                 <a role="button" class="btn btn-primary mb-3 me-1 createSpalteButton" data-bs-toggle="modal" data-bs-target="#createSpalteModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
                 <div class="buttons-toolbar">
                 </div>
             </div>
 
-            <table class="table table-hover table-bordered table-responsive rounded-table"
-                   data-show-columns="true"
-                   data-show-toggle="true"
+            <table class="table table-hover table-bordered table-responsive"
+                   id="table"
                    data-toggle="table"
+                   data-height="460"
+                   data-ajax="spaltenAjaxRequest"
                    data-search="true"
+                   data-pagination="true"
                    data-buttons-toolbar=".buttons-toolbar">
                 <thead>
                     <tr>
-                        <th scope="col" data-sortable="true">ID</th>
-                        <th scope="col" data-sortable="true">Spalte</th>
-                        <th scope="col" data-sortable="true">Board</th>
-                        <th scope="col" data-sortable="true">Sortid</th>
-                        <th scope="col">Spaltenbeschreibung</th>
-                        <th scope="col">Bearbeiten</th>
+                        <th scope="col" data-sortable="true" data-field="id">ID</th>
+                        <th scope="col" data-sortable="true" data-field="spalte">Spalte</th>
+                        <th scope="col" data-sortable="true" data-field="board">Board</th>
+                        <th scope="col" data-sortable="true" data-field="sortid">Sortid</th>
+                        <th scope="col" data-field="spaltenbeschreibung">Spaltenbeschreibung</th>
+                        <th scope="col" data-field="bearbeiten">Bearbeiten</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php foreach (($spalten ?? null) as $oneSpalte): ?>
-                        <tr>
-                            <input type="hidden" name="id" value="<?= $oneSpalte['id'] ?>">
-                            <input type="hidden" name="board" value="<?= $oneSpalte['board'] ?>">
-                            <input type="hidden" name="sortid" value="<?= $oneSpalte['sortid'] ?>">
-                            <input type="hidden" name="spalte" value="<?= $oneSpalte['spalte'] ?>">
-                            <input type="hidden" name="spaltenbeschreibung" value="<?= $oneSpalte['spaltenbeschreibung'] ?>">
-                            <td><?= $oneSpalte['id'] ?></td>
-                            <td><?= $oneSpalte['spalte'] ?></td>
-                            <td><?= $oneSpalte['board'] ?></td>
-                            <td><?= $oneSpalte['sortid'] ?></td>
-                            <td><?= $oneSpalte['spaltenbeschreibung'] ?></td>
-                            <td>
-                                <i class="fa-solid fa-pen-to-square editTaskButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal"
-                                   data-spalte="<?= $oneSpalte['spalte'] ?>"
-                                   data-spaltenbeschreibung="<?= $oneSpalte['spaltenbeschreibung'] ?>"
-                                   data-id="<?= $oneSpalte['id'] ?>"
-                                   data-boardsid="<?= $oneSpalte['boardid'] ?>"
-                                   data-sortid="<?= $oneSpalte['sortid'] ?>"></i>
-                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deletionSpalteModal" data-task-id="<?= $oneSpalte['id'] ?>" data-task-name="<?= $oneSpalte['spalte'] ?>"></i>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-
-                </tbody>
             </table>
         </div>
     </div>
@@ -103,7 +79,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                    <form id="deleteTaskForm" method="post" action="">
+                    <form id="deleteSpalteForm" data-delete-at="place url here">
                         <button type="submit" class="btn btn-warning delete-task-btn">Spalte löschen</button>
                     </form>
                 </div>
@@ -119,8 +95,7 @@
             });
         });
 
-        $(document).ready(function () {
-            $('.editTaskButton').click(function () {
+        $(document).on('click', '.editSpalteButton', function () {
                 var id = $(this).data('id');
                 var boardsid = $(this).data('boardsid');
                 var sortid = $(this).data('sortid');
@@ -133,15 +108,59 @@
                 editSpalteModal.find('#sortid').val(sortid);
                 editSpalteModal.find('#boardsid').val(boardsid);
                 editSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/bearbeiten/'); ?>' + id);
-            });
         });
 
-        $(document).ready(function () {
-            $('.deleteSpalteButton').click(function () {
-                var id = $(this).data('task-id');
-                var name = $(this).data('task-name');
-                $('#deleteModalLabel').text('Spalte "' + name + '" löschen?');
-                $('#deleteTaskForm').attr('action', '<?php echo base_url('spalten/loeschen/'); ?>' + id);
+        function spaltenAjaxRequest(params) {
+            $.ajax({
+                url: '<?= base_url('spalten/raw') ?>',
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    response.spalten.forEach(function(spalte) {
+                        spalte.bearbeiten = `<i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}" data-spaltenbeschreibung="${spalte.spaltenbeschreibung}" data-board="${spalte.board}" data-boardsid="${spalte.boardsid}" data-sortid="${spalte.sortid}"></i>
+                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deletionSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
+                    });
+                    params.success({
+                        total: response.spalten.length,
+                        rows:  response.spalten
+                    })
+                }
+            })
+        }
+
+        // Delete Spalte
+        $(document).on('click', '.deleteSpalteButton', function () {
+            var id = $(this).data('id');
+            var spalte = $(this).data('spalte');
+            $('#deleteModalLabel').text('Wollen Sie die Spalte "' + spalte + '" wirklich löschen?');
+            $('#deleteSpalteForm').attr('data-delete-at', '<?= base_url('spalten/loeschen/') ?>' + id);
+        });
+
+        // Delete Spalte ajax
+        $(document).on('submit', '#deleteSpalteForm', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('data-delete-at'),
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function (response) {
+                    $('.alert').remove();
+                    if (response.successfulValidation) {
+                        $('#deletionSpalteModal').modal('hide');
+                        $('#table').bootstrapTable('refresh');
+                    } else {
+                        $('#deletionSpalteModal').modal('hide');
+                        // Create a Bootstrap alert dynamically
+                        var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
+                        var closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                        var messageDiv = $('<div></div>').text(response.error.deletion);
+                        alertDiv.append(messageDiv);
+                        alertDiv.append(closeButton);
+                        // Append the alert above the buttons
+                        $('#table-toolbar').before(alertDiv);
+                    }
+                }
             });
         });
     </script>

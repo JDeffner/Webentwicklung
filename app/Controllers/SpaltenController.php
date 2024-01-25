@@ -58,8 +58,14 @@ class SpaltenController extends BaseController
             $data['error'] = [ 'deletion' => 'Spalte konnte nicht gelöscht werden, da sie noch Tasks enthält'];
             $data['successfulValidation'] = false;
         }
-        //return json_encode($data);
-        return redirect()->to(base_url().'spalten');
+        return json_encode($data);
+    }
+
+    public function getRawData()
+    {
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->getSpaltenWithBoardName();
+        return json_encode($data);
     }
 
 }
