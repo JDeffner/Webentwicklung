@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\BoardsModel;
+use ReflectionException;
 
 class BoardsController extends BaseController
 {
@@ -21,14 +22,16 @@ class BoardsController extends BaseController
         return json_encode($data);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function postBoardErstellen()
     {
-        if($this->validation->run($_POST, 'boardsErstellen')){
-            $BoardsModel = new BoardsModel();
-            $BoardsModel->save($_POST);
+        $boardsModel = new BoardsModel();
+        if($boardsModel->save($_POST)){
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $boardsModel->errors();
             $data['successfulValidation'] = false;
 
         }
@@ -36,14 +39,16 @@ class BoardsController extends BaseController
 
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function postBoardBearbeiten($boardid)
     {
-        if($this->validation->run($_POST, 'boardsBearbeiten')){
-            $BoardsModel = new BoardsModel();
-            $BoardsModel->update($boardid, $_POST);
+        $boardsModel = new BoardsModel();
+        if($boardsModel->update($boardid, $_POST)){
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $boardsModel->errors();
             $data['successfulValidation'] = false;
 
         }
@@ -53,9 +58,14 @@ class BoardsController extends BaseController
 
     public function postBoardLoeschen($boardid)
     {
-        $BoardsModel = new BoardsModel();
-        $BoardsModel->delete($boardid);
-        return redirect()->to(base_url().'boards');
+        $boardsModel = new BoardsModel();
+        if($boardsModel->delete($boardid)){
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = [ 'deletion' => 'Sie können dieses Board nicht löschen, da es noch Spalten enthält'];
+            $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
     }
 
 }

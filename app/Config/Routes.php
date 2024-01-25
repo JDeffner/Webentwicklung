@@ -14,7 +14,7 @@ $routes->post('/benutzer/anmelden', 'BenutzerController::postBenutzerAnmelden');
 $routes->get('/gast', 'BenutzerController::getGastAnmelden');
 
 //protected routes
-$routes->group('', ['filter' => 'userAuth'], function($routes) {
+$routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     //benutzer routes
     $routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 
@@ -27,6 +27,7 @@ $routes->group('', ['filter' => 'userAuth'], function($routes) {
 
     //spalten routes
     $routes->get('/spalten', 'SpaltenController::index');
+    $routes->get('/spalten/raw', 'SpaltenController::getRawData');
     $routes->post('/spalten/erstellen', 'SpaltenController::postSpalteErstellen');
     $routes->post('/spalten/bearbeiten/(:num)', 'SpaltenController::postSpalteBearbeiten/$1');
     $routes->post('/spalten/loeschen/(:num)', 'SpaltenController::postSpalteLoeschen/$1');
@@ -41,7 +42,7 @@ $routes->group('', ['filter' => 'userAuth'], function($routes) {
     // Error routes
     $routes->get('/denied', 'ErrorController::index');
 
-    $routes->group('', ['filter' => 'adminAuth'], function($routes) {
+    $routes->group('', ['filter' => 'adminAuthentification'], function($routes) {
         // Admin routes
         $routes->get('/dashboard', 'AdminController::index');
 
