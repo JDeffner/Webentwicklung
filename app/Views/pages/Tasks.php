@@ -81,7 +81,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="createModalLabel">Neue Task erstellen</h1>
+                    <h1 class="modal-title fs-5" id="createTaskModalLabel">Neue Task erstellen</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -98,7 +98,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editModalLabel">Task bearbeiten</h1>
+                    <h1 class="modal-title fs-5" id="editTaskModalLabel">Task bearbeiten</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -117,7 +117,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteModalLabel"></h1>
+                    <h1 class="modal-title fs-5" id="deleteTaskModalLabel"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer">
@@ -173,7 +173,7 @@
 
         }
         editTaskModal.find('#notizen').val(notiz);
-        editTaskModal.find('#editModalLabel').text('Task "'+name+'" bearbeiten');
+        editTaskModal.find('#editTaskModalLabel').text('Task "'+name+'" bearbeiten');
         editTaskModal.find('form').attr('data-send-to', '<?= base_url('tasks/bearbeiten/') ?>'+id);
 
     });
@@ -198,7 +198,7 @@ $(document).ready(function () {
         var boardId = $(this).data('boards-id');
 
      $('#deleteTaskForm').attr('action', `<?php echo base_url('/tasks/loeschen/'); ?>${boardId}/${taskId}`);
-     $('#deleteModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
+     $('#deleteTaskModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
  });
 });
 </script>

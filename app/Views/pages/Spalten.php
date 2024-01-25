@@ -7,9 +7,9 @@
             <h4>Spalten</h4>
         </div>
         <div class="card-body">
-            <div class="d-flex" id="table-toolbar">
+            <div class="d-flex" id="spalten-table-toolbar">
                 <a role="button" class="btn btn-primary mb-3 me-1 createSpalteButton" data-bs-toggle="modal" data-bs-target="#createSpalteModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
-                <div class="buttons-toolbar">
+                <div class="spalten-buttons-toolbar">
                 </div>
             </div>
 
@@ -20,7 +20,7 @@
                    data-ajax="spaltenAjaxRequest"
                    data-search="true"
                    data-pagination="true"
-                   data-buttons-toolbar=".buttons-toolbar">
+                   data-buttons-toolbar=".spalten-buttons-toolbar">
                 <thead>
                     <tr>
                         <th scope="col" data-sortable="true" data-field="id">ID</th>
@@ -70,11 +70,11 @@
     </div>
 
     <!-- Deletion Modal -->
-    <div class="modal fade" id="deletionSpalteModal" tabindex="-1" aria-labelledby="deletionModal" aria-hidden="true">
+    <div class="modal fade" id="deleteSpalteModal" tabindex="-1" aria-labelledby="deleteSpalteModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteModalLabel"></h1>
+                    <h1 class="modal-title fs-5" id="deleteSpalteModalLabel"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer">
@@ -88,26 +88,24 @@
     </div>
 
     <script>
-        $(document).ready(function () {
-            $('.createSpalteButton').click(function () {
-                var createSpalteModal = $('#createSpalteModal');
-                createSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/erstellen'); ?>');
-            });
+        $(document).on('click', '.createSpalteButton', function () {
+            var createSpalteModal = $('#createSpalteModal');
+            createSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/erstellen'); ?>');
         });
 
         $(document).on('click', '.editSpalteButton', function () {
-                var id = $(this).data('id');
-                var boardsid = $(this).data('boardsid');
-                var sortid = $(this).data('sortid');
-                var spalte = $(this).data('spalte');
-                var spaltenbeschreibung = $(this).data('spaltenbeschreibung');
-                var editSpalteModal = $('#editSpalteModal');
-                editSpalteModal.find('#editModalLabel').text('Spalte "' + spalte + '" bearbeiten');
-                editSpalteModal.find('#spalte').val(spalte);
-                editSpalteModal.find('#spaltenbeschreibung').val(spaltenbeschreibung);
-                editSpalteModal.find('#sortid').val(sortid);
-                editSpalteModal.find('#boardsid').val(boardsid);
-                editSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/bearbeiten/'); ?>' + id);
+            var id = $(this).data('id');
+            var boardsid = $(this).data('boardsid');
+            var sortid = $(this).data('sortid');
+            var spalte = $(this).data('spalte');
+            var spaltenbeschreibung = $(this).data('spaltenbeschreibung');
+            var editSpalteModal = $('#editSpalteModal');
+            editSpalteModal.find('#editModalLabel').text('Spalte "' + spalte + '" bearbeiten');
+            editSpalteModal.find('#spalte').val(spalte);
+            editSpalteModal.find('#spaltenbeschreibung').val(spaltenbeschreibung);
+            editSpalteModal.find('#sortid').val(sortid);
+            editSpalteModal.find('#boardsid').val(boardsid);
+            editSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/bearbeiten/'); ?>' + id);
         });
 
         function spaltenAjaxRequest(params) {
@@ -118,7 +116,7 @@
                 success: function (response) {
                     response.spalten.forEach(function(spalte) {
                         spalte.bearbeiten = `<i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}" data-spaltenbeschreibung="${spalte.spaltenbeschreibung}" data-board="${spalte.board}" data-boardsid="${spalte.boardsid}" data-sortid="${spalte.sortid}"></i>
-                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deletionSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
+                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
                     });
                     params.success({
                         total: response.spalten.length,
@@ -132,7 +130,7 @@
         $(document).on('click', '.deleteSpalteButton', function () {
             var id = $(this).data('id');
             var spalte = $(this).data('spalte');
-            $('#deleteModalLabel').text('Wollen Sie die Spalte "' + spalte + '" wirklich löschen?');
+            $('#deleteSpalteModalLabel').text('Wollen Sie die Spalte "' + spalte + '" wirklich löschen?');
             $('#deleteSpalteForm').attr('data-delete-at', '<?= base_url('spalten/loeschen/') ?>' + id);
         });
 
@@ -147,10 +145,10 @@
                 success: function (response) {
                     $('.alert').remove();
                     if (response.successfulValidation) {
-                        $('#deletionSpalteModal').modal('hide');
+                        $('#deleteSpalteModal').modal('hide');
                         $('#table').bootstrapTable('refresh');
                     } else {
-                        $('#deletionSpalteModal').modal('hide');
+                        $('#deleteSpalteModal').modal('hide');
                         // Create a Bootstrap alert dynamically
                         var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
                         var closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
@@ -158,7 +156,7 @@
                         alertDiv.append(messageDiv);
                         alertDiv.append(closeButton);
                         // Append the alert above the buttons
-                        $('#table-toolbar').before(alertDiv);
+                        $('#spalten-table-toolbar').before(alertDiv);
                     }
                 }
             });
