@@ -53,13 +53,13 @@ class TasksController extends BaseController
 
     }
 
-    public function postTaskLoeschen($boardid,$taskid)
+    public function postTaskLoeschen($taskid)
     {
         $TaskModel = new TasksModel();
         $TaskModel->delete($taskid);
 //        var_dump($id);
 
-        return redirect()->to(base_url().'tasks/'.$boardid);
+        return redirect()->to(base_url().'tasks');
 
     }
 
@@ -80,6 +80,16 @@ class TasksController extends BaseController
             $data['error'] = $taskModel->errors();
             $data['successfulValidation'] = false;
         }
+        return json_encode($data);
+    }
+
+    public function postTaskInfo($taskid)
+    {
+        $taskModel = new TasksModel();
+        $data['task'] = $taskModel->find($taskid);
+//        $data['taskart'] = $taskModel->getTaskarten();
+//        $data['personen'] = $taskModel->getPersonen();
+//        $data['spalten'] = $taskModel->getSpalten();
         return json_encode($data);
     }
 

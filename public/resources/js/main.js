@@ -173,50 +173,76 @@ $(document).ready(function () {
 });
 
 
-// Create Task Modal
-$(document).ready(function () {
-    $('.createTaskButton').click(function () {
-        var createTaskModal = $('#createTaskModal');
-        createTaskModal.find('#createTaskModalLabel').text('Neue Task erstellen');
-        createTaskModal.find('form').attr('data-send-to', BASE_URL + 'tasks/erstellen');
+
+
+function handleCrud(typeName, pluralTypeName) {
+    // Create
+    $(document).on('click', `.create${typeName}Button`, function () {
+        var createModal = $(`#create${typeName}Modal`);
+        createModal.find(`#create${typeName}ModalLabel`).text(`${typeName} erstellen`);
+        createModal.find('.crudForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/erstellen`);
+        console.log(typeName);
     });
-});
+    // Edit
+    $(document).on('click', `.edit${typeName}Button`, function () {
+
+        var typeInstanceName = $(this).data(typeName.toLowerCase());
+        var typeInstanceID = $(this).data('id');
+
+        var editModal = $(`#edit${typeName}Modal`);
+
+        // ajax request to get the data
+        $.ajax({
+            url: BASE_URL + `${pluralTypeName.toLowerCase()}/${typeName.toLowerCase()}/${typeInstanceID}`,
+            type: 'post',
+            dataType: 'json',
+            success: function (response) {
+                resultingData = response[typeName.toLowerCase()];
+                for (const column in resultingData) {
+                    const value = resultingData[column];
+                    if (column === 'erinnerung') {
+                        if(value === '1') {
+                            editModal.find('#erinnerung').prop('checked', true)
+                            editModal.find('#erinnerungsdatum').removeAttr('disabled');
+                        } else {
+                            editModal.find('#erinnerung').prop('checked', false)
+                            editModal.find('#erinnerungsdatum').attr('disabled', '');
+                        }
+                    } else {
+                        editModal.find(`#${column}`).val(value);
+                    }
+                    // Object.entries(entity).forEach(([key, value]) => {
+                    //     editModal.find(`#${key}`).val(value);
+                    // });
+                }
+                console.log(response[typeName.toLowerCase()]);
+                // response[pluralTypeName.toLowerCase()].forEach(function(entity) {
+                //     if (entity.id === id) {
+                //         editModal.find(`#${typeName.toLowerCase()}`).val(entity[typeName.toLowerCase()]);
+                //     }
+                // });
+            }
+        });
 
 
-// Edit Task Modal
-$(document).ready(function () {
-    $('.editTaskButton').click(function() {
-        var id = $(this).data('id');
-        var name = $(this).data('task');
-        var taskartenid = $(this).data('taskartenid');
-        var taskartenicon = $(this).data('taskartenicon');
-        var taskart = $(this).data('taskart');
-        var spalte = $(this).data('spaltenid');
-        var person = $(this).data('personenid');
-        var erinnerungDatum = $(this).data('erinnerungsdatum');
-        var erinnerung = $(this).data('erinnerung');
-        var notiz = $(this).data('notizen');
-        var editTaskModal = $('#editTaskModal');
-
-        editTaskModal.find('#task').val(name);
-        editTaskModal.find('#taskartenid').val(taskartenid);
-        editTaskModal.find("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
-        editTaskModal.find('#spaltenid').val(spalte);
-        editTaskModal.find('#personenid').val(person);
-        editTaskModal.find('#erinnerungsdatum').val(erinnerungDatum);
-        if(erinnerung == '1') {
-            editTaskModal.find('#erinnerung').prop('checked', true)
-            editTaskModal.find('#erinnerungsdatum').removeAttr('disabled');
-        } else {
-            editTaskModal.find('#erinnerung').prop('checked', false)
-            editTaskModal.find('#erinnerungsdatum').attr('disabled', '');
-
-        }
-        editTaskModal.find('#notizen').val(notiz);
-        editTaskModal.find('#editTaskModalLabel').text('Task "' + name + '" bearbeiten');
-        editTaskModal.find('form').attr('data-send-to', BASE_URL + 'tasks/bearbeiten/'+id);
-
+        editModal.find(`#edit${typeName}ModalLabel`).text(`"${typeInstanceName}" bearbeiten`);
+        editModal.find('.crudForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/bearbeiten/` + typeInstanceID);
     });
+
+    // Delete
+    $(document).on('click', `.delete${typeName}Button`, function () {
+        var typeInstanceID = $(this).data('id');
+        var typeInstanceName = $(this).data(typeName.toLowerCase());
+        $(`#delete${typeName}ModalLabel`).text(`Wollen Sie "${typeInstanceName}" wirklich löschen?`);
+        $(`#delete${typeName}Form`).attr('data-delete-at', BASE_URL + `${pluralTypeName.toLowerCase()}/loeschen/` + typeInstanceID);
+    });
+}
+
+// Call the function for each type
+$(document).ready(function () {
+    handleCrud('Task', 'Tasks');
+    handleCrud('Board', 'Boards');
+    handleCrud('Spalte', 'Spalten');
 });
 
 // Erinnerung Checkbox disable/enable Erinnerungsdatum
@@ -228,67 +254,6 @@ $('.form-check-input').on('change', function() {
 
         $('.erinnerungsdatum').attr('disabled', '');
     }
-});
-
-// Delete Task Modal
-$(document).ready(function () {
-    $('.deleteTaskButton').click(function() {
-        var taskId = $(this).data('task-id');
-        var taskName = $(this).data('task-name');
-        var boardId = $(this).data('boards-id');
-
-        $('#deleteTaskForm').attr('action', BASE_URL + `tasks/loeschen/${boardId}/${taskId}`);
-        $('#deleteTaskModalLabel').text(`Willst du die Task "${taskName}" wirklich löschen?`);
-    });
-});
-
-// Create Spalte
-$(document).on('click', '.createSpalteButton', function () {
-    var createSpalteModal = $('#createSpalteModal');
-    createSpalteModal.find('#createSpalteModalLabel').text('Neue Spalte erstellen');
-    createSpalteModal.find('form').attr('data-send-to', BASE_URL + 'spalten/erstellen');
-});
-
-// Edit Spalte
-$(document).on('click', '.editSpalteButton', function () {
-    var id = $(this).data('id');
-    var boardsid = $(this).data('boardsid');
-    var sortid = $(this).data('sortid');
-    var spalte = $(this).data('spalte');
-    var spaltenbeschreibung = $(this).data('spaltenbeschreibung');
-    var editSpalteModal = $('#editSpalteModal');
-    editSpalteModal.find('#editModalLabel').text('Spalte "' + spalte + '" bearbeiten');
-    editSpalteModal.find('#spalte').val(spalte);
-    editSpalteModal.find('#spaltenbeschreibung').val(spaltenbeschreibung);
-    editSpalteModal.find('#sortid').val(sortid);
-    editSpalteModal.find('#boardsid').val(boardsid);
-    editSpalteModal.find('form').attr('data-send-to', BASE_URL + 'spalten/bearbeiten/' + id);
-});
-
-function spaltenAjaxRequest(params) {
-    $.ajax({
-        url: BASE_URL + 'spalten/raw',
-        type: 'get',
-        dataType: 'json',
-        success: function (response) {
-        response.spalten.forEach(function(spalte) {
-            spalte.bearbeiten = `<i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}" data-spaltenbeschreibung="${spalte.spaltenbeschreibung}" data-board="${spalte.board}" data-boardsid="${spalte.boardsid}" data-sortid="${spalte.sortid}"></i>
-                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
-        });
-        params.success({
-            total: response.spalten.length,
-            rows:  response.spalten
-        })
-    }
-})
-}
-
-// Delete Spalte
-$(document).on('click', '.deleteSpalteButton', function () {
-    var id = $(this).data('id');
-    var spalte = $(this).data('spalte');
-    $('#deleteSpalteModalLabel').text('Wollen Sie die Spalte "' + spalte + '" wirklich löschen?');
-    $('#deleteSpalteForm').attr('data-delete-at', BASE_URL + 'spalten/loeschen/' + id);
 });
 
 // Delete Spalte ajax
@@ -319,6 +284,24 @@ $(document).on('submit', '#deleteSpalteForm', function (e) {
     });
 });
 
+function spaltenAjaxRequest(params) {
+    $.ajax({
+        url: BASE_URL + 'spalten/raw',
+        type: 'get',
+        dataType: 'json',
+        success: function (response) {
+        response.spalten.forEach(function(spalte) {
+            spalte.bearbeiten = `<i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}" data-spaltenbeschreibung="${spalte.spaltenbeschreibung}" data-board="${spalte.board}" data-boardsid="${spalte.boardsid}" data-sortid="${spalte.sortid}"></i>
+                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
+        });
+        params.success({
+            total: response.spalten.length,
+            rows:  response.spalten
+        })
+    }
+})
+}
+
 function boardsAjaxRequest(params) {
     $.ajax({
         url: BASE_URL + 'boards/raw',
@@ -326,43 +309,17 @@ function boardsAjaxRequest(params) {
         dataType: 'json',
         success: function (response) {
 
-        response.boards.forEach(function(board) {
-            board.bearbeiten = `<i class="fa-solid fa-pen-to-square editBoardButton" data-bs-toggle="modal" data-bs-target="#editBoardModal" data-id="${board.id}" data-board="${board.board}"></i>
+            response.boards.forEach(function(board) {
+                board.bearbeiten = `<i class="fa-solid fa-pen-to-square editBoardButton" data-bs-toggle="modal" data-bs-target="#editBoardModal" data-id="${board.id}" data-board="${board.board}"></i>
                                     <i class="fa-solid fa-trash deleteBoardButton" data-bs-toggle="modal" data-bs-target="#deleteBoardModal" data-id="${board.id}" data-board="${board.board}"></i>`;
-        });
-        params.success({
-            total: response.boards.length,
-            rows:  response.boards
-        })
-    }
-})
+            });
+            params.success({
+                total: response.boards.length,
+                rows:  response.boards
+            })
+        }
+    })
 }
-
-// Create Board
-$(document).on('click', '.createBoardButton', function () {
-    var createBoardModal = $('#createBoardModal');
-    createBoardModal.find('#createBoardModalLabel').text('Neues Board erstellen');
-    createBoardModal.find('.crudForm').attr('data-send-to', BASE_URL + 'boards/erstellen');
-});
-
-
-// Edit Board
-$(document).on('click', '.editBoardButton', function () {
-    var id = $(this).data('id');
-    var board = $(this).data('board');
-    var editBoardModal = $('#editBoardModal');
-    editBoardModal.find('#board').val(board);
-    editBoardModal.find('#editBoardModalLabel').text('Board "' + board + '" bearbeiten');
-    editBoardModal.find('.crudForm').attr('data-send-to', BASE_URL + 'boards/bearbeiten/' + id);
-});
-
-// Delete Board
-$(document).on('click', '.deleteBoardButton', function () {
-    var id = $(this).data('id');
-    var board = $(this).data('board');
-    $('#deleteBoardModalLabel').text('Wollen Sie das Board "' + board + '" wirklich löschen?');
-    $('#deleteBoardForm').attr('data-delete-at', BASE_URL + 'boards/loeschen/' + id);
-});
 
 // Delete Board ajax
 $(document).on('submit', '#deleteBoardForm', function (e) {
