@@ -38,13 +38,7 @@
 <!-- Edit Board Modal -->
 <?= view_cell('CrudModals::editModal','type=Board') ?>
 
-<!-- Deletion Modal -->
+<!-- Delete Board Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Board') ?>
 
-<script>
-
-
-
-
-</script>
 <?= $this->endSection() ?>

@@ -34,20 +34,15 @@
             </table>
         </div>
     </div>
-
-    <!-- Create spalte Modal -->
-    <?= view_cell('CrudModals::createModal', 'type=Spalte') ?>
-
-    <!-- Edit spalte Modal -->
-    <?= view_cell('CrudModals::editModal','type=Spalte') ?>
-
-    <!-- Deletion Modal -->
-    <?= view_cell('CrudModals::deleteModal','type=Spalte') ?>
-
-    <script>
-
-    </script>
-
-
 </main>
+
+<!-- Create Spalte Modal -->
+<?= view_cell('CrudModals::createModal', 'type=Spalte') ?>
+
+<!-- Edit Spalte Modal -->
+<?= view_cell('CrudModals::editModal','type=Spalte') ?>
+
+<!-- Delete Spalte Modal -->
+<?= view_cell('CrudModals::deleteModal','type=Spalte') ?>
+
 <?= $this->endSection() ?>

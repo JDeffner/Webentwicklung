@@ -75,19 +75,15 @@
             </div>
         </div>
     </div>
-
-    <!-- Create Task Modal -->
-    <?= view_cell('CrudModals::createModal', 'type=Task') ?>
-
-    <!-- Edit Task Modal -->
-    <?= view_cell('CrudModals::editModal','type=Task') ?>
-
-    <!-- Deletion Modal -->
-    <?= view_cell('CrudModals::deleteModal','type=Task') ?>
-
 </main>
-<script>
 
+<!-- Create Task Modal -->
+<?= view_cell('CrudModals::createModal', 'type=Task') ?>
 
-</script>
+<!-- Edit Task Modal -->
+<?= view_cell('CrudModals::editModal','type=Task') ?>
+
+<!-- Delete Task Modal -->
+<?= view_cell('CrudModals::deleteModal','type=Task') ?>
+
 <?= $this->endSection() ?>

@@ -54,7 +54,7 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
         $routes->get('/testDatabase', 'DeveloperController::testDatabase');
         $routes->get('/login', 'DeveloperController::abweisung');
     });
-    
+
 });
 
 
