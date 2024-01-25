@@ -14,7 +14,7 @@
             </div>
 
             <table class="table table-hover table-bordered table-responsive"
-                   id="table"
+                   id="spaltenTable"
                    data-toggle="table"
                    data-height="460"
                    data-ajax="spaltenAjaxRequest"
@@ -146,7 +146,7 @@
                     $('.alert').remove();
                     if (response.successfulValidation) {
                         $('#deleteSpalteModal').modal('hide');
-                        $('#table').bootstrapTable('refresh');
+                        $('#spaltenTable').bootstrapTable('refresh');
                     } else {
                         $('#deleteSpalteModal').modal('hide');
                         // Create a Bootstrap alert dynamically

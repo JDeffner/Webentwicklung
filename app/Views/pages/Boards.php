@@ -13,7 +13,7 @@
             </div>
 
             <table class="table table-hover table-bordered table-responsive"
-                   id="table"
+                   id="boardsTable"
                    data-toggle="table"
                    data-height="460"
                    data-ajax="boardsAjaxRequest"
@@ -142,7 +142,7 @@
                 $('.alert').remove();
                 if (response.successfulValidation) {
                     $('#deleteBoardModal').modal('hide');
-                    $('#table').bootstrapTable('refresh');
+                    $('#boardsTable').bootstrapTable('refresh');
                 } else {
                     $('#deleteBoardModal').modal('hide');
                     // Create a Bootstrap alert dynamically
