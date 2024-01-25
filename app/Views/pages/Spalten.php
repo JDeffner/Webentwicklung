@@ -36,60 +36,18 @@
     </div>
 
     <!-- Create spalte Modal -->
-    <div class="modal fade" id="createSpalteModal" tabindex="-1" aria-labelledby="createSpalteModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="createModalLabel">Neue Spalte erstellen</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                    include APPPATH . 'Views/components/SpalteForm.php';
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view_cell('CrudModals::createModal', 'type=Spalte') ?>
 
     <!-- Edit spalte Modal -->
-    <div class="modal fade" id="editSpalteModal" tabindex="-1" aria-labelledby="editSpalteModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editModalLabel">Spalte bearbeiten</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                    include APPPATH . 'Views/components/SpalteForm.php';
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view_cell('CrudModals::editModal','type=Spalte') ?>
 
     <!-- Deletion Modal -->
-    <div class="modal fade" id="deleteSpalteModal" tabindex="-1" aria-labelledby="deleteSpalteModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteSpalteModalLabel"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                    <form id="deleteSpalteForm" data-delete-at="place url here">
-                        <button type="submit" class="btn btn-warning delete-task-btn">Spalte löschen</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view_cell('CrudModals::deleteModal','type=Spalte') ?>
 
     <script>
         $(document).on('click', '.createSpalteButton', function () {
             var createSpalteModal = $('#createSpalteModal');
+            createSpalteModal.find('#createModalLabel').text('Neue Spalte erstellen');
             createSpalteModal.find('form').attr('data-send-to', '<?php echo base_url('spalten/erstellen'); ?>');
         });
 

@@ -77,58 +77,13 @@
     </div>
 
     <!-- Create Task Modal -->
-    <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="createTaskModalLabel">Neue Task erstellen</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                    include APPPATH . 'Views/components/TaskForm.php';
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view_cell('CrudModals::createModal', 'type=Task') ?>
 
     <!-- Edit Task Modal -->
-    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editTaskModalLabel">Task bearbeiten</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                    include APPPATH . 'Views/components/TaskForm.php';
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    <?= view_cell('CrudModals::editModal','type=Task') ?>
 
     <!-- Deletion Modal -->
-    <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteTaskModalLabel"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                    <form id="deleteTaskForm" method="post" action="">
-                        <button type="submit" class="btn btn-warning delete-task-btn">Task löschen</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?= view_cell('CrudModals::deleteModal','type=Task') ?>
 
 </main>
 <script>
@@ -138,6 +93,7 @@
  $(document).ready(function () {
      $('.createTaskButton').click(function () {
          var createTaskModal = $('#createTaskModal');
+            createTaskModal.find('#createTaskModalLabel').text('Neue Task erstellen');
          createTaskModal.find('form').attr('data-send-to', '<?php echo base_url('tasks/erstellen'); ?>');
      });
  });

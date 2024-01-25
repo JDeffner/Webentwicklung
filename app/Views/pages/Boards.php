@@ -33,56 +33,14 @@
 </main>
 
 <!-- Create Board Modal -->
-<div class="modal fade" id="createBoardModal" tabindex="-1" aria-labelledby="createBoardModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="createBoardModalLabel">Neues Board erstellen</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <?php
-                include APPPATH . 'Views/components/BoardForm.php';
-                ?>
-            </div>
-        </div>
-    </div>
-</div>
+<?= view_cell('CrudModals::createModal', 'type=Board') ?>
 
 <!-- Edit Board Modal -->
-<div class="modal fade" id="editBoardModal" tabindex="-1" aria-labelledby="editBoardModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editBoardModalLabel">Board bearbeiten</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <?php
-                include APPPATH . 'Views/components/BoardForm.php';
-                ?>
-            </div>
-        </div>
-    </div>
-</div>
+<?= view_cell('CrudModals::editModal','type=Board') ?>
 
 <!-- Deletion Modal -->
-<div class="modal fade" id="deleteBoardModal" tabindex="-1" aria-labelledby="deleteBoardModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteBoardModalLabel"></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                <form id="deleteBoardForm" data-delete-at="place url here">
-                    <button type="submit" class="btn btn-warning delete-task-btn">Board löschen</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<?= view_cell('CrudModals::deleteModal','type=Board') ?>
+
 <script>
     function boardsAjaxRequest(params) {
         $.ajax({
@@ -103,27 +61,26 @@
         })
     }
 
-    $(document).ready(function () {
-        // Create Board
-        $('.createBoardButton').click(function () {
-            // AJAX request to create a board
-            $('#createBoardModal').find('.crudForm').attr('data-send-to', '<?= base_url('boards/erstellen') ?>');
-        });
-
+    // Create Board
+    $(document).on('click', '.createBoardButton', function () {
+        var createBoardModal = $('#createBoardModal');
+        createBoardModal.find('#createBoardModalLabel').text('Neues Board erstellen');
+        createBoardModal.find('.crudForm').attr('data-send-to', '<?= base_url('boards/erstellen') ?>');
     });
+
 
     // Edit Board
     $(document).on('click', '.editBoardButton', function () {
-        // AJAX request to update a board
         var id = $(this).data('id');
         var board = $(this).data('board');
-        $('#editBoardModal').find('#board').val(board);
-        $('#editBoardModal').find('.crudForm').attr('data-send-to', '<?= base_url('boards/bearbeiten/') ?>' + id);
+        var editBoardModal = $('#editBoardModal');
+        editBoardModal.find('#board').val(board);
+        editBoardModal.find('#editBoardModalLabel').text('Board "' + board + '" bearbeiten');
+        editBoardModal.find('.crudForm').attr('data-send-to', '<?= base_url('boards/bearbeiten/') ?>' + id);
     });
 
     // Delete Board
     $(document).on('click', '.deleteBoardButton', function () {
-        // AJAX request to delete a board
         var id = $(this).data('id');
         var board = $(this).data('board');
         $('#deleteBoardModalLabel').text('Wollen Sie das Board "' + board + '" wirklich löschen?');
