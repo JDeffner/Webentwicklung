@@ -7,30 +7,28 @@
             <h4>Boards</h4>
         </div>
         <div class="card-body">
-            <div class="d-flex">
+            <div class="d-flex" id="table-toolbar">
                 <a role="button" class="btn btn-primary mb-2 me-1 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
-                <div class="buttons-toolbar">
+                <div class="buttons-toolbar"></div>
             </div>
 
-            </div>
-
-                <table class="table table-hover table-bordered table-responsive rounded-table"
-                       id="table"
-                       data-toggle="table"
-                       data-height="460"
-                       data-ajax="ajaxRequest"
-                       data-search="true"
-                       data-pagination="true"
-                       data-buttons-toolbar=".buttons-toolbar">
-                    <thead>
-                        <tr>
-                            <th scope="col" data-sortable="true" data-field="id">ID</th>
-                            <th scope="col" data-sortable="true" data-field="board">Board</th>
-                            <th scope="col" data-field="bearbeiten">Bearbeiten</th>
-                        </tr>
-                    </thead>
-                </table>
-        </div>
+            <table class="table table-hover table-bordered table-responsive"
+                   id="table"
+                   data-toggle="table"
+                   data-height="460"
+                   data-ajax="boardAjaxRequest"
+                   data-search="true"
+                   data-pagination="true"
+                   data-buttons-toolbar=".buttons-toolbar">
+                <thead>
+                    <tr>
+                        <th scope="col" data-sortable="true" data-field="id">ID</th>
+                        <th scope="col" data-sortable="true" data-field="board">Board</th>
+                        <th scope="col" data-field="bearbeiten">Bearbeiten</th>
+                    </tr>
+                </thead>
+            </table>
+    </div>
     </div>
 </main>
 
@@ -78,7 +76,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                <form id="deleteBoardForm" method="post" action="">
+                <form id="deleteBoardForm" data-delete-at="place url here">
                     <button type="submit" class="btn btn-warning delete-task-btn">Board löschen</button>
                 </form>
             </div>
@@ -86,7 +84,7 @@
     </div>
 </div>
 <script>
-    function ajaxRequest(params) {
+    function boardAjaxRequest(params) {
         $.ajax({
             url: '<?= base_url('boards/raw') ?>',
             type: 'get',
@@ -129,7 +127,35 @@
         var id = $(this).data('id');
         var board = $(this).data('board');
         $('#deleteModalLabel').text('Wollen Sie das Board "' + board + '" wirklich löschen?');
-        $('#deleteBoardForm').attr('action', '<?= base_url('boards/loeschen/') ?>' + id);
+        $('#deleteBoardForm').attr('data-delete-at', '<?= base_url('boards/loeschen/') ?>' + id);
+    });
+
+    // Delete Board ajax
+    $(document).on('submit', '#deleteBoardForm', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: $(this).attr('data-delete-at'),
+            dataType: 'json',
+            data: $(this).serialize(),
+            success: function (response) {
+                $('.alert').remove();
+                if (response.successfulValidation) {
+                    $('#deletionBoardModal').modal('hide');
+                    $('#table').bootstrapTable('refresh');
+                } else {
+                    $('#deletionBoardModal').modal('hide');
+                    // Create a Bootstrap alert dynamically
+                    var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
+                    var closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                    var messageDiv = $('<div></div>').text(response.error.deletion);
+                    alertDiv.append(messageDiv);
+                    alertDiv.append(closeButton);
+                    // Append the alert above the buttons
+                    $('#table-toolbar').before(alertDiv);
+                }
+            }
+        });
     });
 
 

@@ -65,8 +65,8 @@ class BoardsController extends BaseController
             $data['error'] = [ 'deletion' => 'Sie können dieses Board nicht löschen, da es noch Spalten enthält'];
             $data['successfulValidation'] = false;
         }
-//        return json_encode($data);
-        return redirect()->to(base_url().'boards');
+        return json_encode($data);
+//        return redirect()->to(base_url().'boards');
     }
 
 }
