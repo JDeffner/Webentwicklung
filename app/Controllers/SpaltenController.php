@@ -26,6 +26,7 @@ class SpaltenController extends BaseController
     {
         $spaltenModel = new SpaltenModel();
         if($spaltenModel->save($_POST)){
+            $data['tableName'] = 'spalten';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $spaltenModel->errors();
@@ -41,6 +42,7 @@ class SpaltenController extends BaseController
     {
         $spaltenModel = new SpaltenModel();
         if($spaltenModel->update($spaltenid, $_POST)){
+            $data['tableName'] = 'spalten';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $spaltenModel->errors();

@@ -8,7 +8,7 @@
                     <h4>Bitte Melden Sie sich an</h4>
                 </div>
                 <div class="card-body">
-                    <form class="userForm" data-send-to="<?php echo base_url();?>benutzer/anmelden">
+                    <form class="minMaxForm" data-send-to="<?php echo base_url();?>benutzer/anmelden">
                         <div class="form-floating mb-4 mt-1">
                             <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
                             <label for="email" class="col-form-label">E-Mail</label>

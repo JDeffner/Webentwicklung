@@ -41,8 +41,12 @@ class TasksController extends BaseController
      */
     public function postTaskErstellen()
     {
+
         $taskModel = new TasksModel();
         if($taskModel->save($_POST)){
+            $data['taskid'] = $taskModel->getInsertID();
+            $data['spaletenid'] = $_POST['spaltenid'];
+            $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $taskModel->errors();
@@ -56,10 +60,15 @@ class TasksController extends BaseController
     public function postTaskLoeschen($taskid)
     {
         $TaskModel = new TasksModel();
-        $TaskModel->delete($taskid);
-//        var_dump($id);
+        if ($TaskModel->delete($taskid)) {
+            $data['taskid'] = $taskid;
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = ['deletion' => 'Task konnte nicht gelöscht werden'];
+            $data['successfulValidation'] = false;
+        }
 
-        return redirect()->to(base_url().'tasks');
+        return json_encode($data);
 
     }
 
@@ -72,9 +81,9 @@ class TasksController extends BaseController
             // If 'erinnerung' is not set, set it to 0
             $_POST['erinnerung'] = '0';
         }
-
         $taskModel = new TasksModel();
         if($taskModel->update($taskid, $_POST)){
+            $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $taskModel->errors();

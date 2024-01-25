@@ -1,4 +1,4 @@
-<form class="crudForm" data-send-to="place url here">
+<form class="minMaxForm" data-send-to="place url here">
     <div class="mb-3">
         <label for="task" class="form-label">Name der Task:</label>
         <div class="input-group">

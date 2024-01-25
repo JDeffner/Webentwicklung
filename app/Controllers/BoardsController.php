@@ -29,6 +29,7 @@ class BoardsController extends BaseController
     {
         $boardsModel = new BoardsModel();
         if($boardsModel->save($_POST)){
+            $data['tableName'] = 'boards';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $boardsModel->errors();
@@ -46,6 +47,7 @@ class BoardsController extends BaseController
     {
         $boardsModel = new BoardsModel();
         if($boardsModel->update($boardid, $_POST)){
+            $data['tableName'] = 'boards';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $boardsModel->errors();

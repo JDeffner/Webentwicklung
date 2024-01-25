@@ -7,7 +7,7 @@
             <h4>Neuen Account Erstellen</h4>
         </div>
         <div class="card-body">
-            <form class="userForm" data-send-to="<?php echo base_url();?>benutzer/erstellen">
+            <form class="minMaxForm" data-send-to="<?php echo base_url();?>benutzer/erstellen">
                 <div class="form-floating mb-4 mt-1">
                     <input type="text" class="form-control" id="vorname" placeholder="Vorname" name="vorname">
                     <label for="vorname" class="col-form-label">Vorname</label>

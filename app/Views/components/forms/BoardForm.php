@@ -1,4 +1,4 @@
-<form class="crudForm" data-send-to="place url here">
+<form class="minMaxForm" data-send-to="place url here">
     <div class="mb-3">
         <label for="board" class="form-label">Name des Boards:</label>
         <div class="input-group">
