@@ -1,6 +1,6 @@
 
 // Form Validation using AJAX
-var request;
+let request;
 
 $(document).ready(function () {
     $('.minMaxForm').submit(function (e) {
@@ -10,13 +10,13 @@ $(document).ready(function () {
             request.abort();
         }
 
-        var thisForm = $(this);
+        const thisForm = $(this);
 
         // Let's select and cache all the fields
-        var formInputElements = thisForm.find("input, select, button, textarea");
+        let formInputElements = thisForm.find("input, select, button, textarea");
 
         // Serialize the data in the form
-        var serializedFormData = thisForm.serialize();
+        const serializedFormData = thisForm.serialize();
 
         // Let's disable the inputs for the duration of the Ajax request.
         // Note: we disable elements AFTER the form data has been serialized.
@@ -105,17 +105,17 @@ function Taskartupdate(id, taskartenicon, taskart) {
 function handleCrud(typeName, pluralTypeName) {
     // Create
     $(document).on('click', `.create${typeName}Button`, function () {
-        var createModal = $(`#create${typeName}Modal`);
+        const createModal = $(`#create${typeName}Modal`);
         createModal.find(`#create${typeName}ModalLabel`).text(`${typeName} erstellen`);
         createModal.find('.minMaxForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/erstellen`);
     });
     // Edit
     $(document).on('click', `.edit${typeName}Button`, function () {
 
-        var typeInstanceName = $(this).data(typeName.toLowerCase());
-        var typeInstanceID = $(this).data('id');
+        const typeInstanceName = $(this).data(typeName.toLowerCase());
+        const typeInstanceID = $(this).data('id');
 
-        var editModal = $(`#edit${typeName}Modal`);
+        const editModal = $(`#edit${typeName}Modal`);
 
         // ajax request to get the data
         $.ajax({
@@ -156,8 +156,8 @@ function handleCrud(typeName, pluralTypeName) {
 
     // Delete
     $(document).on('click', `.delete${typeName}Button`, function () {
-        var typeInstanceID = $(this).data('id');
-        var typeInstanceName = $(this).data(typeName.toLowerCase());
+        const typeInstanceID = $(this).data('id');
+        const typeInstanceName = $(this).data(typeName.toLowerCase());
         $(`#delete${typeName}ModalLabel`).text(`Wollen Sie "${typeInstanceName}" wirklich löschen?`);
         $(`#delete${typeName}Form`).attr('data-delete-at', BASE_URL + `${pluralTypeName.toLowerCase()}/loeschen/` + typeInstanceID);
     });
@@ -197,9 +197,9 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
             } else {
                 $('#deleteTaskModal').modal('hide');
                 // Create a Bootstrap alert dynamically
-                var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                var closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                var messageDiv = $('<div></div>').text(response.error.deletion);
+                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
+                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                const messageDiv = $('<div></div>').text(response.error.deletion);
                 alertDiv.append(messageDiv);
                 alertDiv.append(closeButton);
                 // Append the alert above the buttons
@@ -226,9 +226,9 @@ $(document).on('submit', '#deleteSpalteForm', function (e) {
             } else {
                 $('#deleteSpalteModal').modal('hide');
                 // Create a Bootstrap alert dynamically
-                var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                var closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                var messageDiv = $('<div></div>').text(response.error.deletion);
+                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
+                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                const messageDiv = $('<div></div>').text(response.error.deletion);
                 alertDiv.append(messageDiv);
                 alertDiv.append(closeButton);
                 // Append the alert above the buttons
@@ -291,9 +291,9 @@ $(document).on('submit', '#deleteBoardForm', function (e) {
             } else {
                 $('#deleteBoardModal').modal('hide');
                 // Create a Bootstrap alert dynamically
-                var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                var closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                var messageDiv = $('<div></div>').text(response.error.deletion);
+                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
+                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                const messageDiv = $('<div></div>').text(response.error.deletion);
                 alertDiv.append(messageDiv);
                 alertDiv.append(closeButton);
                 // Append the alert above the buttons
