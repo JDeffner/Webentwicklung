@@ -62,8 +62,9 @@ class BenutzerController extends BaseController
      */
     public function postBenutzerErstellen(){
         $personenModel = new PersonenModel();
-        if($personenModel->save($_POST)){
+        if($personenModel->validate($_POST)){
             $_POST['passwort'] = password_hash($_POST['passwort'], PASSWORD_DEFAULT);
+            $personenModel->save($_POST);
             setcookie('username', $_POST['vorname'], "0", "/");
             setcookie('userlastname', $_POST['nachname'], "0", "/");
             setcookie('useremail', $_POST['email'], "0", "/");
