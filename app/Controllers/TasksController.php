@@ -18,18 +18,9 @@ class TasksController extends BaseController
             'title' => 'Tasks',
             'boardID' => $boardID,
         ];
-        $tasksModel = new TasksModel();
-        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
-        $personenModel = new PersonenModel();
-        $data['personen'] = $personenModel->getDashboardData();
-        $spaltenModel = new SpaltenModel();
-        $data['spalten'] = $spaltenModel->findAll();
-        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
         $boardsModel = new BoardsModel();
         $data['boards'] = $boardsModel->findAll();
         $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
-        $taskartenModel = new TaskartenModel();
-        $data['taskarten'] = $taskartenModel->findAll();
 
         echo view('pages/Tasks', $data);
     }
@@ -85,7 +76,7 @@ class TasksController extends BaseController
         if($taskModel->update($taskid, $_POST)){
             $data['taskid'] = $taskid;
             $data['spaletenid'] = $_POST['spaltenid'];
-            // load data for task view_cell
+//             load data for task view_cell
 //            $boardsModel = new BoardsModel();
 //            $board['board'] = $boardsModel->getBoardName($_POST['boardid'])[0]['board'];
 //            $spaletenModel = new SpaltenModel();
@@ -95,7 +86,7 @@ class TasksController extends BaseController
 //            $personenModel = new PersonenModel();
 //            $person = $personenModel->getSecurePerson($_POST['personenid']);
 //            $data['htmlElement'] = view_cell('Tasks::singleTask', array_merge($_POST, $board, $spalte, $taskart, $person));
-
+//            var_dump($data['htmlElement']);
             $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {

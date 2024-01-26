@@ -20,6 +20,9 @@
                    data-ajax="spaltenAjaxRequest"
                    data-search="true"
                    data-pagination="true"
+                   data-show-refresh="true"
+                   data-show-columns="true"
+                   data-show-toggle="true"
                    data-buttons-toolbar=".spalten-buttons-toolbar">
                 <thead>
                     <tr>
