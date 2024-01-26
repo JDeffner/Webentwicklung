@@ -13,7 +13,7 @@ class PersonenModel extends Model
     protected $cleanValidationRules = false;
     protected $validationRules = 'benutzerErstellen';
 
-    public function getSecureData(): array
+    public function getDashboardData(): array
     {
 
         return $this->db->table($this->table)
@@ -27,6 +27,14 @@ class PersonenModel extends Model
         return $this->db->table($this->table)
             ->where('email', $email)
             ->get()->getRowArray();
+    }
+
+    public function getSecurePerson($id): array
+    {
+        return $this->db->table($this->table)
+            ->select('vorname, nachname')
+            ->where('id', $id)
+            ->get()->getResultArray();
     }
 
 }

@@ -21,7 +21,7 @@ class TasksController extends BaseController
         $tasksModel = new TasksModel();
         $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
         $personenModel = new PersonenModel();
-        $data['personen'] = $personenModel->getSecureData();
+        $data['personen'] = $personenModel->getDashboardData();
         $spaltenModel = new SpaltenModel();
         $data['spalten'] = $spaltenModel->findAll();
         $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
@@ -83,6 +83,19 @@ class TasksController extends BaseController
         }
         $taskModel = new TasksModel();
         if($taskModel->update($taskid, $_POST)){
+            $data['taskid'] = $taskid;
+            $data['spaletenid'] = $_POST['spaltenid'];
+            // load data for task view_cell
+//            $boardsModel = new BoardsModel();
+//            $board['board'] = $boardsModel->getBoardName($_POST['boardid'])[0]['board'];
+//            $spaletenModel = new SpaltenModel();
+//            $spalte['spalte'] = $spaletenModel->getSpaltenName($_POST['spaltenid'])[0]['spalte'];
+//            $taskartenModel = new TaskartenModel();
+//            $taskart = $taskartenModel->getTaskart($_POST['taskartenid']);
+//            $personenModel = new PersonenModel();
+//            $person = $personenModel->getSecurePerson($_POST['personenid']);
+//            $data['htmlElement'] = view_cell('Tasks::singleTask', array_merge($_POST, $board, $spalte, $taskart, $person));
+
             $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {

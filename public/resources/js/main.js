@@ -108,7 +108,6 @@ function handleCrud(typeName, pluralTypeName) {
         var createModal = $(`#create${typeName}Modal`);
         createModal.find(`#create${typeName}ModalLabel`).text(`${typeName} erstellen`);
         createModal.find('.minMaxForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/erstellen`);
-        console.log(typeName);
     });
     // Edit
     $(document).on('click', `.edit${typeName}Button`, function () {

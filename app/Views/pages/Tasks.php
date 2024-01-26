@@ -28,45 +28,8 @@
                             </div>
                             <div class="card-body spaltenBody" id="spalte<?= $oneSpalte['id'] ?>">
                                 <?php foreach (($tasks ?? null) as $oneTask):
-                                    if ($oneTask['spaltenid'] == $oneSpalte['id']) {  ?>
-                                    <div class="card mb-3" id="task<?= $oneTask['id'] ?>">
-                                        <div class="card-body">
-                                            <table>
-                                                <tbody>
-                                                <tr>
-                                                    <th scope="row">Name</th>
-                                                    <td><?= $oneTask['task'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Notiz</th>
-                                                    <td><?= $oneTask['notizen'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Erinnerungsdatum</th>
-                                                    <td><?= $oneTask['erinnerungsdatum'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Zugeteilte Person</th>
-                                                    <td><?= $oneTask['vorname'] ?> <?= $oneTask['nachname'] ?></td>
-                                                </tbody>
-                                            </table>
-
-                                            <i data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton"
-                                                data-task="<?= $oneTask['task'] ?>"
-                                                data-taskartenid="<?= $oneTask['taskartenid'] ?>"
-                                                data-taskartenicon="<?= $oneTask['taskartenicon'] ?>"
-                                                data-taskart="<?= $oneTask['taskart'] ?>"
-                                                data-spaltenid="<?= $oneTask['spaltenid'] ?>"
-                                                data-personenid="<?= $oneTask['personenid'] ?>"
-                                                data-erinnerungsdatum="<?= $oneTask['erinnerungsdatum'] ?>"
-                                                data-erinnerung="<?= $oneTask['erinnerung'] ?>"
-                                                data-notizen="<?= $oneTask['notizen'] ?>"
-                                                data-id="<?= $oneTask['id'] ?>"
-                                                data-bs-toggle="modal"></i>
-                                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" data-id="<?= $oneTask['id'] ?>" data-boards-id="<?= $oneTask['boardsid'] ?>" data-task="<?= $oneTask['task'] ?>"></i>
-
-                                        </div>
-                                    </div>
+                                    if ($oneTask['spaltenid'] == $oneSpalte['id']) { ?>
+                                        <?= view_cell('Tasks::singleTask', $oneTask); ?>
                                 <?php } endforeach; ?>
                             </div>
                         </div>

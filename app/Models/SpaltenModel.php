@@ -32,4 +32,12 @@ class SpaltenModel extends Model
             ->join('boards', 'boards.id = spalten.boardsid')
             ->get()->getResultArray();
     }
+
+    public function getSpaltenName($spaltenID): array
+    {
+        return $this->db->table($this->table)
+            ->select('spalte')
+            ->where('id', $spaltenID)
+            ->get()->getResultArray();
+    }
 }
