@@ -21,8 +21,9 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     //task routes
     $routes->get('/tasks', 'TasksController::index/1');
     $routes->get('/tasks/(:num)', 'TasksController::index/$1');
+    $routes->post('/tasks/task/(:num)', 'TasksController::postTaskInfo/$1');
     $routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
-    $routes->post('/tasks/loeschen/(:num)/(:num)', 'TasksController::postTaskLoeschen/$1/$2');
+    $routes->post('/tasks/loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
     $routes->post('/tasks/bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
 
     //spalten routes
@@ -54,7 +55,7 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
         $routes->get('/testDatabase', 'DeveloperController::testDatabase');
         $routes->get('/login', 'DeveloperController::abweisung');
     });
-    
+
 });
 
 

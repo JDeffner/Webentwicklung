@@ -11,7 +11,7 @@ class AdminController extends BaseController
             'title' => 'Dashboard',
         ];
         $personenModel = new PersonenModel();
-        $data['personen'] = $personenModel->getSecureData();
+        $data['personen'] = $personenModel->getDashboardData();
         echo view('pages/admin/Dashboard', $data);
     }
 

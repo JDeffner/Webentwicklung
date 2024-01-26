@@ -14,4 +14,12 @@ class TaskartenModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['taskart', 'taskartenicon'];
 
+    public function getTaskart($taskartenid): array
+    {
+        return $this->db->table($this->table)
+            ->select('taskart, taskartenicon')
+            ->where('id', $taskartenid)
+            ->get()->getResultArray();
+    }
+
 }
