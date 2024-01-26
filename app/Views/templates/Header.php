@@ -36,7 +36,7 @@
 
                 <!--                <i class="fa-solid fa-user" style="color: #e21d1d;"></i>-->
                 <div class="collapse" id="userCollapse">
-                    <a class="" href="<?php echo base_url('/login');?>">Logout</a>
+                    <a class="" href="<?php echo base_url();?>">Logout</a>
                 </div>
             </span>
 

@@ -61,8 +61,9 @@ class BenutzerController extends BaseController
      * @throws ReflectionException
      */
     public function postBenutzerErstellen(){
+        $personenModelValid = new PersonenModel();
         $personenModel = new PersonenModel();
-        if($personenModel->validate($_POST)){
+        if($personenModelValid->validate($_POST)){
             $_POST['passwort'] = password_hash($_POST['passwort'], PASSWORD_DEFAULT);
             $personenModel->save($_POST);
             setcookie('username', $_POST['vorname'], "0", "/");
