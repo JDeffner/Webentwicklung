@@ -45,7 +45,9 @@ $(document).ready(function () {
             let resultingData = JSON.parse(response);
             if (resultingData['successfulValidation']) {
                 if(resultingData['tableName'] === 'tasks') {
-                    location.reload();
+                    // location.reload();
+                    $('.modal').modal('hide');
+                    reloadTaskBoard('1');
                 } else if (resultingData['tableName'] === 'personen') {
                     window.location.href = resultingData['redirect'];
                 } else {

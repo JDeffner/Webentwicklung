@@ -8,6 +8,9 @@
             <a role="button" class="btn btn-secondary createTaskButton ms-auto me-2" data-bs-toggle="modal" data-bs-target="#createTaskModal">
                 <i class="fa-solid fa-square-plus" ></i> Neu
             </a>
+            <a role="button" class="btn btn-secondary createTaskButton me-2" id="reload">
+                <i class="fa-solid fa-rotate-right"></i>
+            </a>
             <div class="col-lg-2 col-md-2 col-sm-10 me-2">
                 <input type="search" class="form-control " id="suchetasks" name="suchetasks" placeholder="Suchen">
             </div>
