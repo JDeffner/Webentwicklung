@@ -1,4 +1,4 @@
-<div class="card mb-3 task" id="task<?= $id ?>" draggable="true">
+<div class="card my-1 task" id="task<?= $id ?>" draggable="true">
     <div class="card-body">
         <table>
             <tbody>

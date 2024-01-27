@@ -3,12 +3,15 @@
 <?= $this->section('content') ?>
 <main class="container-fluid">
     <div class="card ms-3 me-3">
-        <div class="card-header d-flex align-items-center">
+        <div class="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center">
             <h4>Tasks</h4>
             <a role="button" class="btn btn-secondary createTaskButton ms-auto me-2" data-bs-toggle="modal" data-bs-target="#createTaskModal">
                 <i class="fa-solid fa-square-plus" ></i> Neu
             </a>
-            <input type="search" class="form-control me-2" id="suchetasks" name="suchetasks" placeholder="Suchen" style="width: 15%;">
+            <div class="col-lg-2 col-md-2 col-sm-10 me-2">
+                <input type="search" class="form-control " id="suchetasks" name="suchetasks" placeholder="Suchen">
+            </div>
+
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $boardName ?>

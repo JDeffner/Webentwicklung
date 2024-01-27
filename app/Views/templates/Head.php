@@ -18,6 +18,9 @@
         const BASE_URL = "<?= base_url() ?>"; // Set baseURL for all scripts
     </script>
     <script defer src="<?php echo base_url();?>resources/js/main.js"></script>
-    <script defer src="<?php echo base_url();?>resources/js/tasks.js"></script>
+<!-- Page specific scripts   -->
+    <?php if (isset($title)) : ?>
+        <script defer src="<?php echo base_url();?>resources/js/<?= strtolower($title) ?>.js"></script>
+    <?php endif; ?>
 </head>
 <body>
