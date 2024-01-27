@@ -18,5 +18,6 @@
         const BASE_URL = "<?= base_url() ?>"; // Set baseURL for all scripts
     </script>
     <script defer src="<?php echo base_url();?>resources/js/main.js"></script>
+    <script defer src="<?php echo base_url();?>resources/js/tasks.js"></script>
 </head>
 <body>

@@ -18,9 +18,18 @@ class TasksController extends BaseController
             'title' => 'Tasks',
             'boardID' => $boardID,
         ];
+        $tasksModel = new TasksModel();
+        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
+        $personenModel = new PersonenModel();
+        $data['personen'] = $personenModel->getDashboardData();
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->findAll();
+        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
         $boardsModel = new BoardsModel();
         $data['boards'] = $boardsModel->findAll();
         $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
+        $taskartenModel = new TaskartenModel();
+        $data['taskarten'] = $taskartenModel->findAll();
 
         echo view('pages/Tasks', $data);
     }
