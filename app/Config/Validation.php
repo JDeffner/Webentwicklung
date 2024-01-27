@@ -162,19 +162,10 @@ class Validation extends BaseConfig
         ],
         'passwort' => [
             'label' => 'Passwort',
-            'rules' => 'required|min_length[4]|max_length[40]',
+            'rules' => 'required|min_length[4]',
             'errors' => [
                 'required' => 'Bitte geben Sie ein {field} an.',
                 'min_length' => 'Das {field} muss mindestens {param} Zeichen lang sein.',
-                'max_length' => 'Das {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-        'passwortWiederholen' => [
-            'label' => 'Passwort wiederholen',
-            'rules' => 'required|matches[passwort]',
-            'errors' => [
-                'required' => 'Bitte geben Sie das Passwort erneut ein.',
-                'matches' => 'Die Passwörter stimmen nicht überein.',
             ],
         ],
     ];
