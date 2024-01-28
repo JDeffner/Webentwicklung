@@ -15,23 +15,17 @@ class DeveloperController extends BaseController
         var_dump(04);
     }
 
-public function testDatabase() {
-        $testTasksModel = new TasksModel();
-        $data['tasks'] = $testTasksModel->getCuratedData();
-        echo view('pages/dev/TestDatabase', $data);
-}
+    public function test()
+    {
+        var_dump('test');
+    }
 
-public function test($string)
-{
-    var_dump($string);
-}
-
-public function abweisung()
-{
-    $data = [
-        'title' => 'Login',
-    ];
-    echo view('pages/dev/Abweisung', $data);
-}
+    public function abweisung()
+    {
+        $data = [
+            'title' => 'Login',
+        ];
+        echo view('pages/dev/Abweisung', $data);
+    }
 
 }

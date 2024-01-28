@@ -17,17 +17,6 @@ class TasksModel extends Model
     protected $updatedField = '';
 
     protected $validationRules = 'tasks';
-    public function getCuratedData(): array
-    {
-        return $this->db->table($this->table)
-            ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, spalten.spalte, tasks.personenid, 
-                tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, 
-                tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht')
-            ->join('personen', 'tasks.personenid = personen.id')
-            ->join('taskarten', 'tasks.taskartenid = taskarten.id')
-            ->join('spalten', 'tasks.spaltenid = spalten.id')
-            ->get()->getResultArray();
-    }
 
     public function getTasksFromBoard($BoardID): array
     {

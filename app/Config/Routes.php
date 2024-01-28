@@ -19,8 +19,7 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     $routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 
     //task routes
-    $routes->get('/tasks', 'TasksController::index/1');
-    $routes->get('/tasks/(:num)', 'TasksController::index/$1');
+    $routes->get('/tasks', 'TasksController::index');
     $routes->post('/tasks/raw/(:num)', 'TasksController::getRawData/$1');
     $routes->post('/tasks/task/(:num)', 'TasksController::postTaskInfo/$1');
     $routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
@@ -45,19 +44,21 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     // Error routes
     $routes->get('/denied', 'ErrorController::index');
 
+    // Show Gruppennummer
+    $routes->get('(:any)/gruppennummer', 'DeveloperController::viewGruppennummer');
+    $routes->get('/gruppennummer', 'DeveloperController::viewGruppennummer');
+
+    // Protected Admin and Developer routes
     $routes->group('', ['filter' => 'adminAuthentification'], function($routes) {
-        // Admin routes
         $routes->get('/dashboard', 'AdminController::index');
 
-        // Developer routes
         $routes->get('/welcome', 'DeveloperController::index');
-        $routes->get('/test/(:any)', 'DeveloperController::test/$1');
-        $routes->get('(:any)/viewGruppennummer', 'DeveloperController::viewGruppennummer');
-        $routes->get('/viewGruppennummer', 'DeveloperController::viewGruppennummer');
-        $routes->get('/testDatabase', 'DeveloperController::testDatabase');
-        $routes->get('/login', 'DeveloperController::abweisung');
+        $routes->get('/test', 'DeveloperController::test');
     });
 
 });
+
+// other routes
+$routes->get('/login', 'DeveloperController::abweisung');
 
 

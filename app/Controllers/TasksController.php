@@ -12,22 +12,23 @@ class TasksController extends BaseController
 {
 
 
-    public function index($boardID)
+    public function index()
     {
+        $defaultBoardID = '1';
         $data = [
             'title' => 'Tasks',
-            'boardID' => $boardID,
+            'boardID' => $defaultBoardID,
         ];
         $tasksModel = new TasksModel();
-        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
+        $data['tasks'] = $tasksModel->getTasksFromBoard($defaultBoardID);
         $personenModel = new PersonenModel();
         $data['personen'] = $personenModel->getDashboardData();
         $spaltenModel = new SpaltenModel();
         $data['spalten'] = $spaltenModel->findAll();
-        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
+        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($defaultBoardID);
         $boardsModel = new BoardsModel();
         $data['boards'] = $boardsModel->findAll();
-        $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
+        $data['boardName'] = $boardsModel->getBoardName($defaultBoardID)[0]['board'];
         $taskartenModel = new TaskartenModel();
         $data['taskarten'] = $taskartenModel->findAll();
 
@@ -85,17 +86,6 @@ class TasksController extends BaseController
         if($taskModel->update($taskid, $_POST)){
             $data['taskid'] = $taskid;
             $data['spaletenid'] = $_POST['spaltenid'];
-//             load data for task view_cell
-//            $boardsModel = new BoardsModel();
-//            $board['board'] = $boardsModel->getBoardName($_POST['boardid'])[0]['board'];
-//            $spaletenModel = new SpaltenModel();
-//            $spalte['spalte'] = $spaletenModel->getSpaltenName($_POST['spaltenid'])[0]['spalte'];
-//            $taskartenModel = new TaskartenModel();
-//            $taskart = $taskartenModel->getTaskart($_POST['taskartenid']);
-//            $personenModel = new PersonenModel();
-//            $person = $personenModel->getSecurePerson($_POST['personenid']);
-//            $data['htmlElement'] = view_cell('Tasks::singleTask', array_merge($_POST, $board, $spalte, $taskart, $person));
-//            var_dump($data['htmlElement']);
             $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {
