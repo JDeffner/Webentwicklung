@@ -3,15 +3,16 @@
 <?= $this->section('content') ?>
 <main class="container-fluid">
     <div class="card ms-3 me-3">
-        <div class="card-header">
+        <div class="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center">
             <h4>Spalten</h4>
-        </div>
-        <div class="card-body">
-            <div class="d-flex" id="spalten-table-toolbar">
-                <a role="button" class="btn btn-primary mb-3 me-1 createSpalteButton" data-bs-toggle="modal" data-bs-target="#createSpalteModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
+            <div class="d-flex ms-auto" id="spalten-table-toolbar">
+                <a role="button" class="btn btn-secondary me-1 createSpalteButton" data-bs-toggle="modal" data-bs-target="#createSpalteModal"><i class="fa-solid fa-square-plus"></i> Neu</a>
                 <div class="spalten-buttons-toolbar">
                 </div>
             </div>
+        </div>
+        <div class="card-body">
+
 
             <table class="table table-hover table-bordered table-responsive"
                    id="spaltenTable"

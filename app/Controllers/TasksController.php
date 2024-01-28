@@ -18,9 +18,18 @@ class TasksController extends BaseController
             'title' => 'Tasks',
             'boardID' => $boardID,
         ];
+        $tasksModel = new TasksModel();
+        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
+        $personenModel = new PersonenModel();
+        $data['personen'] = $personenModel->getDashboardData();
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->findAll();
+        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
         $boardsModel = new BoardsModel();
         $data['boards'] = $boardsModel->findAll();
         $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
+        $taskartenModel = new TaskartenModel();
+        $data['taskarten'] = $taskartenModel->findAll();
 
         echo view('pages/Tasks', $data);
     }
@@ -102,6 +111,32 @@ class TasksController extends BaseController
         $data['task'] = $taskModel->find($taskid);
         $taskartenModel = new TaskartenModel();
         $data['taskarten'] = $taskartenModel->find($data['task']['taskartenid']);
+        return json_encode($data);
+    }
+
+    public function getRawData($boardID)
+    {
+        $tasksModel = new TasksModel();
+        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->getSpaltenForBoard($boardID);
+        return json_encode($data);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function postTaskSpalteBearbeiten($taskid, $spaltenid)
+    {
+        $taskModel = new TasksModel();
+        $data['taskid'] = $taskid;
+        $data['spaltenid'] = $spaltenid;
+        if ($taskModel->update($taskid, ['spaltenid' => $spaltenid])) {
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $taskModel->errors();
+            $data['successfulValidation'] = false;
+        }
         return json_encode($data);
     }
 

@@ -3,15 +3,14 @@
 <?= $this->section('content') ?>
 <main class="container">
     <div class="card ms-3 me-3">
-        <div class="card-header">
+        <div class="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center">
             <h4>Boards</h4>
-        </div>
-        <div class="card-body">
-            <div class="d-flex" id="boards-table-toolbar">
-                <a role="button" class="btn btn-primary mb-2 me-1 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i> Neu</a>
+            <div class="d-flex ms-auto" id="boards-table-toolbar">
+                <a role="button" class="btn btn-secondary me-1 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-square-plus"></i> Neu</a>
                 <div class="boards-buttons-toolbar"></div>
             </div>
-
+        </div>
+        <div class="card-body">
             <table class="table table-hover table-bordered table-responsive"
                    id="boardsTable"
                    data-toggle="table"
@@ -28,7 +27,7 @@
                     </tr>
                 </thead>
             </table>
-    </div>
+        </div>
     </div>
 </main>
 

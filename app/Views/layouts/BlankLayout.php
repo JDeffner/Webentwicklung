@@ -1,6 +1,6 @@
 <?= $this->include('templates/Head') ?>
 
-<?= $this->include('templates/HeaderBlank') ?>
+<?= $this->include('templates/NavbarBlank') ?>
 
 
 <?= $this->renderSection('content') ?>

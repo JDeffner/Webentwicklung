@@ -13,7 +13,6 @@ class SpaltenModel extends Model
     protected $table = 'spalten';
     protected $primaryKey = 'id';
     protected $allowedFields = ['boardsid', 'sortid', 'spalte', 'spaltenbeschreibung'];
-    protected $cleanValidationRules = false;
     protected $validationRules = 'spalten';
 
 

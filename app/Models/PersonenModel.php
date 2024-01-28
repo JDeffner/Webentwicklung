@@ -10,7 +10,6 @@ class PersonenModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['vorname', 'nachname', 'email', 'passwort'];
 
-    protected $cleanValidationRules = false;
     protected $validationRules = 'benutzerErstellen';
 
     public function getDashboardData(): array

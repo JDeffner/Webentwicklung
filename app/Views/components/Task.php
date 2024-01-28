@@ -1,10 +1,10 @@
-<div class="card mb-3" id="task<?= $id ?>">
+<div class="card my-1 task cursor-grab" id="task<?= $id ?>" data-id="<?= $id ?>">
     <div class="card-body">
         <table>
             <tbody>
             <tr>
                 <th scope="row">Name</th>
-                <td><?= $task ?></td>
+                <td class="searchable"><?= $task ?></td>
             </tr>
             <tr>
                 <th scope="row">Notiz</th>
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th scope="row">Zugeteilte Person</th>
-                <td><?= $vorname ?> <?= $nachname ?></td>
+                <td class="searchable"><?= $vorname ?> <?= $nachname ?></td>
             </tbody>
         </table>
 

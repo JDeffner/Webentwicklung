@@ -1,6 +1,6 @@
 <?= $this->include('templates/Head') ?>
 
-<?= $this->include('templates/Header') ?>
+<?= $this->include('templates/Navbar') ?>
 
 
 

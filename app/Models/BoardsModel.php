@@ -13,7 +13,6 @@ class BoardsModel extends Model
     protected $table = 'boards';
     protected $primaryKey = 'id';
     protected $allowedFields = ['board'];
-    protected $cleanValidationRules = false;
     protected $validationRules = 'boards';
 
 

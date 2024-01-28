@@ -44,13 +44,18 @@ $(document).ready(function () {
         request.done(function (response, textStatus, jqXHR){
             let resultingData = JSON.parse(response);
             if (resultingData['successfulValidation']) {
-                if(resultingData['tableName'] === 'tasks') {
-                    location.reload();
-                } else if (resultingData['tableName'] === 'personen') {
-                    window.location.href = resultingData['redirect'];
-                } else {
-                    $('.modal').modal('hide');
-                    $(`#${resultingData['tableName']}Table`).bootstrapTable('refresh');
+                switch(resultingData['tableName']) {
+                    case 'tasks':
+                        $('.modal').modal('hide');
+                        let currentBoardID = $('#boardidDropdown').val();
+                        reloadTaskBoard(currentBoardID);
+                        break;
+                    case 'personen':
+                        window.location.href = resultingData['redirect'];
+                        break;
+                    default:
+                        $('.modal').modal('hide');
+                        $(`#${resultingData['tableName']}Table`).bootstrapTable('refresh');
                 }
             } else {
                 let errors = Object.entries(resultingData['error']);
@@ -89,14 +94,6 @@ $(document).ready(function () {
 
     });
 });
-
-function Taskartupdate(id, taskartenicon, taskart) {
-    taskartenid = id;
-    // look for an element with a value of name="taskartenid"
-    $('input[name="taskartenid"]').val(taskartenid);
-
-    $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
-}
 
 
 
