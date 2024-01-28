@@ -123,5 +123,22 @@ class TasksController extends BaseController
         return json_encode($data);
     }
 
+    /**
+     * @throws ReflectionException
+     */
+    public function postTaskSpalteBearbeiten($taskid, $spaltenid)
+    {
+        $taskModel = new TasksModel();
+        $data['taskid'] = $taskid;
+        $data['spaltenid'] = $spaltenid;
+        if ($taskModel->update($taskid, ['spaltenid' => $spaltenid])) {
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $taskModel->errors();
+            $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
+    }
+
 
 }

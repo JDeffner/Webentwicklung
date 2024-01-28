@@ -42,6 +42,41 @@ $(document).ready(function () {
         currentBoardId = $('#boardidDropdown').val();
         reloadTaskBoard(currentBoardId);
     });
+
+    let drake = dragula({
+        isContainer: function (el) {
+            return el.classList.contains('spaltenBody');
+        },
+        moves: function (el, source, handle, sibling) {
+            return true;
+        },
+        accepts: function (el, target, source, sibling) {
+            return true; // elements are always draggable by default
+        },
+        invalid: function (el, handle) {
+            return false; // don't prevent any drags from initiating by default
+        },
+
+        direction: 'vertical',
+        copy: false,
+        copySortSource: false,
+        revertOnSpill: false,
+        removeOnSpill: false,
+        mirrorContainer: document.body,
+        ignoreInputTextSelection: true,
+        slideFactorX: 0,
+        slideFactorY: 0,
+    });
+
+    drake.on('drag', function(el,target,source,sibling) {
+        update = false;
+    });
+
+    drake.on('drop', function(el,target,source,sibling) {
+        update = true;
+        // Here you can also add code to update the task's spaltenid in your database
+        updateTaskSpaltenId(el.dataset.id, target.dataset.id);
+    })
 });
 
 function reloadTaskBoard(boardId) {
@@ -59,7 +94,7 @@ function reloadTaskBoard(boardId) {
                                 <h3>${value.spalte}</h3>
                                 <small class="mb-0">${value.spaltenbeschreibung}</small>
                             </div>
-                            <div class="card-body spaltenBody" id="spalte${value.id}">
+                            <div class="card-body spaltenBody" id="spalte${value.id}" data-id="${value.id}">
                             </div>
                         </div>
                     </div>
@@ -67,7 +102,7 @@ function reloadTaskBoard(boardId) {
             });
             response.tasks.forEach((value) => {
                 $(`#spalte${value.spaltenid}`).append(`
-                    <div class="card my-1 task" id="task${value.id}" draggable="true">
+                    <div class="card my-1 task cursor-grab" id="task${value.id}" data-id="${value.id}">
                         <div class="card-body">
                             <table>
                                 <tbody>
@@ -126,4 +161,15 @@ function Boardupdate(id, board) {
     $("#boardidDropdownButton span").html(board);
 
     reloadTaskBoard(id);
+}
+
+function updateTaskSpaltenId(taskId, spaltenId) {
+    $.ajax({
+        url: BASE_URL + 'tasks/bearbeiten/spalte/' + taskId + '/' + spaltenId,
+        type: "POST",
+        dataType: "json",
+        success: function (response) {
+            // console.log(response);
+        }
+    });
 }

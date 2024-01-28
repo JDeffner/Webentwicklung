@@ -26,6 +26,7 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     $routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
     $routes->post('/tasks/loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
     $routes->post('/tasks/bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
+    $routes->post('/tasks/bearbeiten/spalte/(:num)/(:num)', 'TasksController::postTaskSpalteBearbeiten/$1/$2');
 
     //spalten routes
     $routes->get('/spalten', 'SpaltenController::index');

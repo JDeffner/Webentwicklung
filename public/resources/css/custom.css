@@ -1,0 +1,7 @@
+.dragging {
+    opacity: 0.5;
+}
+
+.cursor-grab {
+    cursor: grab;
+}

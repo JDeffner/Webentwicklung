@@ -15,7 +15,7 @@ class TasksModel extends Model
     protected $dateFormat = 'datetime';
     protected $createdField = 'erstelldatum';
     protected $updatedField = '';
-    protected $cleanValidationRules = false;
+
     protected $validationRules = 'tasks';
     public function getCuratedData(): array
     {

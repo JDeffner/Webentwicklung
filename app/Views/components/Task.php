@@ -1,4 +1,4 @@
-<div class="card my-1 task" id="task<?= $id ?>" draggable="true">
+<div class="card my-1 task cursor-grab" id="task<?= $id ?>" data-id="<?= $id ?>">
     <div class="card-body">
         <table>
             <tbody>

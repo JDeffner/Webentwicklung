@@ -38,7 +38,7 @@
                                 <h3><?= $oneSpalte['spalte'] ?></h3>
                                 <small class="mb-0"><?= $oneSpalte['spaltenbeschreibung'] ?></small>
                             </div>
-                            <div class="card-body spaltenBody" id="spalte<?= $oneSpalte['id'] ?>">
+                            <div class="card-body spaltenBody" id="spalte<?= $oneSpalte['id'] ?>" data-id="<?= $oneSpalte['id'] ?>">
                                 <?php foreach (($tasks ?? null) as $oneTask):
                                 if ($oneTask['spaltenid'] == $oneSpalte['id']) { ?>
                                     <?= view_cell('Tasks::singleTask', $oneTask); ?>
