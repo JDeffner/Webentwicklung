@@ -16,12 +16,13 @@
             </div>
 
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?= $boardName ?>
+                <input type="hidden" id="boardidDropdown" value="<?= $boardID ?>">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="boardidDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span><?= $boardName ?></span>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class="dropdown-menu" aria-labelledby="boardidDropdownButton">
                     <?php foreach (($boards ?? null) as $oneBoard): ?>
-                        <li><a class="dropdown-item" href="<?= base_url('tasks/').$oneBoard['id'] ?>"><?= $oneBoard['board'] ?></a></li>
+                        <li><a class="dropdown-item" onclick="Boardupdate('<?= $oneBoard['id'] ?>','<?= $oneBoard['board'] ?>');"><?= $oneBoard['board'] ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
