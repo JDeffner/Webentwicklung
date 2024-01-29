@@ -132,7 +132,7 @@ class Validation extends BaseConfig
         ],
     ];
 
-    public array $benutzerErstellen = [
+    public array $personen = [
         'vorname' => [
             'label' => 'Vorname',
             'rules' => 'required|min_length[3]|max_length[40]',

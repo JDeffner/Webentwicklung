@@ -73,7 +73,7 @@ class BenutzerController extends BaseController
             $userid = $personenModel->insertID();
             setcookie('userid', $userid, "0", "/");
             $data['redirect'] = base_url('benutzer/'.$userid);
-            $data['tableName'] = 'personen';
+            $data['tableName'] = 'createPersonen';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $personenModel->errors();

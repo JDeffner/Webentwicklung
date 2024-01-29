@@ -9,6 +9,8 @@ $(document).ready(function () {
     handleCrud('Task', 'Tasks');
     handleCrud('Board', 'Boards');
     handleCrud('Spalte', 'Spalten');
+    handleCrud('Person', 'Personen');
+    handleCrud('Taskart', 'Taskarten');
 });
 
 $(document).ready(function () {
@@ -59,7 +61,7 @@ $(document).ready(function () {
                         let currentBoardID = $('#boardidDropdown').val();
                         reloadTaskBoard(currentBoardID);
                         break;
-                    case 'personen':
+                    case 'createPersonen':
                         window.location.href = resultingData['redirect'];
                         break;
                     default:
@@ -88,10 +90,10 @@ $(document).ready(function () {
         // Callback handler that will be called on failure
         formRequest.fail(function (jqXHR, textStatus, errorThrown){
             // Log the error to the console
-            // console.error(
-            //     "Your request failed\nThe following error occurred: "+
-            //     textStatus, errorThrown
-            // );
+            console.error(
+                "Your request failed\nThe following error occurred: "+
+                textStatus, errorThrown
+            );
         });
 
         // Callback handler that will be called regardless

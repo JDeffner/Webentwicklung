@@ -50,7 +50,14 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
 
     // Protected Admin and Developer routes
     $routes->group('', ['filter' => 'adminAuthentification'], function($routes) {
-        $routes->get('/dashboard', 'AdminController::index');
+        $routes->get('/admin/personen', 'AdminController::index');
+        $routes->get('/admin/personen/raw', 'AdminController::getPersonenRawData');
+        $routes->post('/personen/person/(:num)', 'AdminController::postPersonInfo/$1');
+        $routes->post('/personen/bearbeiten/(:num)', 'AdminController::postPersonBearbeiten/$1');
+        $routes->post('/personen/loeschen/(:num)', 'AdminController::postPersonLoeschen/$1');
+
+
+        $routes->get('/admin/taskarten', 'AdminController::getTaskarten');
 
         $routes->get('/welcome', 'DeveloperController::index');
         $routes->get('/test', 'DeveloperController::test');
