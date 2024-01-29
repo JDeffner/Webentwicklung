@@ -18,11 +18,12 @@
                     <a class="nav-link <?php echo ($title == 'Spalten') ? 'active" aria-current="page"' : '"' ?> href="<?php echo base_url('spalten');?>">Spalten</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?php echo ($title == 'Personen' || $title == 'Taskarten') ? 'active" aria-current="page"' : '"' ?> role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle <?php echo ($title == 'Personen' || $title == 'Taskarten' || $title == 'Tasks-Admin') ? 'active" aria-current="page"' : '"' ?> role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="<?php echo base_url() ?>admin/personen">Personen</a></li>
+                        <li><a class="dropdown-item" href="<?php echo base_url() ?>admin/tasks">Tasks</a></li>
                         <li><a class="dropdown-item" href="<?php echo base_url() ?>admin/taskarten">Taskarten</a></li>
                     </ul>
                 </li>

@@ -21,7 +21,8 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     //task routes
     $routes->group('tasks', function($routes) {
         $routes->get('/', 'TasksController::index');
-        $routes->post('raw/(:num)', 'TasksController::getRawData/$1');
+        $routes->get('raw', 'TasksController::getRawData');
+        $routes->post('raw/(:num)', 'TasksController::getRawDataBoard/$1');
         $routes->post('erstellen', 'TasksController::postTaskErstellen');
         $routes->post('loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
         $routes->post('bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
@@ -73,6 +74,8 @@ $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
         $routes->post('taskarten/bearbeiten/(:num)', 'TaskartenController::postTaskartBearbeiten/$1');
         $routes->post('taskarten/loeschen/(:num)', 'TaskartenController::postTaskartLoeschen/$1');
         $routes->post('taskarten/taskart/(:num)', 'TaskartenController::postTaskartenInfo/$1');
+
+        $routes->get('admin/tasks', 'TasksController::getTasks');
 
         $routes->get('welcome', 'AdminController::index');
         $routes->get('test', 'AdminController::test');

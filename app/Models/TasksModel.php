@@ -31,5 +31,17 @@ class TasksModel extends Model
             ->get()->getResultArray();
     }
 
+    public function getTasksWithAllNames(): array
+    {
+        return $this->db->table($this->table)
+            ->select('tasks.*, CONCAT(personen.vorname, " ", personen.nachname) as person, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, boards.board')
+            ->join('personen', 'tasks.personenid = personen.id')
+            ->join('taskarten', 'tasks.taskartenid = taskarten.id')
+            ->join('spalten', 'tasks.spaltenid = spalten.id')
+            ->join('boards', 'spalten.boardsid = boards.id')
+            ->orderBy('tasks.task', 'DESC')
+            ->get()->getResultArray();
+    }
+
 
 }

@@ -167,6 +167,12 @@ function handleCrud(typeName, pluralTypeName) {
     });
 }
 
+function Taskartupdate(id, taskartenicon, taskart) {
+    $('input[name="taskartenid"]').val(id);
+
+    $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+}
+
 
 
 

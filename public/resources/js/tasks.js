@@ -152,11 +152,6 @@ function reloadTaskBoard(boardId) {
     });
 }
 
-function Taskartupdate(id, taskartenicon, taskart) {
-    $('input[name="taskartenid"]').val(id);
-
-    $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
-}
 
 function Boardupdate(id, board) {
     $('#boardidDropdown').val(id);
