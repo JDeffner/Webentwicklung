@@ -42,6 +42,13 @@ class Filters extends BaseConfig
             // 'csrf',
             // 'invalidchars',
             // 'secureheaders',
+            'loginAuthentification' => [
+                'except' => [
+                    '/',
+                    '/benutzer/*',
+                    '/login',
+                ],
+            ],
 
         ],
         'after' => [

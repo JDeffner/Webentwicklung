@@ -17,7 +17,6 @@
             <table class="table table-hover table-bordered table-responsive"
                    id="spaltenTable"
                    data-toggle="table"
-                   data-height="460"
                    data-ajax="spaltenAjaxRequest"
                    data-search="true"
                    data-pagination="true"

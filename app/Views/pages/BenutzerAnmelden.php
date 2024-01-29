@@ -19,7 +19,7 @@
                         </div>
                         <div class="justify-content-between align-items-center d-flex">
                             <button type="submit" class="btn btn-success mb-4">Anmelden</button>
-                            <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('gast');?>">Als Gast fortfahren</a>
+                            <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('benutzer/gast');?>">Als Gast fortfahren</a>
                         </div>
                     </form>
                     <a href="<?php echo base_url('benutzer/erstellen');?>">Ich will einen neuen Account erstellen</a>

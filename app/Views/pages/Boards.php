@@ -14,7 +14,6 @@
             <table class="table table-hover table-bordered table-responsive"
                    id="boardsTable"
                    data-toggle="table"
-                   data-height="460"
                    data-ajax="boardsAjaxRequest"
                    data-search="true"
                    data-pagination="true"

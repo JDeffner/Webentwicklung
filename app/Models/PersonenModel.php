@@ -8,9 +8,9 @@ class PersonenModel extends Model
 {
     protected $table = 'personen';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['vorname', 'nachname', 'email', 'passwort'];
+    protected $allowedFields = ['vorname', 'nachname', 'email', 'passwort', 'permission'];
 
-    protected $validationRules = 'benutzerErstellen';
+    protected $validationRules = 'personen';
 
     public function getDashboardData(): array
     {
@@ -22,7 +22,6 @@ class PersonenModel extends Model
 
     public function getPersonenRowByEmail($email): array
     {
-        // $person = $personenModel->where('email', $_POST['email'])->first();
         return $this->db->table($this->table)
             ->where('email', $email)
             ->get()->getRowArray();

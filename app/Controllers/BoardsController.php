@@ -70,4 +70,10 @@ class BoardsController extends BaseController
         return json_encode($data);
     }
 
+    public function postBoardInfo($boardid)
+    {
+        $boardsModel = new BoardsModel();
+        $data['board'] = $boardsModel->find($boardid);
+        return json_encode($data);
+    }
 }

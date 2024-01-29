@@ -1,13 +1,24 @@
 
-// Form Validation using AJAX
-let request;
+/* Available variables:
+const BASE_URL     Declared in head.php
+ */
+let formRequest;  // current running crud ajax request
+
+// Call functions after DOM is loaded
+$(document).ready(function () {
+    handleCrud('Task', 'Tasks');
+    handleCrud('Board', 'Boards');
+    handleCrud('Spalte', 'Spalten');
+    handleCrud('Person', 'Personen');
+    handleCrud('Taskart', 'Taskarten');
+});
 
 $(document).ready(function () {
     $('.minMaxForm').submit(function (e) {
         e.preventDefault();
 
-        if (request) {
-            request.abort();
+        if (formRequest) {
+            formRequest.abort();
         }
 
         const thisForm = $(this);
@@ -34,14 +45,14 @@ $(document).ready(function () {
         thisForm.find('.is-invalid').removeClass('is-invalid');
 
         // Fire off the request
-        request = $.ajax({
+        formRequest = $.ajax({
             url: thisForm.data('send-to'),
             type: "post",
             data: serializedFormData
         });
 
         // Callback handler that will be called on success
-        request.done(function (response, textStatus, jqXHR){
+        formRequest.done(function (response, textStatus, jqXHR){
             let resultingData = JSON.parse(response);
             if (resultingData['successfulValidation']) {
                 switch(resultingData['tableName']) {
@@ -50,7 +61,7 @@ $(document).ready(function () {
                         let currentBoardID = $('#boardidDropdown').val();
                         reloadTaskBoard(currentBoardID);
                         break;
-                    case 'personen':
+                    case 'loginPersonen':
                         window.location.href = resultingData['redirect'];
                         break;
                     default:
@@ -77,27 +88,23 @@ $(document).ready(function () {
         });
 
         // Callback handler that will be called on failure
-        request.fail(function (jqXHR, textStatus, errorThrown){
+        formRequest.fail(function (jqXHR, textStatus, errorThrown){
             // Log the error to the console
-            // console.error(
-            //     "Your request failed\nThe following error occurred: "+
-            //     textStatus, errorThrown
-            // );
+            console.error(
+                "Your request failed\nThe following error occurred: "+
+                textStatus, errorThrown
+            );
         });
 
         // Callback handler that will be called regardless
         // if the request failed or succeeded
-        request.always(function () {
+        formRequest.always(function () {
             // Reenable the inputs
             formInputElements.prop("disabled", false);
         });
 
     });
 });
-
-
-
-
 
 function handleCrud(typeName, pluralTypeName) {
     // Create
@@ -120,7 +127,7 @@ function handleCrud(typeName, pluralTypeName) {
             type: 'post',
             dataType: 'json',
             success: function (response) {
-                let tableRow = response[typeName.toLowerCase()];
+                let tableRow = response[`${typeName.toLowerCase()}`];
                 for (const column in tableRow) {
                     const value = tableRow[column];
                     switch (column) {
@@ -160,142 +167,14 @@ function handleCrud(typeName, pluralTypeName) {
     });
 }
 
-// Call the function for each type
-$(document).ready(function () {
-    handleCrud('Task', 'Tasks');
-    handleCrud('Board', 'Boards');
-    handleCrud('Spalte', 'Spalten');
-});
+function Taskartupdate(id, taskartenicon, taskart) {
+    $('input[name="taskartenid"]').val(id);
 
-// Erinnerung Checkbox disable/enable Erinnerungsdatum
-$('.form-check-input').on('change', function() {
-
-    if ($(this).prop('checked')) {
-        $('.erinnerungsdatum').removeAttr('disabled');
-    } else {
-
-        $('.erinnerungsdatum').attr('disabled', '');
-    }
-});
-
-// Delete Task ajax
-$(document).on('submit', '#deleteTaskForm', function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: $(this).attr('data-delete-at'),
-        dataType: 'json',
-        data: $(this).serialize(),
-        success: function (response) {
-            $('.alert').remove();
-            if (response.successfulValidation) {
-                $('#deleteTaskModal').modal('hide');
-                $(`#task${response.taskid}`).remove();
-            } else {
-                $('#deleteTaskModal').modal('hide');
-                // Create a Bootstrap alert dynamically
-                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                const messageDiv = $('<div></div>').text(response.error.deletion);
-                alertDiv.append(messageDiv);
-                alertDiv.append(closeButton);
-                // Append the alert above the buttons
-                $('#tasks-table-toolbar').before(alertDiv);
-            }
-        }
-    });
-});
-
-
-// Delete Spalte ajax
-$(document).on('submit', '#deleteSpalteForm', function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: $(this).attr('data-delete-at'),
-        dataType: 'json',
-        data: $(this).serialize(),
-        success: function (response) {
-            $('.alert').remove();
-            if (response.successfulValidation) {
-                $('#deleteSpalteModal').modal('hide');
-                $('#spaltenTable').bootstrapTable('refresh');
-            } else {
-                $('#deleteSpalteModal').modal('hide');
-                // Create a Bootstrap alert dynamically
-                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                const messageDiv = $('<div></div>').text(response.error.deletion);
-                alertDiv.append(messageDiv);
-                alertDiv.append(closeButton);
-                // Append the alert above the buttons
-                $('#spalten-table-toolbar').before(alertDiv);
-            }
-        }
-    });
-});
-
-function spaltenAjaxRequest(params) {
-    $.ajax({
-        url: BASE_URL + 'spalten/raw',
-        type: 'get',
-        dataType: 'json',
-        success: function (response) {
-        response.spalten.forEach(function(spalte) {
-            spalte.bearbeiten = `<i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}" data-spaltenbeschreibung="${spalte.spaltenbeschreibung}" data-board="${spalte.board}" data-boardsid="${spalte.boardsid}" data-sortid="${spalte.sortid}"></i>
-                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
-        });
-        params.success({
-            total: response.spalten.length,
-            rows:  response.spalten
-        })
-    }
-})
+    $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
 }
 
-function boardsAjaxRequest(params) {
-    $.ajax({
-        url: BASE_URL + 'boards/raw',
-        type: 'get',
-        dataType: 'json',
-        success: function (response) {
 
-            response.boards.forEach(function(board) {
-                board.bearbeiten = `<i class="fa-solid fa-pen-to-square editBoardButton" data-bs-toggle="modal" data-bs-target="#editBoardModal" data-id="${board.id}" data-board="${board.board}"></i>
-                                    <i class="fa-solid fa-trash deleteBoardButton" data-bs-toggle="modal" data-bs-target="#deleteBoardModal" data-id="${board.id}" data-board="${board.board}"></i>`;
-            });
-            params.success({
-                total: response.boards.length,
-                rows:  response.boards
-            })
-        }
-    })
-}
 
-// Delete Board ajax
-$(document).on('submit', '#deleteBoardForm', function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: $(this).attr('data-delete-at'),
-        dataType: 'json',
-        data: $(this).serialize(),
-        success: function (response) {
-            $('.alert').remove();
-            if (response.successfulValidation) {
-                $('#deleteBoardModal').modal('hide');
-                $('#boardsTable').bootstrapTable('refresh');
-            } else {
-                $('#deleteBoardModal').modal('hide');
-                // Create a Bootstrap alert dynamically
-                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                const messageDiv = $('<div></div>').text(response.error.deletion);
-                alertDiv.append(messageDiv);
-                alertDiv.append(closeButton);
-                // Append the alert above the buttons
-                $('#boards-table-toolbar').before(alertDiv);
-            }
-        }
-    });
-});
+
+
+

@@ -70,4 +70,10 @@ class SpaltenController extends BaseController
         return json_encode($data);
     }
 
+    public function postSpaltenInfo($spaltenid)
+    {
+        $spaltenModel = new SpaltenModel();
+        $data['spalte'] = $spaltenModel->find($spaltenid);
+        return json_encode($data);
+    }
 }

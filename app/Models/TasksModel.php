@@ -17,28 +17,29 @@ class TasksModel extends Model
     protected $updatedField = '';
 
     protected $validationRules = 'tasks';
-    public function getCuratedData(): array
-    {
-        return $this->db->table($this->table)
-            ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, spalten.spalte, tasks.personenid, 
-                tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, 
-                tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht')
-            ->join('personen', 'tasks.personenid = personen.id')
-            ->join('taskarten', 'tasks.taskartenid = taskarten.id')
-            ->join('spalten', 'tasks.spaltenid = spalten.id')
-            ->get()->getResultArray();
-    }
 
     public function getTasksFromBoard($BoardID): array
     {
         return $this->db->table($this->table)
-            ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, tasks.personenid, tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht, boards.id as boardsid')
+            ->select('tasks.*, personen.vorname, personen.nachname, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, boards.board, boards.id as boardsid')
             ->join('personen', 'tasks.personenid = personen.id')
             ->join('taskarten', 'tasks.taskartenid = taskarten.id')
             ->join('spalten', 'tasks.spaltenid = spalten.id')
             ->join('boards', 'spalten.boardsid = boards.id')
             ->where('boards.id', $BoardID)
-            ->orderBy('tasks.task', 'DESC')
+            ->orderBy('tasks.sortid')
+            ->get()->getResultArray();
+    }
+
+    public function getTasksWithAllNames(): array
+    {
+        return $this->db->table($this->table)
+            ->select('tasks.*, CONCAT(personen.vorname, " ", personen.nachname) as person, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, boards.board')
+            ->join('personen', 'tasks.personenid = personen.id')
+            ->join('taskarten', 'tasks.taskartenid = taskarten.id')
+            ->join('spalten', 'tasks.spaltenid = spalten.id')
+            ->join('boards', 'spalten.boardsid = boards.id')
+            ->orderBy('tasks.sortid')
             ->get()->getResultArray();
     }
 
