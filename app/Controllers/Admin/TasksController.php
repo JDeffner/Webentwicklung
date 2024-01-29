@@ -31,23 +31,4 @@ class TasksController extends \App\Controllers\TasksController
         $data['taskarten'] = $taskartenModel->findAll();
         echo view('pages/admin/Tasks', $data);
     }
-
-    public function postTaskBearbeiten($taskid)
-    {
-        if (!isset($_POST['erinnerung'])) {
-            // If 'erinnerung' is not set, set it to 0
-            $_POST['erinnerung'] = '0';
-        }
-        $taskModel = new TasksModel();
-        if($taskModel->update($taskid, $_POST)){
-            $data['taskid'] = $taskid;
-            $data['spaletenid'] = $_POST['spaltenid'];
-            $data['tableName'] = 'tasks';
-            $data['successfulValidation'] = true;
-        } else {
-            $data['error'] = $taskModel->errors();
-            $data['successfulValidation'] = false;
-        }
-        return json_encode($data);
-    }
 }
