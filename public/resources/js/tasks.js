@@ -1,3 +1,7 @@
+/* Available variables:
+const BASE_URL     Declared in head.php
+let formRequest    Declared in main.js
+ */
 let update = false;
 $(document).ready(function () {
     onSucheChange();
@@ -74,7 +78,6 @@ $(document).ready(function () {
 
     drake.on('drop', function(el,target,source,sibling) {
         update = true;
-        // Here you can also add code to update the task's spaltenid in your database
         updateTaskSpaltenId(el.dataset.id, target.dataset.id);
     })
 });
@@ -173,3 +176,42 @@ function updateTaskSpaltenId(taskId, spaltenId) {
         }
     });
 }
+
+// Erinnerung Checkbox disable/enable Erinnerungsdatum
+$('.form-check-input').on('change', function() {
+
+    if ($(this).prop('checked')) {
+        $('.erinnerungsdatum').removeAttr('disabled');
+    } else {
+
+        $('.erinnerungsdatum').attr('disabled', '');
+    }
+});
+
+// Delete Task ajax
+$(document).on('submit', '#deleteTaskForm', function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('data-delete-at'),
+        dataType: 'json',
+        data: $(this).serialize(),
+        success: function (response) {
+            $('.alert').remove();
+            if (response.successfulValidation) {
+                $('#deleteTaskModal').modal('hide');
+                $(`#task${response.taskid}`).remove();
+            } else {
+                $('#deleteTaskModal').modal('hide');
+                // Create a Bootstrap alert dynamically
+                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
+                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+                const messageDiv = $('<div></div>').text(response.error.deletion);
+                alertDiv.append(messageDiv);
+                alertDiv.append(closeButton);
+                // Append the alert above the buttons
+                $('#tasks-table-toolbar').before(alertDiv);
+            }
+        }
+    });
+});
