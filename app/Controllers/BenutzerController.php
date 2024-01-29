@@ -32,7 +32,7 @@ class BenutzerController extends BaseController
                     setcookie('useremail', $person['email'], "0", "/");
                     setcookie('permissionLevel', $person['permission'], "0", "/");
                     $data['redirect'] = base_url('benutzer/'.$person['id']);
-                    $data['tableName'] = 'personen';
+                    $data['tableName'] = 'loginPersonen';
                     $data['successfulValidation'] = true;
                     return json_encode($data);
                 } else {
@@ -73,7 +73,7 @@ class BenutzerController extends BaseController
             $userid = $personenModel->insertID();
             setcookie('userid', $userid, "0", "/");
             $data['redirect'] = base_url('benutzer/'.$userid);
-            $data['tableName'] = 'createPersonen';
+            $data['tableName'] = 'loginPersonen';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $personenModel->errors();

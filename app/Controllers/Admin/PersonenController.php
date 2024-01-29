@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 use App\Models\PersonenModel;
 use ReflectionException;
+use App\Controllers\BaseController;
 
-class AdminController extends BaseController
+class PersonenController extends BaseController
 {
-    public function index()
+    public function getPersonen()
     {
         $data = [
             'title' => 'Personen',

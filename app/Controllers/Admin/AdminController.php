@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controllers;
-use App\Models\TasksModel;
+namespace App\Controllers\Admin;
+use App\Controllers\BaseController;
+use App\Models\PersonenModel;
+use ReflectionException;
 
-
-class DeveloperController extends BaseController
+class AdminController extends BaseController
 {
     public function index()
     {
@@ -27,5 +28,4 @@ class DeveloperController extends BaseController
         ];
         echo view('pages/dev/Abweisung', $data);
     }
-
 }

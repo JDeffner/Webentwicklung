@@ -8,64 +8,79 @@ use CodeIgniter\Router\RouteCollection;
 
 //login routes
 $routes->get('/', 'BenutzerController::index');
-$routes->get('/benutzer/erstellen', 'BenutzerController::getBenutzerErstellen');
-$routes->post('/benutzer/erstellen', 'BenutzerController::postBenutzerErstellen');
-$routes->post('/benutzer/anmelden', 'BenutzerController::postBenutzerAnmelden');
-$routes->get('/gast', 'BenutzerController::getGastAnmelden');
+$routes->get('benutzer/erstellen', 'BenutzerController::getBenutzerErstellen');
+$routes->post('benutzer/erstellen', 'BenutzerController::postBenutzerErstellen');
+$routes->post('benutzer/anmelden', 'BenutzerController::postBenutzerAnmelden');
+$routes->get('benutzer/gast', 'BenutzerController::getGastAnmelden');
 
 //protected routes
 $routes->group('', ['filter' => 'loginAuthentification'], function($routes) {
     //benutzer routes
-    $routes->get('/benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
+    $routes->get('benutzer/(:num)', 'BenutzerController::getBenutzer/$1');
 
     //task routes
-    $routes->get('/tasks', 'TasksController::index');
-    $routes->post('/tasks/raw/(:num)', 'TasksController::getRawData/$1');
-    $routes->post('/tasks/task/(:num)', 'TasksController::postTaskInfo/$1');
-    $routes->post('/tasks/erstellen', 'TasksController::postTaskErstellen');
-    $routes->post('/tasks/loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
-    $routes->post('/tasks/bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
-    $routes->post('/tasks/bearbeiten/spalte/(:num)/(:num)', 'TasksController::postTaskSpalteBearbeiten/$1/$2');
+    $routes->group('tasks', function($routes) {
+        $routes->get('/', 'TasksController::index');
+        $routes->post('raw/(:num)', 'TasksController::getRawData/$1');
+        $routes->post('erstellen', 'TasksController::postTaskErstellen');
+        $routes->post('loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
+        $routes->post('bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
+        $routes->post('bearbeiten/spalte/(:num)/(:num)', 'TasksController::postTaskSpalteBearbeiten/$1/$2');
+        $routes->post('task/(:num)', 'TasksController::postTaskInfo/$1');
+    });
 
     //spalten routes
-    $routes->get('/spalten', 'SpaltenController::index');
-    $routes->get('/spalten/raw', 'SpaltenController::getRawData');
-    $routes->post('/spalten/erstellen', 'SpaltenController::postSpalteErstellen');
-    $routes->post('/spalten/bearbeiten/(:num)', 'SpaltenController::postSpalteBearbeiten/$1');
-    $routes->post('/spalten/loeschen/(:num)', 'SpaltenController::postSpalteLoeschen/$1');
+    $routes->group('spalten', function($routes) {
+        $routes->get('/', 'SpaltenController::index');
+        $routes->get('raw', 'SpaltenController::getRawData');
+        $routes->post('erstellen', 'SpaltenController::postSpalteErstellen');
+        $routes->post('bearbeiten/(:num)', 'SpaltenController::postSpalteBearbeiten/$1');
+        $routes->post('loeschen/(:num)', 'SpaltenController::postSpalteLoeschen/$1');
+        $routes->post('spalte/(:num)', 'SpaltenController::postSpaltenInfo/$1');
+    });
 
     //board routes
-    $routes->get('/boards', 'BoardsController::index');
-    $routes->get('/boards/raw', 'BoardsController::getRawData');
-    $routes->post('/boards/erstellen', 'BoardsController::postBoardErstellen');
-    $routes->post('/boards/bearbeiten/(:num)', 'BoardsController::postBoardBearbeiten/$1');
-    $routes->post('/boards/loeschen/(:num)', 'BoardsController::postBoardLoeschen/$1');
+    $routes->group('boards', function($routes) {
+        $routes->get('/', 'BoardsController::index');
+        $routes->get('raw', 'BoardsController::getRawData');
+        $routes->post('erstellen', 'BoardsController::postBoardErstellen');
+        $routes->post('bearbeiten/(:num)', 'BoardsController::postBoardBearbeiten/$1');
+        $routes->post('loeschen/(:num)', 'BoardsController::postBoardLoeschen/$1');
+        $routes->post('board/(:num)', 'BoardsController::postBoardInfo/$1');
+    });
 
     // Error routes
-    $routes->get('/denied', 'ErrorController::index');
+    $routes->get('denied', 'ErrorController::index');
 
     // Show Gruppennummer
-    $routes->get('(:any)/gruppennummer', 'DeveloperController::viewGruppennummer');
-    $routes->get('/gruppennummer', 'DeveloperController::viewGruppennummer');
+    $routes->get('(:any)/gruppennummer', 'AdminController::viewGruppennummer');
+    $routes->get('gruppennummer', 'AdminController::viewGruppennummer');
 
-    // Protected Admin and Developer routes
-    $routes->group('', ['filter' => 'adminAuthentification'], function($routes) {
-        $routes->get('/admin/personen', 'AdminController::index');
-        $routes->get('/admin/personen/raw', 'AdminController::getPersonenRawData');
-        $routes->post('/personen/person/(:num)', 'AdminController::postPersonInfo/$1');
-        $routes->post('/personen/bearbeiten/(:num)', 'AdminController::postPersonBearbeiten/$1');
-        $routes->post('/personen/loeschen/(:num)', 'AdminController::postPersonLoeschen/$1');
+    // Protected Admin routes
+    $routes->group('/', ['filter' => 'adminAuthentification', 'namespace' => 'App\Controllers\Admin'], function($routes) {
+        $routes->get('admin/personen', 'PersonenController::getPersonen');
+        $routes->get('admin/personen/raw', 'PersonenController::getPersonenRawData');
+        // no "/admin" since the handleCRUD in main.js is standarzied to "/" for all routes
+        $routes->post('personen/bearbeiten/(:num)', 'PersonenController::postPersonBearbeiten/$1');
+        $routes->post('personen/loeschen/(:num)', 'PersonenController::postPersonLoeschen/$1');
+        $routes->post('personen/person/(:num)', 'PersonenController::postPersonInfo/$1');
 
 
-        $routes->get('/admin/taskarten', 'AdminController::getTaskarten');
+        $routes->get('admin/taskarten', 'TaskartenController::getTaskarten');
+        $routes->get('admin/taskarten/raw', 'TaskartenController::getTaskartenRawData');
+        // no "/admin" since the handleCRUD in main.js is standarzied to "/" for all routes
+        $routes->post('taskarten/erstellen', 'TaskartenController::postTaskartErstellen');
+        $routes->post('taskarten/bearbeiten/(:num)', 'TaskartenController::postTaskartBearbeiten/$1');
+        $routes->post('taskarten/loeschen/(:num)', 'TaskartenController::postTaskartLoeschen/$1');
+        $routes->post('taskarten/taskart/(:num)', 'TaskartenController::postTaskartenInfo/$1');
 
-        $routes->get('/welcome', 'DeveloperController::index');
-        $routes->get('/test', 'DeveloperController::test');
+        $routes->get('welcome', 'AdminController::index');
+        $routes->get('test', 'AdminController::test');
     });
 
 });
 
 // other routes
-$routes->get('/login', 'DeveloperController::abweisung');
+$routes->get('login', 'Admin\AdminController::abweisung');
 
 

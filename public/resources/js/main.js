@@ -61,7 +61,7 @@ $(document).ready(function () {
                         let currentBoardID = $('#boardidDropdown').val();
                         reloadTaskBoard(currentBoardID);
                         break;
-                    case 'createPersonen':
+                    case 'loginPersonen':
                         window.location.href = resultingData['redirect'];
                         break;
                     default:
