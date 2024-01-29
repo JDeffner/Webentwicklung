@@ -23,4 +23,9 @@ class Forms
     {
         return view('components/forms/PersonForm');
     }
+
+    public function TaskartForm()
+    {
+        return view('components/forms/TaskartForm');
+    }
 }
