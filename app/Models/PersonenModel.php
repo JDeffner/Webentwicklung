@@ -22,7 +22,6 @@ class PersonenModel extends Model
 
     public function getPersonenRowByEmail($email): array
     {
-        // $person = $personenModel->where('email', $_POST['email'])->first();
         return $this->db->table($this->table)
             ->where('email', $email)
             ->get()->getRowArray();

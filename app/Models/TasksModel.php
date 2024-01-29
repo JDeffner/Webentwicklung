@@ -21,7 +21,7 @@ class TasksModel extends Model
     public function getTasksFromBoard($BoardID): array
     {
         return $this->db->table($this->table)
-            ->select('tasks.id, personen.vorname, personen.nachname, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, tasks.personenid, tasks.taskartenid, tasks.spaltenid, tasks.sortid, tasks.task, tasks.erstelldatum, tasks.erinnerungsdatum, tasks.erinnerung, tasks.notizen, tasks.erledigt, tasks.geloescht, boards.id as boardsid')
+            ->select('tasks.*, personen.vorname, personen.nachname, taskarten.taskart, taskarten.taskartenicon, spalten.spalte, boards.board, boards.id as boardsid')
             ->join('personen', 'tasks.personenid = personen.id')
             ->join('taskarten', 'tasks.taskartenid = taskarten.id')
             ->join('spalten', 'tasks.spaltenid = spalten.id')
