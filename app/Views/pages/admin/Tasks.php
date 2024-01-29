@@ -33,6 +33,7 @@
                     <th scope="col" data-sortable="true" data-field="erstelldatum">Erstelldatum</th>
                     <th scope="col" data-sortable="true" data-field="erinnerungsdatum">Erinnerungsdatum</th>
                     <th scope="col" data-field="notizen">Notizen</th>
+                    <th scope="col" data-sortable="true" data-field="sortid">SortID</th>
                     <th scope="col" data-field="bearbeiten">Bearbeiten</th>
                 </tr>
                 </thead>

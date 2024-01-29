@@ -27,7 +27,7 @@ class TasksModel extends Model
             ->join('spalten', 'tasks.spaltenid = spalten.id')
             ->join('boards', 'spalten.boardsid = boards.id')
             ->where('boards.id', $BoardID)
-            ->orderBy('tasks.task', 'DESC')
+            ->orderBy('tasks.sortid')
             ->get()->getResultArray();
     }
 
@@ -39,7 +39,7 @@ class TasksModel extends Model
             ->join('taskarten', 'tasks.taskartenid = taskarten.id')
             ->join('spalten', 'tasks.spaltenid = spalten.id')
             ->join('boards', 'spalten.boardsid = boards.id')
-            ->orderBy('tasks.task', 'DESC')
+            ->orderBy('tasks.sortid')
             ->get()->getResultArray();
     }
 
