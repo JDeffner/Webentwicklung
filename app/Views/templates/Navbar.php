@@ -19,25 +19,28 @@
                 </li>
             </ul>
         </div>
-        <span class="navbar-text me-4" data-bs-toggle="collapse" href="#userCollapse" aria-expanded="false" aria-controls="userCollapse">
-            <?php echo isset($_COOKIE['userid']) ?  $_COOKIE['username'].' '.$_COOKIE['userlastname'] : 'Gast' ?>
-            <?php if($_COOKIE['permissionLevel'] == '2') { ?>
-                <a href="<?php echo base_url('dashboard'); ?>">
-                    <i class="fa-solid fa-user-shield" style="color: #e21d1d;"></i>
+        <div class="navbar-text me-4">
+            <div class="dropdown">
+                <?php echo isset($_COOKIE['userid']) ? $_COOKIE['username'].' '.$_COOKIE['userlastname'] : 'Gast'; ?>
+                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 </a>
-            <?php } else if($_COOKIE['permissionLevel'] == '1') { ?>
-                <a href="<?php echo base_url('benutzer/'.$_COOKIE['userid']); ?>">
-                    <i class="fa-solid fa-user" style="color: #0d46d5;"></i>
-                </a>
-            <?php } else { ?>
-                <i class="fa-solid fa-user" style="color: #21d50d;"></i>
-            <?php } ?>
-
-            <!--                <i class="fa-solid fa-user" style="color: #e21d1d;"></i>-->
-            <div class="collapse" id="userCollapse">
-                <a class="" href="<?php echo base_url();?>">Logout</a>
+                <?php if($_COOKIE['permissionLevel'] == '2') { ?>
+                    <a href="<?php echo base_url('dashboard'); ?>">
+                        <i class="fa-solid fa-user-shield" style="color: #e21d1d;"></i>
+                    </a>
+                <?php } else if($_COOKIE['permissionLevel'] == '1') { ?>
+                    <a href="<?php echo base_url('benutzer/'.$_COOKIE['userid']); ?>">
+                        <i class="fa-solid fa-user" style="color: #0d46d5;"></i>
+                    </a>
+                <?php } else { ?>
+                    <i class="fa-solid fa-user" style="color: #21d50d;"></i>
+                <?php } ?>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="<?php echo base_url();?>">Logout</a></li>
+                </ul>
             </div>
-        </span>
+        </div>
+
 
         <button class="navbar-toggler custom-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdown"
                 aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
