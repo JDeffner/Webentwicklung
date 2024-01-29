@@ -127,7 +127,7 @@ function handleCrud(typeName, pluralTypeName) {
             type: 'post',
             dataType: 'json',
             success: function (response) {
-                let tableRow = response[typeName.toLowerCase()];
+                let tableRow = response[`${typeName.toLowerCase()}`];
                 for (const column in tableRow) {
                     const value = tableRow[column];
                     switch (column) {
