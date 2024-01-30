@@ -1,0 +1,154 @@
+:root {
+  --primary-color: #181434;
+  --secondary-color: #2f2a50;
+  --tertiary-color: #9e92bd;
+  --highlight-color: #5b449f;
+  --hover-highlight-color: #3e2e72;
+  --text-color: #685888;
+  --text-color-contrast: #201933;
+  --background-color: #110f23;
+}
+
+$primary: #685888;
+$secondary: rgba(78, 68, 101, 0.9);
+
+/*!* Navbar style*!*/
+.navbar{
+  background-color: rgba(21, 18, 28, 0.5);
+  box-shadow: 0 0.5em 1em rgba(47, 42, 80, 0.2);
+}
+
+/* Footer Style*/
+footer{
+  /*background-color: var(--primary-color);*/
+  //color: var(--text-color);
+  color: rgba(255, 255, 255, 0.9);
+
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.footer-link {
+  //color: var(--text-color);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+  overflow-y: scroll;
+  /*background-color: var(--background-color);*/
+
+}
+
+main {
+  flex: auto; /* Allow main content to grow and take remaining space */
+  padding-bottom: 1.5em; /* Adjust to the height of the footer */
+}
+
+.custom-scrollbar {
+  /*Hide default scrollbar*/
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Scrollbar style*/
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px; /* Set width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #15121c; /* Track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--tertiary-color); /* Thumb color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight-color); /* Thumb color on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: var(--hover-highlight-color); /* Thumb color on hover */
+}
+
+.fa-solid:hover {
+    color: var(--tertiary-color);
+    cursor: pointer;
+}
+
+
+//.fa-solid:active {
+//    color: var(--tertiary-color) !important;
+//
+//}
+
+// background
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+
+  margin: 0;
+  background-size: 200% 200%;
+  background-image: linear-gradient(45deg, #2d1f42, #111121, #13102a);
+  animation: gradient 10s ease-in-out infinite;
+}
+
+// modals
+.modal-content{
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 2em rgba(47, 42, 80, 0.2);
+}
+
+$modal-header-border-width: 0px;
+$modal-content-bg: rgba(21, 18, 28, 0.6);
+$modal-content-box-shadow-sm-up: 0 0 0 rgba(47, 42, 80, 0.5);
+
+// cards
+$card-bg: rgba(21, 18, 28, 0.4);
+$card-border-width: 2px;
+$card-border-color: rgba(33, 28, 44, 0.4);
+$card-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
+$card-inner-border-radius: 0;
+
+// tables
+.thead {
+  background-color: rgba(47, 29, 87, 0.7) !important;
+}
+$table-bg: rgba(21, 18, 28, 0.4);
+$table-border-width: 2px;
+$table-border-color: rgba(33, 28, 44, 0.4);
+$table-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
+$table-group-separator-color: rgba(76, 64, 110, 0.4);
+
+// pagination
+$pagination-bg: rgba(21, 18, 28, 0.4);
+
+
+// dropdowns
+$dropdown-bg: rgba(46, 39, 73, 0.7);
+$dropdown-border-width: 0;
+$dropdown-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
+
+// form control
+$input-bg: rgba(21, 18, 28, 0.6);
+
+
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";

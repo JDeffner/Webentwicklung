@@ -31,23 +31,24 @@
         </div>
         <div class="navbar-text me-4">
             <div class="dropdown">
-                <?php echo isset($_COOKIE['userid']) ? $_COOKIE['username'].' '.$_COOKIE['userlastname'] : 'Gast'; ?>
-                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                </a>
+                <?php if (isset($_COOKIE['userid'])) : ?>
+                <?= $_COOKIE['username'].' '.$_COOKIE['userlastname'] ?>
                 <?php if($_COOKIE['permissionLevel'] == '2') { ?>
-                    <a href="<?php echo base_url('dashboard'); ?>">
-                        <i class="fa-solid fa-user-shield" style="color: #e21d1d;"></i>
-                    </a>
+                    <i class="fa-solid fa-user-shield dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #e21d1d;"></i>
                 <?php } else if($_COOKIE['permissionLevel'] == '1') { ?>
-                    <a href="<?php echo base_url('benutzer/'.$_COOKIE['userid']); ?>">
-                        <i class="fa-solid fa-user" style="color: #0d46d5;"></i>
-                    </a>
-                <?php } else { ?>
-                    <i class="fa-solid fa-user" style="color: #21d50d;"></i>
+                    <i class="fa-solid fa-user dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0d46d5;"></i>
                 <?php } ?>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<?php echo base_url();?>">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url(); ?>profil"><i class="fa-solid fa-user"></i> Profil</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url();?>anmelden"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 </ul>
+                <?php else : ?>
+                    Gast
+                    <i class="fa-solid fa-user dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #21d50d;"></i>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="<?php echo base_url();?>anmelden"><i class="fa-solid fa-right-to-bracket"></i> Anmelden</a></li>
+                    </ul>
+                <?php endif; ?>
             </div>
         </div>
 

@@ -47,6 +47,7 @@ class Filters extends BaseConfig
                     '/',
                     '/benutzer/*',
                     '/login',
+                    '/anmelden',
                 ],
             ],
 

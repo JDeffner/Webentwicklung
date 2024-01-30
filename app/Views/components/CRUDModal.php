@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <?php if ($modalAction == 'delete') { ?>
                     <form id="delete<?= $modalType ?>Form" data-delete-at="place url here">
-                        <button type="submit" class="btn btn-warning delete-task-btn"><?= $modalType ?> löschen</button>
+                        <button type="submit" class="btn btn-danger delete-task-btn"><?= $modalType ?> löschen</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
                     </form>
                 <?php } else {
