@@ -12,8 +12,7 @@ class loginAuthentification implements FilterInterface
     {
         // Do something here
         if (!isset($_COOKIE['permissionLevel'])) {
-            // Redirect to the root of the web application
-            return redirect()->to('/');
+            return redirect()->to('anmelden');
         }
     }
 

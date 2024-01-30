@@ -16,7 +16,7 @@ class BenutzerController extends BaseController
         setcookie('userlastname', "", time() - 3600, "/");
         setcookie('useremail', "", time() - 3600, "/");
         setcookie('permissionLevel', "", time() - 3600, "/");
-        echo view('pages/BenutzerAnmelden', $data);
+        echo view('pages/user/BenutzerAnmelden', $data);
     }
 
     public function postBenutzerAnmelden()
@@ -31,7 +31,7 @@ class BenutzerController extends BaseController
                     setcookie('userlastname', $person['nachname'], "0", "/");
                     setcookie('useremail', $person['email'], "0", "/");
                     setcookie('permissionLevel', $person['permission'], "0", "/");
-                    $data['redirect'] = base_url('benutzer/'.$person['id']);
+                    $data['redirect'] = base_url('profil');
                     $data['tableName'] = 'loginPersonen';
                     $data['successfulValidation'] = true;
                     return json_encode($data);
@@ -54,7 +54,7 @@ class BenutzerController extends BaseController
         $data = [
             'title' => 'Neuer Benutzer',
         ];
-        echo view('pages/BenutzerErstellen', $data);
+        echo view('pages/user/BenutzerErstellen', $data);
     }
 
     /**
@@ -72,7 +72,7 @@ class BenutzerController extends BaseController
             setcookie('permissionLevel', "1", "0", "/");
             $userid = $personenModel->insertID();
             setcookie('userid', $userid, "0", "/");
-            $data['redirect'] = base_url('benutzer/'.$userid);
+            $data['redirect'] = base_url('wilkommen');
             $data['tableName'] = 'loginPersonen';
             $data['successfulValidation'] = true;
         } else {
@@ -82,15 +82,11 @@ class BenutzerController extends BaseController
         return json_encode($data);
     }
 
-    public function getBenutzer($userid){
-        if ($userid != $_COOKIE['userid']) {
-            return redirect()->to(base_url('denied'));
-        }
-        $personenModel = new PersonenModel();
+    public function getBenutzerWilkommen(){
         $data = [
-            'title' => 'Profil',
+            'title' => 'Willkommen',
         ];
-        echo view('pages/Benutzer', $data);
+        echo view('pages/user/BenutzerWillkommen', $data);
     }
 
     public function getGastAnmelden(){
@@ -100,6 +96,13 @@ class BenutzerController extends BaseController
         setcookie('useremail', "", "0", "/");
         setcookie('permissionLevel', "0", "0", "/");
         return redirect()->to(base_url('tasks'));
+    }
+
+    public function getBenutzerProfil(){
+        $data = [
+            'title' => 'Profil',
+        ];
+        echo view('pages/user/BenutzerProfil', $data);
     }
 
 }
