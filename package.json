@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "node-sass --watch rss/sass/main.scss -o public/resources/css/"
+    "scss": "node-sass --watch public/resources/scss/main.scss -o public/resources/css/"
   },
   "keywords": [],
   "author": "",

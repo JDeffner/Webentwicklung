@@ -10,13 +10,12 @@
 }
 
 $primary: #685888;
-$theme-colors-text: rgba(255, 255, 255, 0.86);
+$secondary: rgba(78, 68, 101, 0.9);
 
 /*!* Navbar style*!*/
 .navbar{
   background-color: rgba(21, 18, 28, 0.5);
-  backdrop-filter: blur(2em);
-  box-shadow: -1em 1em 1em rgba(47, 42, 80, 0.2);
+  box-shadow: 0 0.5em 1em rgba(47, 42, 80, 0.2);
 }
 
 /* Footer Style*/
@@ -89,12 +88,67 @@ main {
 //
 //}
 
-.modal-content{
-  background-color: rgba(21, 18, 28, 0.5);
-  backdrop-filter: blur(2em);
-  //box-shadow: 0 0 0 rgba(47, 42, 80, 0.2);
+// background
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
+body {
+
+  margin: 0;
+  background-size: 200% 200%;
+  background-image: linear-gradient(45deg, #2d1f42, #111121, #13102a);
+  animation: gradient 10s ease-in-out infinite;
+}
+
+// modals
+.modal-content{
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 2em rgba(47, 42, 80, 0.2);
+}
+
+$modal-header-border-width: 0px;
+$modal-content-bg: rgba(21, 18, 28, 0.6);
+$modal-content-box-shadow-sm-up: 0 0 0 rgba(47, 42, 80, 0.5);
+
+// cards
+$card-bg: rgba(21, 18, 28, 0.4);
+$card-border-width: 2px;
+$card-border-color: rgba(33, 28, 44, 0.4);
+$card-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
+$card-inner-border-radius: 0;
+
+// tables
+.thead {
+  background-color: rgba(47, 29, 87, 0.7) !important;
+}
+$table-bg: rgba(21, 18, 28, 0.4);
+$table-border-width: 2px;
+$table-border-color: rgba(33, 28, 44, 0.4);
+$table-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
+$table-group-separator-color: rgba(76, 64, 110, 0.4);
+
+// pagination
+$pagination-bg: rgba(21, 18, 28, 0.4);
 
 
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// dropdowns
+$dropdown-bg: rgba(46, 39, 73, 0.7);
+$dropdown-border-width: 0;
+$dropdown-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
+
+// form control
+$input-bg: rgba(21, 18, 28, 0.6);
+
+
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
