@@ -25,4 +25,4 @@
         <script defer src="<?php echo base_url();?>resources/js/<?= strtolower($title) ?>.js"></script>
     <?php endif; ?>
 </head>
-<body class="custom-scrollbar">
+<body class="custom-scrollbar bg-primary-subtle">

@@ -9,20 +9,11 @@
   --background-color: #110f23; }
 
 /*!* Navbar style*!*/
-/*.navbar{*/
-/*    background-color: var(--primary-color);*/
-/*    --bs-navbar-color: var(--tertiary-color);*/
-/*    --bs-navbar-active-color: var(--text-color);*/
-/*    --bs-navbar-hover-color: var(--highlight-color);*/
-/*    --bs-navbar-toggler-border-color: var(--secondary-color);*/
-/*}*/
-/*.custom-toggler .navbar-toggler-icon {*/
-/*    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(163,163,210, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");*/
-/*    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(163,163,210, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");*/
-/*}*/
-/*.custom-toggler.navbar-toggler {*/
-/*    border-color: var(--tertiary-color);*/
-/*}*/
+.navbar {
+  background-color: rgba(21, 18, 28, 0.5);
+  backdrop-filter: blur(2em);
+  box-shadow: -1em 1em 1em rgba(47, 42, 80, 0.2); }
+
 /* Footer Style*/
 footer {
   /*background-color: var(--primary-color);*/
@@ -62,7 +53,7 @@ main {
   /* Set width of the scrollbar */ }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: none;
+  background: #15121c;
   /* Track color */ }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -82,6 +73,10 @@ main {
 .fa-solid:hover {
   color: var(--tertiary-color);
   cursor: pointer; }
+
+.modal-content {
+  background-color: rgba(21, 18, 28, 0.5);
+  backdrop-filter: blur(2em); }
 
 /*!
    * Bootstrap  v5.3.2 (https://getbootstrap.com/)
