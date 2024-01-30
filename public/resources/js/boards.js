@@ -43,7 +43,7 @@ $(document).on('submit', '#deleteBoardForm', function (e) {
                 alertDiv.append(messageDiv);
                 alertDiv.append(closeButton);
                 // Append the alert above the buttons
-                $('#boards-table-toolbar').before(alertDiv);
+                $('#boardsTable').before(alertDiv);
             }
         }
     });

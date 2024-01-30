@@ -46,7 +46,7 @@ $(document).on('submit', '#deleteSpalteForm', function (e) {
                 alertDiv.append(messageDiv);
                 alertDiv.append(closeButton);
                 // Append the alert above the buttons
-                $('#spalten-table-toolbar').before(alertDiv);
+                $('#spaltenTable').before(alertDiv);
             }
         }
     });
