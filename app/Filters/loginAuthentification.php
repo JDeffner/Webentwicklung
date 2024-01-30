@@ -6,14 +6,13 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class userAuth implements FilterInterface
+class loginAuthentification implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
         // Do something here
         if (!isset($_COOKIE['permissionLevel'])) {
-            // Redirect to the root of the web application
-            return redirect()->to('/');
+            return redirect()->to('anmelden');
         }
     }
 

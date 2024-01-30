@@ -1,4 +1,4 @@
-<form class="crudForm" data-send-to="place url here">
+<form class="minMaxForm" data-send-to="place url here">
     <div class="mb-3">
         <label for="task" class="form-label">Name der Task:</label>
         <div class="input-group">
@@ -13,7 +13,7 @@
             <ul class="dropdown-menu dropdown-menu-end">
                 <?php foreach (($taskarten ?? null) as $taskart): ?>
                 <li>
-                <a class="dropdown-item" onclick="javascript:Taskartupdate('<?= $taskart['id'] ?>','<?= $taskart['taskartenicon'] ?>','<?= $taskart['taskart'] ?>');"><i class="<?= $taskart['taskartenicon'] ?>"></i> <?= $taskart['taskart'] ?></a>
+                <a class="dropdown-item" onclick="Taskartupdate('<?= $taskart['id'] ?>','<?= $taskart['taskartenicon'] ?>','<?= $taskart['taskart'] ?>');"><i class="<?= $taskart['taskartenicon'] ?>"></i> <?= $taskart['taskart'] ?></a>
                 </li>
                 <?php endforeach; ?>
 <!--                <li>-->

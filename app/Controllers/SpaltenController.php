@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Spalten;
-use App\Models\Boards;
+use App\Models\SpaltenModel;
+use App\Models\BoardsModel;
+use ReflectionException;
 
 class SpaltenController extends BaseController
 {
@@ -11,41 +12,40 @@ class SpaltenController extends BaseController
         $data = [
             'title' => 'Spalten',
         ];
-        $spaltenModel = new Spalten();
+        $spaltenModel = new SpaltenModel();
         $data['spalten'] = $spaltenModel->getSpaltenWithBoardName();
-        $boardsModel = new Boards();
-        $data['boards'] = $boardsModel->getAllData();
+        $boardsModel = new BoardsModel();
+        $data['boards'] = $boardsModel->findAll();
         echo view('pages/Spalten', $data);
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function postSpalteErstellen()
     {
-        if($this->validation->run($_POST, 'spaltenErstellen')){
-            $SpaltenModel = new Spalten();
-            $SpaltenModel->save($_POST);
+        $spaltenModel = new SpaltenModel();
+        if($spaltenModel->save($_POST)){
+            $data['tableName'] = 'spalten';
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $spaltenModel->errors();
             $data['successfulValidation'] = false;
-
         }
         return json_encode($data);
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function postSpalteBearbeiten($spaltenid)
     {
-        if($this->validation->run($_POST, 'spaltenBearbeiten')){
-            $SpaltenModel = new Spalten();
-            $SpaltenModel->update($spaltenid, $_POST);
+        $spaltenModel = new SpaltenModel();
+        if($spaltenModel->update($spaltenid, $_POST)){
+            $data['tableName'] = 'spalten';
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $spaltenModel->errors();
             $data['successfulValidation'] = false;
         }
         return json_encode($data);
@@ -53,9 +53,27 @@ class SpaltenController extends BaseController
 
     public function postSpalteLoeschen($spaltenid)
     {
-        $SpaltenModel = new Spalten();
-        $SpaltenModel->delete($spaltenid);
-        return redirect()->to(base_url().'spalten');
+        $spaltenModel = new SpaltenModel();
+        if($spaltenModel->delete($spaltenid)) {
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = [ 'deletion' => 'Spalte konnte nicht gelöscht werden, da sie noch Tasks enthält'];
+            $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
     }
 
+    public function getRawData()
+    {
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->getSpaltenWithBoardName();
+        return json_encode($data);
+    }
+
+    public function postSpaltenInfo($spaltenid)
+    {
+        $spaltenModel = new SpaltenModel();
+        $data['spalte'] = $spaltenModel->find($spaltenid);
+        return json_encode($data);
+    }
 }

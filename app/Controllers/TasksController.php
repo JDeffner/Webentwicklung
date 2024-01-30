@@ -1,36 +1,36 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Tasks;
-use App\Models\Personen;
-use App\Models\Spalten;
-use App\Models\Boards;
-use App\Models\Taskarten;
+use App\Models\TasksModel;
+use App\Models\PersonenModel;
+use App\Models\SpaltenModel;
+use App\Models\BoardsModel;
+use App\Models\TaskartenModel;
 use ReflectionException;
 
 class TasksController extends BaseController
 {
 
 
-    public function index($boardID)
+    public function index()
     {
+        $defaultBoardID = '1';
         $data = [
             'title' => 'Tasks',
-            'boardID' => $boardID,
+            'boardID' => $defaultBoardID,
         ];
-        $tasksModel = new Tasks();
-        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
-        $personenModel = new Personen();
-        $data['personen'] = $personenModel->getSecureData();
-        $spaltenModel = new Spalten();
-        $data['spalten'] = $spaltenModel->getAllData();
-        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($boardID);
-        $boardsModel = new Boards();
-        $data['boards'] = $boardsModel->getAllData();
-        $data['boardName'] = $boardsModel->getBoardName($boardID)[0]['board'];
-//        var_dump($data['boardName']);
-        $taskartenModel = new Taskarten();
-        $data['taskarten'] = $taskartenModel->getAllData();
+        $tasksModel = new TasksModel();
+        $data['tasks'] = $tasksModel->getTasksFromBoard($defaultBoardID);
+        $personenModel = new PersonenModel();
+        $data['personen'] = $personenModel->getDashboardData();
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->findAll();
+        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($defaultBoardID);
+        $boardsModel = new BoardsModel();
+        $data['boards'] = $boardsModel->findAll();
+        $data['boardName'] = $boardsModel->getBoardName($defaultBoardID)[0]['board'];
+        $taskartenModel = new TaskartenModel();
+        $data['taskarten'] = $taskartenModel->findAll();
 
         echo view('pages/Tasks', $data);
     }
@@ -42,12 +42,15 @@ class TasksController extends BaseController
      */
     public function postTaskErstellen()
     {
-        if($this->validation->run($_POST, 'tasksErstellen')){
-            $TaskModel = new Tasks();
-            $TaskModel->save($_POST);
+
+        $taskModel = new TasksModel();
+        if($taskModel->save($_POST)){
+            $data['taskid'] = $taskModel->getInsertID();
+            $data['spaletenid'] = $_POST['spaltenid'];
+            $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $taskModel->errors();
             $data['successfulValidation'] = false;
 
         }
@@ -55,13 +58,18 @@ class TasksController extends BaseController
 
     }
 
-    public function postTaskLoeschen($boardid,$taskid)
+    public function postTaskLoeschen($taskid)
     {
-        $TaskModel = new Tasks();
-        $TaskModel->delete($taskid);
-//        var_dump($id);
+        $TaskModel = new TasksModel();
+        if ($TaskModel->delete($taskid)) {
+            $data['taskid'] = $taskid;
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = ['deletion' => 'Task konnte nicht gelöscht werden'];
+            $data['successfulValidation'] = false;
+        }
 
-        return redirect()->to(base_url().'tasks/'.$boardid);
+        return json_encode($data);
 
     }
 
@@ -74,16 +82,57 @@ class TasksController extends BaseController
             // If 'erinnerung' is not set, set it to 0
             $_POST['erinnerung'] = '0';
         }
-
-
-        if($this->validation->run($_POST, 'tasksBearbeiten')){
-            $TaskModel = new Tasks();
-            $TaskModel->update($taskid, $_POST);
+        $taskModel = new TasksModel();
+        if($taskModel->update($taskid, $_POST)){
+            $data['taskid'] = $taskid;
+            $data['spaletenid'] = $_POST['spaltenid'];
+            $data['tableName'] = 'tasks';
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $taskModel->errors();
             $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
+    }
 
+    public function postTaskInfo($taskid)
+    {
+        $taskModel = new TasksModel();
+        $data['task'] = $taskModel->find($taskid);
+        $taskartenModel = new TaskartenModel();
+        $data['taskarten'] = $taskartenModel->find($data['task']['taskartenid']);
+        return json_encode($data);
+    }
+
+    public function getRawDataBoard($boardID)
+    {
+        $tasksModel = new TasksModel();
+        $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
+        $spaltenModel = new SpaltenModel();
+        $data['spalten'] = $spaltenModel->getSpaltenForBoard($boardID);
+        return json_encode($data);
+    }
+
+    public function getRawData()
+    {
+        $tasksModel = new TasksModel();
+        $data['tasks'] = $tasksModel->getTasksWithAllNames();
+        return json_encode($data);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function postTaskSpalteBearbeiten($taskid, $spaltenid)
+    {
+        $taskModel = new TasksModel();
+        $data['taskid'] = $taskid;
+        $data['spaltenid'] = $spaltenid;
+        if ($taskModel->update($taskid, ['spaltenid' => $spaltenid])) {
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $taskModel->errors();
+            $data['successfulValidation'] = false;
         }
         return json_encode($data);
     }

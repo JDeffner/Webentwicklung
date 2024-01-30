@@ -42,7 +42,7 @@ class Validation extends BaseConfig
     // Rules
     // --------------------------------------------------------------------
 
-    public array $spaltenErstellen = [
+    public array $spalten = [
         'spalte' => [
             'label' => 'Spaltenname',
             'rules' => 'required|min_length[3]|max_length[40]',
@@ -77,42 +77,7 @@ class Validation extends BaseConfig
         ],
     ];
 
-    public array $spaltenBearbeiten = [
-        'spalte' => [
-            'label' => 'Spaltenname',
-            'rules' => 'required|min_length[3]|max_length[40]',
-            'errors' => [
-                'required' => 'Bitte geben Sie einen {field}n an.',
-                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
-                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-        'boardsid' => [
-            'label' => 'Board',
-            'rules' => 'required|integer',
-            'errors' => [
-                'required' => 'Bitte wählen Sie ein {field} aus.',
-                'integer' => 'Bitte wählen Sie ein {field} aus.',
-            ],
-        ],
-        'sortid' => [
-            'label' => 'Sortierungsnummer',
-            'rules' => 'required|integer',
-            'errors' => [
-                'required' => 'Bitte geben Sie eine {field} an.',
-                'integer' => 'Bitte geben Sie eine {field} an.',
-            ],
-        ],
-        'spaltenbeschreibung' => [
-            'label' => 'Spaltenbeschreibung',
-            'rules' => 'max_length[60]',
-            'errors' => [
-                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-    ];
-
-    public array $tasksErstellen = [
+    public array $tasks = [
         'task' => [
             'label' => 'Taskname',
             'rules' => 'required|min_length[3]|max_length[40]',
@@ -155,50 +120,7 @@ class Validation extends BaseConfig
         ],
     ];
 
-    public array $tasksBearbeiten = [
-        'task' => [
-            'label' => 'Taskname',
-            'rules' => 'required|min_length[3]|max_length[40]',
-            'errors' => [
-                'required' => 'Bitte geben Sie einen {field}n an.',
-                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
-                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-        'taskartenid' => [
-            'label' => 'Taskart',
-            'rules' => 'required|integer',
-            'errors' => [
-                'required' => 'Bitte wählen Sie eine {field} aus.',
-                'integer' => 'Bitte wählen Sie eine {field} aus.',
-            ],
-        ],
-        'spaltenid' => [
-            'label' => 'Spalte',
-            'rules' => 'required|integer',
-            'errors' => [
-                'required' => 'Bitte wählen Sie eine {field} aus.',
-                'integer' => 'Bitte wählen Sie eine {field} aus.',
-            ],
-        ],
-        'personenid' => [
-            'label' => 'Person',
-            'rules' => 'required|integer',
-            'errors' => [
-                'required' => 'Bitte wählen Sie eine {field} aus.',
-                'integer' => 'Bitte wählen Sie eine {field} aus.',
-            ],
-        ],
-        'notizen' => [
-            'label' => 'Notizen',
-            'rules' => 'max_length[255]',
-            'errors' => [
-                'max_length' => 'Die {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-    ];
-
-    public array $boardsErstellen = [
+    public array $boards = [
         'board' => [
             'label' => 'Boardname',
             'rules' => 'required|min_length[3]|max_length[40]',
@@ -210,19 +132,7 @@ class Validation extends BaseConfig
         ],
     ];
 
-    public array $boardsBearbeiten = [
-        'board' => [
-            'label' => 'Boardname',
-            'rules' => 'required|min_length[3]|max_length[40]',
-            'errors' => [
-                'required' => 'Bitte geben Sie einen {field}n an.',
-                'min_length' => 'Der {field} muss mindestens {param} Zeichen lang sein.',
-                'max_length' => 'Der {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-    ];
-
-    public array $benutzerErstellen = [
+    public array $personen = [
         'vorname' => [
             'label' => 'Vorname',
             'rules' => 'required|min_length[3]|max_length[40]',
@@ -252,19 +162,10 @@ class Validation extends BaseConfig
         ],
         'passwort' => [
             'label' => 'Passwort',
-            'rules' => 'required|min_length[4]|max_length[40]',
+            'rules' => 'required|min_length[4]',
             'errors' => [
                 'required' => 'Bitte geben Sie ein {field} an.',
                 'min_length' => 'Das {field} muss mindestens {param} Zeichen lang sein.',
-                'max_length' => 'Das {field} darf maximal {param} Zeichen lang sein.',
-            ],
-        ],
-        'passwortWiederholen' => [
-            'label' => 'Passwort wiederholen',
-            'rules' => 'required|matches[passwort]',
-            'errors' => [
-                'required' => 'Bitte geben Sie das Passwort erneut ein.',
-                'matches' => 'Die Passwörter stimmen nicht überein.',
             ],
         ],
     ];

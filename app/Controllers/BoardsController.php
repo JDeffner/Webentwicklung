@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\Boards;
+use App\Models\BoardsModel;
+use ReflectionException;
 
 class BoardsController extends BaseController
 {
@@ -16,19 +17,22 @@ class BoardsController extends BaseController
 
     public function getRawData()
     {
-        $BoardsModel = new Boards();
-        $data['boards'] = $BoardsModel->getAllData();
+        $BoardsModel = new BoardsModel();
+        $data['boards'] = $BoardsModel->findAll();
         return json_encode($data);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function postBoardErstellen()
     {
-        if($this->validation->run($_POST, 'boardsErstellen')){
-            $BoardsModel = new Boards();
-            $BoardsModel->save($_POST);
+        $boardsModel = new BoardsModel();
+        if($boardsModel->save($_POST)){
+            $data['tableName'] = 'boards';
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $boardsModel->errors();
             $data['successfulValidation'] = false;
 
         }
@@ -36,14 +40,17 @@ class BoardsController extends BaseController
 
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function postBoardBearbeiten($boardid)
     {
-        if($this->validation->run($_POST, 'boardsBearbeiten')){
-            $BoardsModel = new Boards();
-            $BoardsModel->update($boardid, $_POST);
+        $boardsModel = new BoardsModel();
+        if($boardsModel->update($boardid, $_POST)){
+            $data['tableName'] = 'boards';
             $data['successfulValidation'] = true;
         } else {
-            $data['error'] = $this->validation->getErrors();
+            $data['error'] = $boardsModel->errors();
             $data['successfulValidation'] = false;
 
         }
@@ -53,9 +60,20 @@ class BoardsController extends BaseController
 
     public function postBoardLoeschen($boardid)
     {
-        $BoardsModel = new Boards();
-        $BoardsModel->delete($boardid);
-        return redirect()->to(base_url().'boards');
+        $boardsModel = new BoardsModel();
+        if($boardsModel->delete($boardid)){
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = [ 'deletion' => 'Sie können dieses Board nicht löschen, da es noch Spalten enthält'];
+            $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
     }
 
+    public function postBoardInfo($boardid)
+    {
+        $boardsModel = new BoardsModel();
+        $data['board'] = $boardsModel->find($boardid);
+        return json_encode($data);
+    }
 }

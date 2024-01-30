@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class adminAuth implements FilterInterface
+class adminAuthentification implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
