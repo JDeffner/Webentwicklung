@@ -5,6 +5,7 @@ let formRequest    Declared in main.js
 let update = false;
 $(document).ready(function () {
     onSucheChange();
+    reloadTaskBoard($('#boardidDropdown').val())
 });
 function onSucheChange() {
     let timeout = null;
@@ -129,14 +130,6 @@ function reloadTaskBoard(boardId) {
                             </table>
                             <i data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton" data-bs-toggle="modal"
                                data-task="${value.task}"
-                               data-taskartenid="${value.taskartenid}"
-                               data-taskartenicon="${value.taskartenicon}"
-                               data-taskart="${value.taskart}"
-                               data-spaltenid="${value.spaltenid}"
-                               data-personenid="${value.personenid}"
-                               data-erinnerungsdatum="${value.erinnerungsdatum}"
-                               data-erinnerung="${value.erinnerung}"
-                               data-notizen="${value.notizen}"
                                data-id="${value.id}">
                             </i>
                             <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal"

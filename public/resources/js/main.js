@@ -107,12 +107,14 @@ $(document).ready(function () {
 });
 
 function handleCrud(typeName, pluralTypeName) {
+
     // Create
     $(document).on('click', `.create${typeName}Button`, function () {
         const createModal = $(`#create${typeName}Modal`);
         createModal.find(`#create${typeName}ModalLabel`).text(`${typeName} erstellen`);
         createModal.find('.minMaxForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/erstellen`);
     });
+
     // Edit
     $(document).on('click', `.edit${typeName}Button`, function () {
 
@@ -128,6 +130,7 @@ function handleCrud(typeName, pluralTypeName) {
             dataType: 'json',
             success: function (response) {
                 let tableRow = response[`${typeName.toLowerCase()}`];
+                console.log(tableRow);
                 for (const column in tableRow) {
                     const value = tableRow[column];
                     switch (column) {
