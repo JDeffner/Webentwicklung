@@ -3523,9 +3523,9 @@ textarea.form-control-lg {
   --bs-card-subtitle-color: ;
   --bs-card-border-width: 0;
   --bs-card-border-color: rgba(33, 28, 44, 0.4);
-  --bs-card-border-radius: 1.5rem;
+  --bs-card-border-radius: 1rem;
   --bs-card-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
-  --bs-card-inner-border-radius: 1.5rem;
+  --bs-card-inner-border-radius: 1rem;
   --bs-card-cap-padding-y: 0.5rem;
   --bs-card-cap-padding-x: 1rem;
   --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);

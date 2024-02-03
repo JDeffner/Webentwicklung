@@ -7,6 +7,8 @@
     --text-color: #685888;
     --text-color-contrast: #201933;
     --background-color: #110f23;
+    --mouse-x: 0;
+    --mouse-y: 0;
 }
 
 .dragging {
@@ -50,7 +52,20 @@ a {
     border-width: 0.2em;
     border-color: var(--secondary-color);
     color: var(--text-color);
+    backdrop-filter: blur(3px);
 }
+
+/*.task::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    border-radius: inherit;*/
+/*    background: radial-gradient(20em circle at var(--mouse-x) var(--mouse-y), rgba(74, 60, 112, 0.3), transparent 40%);*/
+/*    z-index: 2;*/
+/*}*/
 
 /* Footer Style*/
 footer {
@@ -144,8 +159,8 @@ main {
 body {
     margin: 0;
     background-size: 200% 200%;
-    background-image: linear-gradient(45deg, #4d3570, #2b2552, #312781);
-    animation: gradient 9s ease-in-out infinite;
+    background-image: linear-gradient(0deg,  #2d1f42, #13102a);
+    animation: gradient 10s ease-in-out infinite;
 }
 
 .modal-content {

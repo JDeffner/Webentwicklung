@@ -5,7 +5,7 @@ let formRequest    Declared in main.js
 let update = false;
 $(document).ready(function () {
     onSucheChange();
-    reloadTaskBoard($('#boardidDropdown').val())
+    reloadTaskBoard($('#boardidDropdown').val());
 });
 function onSucheChange() {
     let timeout = null;
@@ -265,3 +265,17 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
         }
     });
 });
+
+// for(const task of document.querySelectorAll('.task')) {
+//     task.onmousemove = e => handleOnMouseMove(e);
+// }
+// const handleOnMouseMove = e => {
+//     const { currentTarget: target } = e;
+//
+//     const rect = target.getBoundingClientRect(),
+//         x = e.clientX - rect.left,
+//         y = e.clientY - rect.top;
+//
+//     target.style.setProperty('--mouse-x', `${ x }px`);
+//     target.style.setProperty('--mouse-y', `${ y }px`);
+// }
