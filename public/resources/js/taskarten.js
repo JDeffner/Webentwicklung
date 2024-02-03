@@ -10,9 +10,9 @@ function taskartenAjaxRequest(params) {
         dataType: 'json',
         success: function (response) {
             response.taskarten.forEach(function(taskart) {
-                taskart.bearbeiten = `<i class="fa-solid fa-pen-to-square editTaskartButton" data-bs-toggle="modal" data-bs-target="#editTaskartModal" 
+                taskart.bearbeiten = `<i class="fa-solid fa-pen-to-square iconClickable editTaskartButton" data-bs-toggle="modal" data-bs-target="#editTaskartModal" 
                                 data-id="${taskart.id}" data-taskart="${taskart.taskart}"></i>
-                                <i class="fa-solid fa-trash deleteTaskartButton" data-bs-toggle="modal" data-bs-target="#deleteTaskartModal" 
+                                <i class="fa-solid fa-trash iconClickable deleteTaskartButton" data-bs-toggle="modal" data-bs-target="#deleteTaskartModal" 
                                 data-id="${taskart.id}" data-taskart="${taskart.taskart}"></i>`;
             });
             params.success({

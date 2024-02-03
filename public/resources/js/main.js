@@ -107,12 +107,14 @@ $(document).ready(function () {
 });
 
 function handleCrud(typeName, pluralTypeName) {
+
     // Create
     $(document).on('click', `.create${typeName}Button`, function () {
         const createModal = $(`#create${typeName}Modal`);
         createModal.find(`#create${typeName}ModalLabel`).text(`${typeName} erstellen`);
         createModal.find('.minMaxForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/erstellen`);
     });
+
     // Edit
     $(document).on('click', `.edit${typeName}Button`, function () {
 
@@ -128,6 +130,7 @@ function handleCrud(typeName, pluralTypeName) {
             dataType: 'json',
             success: function (response) {
                 let tableRow = response[`${typeName.toLowerCase()}`];
+                console.log(tableRow);
                 for (const column in tableRow) {
                     const value = tableRow[column];
                     switch (column) {
@@ -164,6 +167,49 @@ function handleCrud(typeName, pluralTypeName) {
         const typeInstanceName = $(this).data(typeName.toLowerCase());
         $(`#delete${typeName}ModalLabel`).text(`Wollen Sie "${typeInstanceName}" wirklich löschen?`);
         $(`#delete${typeName}Form`).attr('data-delete-at', BASE_URL + `${pluralTypeName.toLowerCase()}/loeschen/` + typeInstanceID);
+    });
+
+    // Copy
+    $(document).on('click', `.copy${typeName}Button`, function () {
+        const typeInstanceID = $(this).data('id');
+        const typeInstanceName = $(this).data(typeName.toLowerCase());
+
+        const copyModal = $(`#copy${typeName}Modal`);
+
+        // ajax request to get the data
+        $.ajax({
+            url: BASE_URL + `${pluralTypeName.toLowerCase()}/${typeName.toLowerCase()}/${typeInstanceID}`,
+            type: 'post',
+            dataType: 'json',
+            success: function (response) {
+                let tableRow = response[`${typeName.toLowerCase()}`];
+                console.log(tableRow);
+                for (const column in tableRow) {
+                    const value = tableRow[column];
+                    switch (column) {
+                        case 'taskartenid':
+                            copyModal.find('#taskartenid').val(value);
+                            let taskartenicon = response['taskarten']['taskartenicon'];
+                            let taskart = response['taskarten']['taskart'];
+                            copyModal.find('#btnTaskart span').html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+                            break;
+                        case 'erinnerung':
+                            if (value === '1') {
+                                copyModal.find('#erinnerung').prop('checked', true)
+                                copyModal.find('#erinnerungsdatum').removeAttr('disabled');
+                            } else {
+                                copyModal.find('#erinnerung').prop('checked', false)
+                                copyModal.find('#erinnerungsdatum').attr('disabled', '');
+                            }
+                            break;
+                        default:
+                            copyModal.find(`#${column}`).val(value);
+                    }
+                }
+            }
+        });
+        copyModal.find(`#copy${typeName}ModalLabel`).text(`"${typeInstanceName}" kopieren`);
+        copyModal.find('.minMaxForm').attr('data-send-to', BASE_URL + `${pluralTypeName.toLowerCase()}/erstellen`);
     });
 }
 

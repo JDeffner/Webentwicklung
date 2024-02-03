@@ -5,6 +5,7 @@ let formRequest    Declared in main.js
 let update = false;
 $(document).ready(function () {
     onSucheChange();
+    reloadTaskBoard($('#boardidDropdown').val());
 });
 function onSucheChange() {
     let timeout = null;
@@ -104,46 +105,100 @@ function reloadTaskBoard(boardId) {
                 `);
             });
             response.tasks.forEach((value) => {
-                $(`#spalte${value.spaltenid}`).append(`
-                    <div class="card my-1 task cursor-grab" id="task${value.id}" data-id="${value.id}">
+                let formattedErinnerungsdatum = '';
+                let erinnerungsGlocke = '';
+                let options = {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                if (value.erinnerung === '1') {
+                    let erinnerungsdatum = new Date(value.erinnerungsdatum);
+
+                    formattedErinnerungsdatum = erinnerungsdatum.toLocaleDateString('de-DE', options);
+
+
+                    let timeDiff = erinnerungsdatum - new Date();
+                    let daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+
+                    if (daysDiff > 2) {
+                        erinnerungsGlocke = 'fa-regular fa-bell fa-fw';
+                    } else if (daysDiff > 0) {
+                        erinnerungsGlocke = 'fa-regular fa-bell fa-fw text-warning';
+                    } else {
+                        erinnerungsGlocke = 'fa-regular fa-bell fa-fw text-danger';
+                    }
+                } else {
+                    erinnerungsGlocke = 'fa-regular fa-bell-slash fa-fw text-secondary';
+                }
+                $(`#spalte${value.spaltenid}`).append(`         
+                    <div id="task${value.id}"  class="card my-2 task cursor-grab" data-id="${value.id}">
                         <div class="card-body">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Name</th>
-                                        <td class="searchable">${value.task}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Notiz</th>
-                                        <td>${value.notizen}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Erinnerungsdatum</th>
-                                        <td>${value.erinnerungsdatum}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Zugeteilte Person</th>
-                                        <td class="searchable">${value.vorname} ${value.nachname}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <i data-bs-target="#editTaskModal" class="fa-solid fa-pen-to-square editTaskButton" data-bs-toggle="modal"
-                               data-task="${value.task}"
-                               data-taskartenid="${value.taskartenid}"
-                               data-taskartenicon="${value.taskartenicon}"
-                               data-taskart="${value.taskart}"
-                               data-spaltenid="${value.spaltenid}"
-                               data-personenid="${value.personenid}"
-                               data-erinnerungsdatum="${value.erinnerungsdatum}"
-                               data-erinnerung="${value.erinnerung}"
-                               data-notizen="${value.notizen}"
-                               data-id="${value.id}">
-                            </i>
-                            <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal"
-                               data-id="${value.id}"
-                               data-boards-id="${value.boardsid}"
-                               data-task="${value.task}">
-                            </i>
+                        <!-- Titel -->
+                            <div class="d-flex justify-content-between mb-1">
+                                <a class="editTaskButton searchable" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
+                                        data-id="${value.id}" data-task="${value.task}">
+                                    <i class="${value.taskartenicon} fa-fw" title="ToDo"></i> ${value.task}                                                       
+                                </a>
+                                <span class="dropdown position-static">
+                                    <a class="btn btn-link ps-0 pt-0 pb-0 pe-0" role="button" data-bs-toggle="dropdown" data-boundary="viewport" 
+                                    aria-haspopup="true" aria-expanded="false" title="Aktionen">
+                                        <i class="fas fa-caret-square-down text-primary"></i>
+                                    </a>
+                                   
+                                    <div class="dropdown-menu"> 
+                                        <li>
+                                            <a class="dropdown-item copyTaskButton" data-bs-toggle="modal" data-bs-target="#copyTaskModal"
+                                                data-id="${value.id}" data-task="${value.task}">
+                                                <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-copy"></i></span>
+                                                Task kopieren
+                                            </a>
+                                        </li>
+                            
+                                        <li>
+                                            <a class="dropdown-item editTaskButton" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
+                                                data-id="${value.id}" data-task="${value.task}">
+                                                <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-pen-to-square"></i></span>
+                                                Task bearbeiten
+                                            </a>
+                                        </li>
+                            
+                                        <li>
+                                            <a class="dropdown-item deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" 
+                                                data-id="${value.id}" data-boards-id="${value.boardsid}" data-task="${value.task}">
+                                                <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-trash"></i></span>
+                                                Task löschen
+                                            </a>
+                                        </li>
+                                    </div>
+                                </span>
+                            </div>
+                    
+                            <!-- Kontakt und Erinnerungsdatum -->
+                            <div class="mb-1 d-flex justify-content-between">
+                                <div class="text-primary">
+                                    <i class="fa-solid fa-circle-up fa-fw"></i> ${new Date(value.erstelldatum).toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit', year: '2-digit'})}                                                       
+                                </div>
+                                <div class="text-primary">
+                                    <i class="${erinnerungsGlocke}"></i> ${formattedErinnerungsdatum}                                                    
+                                </div>
+                            </div>
+                            <div class="d-flex pt-1 justify-content-between">
+                                 <div class="text-primary">
+                                    ${value.notizen}
+                                 </div>
+                            </div>
+                            <!-- Dokumentenart, Mitarbeiter, etc -->
+                            <div class="searchable" hidden>${value.vorname} ${value.nachname}</div>
+                            <div class="d-flex pt-1 justify-content-between">
+                                <div></div>
+                                <span class="rounded-circle text-xs personenkuerzel" title="${value.vorname} ${value.nachname}"
+                                      style="color: #FFFFFF; background: #6f58a1;">
+                                    ${value.vorname.substring(0, 1)}${value.nachname.substring(0, 1)}                                                       
+                                </span>
+                            </div>
                         </div>
                     </div>
                 `);
@@ -210,3 +265,17 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
         }
     });
 });
+
+// for(const task of document.querySelectorAll('.task')) {
+//     task.onmousemove = e => handleOnMouseMove(e);
+// }
+// const handleOnMouseMove = e => {
+//     const { currentTarget: target } = e;
+//
+//     const rect = target.getBoundingClientRect(),
+//         x = e.clientX - rect.left,
+//         y = e.clientY - rect.top;
+//
+//     target.style.setProperty('--mouse-x', `${ x }px`);
+//     target.style.setProperty('--mouse-y', `${ y }px`);
+// }

@@ -48,4 +48,7 @@
 <!-- Delete Spalte Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Spalte') ?>
 
+<!-- Copy Spalte Modal -->
+<?= view_cell('CrudModals::copyModal','type=Spalte') ?>
+
 <?= $this->endSection() ?>

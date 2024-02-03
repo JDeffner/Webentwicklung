@@ -10,11 +10,15 @@ function spaltenAjaxRequest(params) {
         dataType: 'json',
         success: function (response) {
             response.spalten.forEach(function(spalte) {
-                spalte.bearbeiten = `<i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" 
-                                data-id="${spalte.id}" data-spalte="${spalte.spalte}" data-spaltenbeschreibung="${spalte.spaltenbeschreibung}" 
-                                data-board="${spalte.board}" data-boardsid="${spalte.boardsid}" data-sortid="${spalte.sortid}"></i>
-                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" 
-                                data-id="${spalte.id}" data-spalte="${spalte.spalte}"></i>`;
+                spalte.bearbeiten = `
+                                <i class="fas fa-solid fa-copy iconClickable copySpalteButton" data-id="${spalte.id}" data-spalte="${spalte.spalte}"
+                                data-bs-target="#copySpalteModal" data-bs-toggle="modal" title="Spalte kopieren"></i>
+                                <i class="fa-solid fa-pen-to-square iconClickable editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" 
+                                data-id="${spalte.id}" data-spalte="${spalte.spalte}"
+                                title="Spalte bearbeiten"></i>
+                                <i class="fa-solid fa-trash iconClickable deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" 
+                                data-id="${spalte.id}" data-spalte="${spalte.spalte}"
+                                title="Spalte löschen"></i>`;
             });
             params.success({
                 total: response.spalten.length,
@@ -46,7 +50,7 @@ $(document).on('submit', '#deleteSpalteForm', function (e) {
                 alertDiv.append(messageDiv);
                 alertDiv.append(closeButton);
                 // Append the alert above the buttons
-                $('#spalten-table-toolbar').before(alertDiv);
+                $('#spaltenTable').before(alertDiv);
             }
         }
     });

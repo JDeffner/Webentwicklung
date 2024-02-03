@@ -3,9 +3,6 @@
         <label for="task" class="form-label">Name der Task:</label>
         <div class="input-group">
             <input type="text" class="form-control rounded-end" id="task" placeholder="Bezeichnung der Task..." name="task" >
-<!--            <select class="form-select ms-2 rounded-start" id="taskartenid" name="taskartenid">-->
-<!---->
-<!--            </select>-->
             <input type="hidden" id="taskartenid" name="taskartenid" value="1">
             <button class="btn btn-secondary ms-2 dropdown-toggle rounded" type="button" id="btnTaskart" data-bs-toggle="dropdown" aria-expanded="false">
                 <span><i class="fa-solid fa-house-chimney"></i> Besuch</span>
@@ -16,9 +13,6 @@
                 <a class="dropdown-item" onclick="Taskartupdate('<?= $taskart['id'] ?>','<?= $taskart['taskartenicon'] ?>','<?= $taskart['taskart'] ?>');"><i class="<?= $taskart['taskartenicon'] ?>"></i> <?= $taskart['taskart'] ?></a>
                 </li>
                 <?php endforeach; ?>
-<!--                <li>-->
-<!--                    <a class="dropdown-item" href="#" onclick="Taskartupdate('3', 'fa-solid fa-house-chimney', 'Besuch');"><i class="fa-solid fa-house-chimney"></i> Besuch </a>-->
-<!--                </li>-->
             </ul>
         </div>
 
@@ -58,13 +52,7 @@
         <div class="col input-group">
             <div class="input-group-text">
                 <input class="form-check-input mt-0" type="checkbox" value="1" id="erinnerung" aria-label="Checkbox that determines if a reminder is saved" name="erinnerung">
-
-
-<!--                <input title="Erinnerung" id="erinnerungCheckbox" class="form-check-input mt-0" type="checkbox" value="1">-->
-<!--                <input type="hidden" id="erinnerung" name="erinnerung" value="0">-->
             </div>
-
-            <!--                        <span class="input-group-text">am</span>-->
             <input type="datetime-local" data-provide="datepicker" class="form-control erinnerungsdatum" id="erinnerungsdatum"
                    placeholder="Datum" name="erinnerungsdatum"
                    data-np-intersection-state="observed" disabled>

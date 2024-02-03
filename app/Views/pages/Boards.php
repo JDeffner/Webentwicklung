@@ -39,4 +39,7 @@
 <!-- Delete Board Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Board') ?>
 
+<!-- Copy Board Modal -->
+<?= view_cell('CrudModals::copyModal','type=Board') ?>
+
 <?= $this->endSection() ?>

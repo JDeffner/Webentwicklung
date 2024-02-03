@@ -8,7 +8,10 @@ class ErrorController extends BaseController
 {
     public function index()
     {
-        echo view('errors/AccessDenied');
+        $data = [
+            'title' => 'Zugriff verweigert',
+        ];
+        echo view('errors/AccessDenied', $data);
     }
 
 
