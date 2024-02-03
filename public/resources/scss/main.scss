@@ -4,14 +4,15 @@ $secondary: rgba(78, 68, 101, 0.9);
 
 $modal-header-border-width: 0px;
 $modal-content-bg: rgba(21, 18, 28, 0.6);
-$modal-content-box-shadow-sm-up: 0 0 0 rgba(47, 42, 80, 0.5);
+//$modal-content-box-shadow-sm-up: 0 0 0 rgba(47, 42, 80, 0.5);
 
 // cards
 $card-bg: rgba(21, 18, 28, 0.4);
-$card-border-width: 2px;
+$card-border-width: 0;
 $card-border-color: rgba(33, 28, 44, 0.4);
 $card-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
-$card-inner-border-radius: 0;
+$card-border-radius: 1.5rem;
+//$card-color: #fd0000;
 
 // tables
 $table-bg: rgba(21, 18, 28, 0.4);

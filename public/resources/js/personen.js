@@ -10,9 +10,9 @@ function personenAjaxRequest(params) {
         dataType: 'json',
         success: function (response) {
             response.personen.forEach(function(person) {
-                person.bearbeiten = `<i class="fa-solid fa-pen-to-square editPersonButton" data-bs-toggle="modal" data-bs-target="#editPersonModal" 
+                person.bearbeiten = `<i class="fa-solid fa-pen-to-square iconClickable editPersonButton" data-bs-toggle="modal" data-bs-target="#editPersonModal" 
                                 data-id="${person.id}" data-vorname="${person.vorname}" data-nachname="${person.nachname}" data-person="${person.vorname} ${person.nachname}" data-email="${person.email}" data-permission="${person.permission}"></i>
-                                <i class="fa-solid fa-trash deletePersonButton" data-bs-toggle="modal" data-bs-target="#deletePersonModal" 
+                                <i class="fa-solid fa-trash iconClickable deletePersonButton" data-bs-toggle="modal" data-bs-target="#deletePersonModal" 
                                 data-id="${person.id}" data-person="${person.vorname} ${person.nachname}"></i>`;
                 if (person.permission === '2') {
                     person.permission = 'Administrator';

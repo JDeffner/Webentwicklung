@@ -11,12 +11,12 @@ function spaltenAjaxRequest(params) {
         success: function (response) {
             response.spalten.forEach(function(spalte) {
                 spalte.bearbeiten = `
-                                <i class="fas fa-solid fa-copy copySpalteButton" data-id="${spalte.id}" data-spalte="${spalte.spalte}"
+                                <i class="fas fa-solid fa-copy iconClickable copySpalteButton" data-id="${spalte.id}" data-spalte="${spalte.spalte}"
                                 data-bs-target="#copySpalteModal" data-bs-toggle="modal" title="Spalte kopieren"></i>
-                                <i class="fa-solid fa-pen-to-square editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" 
+                                <i class="fa-solid fa-pen-to-square iconClickable editSpalteButton" data-bs-toggle="modal" data-bs-target="#editSpalteModal" 
                                 data-id="${spalte.id}" data-spalte="${spalte.spalte}"
                                 title="Spalte bearbeiten"></i>
-                                <i class="fa-solid fa-trash deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" 
+                                <i class="fa-solid fa-trash iconClickable deleteSpalteButton" data-bs-toggle="modal" data-bs-target="#deleteSpalteModal" 
                                 data-id="${spalte.id}" data-spalte="${spalte.spalte}"
                                 title="Spalte löschen"></i>`;
             });

@@ -34,7 +34,7 @@
                 <?php if (isset($_COOKIE['userid'])) : ?>
                 <?= $_COOKIE['username'].' '.$_COOKIE['userlastname'] ?>
                 <?php if($_COOKIE['permissionLevel'] == '2') { ?>
-                    <i class="fa-solid fa-user-shield dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #e21d1d;"></i>
+                    <i class="fa-solid fa-user-shield iconClickable dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #e21d1d;"></i>
                 <?php } else if($_COOKIE['permissionLevel'] == '1') { ?>
                     <i class="fa-solid fa-user dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0d46d5;"></i>
                 <?php } ?>

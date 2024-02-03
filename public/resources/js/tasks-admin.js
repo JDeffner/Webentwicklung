@@ -5,12 +5,11 @@ function tasksAjaxRequest(params) {
         dataType: 'json',
         success: function (response) {
             response.tasks.forEach(function(task) {
-                task.bearbeiten = `<i class="fa-solid fa-pen-to-square editTaskButton" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
-                                data-task="${task.task}" data-taskartenid="${task.taskartenid}" data-taskartenicon="${task.taskartenicon}" 
-                                data-taskart="${task.taskart}" data-spaltenid="${task.spaltenid}" data-personenid="${task.personenid}" 
-                                data-erinnerungsdatum="${task.erinnerungsdatum}" data-erinnerung="${task.erinnerung}" data-notizen="${task.notizen}" 
-                                data-id="${task.id}"></i>
-                                <i class="fa-solid fa-trash deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" 
+                task.bearbeiten = `
+                                <i class="fa-solid fa-copy iconClickable copyTaskButton" data-id="${task.id}" data-task="${task.task}" data-bs-target="#copyTaskModal" data-bs-toggle="modal" title="Task kopieren"></i>
+                                <i class="fa-solid fa-pen-to-square iconClickable editTaskButton" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
+                                data-task="${task.task}" data-id="${task.id}"></i>
+                                <i class="fa-solid fa-trash iconClickable deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" 
                                 data-id="${task.id}" data-task="${task.task}"></i>`;
             });
             params.success({

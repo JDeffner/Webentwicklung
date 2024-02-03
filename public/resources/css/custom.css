@@ -1,7 +1,7 @@
 :root {
     --primary-color: #181434;
     --secondary-color: #2f2a50;
-    --tertiary-color: #9e92bd;
+    --tertiary-color: #887ba8;
     --highlight-color: #917cda;
     --hover-highlight-color: #3e2e72;
     --text-color: #685888;
@@ -47,6 +47,9 @@ a {
 
 .task {
     width: 20em;
+    border-width: 0.2em;
+    border-color: var(--secondary-color);
+    color: var(--text-color);
 }
 
 /* Footer Style*/
@@ -115,9 +118,16 @@ main {
     /* Thumb color on hover */
 }
 
-.fa-solid:hover {
-    color: var(--tertiary-color);
-    cursor: pointer; }
+
+
+.iconClickable:hover {
+    color: var(--tertiary-color) !important;
+    cursor: pointer;
+}
+
+.iconClickable:active {
+    color: var(--highlight-color) !important;
+}
 
 .dropdown-item:hover {
     cursor: pointer; }
@@ -135,12 +145,12 @@ body {
     margin: 0;
     background-size: 200% 200%;
     background-image: linear-gradient(45deg, #4d3570, #2b2552, #312781);
-    animation: gradient 10s ease-in-out infinite;
+    animation: gradient 9s ease-in-out infinite;
 }
 
 .modal-content {
     backdrop-filter: blur(3px);
-    box-shadow: 0 0 2em rgba(47, 42, 80, 0.2);
+    /*box-shadow: 0 0 2em rgba(47, 42, 80, 0.2);*/
 }
 
 .thead {
