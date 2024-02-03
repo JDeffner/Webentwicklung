@@ -10,8 +10,9 @@ function boardsAjaxRequest(params) {
         success: function (response) {
 
             response.boards.forEach(function(board) {
-                board.bearbeiten = `<i class="fa-solid fa-pen-to-square editBoardButton" data-bs-toggle="modal" data-bs-target="#editBoardModal" data-id="${board.id}" data-board="${board.board}"></i>
-                                    <i class="fa-solid fa-trash deleteBoardButton" data-bs-toggle="modal" data-bs-target="#deleteBoardModal" data-id="${board.id}" data-board="${board.board}"></i>`;
+                board.bearbeiten = `<i class="fas fa-solid fa-copy copyBoardButton" data-id="${board.id}" data-board="${board.board}" data-bs-target="#copyBoardModal" data-bs-toggle="modal" title="Board kopieren"></i>
+                                    <i class="fa-solid fa-pen-to-square editBoardButton" data-bs-toggle="modal" data-bs-target="#editBoardModal" data-id="${board.id}" data-board="${board.board}" title="Board bearbeiten"></i>
+                                    <i class="fa-solid fa-trash deleteBoardButton" data-bs-toggle="modal" data-bs-target="#deleteBoardModal" data-id="${board.id}" data-board="${board.board}" title="Board löschen"></i>`;
             });
             params.success({
                 total: response.boards.length,

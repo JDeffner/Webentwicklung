@@ -137,7 +137,7 @@ function reloadTaskBoard(boardId) {
                         <div class="dropdown-menu"> 
                             <li>
                                 <a class="dropdown-item copyTaskButton" data-bs-toggle="modal" data-bs-target="#copyTaskModal"
-                                    data-id="${value.id}" data-boards-id="${value.boardsid}" data-task="${value.task}">
+                                    data-id="${value.id}" data-task="${value.task}">
                                     <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-copy"></i></span>
                                     Task kopieren
                                 </a>

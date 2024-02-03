@@ -46,4 +46,7 @@
 <!-- Delete Task Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Task') ?>
 
+<!-- Copy Task Modal -->
+<?= view_cell('CrudModals::copyModal','type=Task') ?>
+
 <?= $this->endSection() ?>

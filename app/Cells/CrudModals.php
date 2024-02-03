@@ -35,4 +35,14 @@ class CrudModals
         ];
         return view('components/CRUDModal', $data);
     }
+
+    public function copyModal(string $type)
+    {
+        $data = [
+            'modalType' => $type,
+            'modalMessage' => $type.' ??? kopieren',
+            'modalAction' => 'copy',
+        ];
+        return view('components/CRUDModal', $data);
+    }
 }
