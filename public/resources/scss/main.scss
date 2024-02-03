@@ -18,6 +18,11 @@ $secondary: rgba(78, 68, 101, 0.9);
   box-shadow: 0 0.5em 1em rgba(47, 42, 80, 0.2);
 }
 
+// task style
+.task {
+  width: 20em;
+}
+
 /* Footer Style*/
 footer{
   /*background-color: var(--primary-color);*/
@@ -80,6 +85,10 @@ main {
 .fa-solid:hover {
     color: var(--tertiary-color);
     cursor: pointer;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
 }
 
 

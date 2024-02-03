@@ -5,3 +5,25 @@
 .cursor-grab {
     cursor: grab;
 }
+
+a:hover {
+    color: #917cda;
+    cursor: pointer;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.personenkuerzel {
+    text-align: center;
+    padding-top: 0.4em;
+    height: 2.5em;
+    width: 2.5em;
+    position: relative;
+    line-height: 1.65em;
+}
