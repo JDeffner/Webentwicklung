@@ -1,3 +1,14 @@
+:root {
+    --primary-color: #181434;
+    --secondary-color: #2f2a50;
+    --tertiary-color: #9e92bd;
+    --highlight-color: #917cda;
+    --hover-highlight-color: #3e2e72;
+    --text-color: #685888;
+    --text-color-contrast: #201933;
+    --background-color: #110f23;
+}
+
 .dragging {
     opacity: 0.5;
 }
@@ -7,7 +18,7 @@
 }
 
 a:hover {
-    color: #917cda;
+    color: var(--highlight-color);
     cursor: pointer;
 }
 
@@ -15,7 +26,7 @@ a:link {
     text-decoration: none;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -26,4 +37,116 @@ a{
     width: 2.5em;
     position: relative;
     line-height: 1.65em;
+}
+
+/*!* Navbar style*!*/
+.navbar {
+    background-color: rgba(21, 18, 28, 0.5);
+    box-shadow: 0 0.5em 1em rgba(47, 42, 80, 0.2);
+}
+
+.task {
+    width: 20em;
+}
+
+/* Footer Style*/
+footer {
+    /*background-color: var(--primary-color);*/
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Set minimum height to 100% of the viewport height */
+    overflow-y: scroll;
+    /*background-color: var(--background-color);*/
+}
+
+main {
+    flex: auto;
+    /* Allow main content to grow and take remaining space */
+    padding-bottom: 1.5em;
+    /* Adjust to the height of the footer */
+}
+
+.custom-scrollbar {
+    /*Hide default scrollbar*/
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+/* Scrollbar style*/
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    /* Set width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(21, 18, 28, 0.5);
+    /* Track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--tertiary-color);
+    /* Thumb color */
+    border-radius: 10px;
+    /* Rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight-color);
+    /* Thumb color on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+    background: var(--hover-highlight-color);
+    /* Thumb color on hover */
+}
+
+.fa-solid:hover {
+    color: var(--tertiary-color);
+    cursor: pointer; }
+
+.dropdown-item:hover {
+    cursor: pointer; }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%; }
+    50% {
+        background-position: 100% 50%; }
+    100% {
+        background-position: 0% 50%; }
+}
+
+body {
+    margin: 0;
+    background-size: 200% 200%;
+    background-image: linear-gradient(45deg, #4d3570, #2b2552, #312781);
+    animation: gradient 10s ease-in-out infinite;
+}
+
+.modal-content {
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 2em rgba(47, 42, 80, 0.2);
+}
+
+.thead {
+    background-color: rgba(47, 29, 87, 0.7) !important;
+}
+
+.dropdown-menu {
+    backdrop-filter: blur(3px);
 }

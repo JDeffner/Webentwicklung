@@ -30,7 +30,7 @@
         <div class="card-body">
 
 
-            <div class="d-flex flex-row flex-nowrap overflow-auto prettyScrollbar" id="tasksBoard">
+            <div class="d-flex flex-row flex-nowrap overflow-auto custom-scrollbar" id="tasksBoard">
 
             </div>
         </div>
