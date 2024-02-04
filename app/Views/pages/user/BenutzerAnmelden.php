@@ -2,29 +2,45 @@
 
 <?= $this->section('content') ?>
 <main class="container justify-content-center align-items-center d-flex">
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Bitte Melden Sie sich an</h4>
-                </div>
-                <div class="card-body">
-                    <form class="minMaxForm" data-send-to="<?php echo base_url();?>benutzer/anmelden">
-                        <div class="form-floating mb-4 mt-1">
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
-                            <label for="email" class="col-form-label">E-Mail</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="passwort" placeholder="Passwort" name="passwort">
-                            <label for="passwort" class="col-form-label">Password</label>
-                        </div>
-                        <div class="justify-content-between align-items-center d-flex">
-                            <button type="submit" class="btn btn-success mb-4">Anmelden</button>
-                            <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('benutzer/gast');?>">Als Gast fortfahren</a>
-                        </div>
-                    </form>
-                    <a href="<?php echo base_url('benutzer/erstellen');?>">Ich will einen neuen Account erstellen</a>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5">Login</h3>
+
+                        <form class="minMaxForm" data-send-to="<?php echo base_url();?>benutzer/anmelden">
+                            <div class="form-floating mb-4 mt-1">
+                                <input type="email" id="email" class="form-control form-control-lg" placeholder="name@example.com" name="email"/>
+                                <label class="form-label" for="email">E-mail</label>
+                            </div>
+
+                            <div class="form-floating mb-4">
+                                <input type="password" id="passwort" class="form-control form-control-lg" placeholder="Passwort" name="passwort"/>
+                                <label class="form-label" for="passwort">Passwort</label>
+                            </div>
+
+<!--                                <div class="form-check d-flex justify-content-start mb-4">-->
+<!--                                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />-->
+<!--                                    <label class="form-check-label" for="form1Example3"> Remember password </label>-->
+<!--                                </div>-->
+
+                            <div class="justify-content-between align-items-center d-flex">
+                                <button type="submit" class="btn btn-success mb-4">Anmelden</button>
+                                <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('benutzer/gast');?>">Als Gast fortfahren</a>
+                            </div>
+
+                        </form>
+
+                        <hr class="my-4">
+
+                        <a href="<?php echo base_url('benutzer/erstellen');?>">Ich will einen neuen Account erstellen</a>
+
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
  </main>
 <?= $this->endSection() ?>
