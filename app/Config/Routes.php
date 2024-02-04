@@ -24,6 +24,10 @@ $routes->get('login', 'Admin\AdminController::abweisung'); // used for expired p
 $routes->get('profil', 'BenutzerController::getBenutzerProfil');
 $routes->get('willkommen', 'BenutzerController::getBenutzerWillkommen');
 
+//info routes
+$routes->get('impressum', 'InfoController::getImpressum');
+$routes->get('datenschutz', 'InfoController::getDatenschutz');
+
 //task routes
 $routes->group('tasks', function($routes) {
     $routes->get('/', 'TasksController::index');
