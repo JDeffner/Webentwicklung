@@ -46,7 +46,7 @@ $(document).ready(function () {
 
         // Fire off the request
         formRequest = $.ajax({
-            url: thisForm.data('send-to'),
+            url: thisForm.attr('data-send-to'),
             type: "post",
             data: serializedFormData
         });
@@ -130,7 +130,6 @@ function handleCrud(typeName, pluralTypeName) {
             dataType: 'json',
             success: function (response) {
                 let tableRow = response[`${typeName.toLowerCase()}`];
-                console.log(tableRow);
                 for (const column in tableRow) {
                     const value = tableRow[column];
                     switch (column) {
