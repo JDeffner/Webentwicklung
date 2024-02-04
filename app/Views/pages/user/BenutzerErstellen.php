@@ -24,10 +24,6 @@
                     <input type="password" class="form-control" id="passwort" placeholder="Passwort" name="passwort">
                     <label for="passwort" class="col-form-label">Passwort</label>
                 </div>
-                <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="passwortWiederholen" placeholder="Passwort wiederholen" name="passwortWiederholen">
-                    <label for="passwortWiederholen" class="col-form-label">Passwort wiederholen</label>
-                </div>
                 <button type="submit" class="btn btn-success mb-2">Speichern</button>
                 <a role="button" class="btn btn-secondary mb-2" href="<?php echo base_url('/');?>">Abbrechen</a>
             </form>

@@ -52,7 +52,7 @@ a {
     border-width: 0.2em;
     border-color: var(--secondary-color);
     color: var(--text-color);
-    backdrop-filter: blur(3px);
+    /*backdrop-filter: blur(3px);*/
 }
 
 /*.task::before {*/
