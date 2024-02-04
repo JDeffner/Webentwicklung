@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2024 at 02:25 PM
--- Server version: 10.6.12-MariaDB-0ubuntu0.22.04.1
+-- Generation Time: Feb 04, 2024 at 01:52 AM
+-- Server version: 10.6.16-MariaDB-0ubuntu0.22.04.1
 -- PHP Version: 8.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -43,7 +43,8 @@ CREATE TABLE `personen` (
   `vorname` varchar(50) NOT NULL,
   `nachname` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `passwort` varchar(250) NOT NULL
+  `permission` smallint(6) NOT NULL DEFAULT 1,
+  `passwort` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
