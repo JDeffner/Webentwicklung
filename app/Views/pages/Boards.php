@@ -42,4 +42,7 @@
 <!-- Copy Board Modal -->
 <?= view_cell('CrudModals::copyModal','type=Board') ?>
 
+<!-- Toast -->
+<?= $this->include('components/CrudToast.php') ?>
+
 <?= $this->endSection() ?>

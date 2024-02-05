@@ -33,6 +33,7 @@ $(document).on('submit', '#deleteBoardForm', function (e) {
         success: function (response) {
             $('.alert').remove();
             if (response.successfulValidation) {
+                showToast(response.tableName, response.action);
                 $('#deleteBoardModal').modal('hide');
                 $('#boardsTable').bootstrapTable('refresh');
             } else {

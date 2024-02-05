@@ -249,6 +249,7 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
         success: function (response) {
             $('.alert').remove();
             if (response.successfulValidation) {
+                showToast(response.tableName, response.action);
                 $('#deleteTaskModal').modal('hide');
                 $(`#task${response.taskid}`).remove();
             } else {

@@ -35,6 +35,7 @@ $(document).on('submit', '#deleteTaskartForm', function (e) {
         success: function (response) {
             $('.alert').remove();
             if (response.successfulValidation) {
+                showToast(response.tableName, response.action);
                 $('#deleteTaskartModal').modal('hide');
                 $('#taskartenTable').bootstrapTable('refresh');
             } else {

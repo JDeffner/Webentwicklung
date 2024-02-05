@@ -38,6 +38,7 @@ $(document).on('submit', '#deleteSpalteForm', function (e) {
         data: $(this).serialize(),
         success: function (response) {
             $('.alert').remove();
+            showToast(response.tableName, response.action);
             if (response.successfulValidation) {
                 $('#deleteSpalteModal').modal('hide');
                 $('#spaltenTable').bootstrapTable('refresh');

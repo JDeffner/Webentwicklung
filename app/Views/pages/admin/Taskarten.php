@@ -42,4 +42,7 @@
     <!-- Delete Taskart Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Taskart') ?>
 
+<!-- Toast -->
+<?= $this->include('components/CrudToast.php') ?>
+
 <?= $this->endSection() ?>

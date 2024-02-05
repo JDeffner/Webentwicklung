@@ -51,4 +51,7 @@
 <!-- Copy Spalte Modal -->
 <?= view_cell('CrudModals::copyModal','type=Spalte') ?>
 
+<!-- Toast -->
+<?= $this->include('components/CrudToast.php') ?>
+
 <?= $this->endSection() ?>

@@ -39,6 +39,7 @@ $(document).on('submit', '#deletePersonForm', function (e) {
         success: function (response) {
             $('.alert').remove();
             if (response.successfulValidation) {
+                showToast(response.tableName, response.action);
                 $('#deletePersonModal').modal('hide');
                 $('#personenTable').bootstrapTable('refresh');
             } else {

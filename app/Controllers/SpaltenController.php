@@ -27,6 +27,7 @@ class SpaltenController extends BaseController
         $spaltenModel = new SpaltenModel();
         if($spaltenModel->save($_POST)){
             $data['tableName'] = 'spalten';
+            $data['action'] = 'erstellt';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $spaltenModel->errors();
@@ -43,6 +44,7 @@ class SpaltenController extends BaseController
         $spaltenModel = new SpaltenModel();
         if($spaltenModel->update($spaltenid, $_POST)){
             $data['tableName'] = 'spalten';
+            $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $spaltenModel->errors();
@@ -55,6 +57,8 @@ class SpaltenController extends BaseController
     {
         $spaltenModel = new SpaltenModel();
         if($spaltenModel->delete($spaltenid)) {
+            $data['tableName'] = 'spalten';
+            $data['action'] = 'gelöscht';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = [ 'deletion' => 'Spalte konnte nicht gelöscht werden, da sie noch Tasks enthält'];

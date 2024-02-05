@@ -35,6 +35,8 @@ class PersonenController extends BaseController
     {
         $personenModel = new PersonenModel();
         if($personenModel->delete($personid)) {
+            $data['tableName'] = 'personen';
+            $data['action'] = 'gelöscht';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = [ 'deletion' => 'Person konnte nicht gelöscht werden'];
@@ -51,6 +53,7 @@ class PersonenController extends BaseController
         $personenModel = new PersonenModel();
         if($personenModel->update($personid, $_POST)){
             $data['tableName'] = 'personen';
+            $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $personenModel->errors();
