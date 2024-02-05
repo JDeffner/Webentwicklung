@@ -1,59 +1,61 @@
-# CodeIgniter 4 Framework
+# Kanban Board
 
-## What is CodeIgniter?
+This is a project for the course "Webentwicklung" at the University of Trier. The goal of this project is to develop a Kanban Board as a web application. A Kanban Board is a project management tool that helps visualize work, limit work-in-progress, and maximize efficiency. 
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Important Note
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Since this project was developed for a german course, all the terms visible to the user will be in german. 
+As such this README will use those terms as well. The code itself is mostly written in english and so are the commits.
+The following is a brief translation of the most important terms:
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- **Spalten**: Columns
+- **Personen**: People
+- **Taskarten**: Task Types
+- **Neu**: New
+- **Profil**: Profile
+- **Meine Aufgaben**: My Tasks
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+## Description
 
-## Important Change with index.php
+This project is a web application developed using the CodeIgniter Framework. It includes a CRUD (Create, Read, Update, Delete) system for managing various types of data, such as Boards, Spalten, Tasks, Personen, and Taskarten. The application uses modals for creating, editing, deleting, and copying data. It also includes forms for each data type and a toast notification system for CRUD operations.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## Installation
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+1. Clone the repository to your local machine.
+2. Run `composer install` to install PHP dependencies.
+3. Run `npm install` to install JavaScript dependencies.
+4. Set up your database and update the `.env` file with your database credentials.
+5. Update the `app.baseURL` variable in the `.env` file with the address you will use to access the application in your web browser.
+6. Use whatever deployment method you prefer to deploy the application. See the [CodeIgniter documentation](https://codeigniter4.github.io/userguide/) for more information.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Usage
 
-## Repository Management
+After the correct deployment, you can access the application in your web browser at the address you specified in the `.env` file.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+The application provides a user-friendly interface for managing Tasks inside a Kanban-styled interface. Here's a brief overview of how to use each feature:
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+- **Tasks**: Tasks are the main entities in this application. You can create a new task by clicking on the "Neu" button in a Spalte. Each task has a title, description, assignee, and status. You can update these details by clicking on the Task in the Board view.
+
+- **Boards**: Each Board represents a project or a set of tasks. You can edit or delete a Board by clicking on the corresponding buttons in the Boards view.
+
+- **Spalten**: Each Board can have multiple Spalten. A Spalte represents a stage or a status of Tasks. CRUD operations for Spalten can be performed by clicking on the corresponding buttons in the Board details view.
+
+- **Personen**: Personen are the users or team members in your project. They are assignable to Tasks and can be used to filter Tasks. When logged in, you can see your own tasks by clicking on the "Meine Aufgaben" button in the user dropdown menu in the top right corner of the application. You can create a new person by signing up with a new account. You can also update your details by clicking on the "Profil" button in the user dropdown menu.
+
+- **Taskarten**: Taskarten are the categories or types of Tasks in your project. You can add a new task type by clicking on the "Neu" button in the main menu.
+
+Successful CRUD operations will display a toast notification.
 
 ## Contributing
 
-We welcome contributions from the community.
+Contributions are welcome. Please fork the repository and create a pull request with your changes. 
+For major changes, please open an issue first to discuss what you would like to change. 
+If you find a bug, please report it using the issue tracker.
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+## License
 
-## Server Requirements
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+## Contact
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+You can contact any of the contributors to this project through their E-Mail addresses provided on their GitHub profiles.
