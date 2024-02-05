@@ -13,7 +13,7 @@ class CrudModals
             'modalMessage' => 'Neues ??? erstellen',
             'modalAction' => 'create',
         ];
-        return view('components/CRUDModal', $data);
+        return view('components/CrudModal', $data);
     }
 
     public function editModal(string $type)
@@ -23,7 +23,7 @@ class CrudModals
             'modalMessage' => $type.' ??? bearbeiten',
             'modalAction' => 'edit',
         ];
-        return view('components/CRUDModal', $data);
+        return view('components/CrudModal', $data);
     }
 
     public function deleteModal(string $type)
@@ -33,7 +33,7 @@ class CrudModals
             'modalMessage' => $type.' ??? löschen',
             'modalAction' => 'delete',
         ];
-        return view('components/CRUDModal', $data);
+        return view('components/CrudModal', $data);
     }
 
     public function copyModal(string $type)
@@ -43,6 +43,6 @@ class CrudModals
             'modalMessage' => $type.' ??? kopieren',
             'modalAction' => 'copy',
         ];
-        return view('components/CRUDModal', $data);
+        return view('components/CrudModal', $data);
     }
 }
