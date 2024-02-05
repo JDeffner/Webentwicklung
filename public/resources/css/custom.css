@@ -175,3 +175,8 @@ body {
 .dropdown-menu {
     backdrop-filter: blur(3px);
 }
+
+.toast {
+    backdrop-filter: blur(3px);
+    background-color: rgba(22, 14, 42, 0.7);
+}

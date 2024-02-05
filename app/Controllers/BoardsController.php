@@ -30,6 +30,7 @@ class BoardsController extends BaseController
         $boardsModel = new BoardsModel();
         if($boardsModel->save($_POST)){
             $data['tableName'] = 'boards';
+            $data['action'] = 'erstellt';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $boardsModel->errors();
@@ -48,6 +49,7 @@ class BoardsController extends BaseController
         $boardsModel = new BoardsModel();
         if($boardsModel->update($boardid, $_POST)){
             $data['tableName'] = 'boards';
+            $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $boardsModel->errors();
@@ -62,6 +64,8 @@ class BoardsController extends BaseController
     {
         $boardsModel = new BoardsModel();
         if($boardsModel->delete($boardid)){
+            $data['tableName'] = 'boards';
+            $data['action'] = 'gelöscht';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = [ 'deletion' => 'Sie können dieses Board nicht löschen, da es noch Spalten enthält'];

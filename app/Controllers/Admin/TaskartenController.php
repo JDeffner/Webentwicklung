@@ -29,6 +29,7 @@ class TaskartenController extends BaseController {
             if($taskartenModel->save($_POST)){
                 $data['taskartenid'] = $taskartenModel->getInsertID();
                 $data['tableName'] = 'taskarten';
+                $data['action'] =  'erstellt';
                 $data['successfulValidation'] = true;
             } else {
                 $data['error'] = $taskartenModel->errors();
@@ -44,6 +45,7 @@ class TaskartenController extends BaseController {
             $taskartenModel = new TaskartenModel();
             if($taskartenModel->update($taskartenid, $_POST)){
                 $data['tableName'] = 'taskarten';
+                $data['action'] = 'bearbeitet';
                 $data['successfulValidation'] = true;
             } else {
                 $data['error'] = $taskartenModel->errors();
@@ -55,6 +57,7 @@ class TaskartenController extends BaseController {
         public function postTaskartLoeschen($taskartenid) {
             $taskartenModel = new TaskartenModel();
             if($taskartenModel->delete($taskartenid)) {
+                $data['action'] = 'gelöscht';
                 $data['successfulValidation'] = true;
             } else {
                 $data['error'] = [ 'deletion' => 'Taskart konnte nicht gelöscht werden, da sie noch einer Task zugewiesen ist'];

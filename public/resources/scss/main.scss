@@ -1,6 +1,7 @@
 
 $primary: #685888;
 $secondary: rgba(78, 68, 101, 0.9);
+$warning: #e3b137;
 
 $modal-header-border-width: 0px;
 $modal-content-bg: rgba(21, 18, 28, 0.6);
@@ -33,5 +34,8 @@ $dropdown-box-shadow: 0 0 0 rgba(47, 42, 80, 0.5);
 
 // form control
 $input-bg: rgba(21, 18, 28, 0.6);
+
+// toast
+$toast-border-width: 2px;
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";

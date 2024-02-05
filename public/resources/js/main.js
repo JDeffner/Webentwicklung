@@ -55,6 +55,9 @@ $(document).ready(function () {
         formRequest.done(function (response, textStatus, jqXHR){
             let resultingData = JSON.parse(response);
             if (resultingData['successfulValidation']) {
+                if (resultingData['action']) {
+                    showToast(resultingData['tableName'], resultingData['action']);
+                }
                 switch(resultingData['tableName']) {
                     case 'tasks':
                         $('.modal').modal('hide');
@@ -218,6 +221,43 @@ function Taskartupdate(id, taskartenicon, taskart) {
     $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
 }
 
+function showToast(tableName, action) {
+    let toastElement = $('#crudToast');
+    toastElement.removeClass('text-success border-success text-warning border-warning text-danger border-danger');
+    let toast = bootstrap.Toast.getOrCreateInstance($(toastElement));
+    let toastBody = $('#crudToast .toast-body');
+    let name = '';
+    switch (tableName) {
+        case 'tasks':
+            name = 'Task';
+            break;
+        case 'boards':
+            name = 'Board';
+            break;
+        case 'spalten':
+            name = 'Spalte';
+            break;
+        case 'personen':
+            name = 'Person';
+            break;
+        case 'taskarten':
+            name = 'Taskart';
+            break;
+    }
+    switch (action) {
+        case 'erstellt':
+            toastElement.addClass('text-success border-success');
+            break;
+        case 'bearbeitet':
+            toastElement.addClass('text-warning border-warning');
+            break;
+        case 'gelöscht':
+            toastElement.addClass('text-danger border-danger');
+            break;
+    }
+    toastBody.text(`${name} ${action}!`);
+    toast.show();
+}
 
 
 

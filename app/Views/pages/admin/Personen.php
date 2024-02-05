@@ -40,4 +40,7 @@
     <!-- Delete Person Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Person') ?>
 
+<!-- Toast -->
+<?= $this->include('components/CrudToast.php') ?>
+
 <?= $this->endSection() ?>

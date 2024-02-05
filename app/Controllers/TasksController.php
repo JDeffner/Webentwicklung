@@ -48,6 +48,7 @@ class TasksController extends BaseController
             $data['taskid'] = $taskModel->getInsertID();
             $data['spaletenid'] = $_POST['spaltenid'];
             $data['tableName'] = 'tasks';
+            $data['action'] = 'erstellt';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $taskModel->errors();
@@ -62,7 +63,9 @@ class TasksController extends BaseController
     {
         $TaskModel = new TasksModel();
         if ($TaskModel->delete($taskid)) {
+            $data['tableName'] = 'tasks';
             $data['taskid'] = $taskid;
+            $data['action'] = 'gelöscht';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = ['deletion' => 'Task konnte nicht gelöscht werden'];
@@ -87,6 +90,7 @@ class TasksController extends BaseController
             $data['taskid'] = $taskid;
             $data['spaletenid'] = $_POST['spaltenid'];
             $data['tableName'] = 'tasks';
+            $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;
         } else {
             $data['error'] = $taskModel->errors();

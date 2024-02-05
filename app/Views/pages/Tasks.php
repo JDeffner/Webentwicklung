@@ -49,4 +49,7 @@
 <!-- Copy Task Modal -->
 <?= view_cell('CrudModals::copyModal','type=Task') ?>
 
+<!-- Toast -->
+<?= $this->include('components/CrudToast.php') ?>
+
 <?= $this->endSection() ?>
