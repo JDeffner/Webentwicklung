@@ -1,24 +1,10 @@
 # Kanban Board
 
-This is a project for the course "Webentwicklung" at the University of Trier. The goal of this project is to develop a Kanban Board as a web application. A Kanban Board is a project management tool that helps visualize work, limit work-in-progress, and maximize efficiency. 
-
-## Important Note
-
-Since this project was developed for a german course, all the terms visible to the user will be in german. 
-As such this README will use those terms as well. The code itself is mostly written in english and so are the commits.
-The following is a brief translation of the most important terms:
-
-- **Spalten**: Columns
-- **Personen**: People
-- **Taskarten**: Task Types
-- **Neu**: New
-- **Profil**: Profile
-- **Meine Aufgaben**: My Tasks
-- **Bearbeiten**: edit
-- **Löschen**: delete
+This is a project for the course "Webentwicklung" at the University of Trier. The goal of this project is to develop a Kanban Board as a web application. A Kanban Board is a project management tool that helps visualize work, limit work-in-progress, and maximize efficiency.
 
 ## Table of Contents
 - [Description](#description)
+- [Important Note](#important-note)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
@@ -37,6 +23,21 @@ The following is a brief translation of the most important terms:
 
 This project is a web application developed using the CodeIgniter Framework. It includes a CRUD (Create, Read, Update, Delete) system for managing various types of data, such as Boards, Spalten, Tasks, Personen, and Taskarten. The application uses modals for creating, editing, deleting, and copying data. It also includes forms for each data type and a toast notification system for CRUD operations.
 
+## Important Note
+
+Since this project was developed for a german course, all the terms visible to the user will be in german.
+As such this README will use those terms as well. The code itself is mostly written in english and so are the commits.
+The following is a brief translation of the most important terms:
+
+- **Spalten**: Columns
+- **Personen**: People
+- **Taskarten**: Task Types
+- **Neu**: New
+- **Profil**: Profile
+- **Meine Aufgaben**: My Tasks
+- **Bearbeiten**: edit
+- **Löschen**: delete
+
 ## Installation
 
 1. Clone the repository to your local machine.
@@ -47,6 +48,10 @@ This project is a web application developed using the CodeIgniter Framework. It 
 6. Update the `app.baseURL` variable in the `.env` file with the address you will use to access the application in your web browser.
 7. Use whatever deployment method you prefer to deploy the application. See the [CodeIgniter documentation](https://codeigniter4.github.io/userguide/) for more information.
 
+#### Scripts
+
+- `npm run scss`: Watches for changes in `main.scss` and compiles it to `main.css`.
+- `phpunit`: Runs the PHPUnit tests in the `tests` directory.
 ## Usage
 
 After the correct deployment, you can access the application in your web browser at the address you specified in the `.env` file.
@@ -64,8 +69,6 @@ The application provides a user-friendly interface for managing Tasks inside a K
 - **Taskarten**: Taskarten are the categories or types of Tasks in your project. You can add a new task type by clicking on the "Neu" button in the main menu.
 
 ## Screenshots
-
-Here are some screenshots of the application:
 
 ### Main Task View
 
@@ -133,6 +136,7 @@ Since our project is based on the CodeIgniter framework, please refer to the [Co
 &nbsp;├── `public`: Publicly accessible files<br>
 &nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `resources`: Resources like CSS, JavaScript, and images<br>
 &nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `css`: CSS files for styling<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `scss`: SCSS files for styling<br>
 &nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `js`: JavaScript files for interactivity<br>
 &nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `images`: Images used (e.g. logo)<br>
 &nbsp;├── `system`: CodeIgniter system directory<br>
@@ -150,4 +154,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-You can contact any of the contributors to this project through their E-Mail addresses provided on their GitHub profiles.
+You can contact any of the contributors to this project through their respective E-Mail addresses:
+
+@JDeffner: [s4jodeff@uni-trier.de](mailto:s4jodeff@uni-trier.de)
+
+@talina2: someEmail
+
+@4kecast: someEmail
