@@ -141,5 +141,22 @@ class TasksController extends BaseController
         return json_encode($data);
     }
 
+    /**
+     * @throws ReflectionException
+     */
+    public function postTaskSortIDBearbeiten($taskid, $sortid)
+    {
+        $taskModel = new TasksModel();
+        $data['taskid'] = $taskid;
+        $data['sortid'] = $sortid;
+        if ($taskModel->update($taskid, ['sortid' => $sortid])) {
+            $data['successfulValidation'] = true;
+        } else {
+            $data['error'] = $taskModel->errors();
+            $data['successfulValidation'] = false;
+        }
+        return json_encode($data);
+    }
+
 
 }

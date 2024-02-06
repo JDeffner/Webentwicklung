@@ -80,6 +80,32 @@ $(document).ready(function () {
     drake.on('drop', function(el,target,source,sibling) {
         update = true;
         updateTaskSpaltenId(el.dataset.id, target.dataset.id);
+
+        let previousElement = el.previousElementSibling;
+        let draggedTaskSortid = 0;
+        if(previousElement !== null) {
+            draggedTaskSortid = previousElement.dataset.sortid;
+            draggedTaskSortid++;
+        }
+
+        let tasksAfterEl = [];
+        let taskToEdit = sibling;
+        let sortidToEdit = draggedTaskSortid;
+        sortidToEdit++;
+
+        // Gather all the tasks' ids
+        while(taskToEdit !== null) {
+            tasksAfterEl.push(taskToEdit.dataset.id);
+            taskToEdit = taskToEdit.nextElementSibling;
+        }
+
+        // Perform the operations
+        for(let i = 0; i < tasksAfterEl.length; i++) {
+            let taskId = tasksAfterEl[i];
+            updateTaskSortId(taskId, sortidToEdit);
+            sortidToEdit++;
+        }
+        updateTaskSortId(el.dataset.id, draggedTaskSortid);
     })
 });
 
@@ -134,7 +160,7 @@ function reloadTaskBoard(boardId) {
                     erinnerungsGlocke = 'fa-regular fa-bell-slash fa-fw text-secondary';
                 }
                 $(`#spalte${value.spaltenid}`).append(`         
-                    <div id="task${value.id}"  class="card my-2 task cursor-grab" data-id="${value.id}">
+                    <div id="task${value.id}"  class="card my-2 task cursor-grab" data-id="${value.id}" data-sortid="${value.sortid}">
                         <div class="card-body">
                         <!-- Titel -->
                             <div class="d-flex justify-content-between mb-1">
@@ -280,3 +306,14 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
 //     target.style.setProperty('--mouse-x', `${ x }px`);
 //     target.style.setProperty('--mouse-y', `${ y }px`);
 // }
+
+function updateTaskSortId(taskId, sortId) {
+    $.ajax({
+        url: BASE_URL + 'tasks/bearbeiten/sortid/' + taskId + '/' + sortId,
+        type: "POST",
+        dataType: "json",
+        success: function (response) {
+            // console.log(response);
+        }
+    });
+}
