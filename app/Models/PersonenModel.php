@@ -20,7 +20,7 @@ class PersonenModel extends Model
             ->get()->getResultArray();
     }
 
-    public function getPersonenRowByEmail($email): array
+    public function getPersonenRowByEmail($email): array | null
     {
         return $this->db->table($this->table)
             ->where('email', $email)
