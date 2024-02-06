@@ -37,6 +37,7 @@ $routes->group('tasks', function($routes) {
     $routes->post('loeschen/(:num)', 'TasksController::postTaskLoeschen/$1');
     $routes->post('bearbeiten/(:num)', 'TasksController::postTaskBearbeiten/$1');
     $routes->post('bearbeiten/spalte/(:num)/(:num)', 'TasksController::postTaskSpalteBearbeiten/$1/$2');
+    $routes->post('bearbeiten/sortids', 'TasksController::postTaskSortidsBearbeiten');
     $routes->post('task/(:num)', 'TasksController::postTaskInfo/$1');
 });
 

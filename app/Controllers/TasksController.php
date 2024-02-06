@@ -141,5 +141,18 @@ class TasksController extends BaseController
         return json_encode($data);
     }
 
+    /**
+     * @throws ReflectionException
+     */
+    public function postTaskSortidsBearbeiten()
+    {
+        $tasks = $this->request->getJSON();
+        $taskModel = new TasksModel();
+        foreach ($tasks as $task) {
+            $taskModel->update($task->id, ['sortid' => $task->sortid]);
+        }
+        // return a response
+    }
+
 
 }

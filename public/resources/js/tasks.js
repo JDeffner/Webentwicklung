@@ -79,7 +79,26 @@ $(document).ready(function () {
 
     drake.on('drop', function(el,target,source,sibling) {
         update = true;
-        updateTaskSpaltenId(el.dataset.id, target.dataset.id);
+        // console.log(source.dataset.id, target.dataset.id);
+        if(source.dataset.id !== target.dataset.id)
+            updateTaskSpaltenId(el.dataset.id, target.dataset.id);
+
+        let previousElement = el.previousElementSibling;
+        let draggedTaskSortid = previousElement !== null ? Number(previousElement.dataset.sortid) + 1 : 0;
+
+        let tasksAfterEl = [];
+        for (let taskToEdit = sibling; taskToEdit !== null; taskToEdit = taskToEdit.nextElementSibling) {
+            tasksAfterEl.push(taskToEdit.dataset.id);
+        }
+
+        let sortidToEdit = draggedTaskSortid + 1;
+        let tasksToUpdate = [];
+        for(let taskId of tasksAfterEl) {
+            tasksToUpdate.push({id: taskId, sortid: sortidToEdit++});
+        }
+        tasksToUpdate.push({id: el.dataset.id, sortid: draggedTaskSortid});
+
+        updateTaskSortIds(tasksToUpdate);
     })
 });
 
@@ -134,7 +153,7 @@ function reloadTaskBoard(boardId) {
                     erinnerungsGlocke = 'fa-regular fa-bell-slash fa-fw text-secondary';
                 }
                 $(`#spalte${value.spaltenid}`).append(`         
-                    <div id="task${value.id}"  class="card my-2 task cursor-grab" data-id="${value.id}">
+                    <div id="task${value.id}"  class="card my-2 task cursor-grab" data-id="${value.id}" data-sortid="${value.sortid}">
                         <div class="card-body">
                         <!-- Titel -->
                             <div class="d-flex justify-content-between mb-1">
@@ -280,3 +299,16 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
 //     target.style.setProperty('--mouse-x', `${ x }px`);
 //     target.style.setProperty('--mouse-y', `${ y }px`);
 // }
+
+function updateTaskSortIds(tasks) {
+    $.ajax({
+        url: BASE_URL + 'tasks/bearbeiten/sortids',
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(tasks),
+        contentType: "application/json",
+        success: function (response) {
+            // console.log(response);
+        }
+    });
+}
