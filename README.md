@@ -14,20 +14,21 @@ The following is a brief translation of the most important terms:
 - **Neu**: New
 - **Profil**: Profile
 - **Meine Aufgaben**: My Tasks
-- **bearbeiten**: edit
-- **löschen**: delete
+- **Bearbeiten**: edit
+- **Löschen**: delete
 
 ## Table of Contents
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
-    - [Main Task View](#main-task-view)
-    - [Task Element](#task-element)
-    - [Task CRUD Modal](#task-crud-modal)
-    - [Spalten Table View](#spalten-table-view)
-    - [Login View](#login-view)
-    - [User roles](#user-roles)
+  - [Main Task View](#main-task-view)
+  - [Task Element](#task-element)
+  - [Task CRUD Modal](#task-crud-modal)
+  - [Spalten Table View](#spalten-table-view)
+  - [Login View](#login-view)
+  - [User roles](#user-roles)
+- [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -40,9 +41,11 @@ This project is a web application developed using the CodeIgniter Framework. It 
 
 1. Clone the repository to your local machine.
 2. Run `npm install` to install JavaScript dependencies.
-3. Set up your database and update the `.env` file with your database credentials.
-4. Update the `app.baseURL` variable in the `.env` file with the address you will use to access the application in your web browser.
-5. Use whatever deployment method you prefer to deploy the application. See the [CodeIgniter documentation](https://codeigniter4.github.io/userguide/) for more information.
+3. Initialize the database using the [databaseStructure.sql](databaseStructure.sql) file.
+4. Change the [env](env) file name to `.env`.
+5. Set up your database and update the `.env` file with your database credentials.
+6. Update the `app.baseURL` variable in the `.env` file with the address you will use to access the application in your web browser.
+7. Use whatever deployment method you prefer to deploy the application. See the [CodeIgniter documentation](https://codeigniter4.github.io/userguide/) for more information.
 
 ## Usage
 
@@ -73,7 +76,7 @@ Here are some screenshots of the application:
 ![Task Element](screenshots/task-element.png)
 
 From left to right, top to bottom the content of the task element is as follows:
-Icon of the taskart, name of the task, button to open the CRUD dropdown seen in the image, creation date,
+Icon of the Taskart, name of the task, button to open the CRUD dropdown seen in the image, creation date,
 reminder date, notes and assignee.
 
 ### Task CRUD Modal
@@ -102,6 +105,38 @@ Benutzer is a user that is logged in.
 
 Admin is a user that is logged in and has admin rights.
 
+
+## Project Structure
+
+Since our project is based on the CodeIgniter framework, please refer to the [CodeIgniter application structure documentation](https://codeigniter4.github.io/userguide/concepts/structure.html) for more information about the general project structure.
+
+### Project Structure Overview
+
+`root`: Project root directory<br>
+&nbsp;├── `.env`: Environment variables<br>
+&nbsp;├── `databaseStructure.sql`: SQL script for setting up the database<br>
+&nbsp;├── `package.json`: Defines npm package dependencies for the project<br>
+&nbsp;├── `app`: Main application directory<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Cells`: CodeIgniter Cells for view fragments<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Config`: Configuration files<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Routes.php`: Defines the routes and their filters<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Filters.php`: Configures the scope of the filters<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `Validation.php`: Defines the validation rules used in the Models<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Controllers`: Connect a route call with the views<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Filters`: Filters for pre and post processing of HTTP requests<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `Models`: Models for the database tables<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `Views`: Views are the output or what the user sees<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `components`: Reusable components for views<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `layouts`: Layouts for the application<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `pages`: Individual pages<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `templates`: Templates used in the layouts<br>
+&nbsp;├── `public`: Publicly accessible files<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `resources`: Resources like CSS, JavaScript, and images<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `css`: CSS files for styling<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── `js`: JavaScript files for interactivity<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── `images`: Images used (e.g. logo)<br>
+&nbsp;├── `system`: CodeIgniter system directory<br>
+&nbsp;└── `writable`: CodeIgniter write directory<br>
 
 ## Contributing
 
