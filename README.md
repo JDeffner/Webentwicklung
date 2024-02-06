@@ -48,10 +48,11 @@ The following is a brief translation of the most important terms:
 6. Update the `app.baseURL` variable in the `.env` file with the address you will use to access the application in your web browser.
 7. Use whatever deployment method you prefer to deploy the application. See the [CodeIgniter documentation](https://codeigniter4.github.io/userguide/) for more information.
 
-#### Scripts
 
-- `npm run scss`: Watches for changes in `main.scss` and compiles it to `main.css`.
-- `phpunit`: Runs the PHPUnit tests in the `tests` directory.
+> [!TIP]
+> `npm run scss`: Watches for changes in `main.scss` and compiles it to `main.css`.
+
+
 ## Usage
 
 After the correct deployment, you can access the application in your web browser at the address you specified in the `.env` file.
@@ -160,4 +161,4 @@ You can contact any of the contributors to this project through their respective
 
 @talina2: someEmail
 
-@4kecast: someEmail
+@s4kecast: someEmail
