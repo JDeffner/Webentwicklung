@@ -144,18 +144,14 @@ class TasksController extends BaseController
     /**
      * @throws ReflectionException
      */
-    public function postTaskSortIDBearbeiten($taskid, $sortid)
+    public function postTaskSortidsBearbeiten()
     {
+        $tasks = $this->request->getJSON();
         $taskModel = new TasksModel();
-        $data['taskid'] = $taskid;
-        $data['sortid'] = $sortid;
-        if ($taskModel->update($taskid, ['sortid' => $sortid])) {
-            $data['successfulValidation'] = true;
-        } else {
-            $data['error'] = $taskModel->errors();
-            $data['successfulValidation'] = false;
+        foreach ($tasks as $task) {
+            $taskModel->update($task->id, ['sortid' => $task->sortid]);
         }
-        return json_encode($data);
+        // return a response
     }
 
 

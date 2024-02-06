@@ -79,33 +79,26 @@ $(document).ready(function () {
 
     drake.on('drop', function(el,target,source,sibling) {
         update = true;
-        updateTaskSpaltenId(el.dataset.id, target.dataset.id);
+        // console.log(source.dataset.id, target.dataset.id);
+        if(source.dataset.id !== target.dataset.id)
+            updateTaskSpaltenId(el.dataset.id, target.dataset.id);
 
         let previousElement = el.previousElementSibling;
-        let draggedTaskSortid = 0;
-        if(previousElement !== null) {
-            draggedTaskSortid = previousElement.dataset.sortid;
-            draggedTaskSortid++;
-        }
+        let draggedTaskSortid = previousElement !== null ? Number(previousElement.dataset.sortid) + 1 : 0;
 
         let tasksAfterEl = [];
-        let taskToEdit = sibling;
-        let sortidToEdit = draggedTaskSortid;
-        sortidToEdit++;
-
-        // Gather all the tasks' ids
-        while(taskToEdit !== null) {
+        for (let taskToEdit = sibling; taskToEdit !== null; taskToEdit = taskToEdit.nextElementSibling) {
             tasksAfterEl.push(taskToEdit.dataset.id);
-            taskToEdit = taskToEdit.nextElementSibling;
         }
 
-        // Perform the operations
-        for(let i = 0; i < tasksAfterEl.length; i++) {
-            let taskId = tasksAfterEl[i];
-            updateTaskSortId(taskId, sortidToEdit);
-            sortidToEdit++;
+        let sortidToEdit = draggedTaskSortid + 1;
+        let tasksToUpdate = [];
+        for(let taskId of tasksAfterEl) {
+            tasksToUpdate.push({id: taskId, sortid: sortidToEdit++});
         }
-        updateTaskSortId(el.dataset.id, draggedTaskSortid);
+        tasksToUpdate.push({id: el.dataset.id, sortid: draggedTaskSortid});
+
+        updateTaskSortIds(tasksToUpdate);
     })
 });
 
@@ -307,11 +300,13 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
 //     target.style.setProperty('--mouse-y', `${ y }px`);
 // }
 
-function updateTaskSortId(taskId, sortId) {
+function updateTaskSortIds(tasks) {
     $.ajax({
-        url: BASE_URL + 'tasks/bearbeiten/sortid/' + taskId + '/' + sortId,
+        url: BASE_URL + 'tasks/bearbeiten/sortids',
         type: "POST",
         dataType: "json",
+        data: JSON.stringify(tasks),
+        contentType: "application/json",
         success: function (response) {
             // console.log(response);
         }
