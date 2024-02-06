@@ -39,6 +39,7 @@ a {
     width: 2.5em;
     position: relative;
     line-height: 1.65em;
+    cursor: pointer;
 }
 
 /*!* Navbar style*!*/

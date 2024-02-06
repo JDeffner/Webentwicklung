@@ -312,3 +312,14 @@ function updateTaskSortIds(tasks) {
         }
     });
 }
+
+
+$(document).on('click', '.personenkuerzel', function (e) {
+    e.preventDefault();
+    let name = $(this).attr('title');
+
+
+    let searchParam = name;
+    $('#suchetasks').val(searchParam);
+    Suche();
+});
