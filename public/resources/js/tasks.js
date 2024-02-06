@@ -323,3 +323,10 @@ $(document).on('click', '.personenkuerzel', function (e) {
     $('#suchetasks').val(searchParam);
     Suche();
 });
+
+document.addEventListener('keydown', function(event) {
+    if (!event.key.startsWith('F') && event.key !== 'Escape') {
+        // Set focus to the #suchetasks search field
+        document.getElementById('suchetasks').focus();
+    }
+});
