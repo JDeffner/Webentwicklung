@@ -66,7 +66,7 @@ The application provides a user-friendly interface for managing Tasks inside a K
 
 - **Spalten**: Each Board can have multiple Spalten. A Spalte represents a stage or a status of Tasks. CRUD operations for Spalten can be performed by clicking on the corresponding buttons in the Board details view.
 
-- **Personen**: Personen are the users or team members in your project. They are assignable to Tasks and can be used to filter Tasks. When logged in, you can see your own tasks by clicking on the "Meine Aufgaben" (TODO) button in the user dropdown menu in the top right corner of the application. You can create a new person by signing up with a new account. You can also update your details by clicking on the "Profil" button in the user dropdown menu. Personen also have a role, which can be "Administrator" or "Benutzer". Admins can create, update, and delete all data in the application, while Benutzers can only create, update, and delete the non-admin tables.
+- **Personen**: Personen are the users or team members in your project. They are assignable to Tasks and can be used to filter Tasks. When logged in, you can see your own tasks by clicking on the "Meine Tasks" ([TODO](https://github.com/talina2/Webentwicklung/issues/63)) button in the user dropdown menu in the top right corner of the application. You can create a new person by signing up with a new account. You can also update your details by clicking on the "Profil" button in the user dropdown menu. Personen also have a role, which can be "Administrator" or "Benutzer". Admins can create, update, and delete all data in the application, while Benutzers can only create, update, and delete the non-admin tables.
 
 - **Taskarten**: Taskarten are the categories or types of Tasks in your project. Admins can add a new task type by clicking on the "Neu" button in the Taskarten view.
 
@@ -116,7 +116,6 @@ Admin is a user that is logged in and has admin rights.
 > [!NOTE]
 > Since our project is based on the CodeIgniter framework, please refer to the [CodeIgniter application structure documentation](https://codeigniter4.github.io/userguide/concepts/structure.html) for more information about the general project structure.
 
-### Project Structure Overview
 
 `root`: Project root directory<br>
 &nbsp;├── `.env`: Environment variables<br>
