@@ -181,3 +181,12 @@ body {
     backdrop-filter: blur(3px);
     background-color: rgba(22, 14, 42, 0.7);
 }
+
+.popover {
+    backdrop-filter: blur(3px);
+    --bs-popover-header-font-size: 1.5em;
+}
+
+.popover-header {
+    border-bottom: none;
+}

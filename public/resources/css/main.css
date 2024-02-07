@@ -4768,11 +4768,11 @@ textarea.form-control-lg {
 
 .popover {
   --bs-popover-zindex: 1070;
-  --bs-popover-max-width: 276px;
+  --bs-popover-max-width: 30rem;
   --bs-popover-font-size: 0.875rem;
-  --bs-popover-bg: var(--bs-body-bg);
+  --bs-popover-bg: rgba(21, 18, 28, 0.6);
   --bs-popover-border-width: var(--bs-border-width);
-  --bs-popover-border-color: var(--bs-border-color-translucent);
+  --bs-popover-border-color: #685888;
   --bs-popover-border-radius: var(--bs-border-radius-lg);
   --bs-popover-inner-border-radius: calc(var(--bs-border-radius-lg) - var(--bs-border-width));
   --bs-popover-box-shadow: var(--bs-box-shadow);
@@ -4780,7 +4780,7 @@ textarea.form-control-lg {
   --bs-popover-header-padding-y: 0.5rem;
   --bs-popover-header-font-size: 1rem;
   --bs-popover-header-color: inherit;
-  --bs-popover-header-bg: var(--bs-secondary-bg);
+  --bs-popover-header-bg: rgba(21, 18, 28, 0.6);
   --bs-popover-body-padding-x: 1rem;
   --bs-popover-body-padding-y: 1rem;
   --bs-popover-body-color: var(--bs-body-color);
