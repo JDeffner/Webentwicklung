@@ -38,4 +38,11 @@ $input-bg: rgba(21, 18, 28, 0.6);
 // toast
 $toast-border-width: 2px;
 
+// popover
+$popover-bg: rgba(21, 18, 28, 0.6);
+$popover-max-width: 30rem;
+$popover-header-bg: rgba(21, 18, 28, 0.6);
+$popover-header-border-width: 0px;
+$popover-border-color: $primary;
+
 @import "../../../node_modules/bootstrap/scss/bootstrap";

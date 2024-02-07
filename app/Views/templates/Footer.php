@@ -5,10 +5,12 @@
                     © T4 MinMax GmbH 2023
                 </span>
         <span class="footer-text">
-                    <a class="footer-link" href="<?= base_url('impressum') ?>">Impressum</a>
-                    <a class="footer-link ms-1" href="#">AGB</a>
-                    <a class="footer-link ms-1" href="<?= base_url('datenschutz') ?>">Datenschutz</a>
-                </span>
+            <i class="fa-solid fa-circle-info iconClickable" id="infoGit" tabindex="0" data-bs-trigger="focus"></i>
+            <a class="footer-link" href="https://github.com/talina2/Webentwicklung" target="_blank">GitHub</a>
+            <a class="footer-link" href="<?= base_url('impressum') ?>">Impressum</a>
+            <a class="footer-link ms-1" href="#">AGB</a>
+            <a class="footer-link ms-1" href="<?= base_url('datenschutz') ?>">Datenschutz</a>
+        </span>
     </div>
 </footer>
 </body>
