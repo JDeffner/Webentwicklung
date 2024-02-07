@@ -331,7 +331,9 @@ $(document).on('click', '.personenkuerzel', function (e) {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (!event.key.startsWith('F') && event.key !== 'Escape') {
+    if (event.key === 'Escape') {
+        document.getElementById('suchetasks').value = '';
+    } else if (!event.key.startsWith('F')) {
         // Set focus to the #suchetasks search field
         document.getElementById('suchetasks').focus();
     }
