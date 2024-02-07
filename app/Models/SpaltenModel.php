@@ -28,6 +28,8 @@ class SpaltenModel extends Model
         return $this->db->table($this->table)
             ->select('spalten.*, boards.board')
             ->join('boards', 'boards.id = spalten.boardsid')
+            ->orderBy('boards.board', 'DESC')
+            ->orderBy('spalten.sortid')
             ->get()->getResultArray();
     }
 
