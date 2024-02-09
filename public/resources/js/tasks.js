@@ -331,6 +331,8 @@ $(document).on('click', '.personenkuerzel', function (e) {
 });
 
 document.addEventListener('keydown', function(event) {
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')
+        return;
     if (event.key === 'Escape') {
         document.getElementById('suchetasks').value = '';
     } else if (!event.key.startsWith('F')) {

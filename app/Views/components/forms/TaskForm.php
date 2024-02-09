@@ -22,11 +22,10 @@
     <div class="mb-3">
 
         <label for="spaltenid" class="form-label">Board & Spalte:</label>
-        <!--                        // databank access-->
         <select class="form-select" id="spaltenid" name="spaltenid">
             <option selected>Board und Spalte auswählen</option>
-            <?php foreach (($spalten ?? null) as $spalte): ?>
-                <?php foreach (($boards ?? null) as $board): ?>
+            <?php foreach (($boards ?? null) as $board): ?>
+                <?php foreach (($spalten ?? null) as $spalte): ?>
                     <?php if ($spalte['boardsid'] == $board['id']): ?>
                         <option value="<?= $spalte['id'] ?>"><?= $board['board'] . ' - ' . $spalte['spalte'] ?></option>
                     <?php endif; ?>
@@ -56,7 +55,6 @@
             <input type="datetime-local" data-provide="datepicker" class="form-control erinnerungsdatum" id="erinnerungsdatum"
                    placeholder="Datum" name="erinnerungsdatum"
                    data-np-intersection-state="observed" disabled>
-
         </div>
     </div>
 
