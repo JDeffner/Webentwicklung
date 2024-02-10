@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=https://team04.wi1cm.uni-trier.de/public/">
     <title>Weiterleitung</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const CURRENT_URL = window.location.href;
+            window.location.replace(CURRENT_URL + 'public');
+        });
+    </script>
 </head>
 <body>
 </body>
