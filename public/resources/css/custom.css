@@ -186,24 +186,3 @@ body {
     border-bottom: none;
 }
 
-/*body::-webkit-scrollbar {*/
-/*    width: 12px; !* Set width of the scrollbar *!*/
-/*}*/
-
-/*body::-webkit-scrollbar-track {*/
-/*    background: var(--primary-color); !* Track color *!*/
-/*}*/
-
-/*body::-webkit-scrollbar-thumb {*/
-/*    background: var(--tertiary-color); !* Thumb color *!*/
-/*    border-radius: 10px; !* Rounded corners *!*/
-/*}*/
-
-/*body::-webkit-scrollbar-thumb:hover {*/
-/*    background: var(--highlight-color); !* Thumb color on hover *!*/
-/*}*/
-
-/*body::-webkit-scrollbar-thumb:active {*/
-/*    background: var(--hover-highlight-color); !* Thumb color on active *!*/
-/*}*/
-

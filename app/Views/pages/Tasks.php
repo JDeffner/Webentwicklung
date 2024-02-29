@@ -27,12 +27,10 @@
                 </ul>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body d-flex flex-row flex-nowrap overflow-auto custom-scrollbar" id="tasksBoard">
 
 
-            <div class="d-flex flex-row flex-nowrap overflow-auto custom-scrollbar" id="tasksBoard">
 
-            </div>
         </div>
     </div>
 </main>

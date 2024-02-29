@@ -148,14 +148,12 @@ function reloadTaskBoard(boardId) {
             $('#tasksBoard').empty();
             response.spalten.forEach((value) => {
                 $('#tasksBoard').append(`
-                    <div class="me-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>${value.spalte}</h3>
-                                <small class="mb-0">${value.spaltenbeschreibung}</small>
-                            </div>
-                            <div class="card-body spaltenBody" id="spalte${value.id}" data-id="${value.id}">
-                            </div>
+                    <div class="card col-auto mx-2">
+                        <div class="card-header">
+                            <h3>${value.spalte}</h3>
+                            <small class="mb-0">${value.spaltenbeschreibung}</small>
+                        </div>
+                        <div class="card-body spaltenBody" id="spalte${value.id}" data-id="${value.id}">
                         </div>
                     </div>
                 `);
@@ -190,7 +188,7 @@ function reloadTaskBoard(boardId) {
                     erinnerungsGlocke = 'fa-regular fa-bell-slash fa-fw text-secondary';
                 }
                 $(`#spalte${value.spaltenid}`).append(`         
-                    <div id="task${value.id}"  class="card my-2 task cursor-grab" data-id="${value.id}" data-sortid="${value.sortid}">
+                    <div id="task${value.id}"  class="card my-2 task cursor-grab mx-auto" data-id="${value.id}" data-sortid="${value.sortid}">
                         <div class="card-body">
                         <!-- Titel -->
                             <div class="d-flex justify-content-between mb-1">
