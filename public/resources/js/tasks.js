@@ -80,7 +80,6 @@ $(document).ready(function () {
 
     drake.on('drop', function(el,target,source,sibling) {
         update = true;
-        el.style.cursor = 'grab';
         // console.log(source.dataset.id, target.dataset.id);
         if(source.dataset.id !== target.dataset.id)
             updateTaskSpaltenId(el.dataset.id, target.dataset.id);
@@ -103,7 +102,7 @@ $(document).ready(function () {
         updateTaskSortIds(tasksToUpdate);
     })
 
-    drake.on('cancel', function(el, container, source) {
+    drake.on('dragend', function(el, container, source) {
         el.style.cursor = 'grab';
     });
 });

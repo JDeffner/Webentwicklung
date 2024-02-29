@@ -68,7 +68,7 @@ $routes->get('gruppennummer', 'AdminController::viewGruppennummer');
 $routes->group('/', ['filter' => 'adminAuthentification', 'namespace' => 'App\Controllers\Admin'], function($routes) {
     $routes->get('admin/personen', 'PersonenController::getPersonen');
     $routes->get('admin/personen/raw', 'PersonenController::getPersonenRawData');
-    // no "/admin" since the handleCRUD in main.js is standarzied to "/" for all routes
+    // no "/admin" since the handleCRUD in main.js is standardized to "/" for all routes
     $routes->post('personen/bearbeiten/(:num)', 'PersonenController::postPersonBearbeiten/$1');
     $routes->post('personen/loeschen/(:num)', 'PersonenController::postPersonLoeschen/$1');
     $routes->post('personen/person/(:num)', 'PersonenController::postPersonInfo/$1');
@@ -76,7 +76,7 @@ $routes->group('/', ['filter' => 'adminAuthentification', 'namespace' => 'App\Co
 
     $routes->get('admin/taskarten', 'TaskartenController::getTaskarten');
     $routes->get('admin/taskarten/raw', 'TaskartenController::getTaskartenRawData');
-    // no "/admin" since the handleCRUD in main.js is standarzied to "/" for all routes
+    // no "/admin" since the handleCRUD in main.js is standardized to "/" for all routes
     $routes->post('taskarten/erstellen', 'TaskartenController::postTaskartErstellen');
     $routes->post('taskarten/bearbeiten/(:num)', 'TaskartenController::postTaskartBearbeiten/$1');
     $routes->post('taskarten/loeschen/(:num)', 'TaskartenController::postTaskartLoeschen/$1');

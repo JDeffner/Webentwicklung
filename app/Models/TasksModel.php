@@ -2,9 +2,7 @@
 use CodeIgniter\Model;
 class TasksModel extends Model
 
-    /**
-     * @method insertID()
-     */
+
 {
     protected $table = 'tasks';
     protected $primaryKey = 'id';
