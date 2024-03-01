@@ -114,6 +114,8 @@ class TasksController extends BaseController
         $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
         $spaltenModel = new SpaltenModel();
         $data['spalten'] = $spaltenModel->getSpaltenForBoard($boardID);
+        $boardModel = new BoardsModel();
+        $data['boards'] = $boardModel->findAll();
         return json_encode($data);
     }
 

@@ -76,9 +76,10 @@ function Suche() {
 $(document).ready(function () {
     $('#reload').click(function (e) {
         e.preventDefault();
-        currentBoardId = $('#boardidDropdown').val();
+        let currentBoardId = $('#boardidDropdown').val();
         reloadTaskBoard(currentBoardId);
     });
+
 
     let drake = dragula({
         isContainer: function (el) {
@@ -145,19 +146,26 @@ function reloadTaskBoard(boardId) {
         type: "POST",
         dataType: "json",
         success: function (response) {
+            // Spalten laden
             $('#tasksBoard').empty();
             response.spalten.forEach((value) => {
                 $('#tasksBoard').append(`
                     <div class="card col-auto mx-2">
-                        <div class="card-header">
-                            <h3>${value.spalte}</h3>
-                            <small class="mb-0">${value.spaltenbeschreibung}</small>
+                        <div class="card-header d-flex align-items-center justify-content-between" data-id="${value.id}">
+                            <div class="me-3">
+                                <h3 class="text-nowrap">${value.spalte}</h3>
+                                <small class="mb-0">${value.spaltenbeschreibung}</small>
+                            </div> 
+                            <a role="button" class="btn btn-secondary createTaskButton my-auto" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
                         </div>
                         <div class="card-body spaltenBody" id="spalte${value.id}" data-id="${value.id}">
                         </div>
                     </div>
                 `);
             });
+            // Tasks laden
             response.tasks.forEach((value) => {
                 let formattedErinnerungsdatum = '';
                 let erinnerungsGlocke = '';
@@ -230,7 +238,7 @@ function reloadTaskBoard(boardId) {
                                 </span>
                             </div>
                     
-                            <!-- Kontakt und Erinnerungsdatum -->
+                            <!-- Erstell- und Erinnerungsdatum -->
                             <div class="mb-1 d-flex justify-content-between">
                                 <div class="text-primary">
                                     <i class="fa-solid fa-circle-up fa-fw"></i> ${new Date(value.erstelldatum).toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit', year: '2-digit'})}                                                       
@@ -244,7 +252,7 @@ function reloadTaskBoard(boardId) {
                                     ${value.notizen}
                                  </div>
                             </div>
-                            <!-- Dokumentenart, Mitarbeiter, etc -->
+                            <!-- Zugeteilte Person -->
                             <div class="searchable" hidden>${value.vorname} ${value.nachname}</div>
                             <div class="d-flex pt-1 justify-content-between">
                                 <div></div>
@@ -257,10 +265,22 @@ function reloadTaskBoard(boardId) {
                     </div>
                 `);
             });
+            // Board Dropdown laden
+            $('#boardidDropdownMenu').empty();
+            response.boards.forEach((value) => {
+                $('#boardidDropdownMenu').append(`
+                    <li><a class="dropdown-item" onclick="Boardupdate('${value.id}', '${value.board}')">${value.board}</a></li>
+                `);
+            });
+            $('#boardidDropdownMenu').append(`
+                    <li><a class="dropdown-item d-flex justify-content-center align-items-center py-2 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-plus"></i></a></li>
+            `);
         }
     });
+    console.log('Reloaded Taskboard ' + count + ' times');
+    count++;
 }
-
+let count = 1;
 
 function Boardupdate(id, board) {
     $('#boardidDropdown').val(id);
@@ -291,6 +311,12 @@ $('.form-check-input').on('change', function() {
         $('.erinnerungsdatum').attr('disabled', '');
     }
 });
+
+// $(document).on('submit', '.minMaxForm', function (e) {
+//     e.preventDefault();
+//     let currentBoardId = $('#boardidDropdown').val();
+//     reloadTaskBoard(currentBoardId);
+// });
 
 // Delete Task ajax
 $(document).on('submit', '#deleteTaskForm', function (e) {
@@ -368,4 +394,16 @@ document.addEventListener('keydown', function(event) {
         // Set focus to the #suchetasks search field
         document.getElementById('suchetasks').focus();
     }
+});
+
+$(document).on('click', '.createTaskButton', function (e) {
+    e.preventDefault();
+    let spaltenId = $(this).parent().data('id');
+    $('#createTaskModal').find('#spaltenid').val(spaltenId);
+});
+
+$(document).on('click', '.createSpalteButton', function (e) {
+    e.preventDefault();
+    let boardId = $('#boardidDropdown').val();
+    $('#createSpalteModal').find('#boardsid').val(boardId);
 });

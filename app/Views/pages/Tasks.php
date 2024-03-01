@@ -3,15 +3,15 @@
 <?= $this->section('content') ?>
 <main class="container-fluid">
     <div class="card ms-3 me-3">
-        <div class="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center">
+        <div class="card-header d-flex align-items-center justify-content-between">
             <h4>Tasks</h4>
-            <a role="button" class="btn btn-secondary createTaskButton ms-auto me-2" data-bs-toggle="modal" data-bs-target="#createTaskModal">
-                <i class="fa-solid fa-square-plus" ></i> Neu
+            <a role="button" class="btn btn-secondary createSpalteButton ms-auto me-2 flex-nowrap d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#createSpalteModal">
+                <i class="fa-solid fa-square-plus py-1"></i> <span class="d-none d-md-block ms-2">Spalte</span>
             </a>
             <a role="button" class="btn btn-secondary createTaskButton me-2" id="reload">
                 <i class="fa-solid fa-rotate-right"></i>
             </a>
-            <div class="col-lg-2 col-md-2 col-sm-10 me-2">
+            <div class="me-2" style="width: 20em;">
                 <input type="search" class="form-control " id="suchetasks" name="suchetasks" placeholder="Suchen">
             </div>
 
@@ -20,17 +20,16 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="boardidDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <span><?= $boardName ?></span>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="boardidDropdownButton">
+                <ul class="dropdown-menu" id="boardidDropdownMenu">
                     <?php foreach (($boards ?? null) as $oneBoard): ?>
                         <li><a class="dropdown-item" onclick="Boardupdate('<?= $oneBoard['id'] ?>','<?= $oneBoard['board'] ?>');"><?= $oneBoard['board'] ?></a></li>
                     <?php endforeach; ?>
+                    <li><a class="dropdown-item d-flex justify-content-center align-items-center py-2 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-plus"></i></a></li>
                 </ul>
             </div>
         </div>
         <div class="card-body d-flex flex-row flex-nowrap overflow-auto custom-scrollbar" id="tasksBoard">
-
-
-
+            <!-- Hier werden die Tasks über die reloadTaskBoard() funktion aus tasks.js geladen -->
         </div>
     </div>
 </main>
@@ -46,6 +45,12 @@
 
 <!-- Copy Task Modal -->
 <?= view_cell('CrudModals::copyModal','type=Task') ?>
+
+<!-- Create Spalte Modal -->
+<?= view_cell('CrudModals::createModal','type=Spalte') ?>
+
+<!-- Create Board Modal -->
+<?= view_cell('CrudModals::createModal','type=Board') ?>
 
 <!-- Toast -->
 <?= $this->include('components/CrudToast.php') ?>

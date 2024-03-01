@@ -59,17 +59,18 @@ $(document).ready(function () {
                     showToast(resultingData['tableName'], resultingData['action']);
                 }
                 switch(resultingData['tableName']) {
-                    case 'tasks':
-                        $('.modal').modal('hide');
-                        let currentBoardID = $('#boardidDropdown').val();
-                        reloadTaskBoard(currentBoardID);
-                        break;
                     case 'loginPersonen':
                         window.location.href = resultingData['redirect'];
                         break;
                     default:
                         $('.modal').modal('hide');
                         $(`#${resultingData['tableName']}Table`).bootstrapTable('refresh');
+                        try {
+                            let currentBoardID = $('#boardidDropdown').val();
+                            reloadTaskBoard(currentBoardID);
+                        } catch (e) {
+                            // console.log(e);
+                        }
                 }
             } else {
                 let errors = Object.entries(resultingData['error']);
@@ -185,7 +186,6 @@ function handleCrud(typeName, pluralTypeName) {
             dataType: 'json',
             success: function (response) {
                 let tableRow = response[`${typeName.toLowerCase()}`];
-                console.log(tableRow);
                 for (const column in tableRow) {
                     const value = tableRow[column];
                     switch (column) {
