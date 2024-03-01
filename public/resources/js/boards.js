@@ -39,13 +39,13 @@ $(document).on('submit', '#deleteBoardForm', function (e) {
             } else {
                 $('#deleteBoardModal').modal('hide');
                 // Create a Bootstrap alert dynamically
-                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                const messageDiv = $('<div></div>').text(response.error.deletion);
-                alertDiv.append(messageDiv);
-                alertDiv.append(closeButton);
-                // Append the alert above the buttons
-                $('#boardsTable').before(alertDiv);
+                $('#boardsTable').before(`
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        ${response.error.deletion}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
+
             }
         }
     });

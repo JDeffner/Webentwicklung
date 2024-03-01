@@ -6,7 +6,7 @@
         <div class="card-header d-flex flex-column flex-sm-row align-items-start align-sm-center">
             <h4>Boards</h4>
             <div class="d-flex ms-auto" id="boards-table-toolbar">
-                <a role="button" class="btn btn-secondary me-1 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-square-plus"></i> Neu</a>
+                <a role="button" class="btn btn-secondary me-1 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-square-plus"></i> Spalte</a>
                 <div class="boards-buttons-toolbar"></div>
             </div>
         </div>

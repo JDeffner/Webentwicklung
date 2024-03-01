@@ -8,7 +8,7 @@
 
     <div class="mb-3">
         <label for="boardsid" class="form-label">Board:</label>
-        <select class="form-select" id="boardsid" name="boardsid">
+        <select class="form-select boardSelect" id="boardsid" name="boardsid">
             <option selected>Board auswählen</option>
             <?php foreach (($boards ?? null) as $board): ?>
                 <option value="<?= $board['id'] ?>"><?= $board['board'] ?></option>

@@ -261,7 +261,7 @@ function showToast(tableName, action) {
 
 $(document).ready(function () {
     $.ajax({
-        url: 'https://api.github.com/repos/talina2/Webentwicklung/commits?per_page=5',
+        url: 'https://api.github.com/repos/JDeffner/Webentwicklung/commits?per_page=5',
         type: 'GET',
         success: function(data) {
             let commitList = '';

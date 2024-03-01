@@ -148,25 +148,28 @@ function reloadTaskBoard(boardId) {
         success: function (response) {
             // Spalten laden
             $('#tasksBoard').empty();
-            response.spalten.forEach((value) => {
+            response.boardSpalten.forEach((spalteOfBoard) => {
                 $('#tasksBoard').append(`
                     <div class="card col-auto mx-2">
-                        <div class="card-header d-flex align-items-center justify-content-between" data-id="${value.id}">
+                        <div class="card-header d-flex align-items-center justify-content-between" data-id="${spalteOfBoard.id}">
                             <div class="me-3">
-                                <h3 class="text-nowrap">${value.spalte}</h3>
-                                <small class="mb-0">${value.spaltenbeschreibung}</small>
+                                <a class="editSpalteButton editSpalteText" data-bs-target="#editSpalteModal" data-bs-toggle="modal" data-id="${spalteOfBoard.id}" data-spalte="${spalteOfBoard.spalte}" title="Taskname, drücken zum Bearbeiten">
+                                    <h3 class="text-nowrap">${spalteOfBoard.spalte}</h3>
+                                </a>
+                                <small class="mb-0">${spalteOfBoard.spaltenbeschreibung}</small>
                             </div> 
-                            <a role="button" class="btn btn-secondary createTaskButton my-auto" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+                            <a role="button" class="btn btn-secondary createTaskButton my-auto" data-bs-toggle="modal" data-bs-target="#createTaskModal" title="Task erstellen">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </div>
-                        <div class="card-body spaltenBody" id="spalte${value.id}" data-id="${value.id}">
+                        <div class="card-body spaltenBody" id="spalte${spalteOfBoard.id}" data-id="${spalteOfBoard.id}">
+<!--                            Tasks werden hier eingefügt-->
                         </div>
                     </div>
                 `);
             });
             // Tasks laden
-            response.tasks.forEach((value) => {
+            response.tasks.forEach((oneTask) => {
                 let formattedErinnerungsdatum = '';
                 let erinnerungsGlocke = '';
                 let options = {
@@ -176,8 +179,8 @@ function reloadTaskBoard(boardId) {
                     hour: '2-digit',
                     minute: '2-digit'
                 };
-                if (value.erinnerung === '1') {
-                    let erinnerungsdatum = new Date(value.erinnerungsdatum);
+                if (oneTask.erinnerung === '1') {
+                    let erinnerungsdatum = new Date(oneTask.erinnerungsdatum);
 
                     formattedErinnerungsdatum = erinnerungsdatum.toLocaleDateString('de-DE', options);
 
@@ -195,14 +198,14 @@ function reloadTaskBoard(boardId) {
                 } else {
                     erinnerungsGlocke = 'fa-regular fa-bell-slash fa-fw text-secondary';
                 }
-                $(`#spalte${value.spaltenid}`).append(`         
-                    <div id="task${value.id}"  class="card my-2 task cursor-grab mx-auto" data-id="${value.id}" data-sortid="${value.sortid}">
+                $(`#spalte${oneTask.spaltenid}`).append(`         
+                    <div id="task${oneTask.id}"  class="card my-2 task cursor-grab mx-auto" data-id="${oneTask.id}" data-sortid="${oneTask.sortid}">
                         <div class="card-body">
                         <!-- Titel -->
                             <div class="d-flex justify-content-between mb-1">
                                 <a class="editTaskButton searchable" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
-                                        data-id="${value.id}" data-task="${value.task}">
-                                    <i class="${value.taskartenicon} fa-fw" title="ToDo"></i> ${value.task}                                                       
+                                        data-id="${oneTask.id}" data-task="${oneTask.task}" title="Name der Task">
+                                    <i class="${oneTask.taskartenicon} fa-fw" title="Icon der Task"></i> ${oneTask.task}                                                       
                                 </a>
                                 <span class="dropdown position-static">
                                     <a class="btn btn-link ps-0 pt-0 pb-0 pe-0" role="button" data-bs-toggle="dropdown" data-boundary="viewport" 
@@ -213,7 +216,7 @@ function reloadTaskBoard(boardId) {
                                     <div class="dropdown-menu"> 
                                         <li>
                                             <a class="dropdown-item copyTaskButton" data-bs-toggle="modal" data-bs-target="#copyTaskModal"
-                                                data-id="${value.id}" data-task="${value.task}">
+                                                data-id="${oneTask.id}" data-task="${oneTask.task}">
                                                 <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-copy"></i></span>
                                                 Task kopieren
                                             </a>
@@ -221,7 +224,7 @@ function reloadTaskBoard(boardId) {
                             
                                         <li>
                                             <a class="dropdown-item editTaskButton" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
-                                                data-id="${value.id}" data-task="${value.task}">
+                                                data-id="${oneTask.id}" data-task="${oneTask.task}">
                                                 <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-pen-to-square"></i></span>
                                                 Task bearbeiten
                                             </a>
@@ -229,7 +232,7 @@ function reloadTaskBoard(boardId) {
                             
                                         <li>
                                             <a class="dropdown-item deleteTaskButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" 
-                                                data-id="${value.id}" data-boards-id="${value.boardsid}" data-task="${value.task}">
+                                                data-id="${oneTask.id}" data-boards-id="${oneTask.boardsid}" data-task="${oneTask.task}">
                                                 <span title="Task bearbeiten" class="icon-menu text-primary"><i class="fas fa-solid fa-trash"></i></span>
                                                 Task löschen
                                             </a>
@@ -240,47 +243,72 @@ function reloadTaskBoard(boardId) {
                     
                             <!-- Erstell- und Erinnerungsdatum -->
                             <div class="mb-1 d-flex justify-content-between">
-                                <div class="text-primary">
-                                    <i class="fa-solid fa-circle-up fa-fw"></i> ${new Date(value.erstelldatum).toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit', year: '2-digit'})}                                                       
+                                <div class="text-primary" title="Erstelldatum">
+                                    <i class="fa-solid fa-circle-up fa-fw"></i> ${new Date(oneTask.erstelldatum).toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit', year: '2-digit'})}                                                       
                                 </div>
-                                <div class="text-primary">
+                                <div class="text-primary" title="Erinnerungsdatum">
                                     <i class="${erinnerungsGlocke}"></i> ${formattedErinnerungsdatum}                                                    
                                 </div>
                             </div>
                             <div class="d-flex pt-1 justify-content-between">
-                                 <div class="text-primary">
-                                    ${value.notizen}
+                                 <div class="text-primary taskNotizen" title="Notizen">
+                                    ${oneTask.notizen}
                                  </div>
                             </div>
                             <!-- Zugeteilte Person -->
-                            <div class="searchable" hidden>${value.vorname} ${value.nachname}</div>
+                            <div class="searchable" hidden>${oneTask.vorname} ${oneTask.nachname}</div>
                             <div class="d-flex pt-1 justify-content-between">
                                 <div></div>
-                                <span class="rounded-circle text-xs personenkuerzel" title="${value.vorname} ${value.nachname}"
+                                <span class="rounded-circle text-xs personenkuerzel" title="${oneTask.vorname} ${oneTask.nachname}"
                                       style="color: #FFFFFF; background: #6f58a1;">
-                                    ${value.vorname.substring(0, 1)}${value.nachname.substring(0, 1)}                                                       
+                                    ${oneTask.vorname.substring(0, 1)}${oneTask.nachname.substring(0, 1)}                                                       
                                 </span>
                             </div>
                         </div>
                     </div>
                 `);
             });
-            // Board Dropdown laden
-            $('#boardidDropdownMenu').empty();
-            response.boards.forEach((value) => {
-                $('#boardidDropdownMenu').append(`
-                    <li><a class="dropdown-item" onclick="Boardupdate('${value.id}', '${value.board}')">${value.board}</a></li>
+            // Boards laden
+            let boardDropdownMenu = $('#boardidDropdownMenu');
+            boardDropdownMenu.empty();
+
+            let boardSelectInModals = $('.boardSelect');
+            boardSelectInModals.empty();
+            boardSelectInModals.append(`
+                <option>Board auswählen</option>
+            `);
+            response.boards.forEach((oneBoard) => {
+                // Dropdown aktualisieren
+                boardDropdownMenu.append(`
+                    <li><a class="dropdown-item" onclick="Boardupdate('${oneBoard.id}', '${oneBoard.board}')">${oneBoard.board}</a></li>
+                `);
+
+                // Board Select aktualisieren
+                boardSelectInModals.append(`
+                    <option value="${oneBoard.id}">${oneBoard.board}</option>
                 `);
             });
-            $('#boardidDropdownMenu').append(`
+            boardDropdownMenu.append(`
                     <li><a class="dropdown-item d-flex justify-content-center align-items-center py-2 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-plus"></i></a></li>
             `);
+            // Spalte & Board Select aktualisieren
+            $('.spaltenSelect').empty();
+            let spaltenSelectElement = $('.spaltenSelect');
+            spaltenSelectElement.append(`
+                <option selected>Spalte auswählen</option>
+            `);
+            response.boards.forEach((oneBoard) => {
+                response.boardSpalten.forEach((oneSpalte) => {
+                    if (oneSpalte.boardsid === oneBoard.id) {
+                        spaltenSelectElement.append(`
+                            <option value="${oneSpalte.id}">${oneBoard.board} - ${oneSpalte.spalte}</option>
+                        `);
+                    }
+                });
+            });
         }
     });
-    console.log('Reloaded Taskboard ' + count + ' times');
-    count++;
 }
-let count = 1;
 
 function Boardupdate(id, board) {
     $('#boardidDropdown').val(id);
@@ -312,12 +340,6 @@ $('.form-check-input').on('change', function() {
     }
 });
 
-// $(document).on('submit', '.minMaxForm', function (e) {
-//     e.preventDefault();
-//     let currentBoardId = $('#boardidDropdown').val();
-//     reloadTaskBoard(currentBoardId);
-// });
-
 // Delete Task ajax
 $(document).on('submit', '#deleteTaskForm', function (e) {
     e.preventDefault();
@@ -346,20 +368,6 @@ $(document).on('submit', '#deleteTaskForm', function (e) {
         }
     });
 });
-
-// for(const task of document.querySelectorAll('.task')) {
-//     task.onmousemove = e => handleOnMouseMove(e);
-// }
-// const handleOnMouseMove = e => {
-//     const { currentTarget: target } = e;
-//
-//     const rect = target.getBoundingClientRect(),
-//         x = e.clientX - rect.left,
-//         y = e.clientY - rect.top;
-//
-//     target.style.setProperty('--mouse-x', `${ x }px`);
-//     target.style.setProperty('--mouse-y', `${ y }px`);
-// }
 
 function updateTaskSortIds(tasks) {
     $.ajax({
@@ -406,4 +414,9 @@ $(document).on('click', '.createSpalteButton', function (e) {
     e.preventDefault();
     let boardId = $('#boardidDropdown').val();
     $('#createSpalteModal').find('#boardsid').val(boardId);
+});
+
+$(document).on('click', '.notizenButton', function (e) {
+    e.preventDefault();
+    $('.taskNotizen').toggle();
 });

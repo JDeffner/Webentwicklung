@@ -20,6 +20,7 @@ class SpaltenModel extends Model
     {
         return $this->db->table($this->table)
             ->where('boardsid', $boardID)
+            ->orderBy('sortid')
             ->get()->getResultArray();
     }
 

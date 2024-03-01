@@ -38,16 +38,6 @@ $(document).on('submit', '#deleteTaskartForm', function (e) {
                 showToast(response.tableName, response.action);
                 $('#deleteTaskartModal').modal('hide');
                 $('#taskartenTable').bootstrapTable('refresh');
-            } else {
-                $('#deleteTaskartModal').modal('hide');
-                // Create a Bootstrap alert dynamically
-                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                const messageDiv = $('<div></div>').text(response.error.deletion);
-                alertDiv.append(messageDiv);
-                alertDiv.append(closeButton);
-                // Append the alert above the buttons
-                $('#spalten-table-toolbar').before(alertDiv);
             }
         }
     });
