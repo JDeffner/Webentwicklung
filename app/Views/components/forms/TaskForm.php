@@ -22,7 +22,7 @@
     <div class="mb-3">
 
         <label for="spaltenid" class="form-label">Board & Spalte:</label>
-        <select class="form-select" id="spaltenid" name="spaltenid">
+        <select class="form-select spaltenSelect" id="spaltenid" name="spaltenid">
             <option selected>Board und Spalte auswählen</option>
             <?php foreach (($boards ?? null) as $board): ?>
                 <?php foreach (($spalten ?? null) as $spalte): ?>

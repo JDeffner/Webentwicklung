@@ -14,21 +14,21 @@ class TasksController extends BaseController
 
     public function index()
     {
-        $defaultBoardID = '1';
+        $boardsModel = new BoardsModel();
+        $firstBoard = $boardsModel->first();
         $data = [
             'title' => 'Tasks',
-            'boardID' => $defaultBoardID,
+            'boardID' => $firstBoard['id'],
+            'boardName' => $firstBoard['board'],
+            'boards' => $boardsModel->findAll()
         ];
         $tasksModel = new TasksModel();
-        $data['tasks'] = $tasksModel->getTasksFromBoard($defaultBoardID);
+        $data['tasks'] = $tasksModel->getTasksFromBoard($firstBoard['id']);
         $personenModel = new PersonenModel();
         $data['personen'] = $personenModel->getDashboardData();
         $spaltenModel = new SpaltenModel();
         $data['spalten'] = $spaltenModel->findAll();
-        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($defaultBoardID);
-        $boardsModel = new BoardsModel();
-        $data['boards'] = $boardsModel->findAll();
-        $data['boardName'] = $boardsModel->getBoardName($defaultBoardID)[0]['board'];
+        $data['spaltenForBoard'] = $spaltenModel->getSpaltenForBoard($firstBoard['id']);
         $taskartenModel = new TaskartenModel();
         $data['taskarten'] = $taskartenModel->findAll();
 
@@ -113,7 +113,10 @@ class TasksController extends BaseController
         $tasksModel = new TasksModel();
         $data['tasks'] = $tasksModel->getTasksFromBoard($boardID);
         $spaltenModel = new SpaltenModel();
-        $data['spalten'] = $spaltenModel->getSpaltenForBoard($boardID);
+        $data['boardSpalten'] = $spaltenModel->getSpaltenForBoard($boardID);
+        $data['spalten'] = $spaltenModel->findAll();
+        $boardModel = new BoardsModel();
+        $data['boards'] = $boardModel->findAll();
         return json_encode($data);
     }
 

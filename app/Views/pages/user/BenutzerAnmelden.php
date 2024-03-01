@@ -16,26 +16,22 @@
                                 <label class="form-label" for="email">E-mail</label>
                             </div>
 
-                            <div class="form-floating mb-4">
+                            <div class="form-floating mb-5">
                                 <input type="password" id="passwort" class="form-control form-control-lg" placeholder="Passwort" name="passwort"/>
                                 <label class="form-label" for="passwort">Passwort</label>
                             </div>
 
-<!--                                <div class="form-check d-flex justify-content-start mb-4">-->
-<!--                                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />-->
-<!--                                    <label class="form-check-label" for="form1Example3"> Remember password </label>-->
-<!--                                </div>-->
-
-                            <div class="justify-content-between align-items-center d-flex">
-                                <button type="submit" class="btn btn-success mb-4">Anmelden</button>
-                                <a role="button" class="btn btn-secondary mb-4" href="<?php echo base_url('benutzer/gast');?>">Als Gast fortfahren</a>
+                            <button type="submit" class="btn btn-success w-100">Anmelden</button>
+                            <div class="my-2">
+                                oder
                             </div>
+                            <a role="button" class="btn btn-secondary mb-4 w-100" href="<?php echo base_url('benutzer/erstellen');?>">Neuen Account erstellen</a>
 
                         </form>
 
                         <hr class="my-4">
 
-                        <a href="<?php echo base_url('benutzer/erstellen');?>">Ich will einen neuen Account erstellen</a>
+                        <a href="<?php echo base_url('benutzer/gast');?>">Als Gast fortfahren</a>
 
                     </div>
                 </div>

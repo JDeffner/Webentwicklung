@@ -66,9 +66,11 @@ The application provides a user-friendly interface for managing Tasks inside a K
 
 - **Spalten**: Each Board can have multiple Spalten. A Spalte represents a stage or a status of Tasks. CRUD operations for Spalten can be performed by clicking on the corresponding buttons in the Board details view.
 
-- **Personen**: Personen are the users or team members in your project. They are assignable to Tasks and can be used to filter Tasks. When logged in, you can see your own tasks by clicking on the "Meine Tasks" ([TODO](https://github.com/talina2/Webentwicklung/issues/63)) button in the user dropdown menu in the top right corner of the application. You can create a new person by signing up with a new account. You can also update your details by clicking on the "Profil" button in the user dropdown menu. Personen also have a role, which can be "Administrator" or "Benutzer". Admins can create, update, and delete all data in the application, while Benutzers can only create, update, and delete the non-admin tables.
+- **Personen**: Personen are the users or team members in your project. They are assignable to Tasks and can be used to filter Tasks. Personen also have a role, which can be "Administrator" or "Benutzer". Admins can create, update, and delete all data in the application, while Benutzers can only create, update, and delete the non-admin tables.
 
 - **Taskarten**: Taskarten are the categories or types of Tasks in your project. Admins can add a new task type by clicking on the "Neu" button in the Taskarten view.
+
+- **Task View**: The main view of the application is the Task view. Here you can see all the Tasks in your project. You can filter the Tasks using the search box at the top right, which you put into write focus by pressing any key on your keyboard. You can also seach for people by clicking on their icon when they are assigned to a task. This allows you to see all tasks assigned to that person on the currently viewed board.
 
 ## Screenshots
 
