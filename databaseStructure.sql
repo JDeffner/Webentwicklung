@@ -32,6 +32,13 @@ CREATE TABLE `boards` (
   `board` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Seed data for table `boards` (a starter board so the app is usable right away)
+--
+
+INSERT INTO `boards` (`id`, `board`) VALUES
+(1, 'Mein Board');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,21 @@ CREATE TABLE `personen` (
   `passwort` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Seed data for table `personen`
+--
+-- The initial administrator account. It is REQUIRED because the registration
+-- form only creates regular users (permission 1) — without this account nobody
+-- can access the admin views (Taskarten and Personen management).
+--
+-- Default credentials (CHANGE THE PASSWORD AFTER THE FIRST LOGIN!):
+--   E-Mail:   admin@example.com
+--   Passwort: admin1234
+--
+
+INSERT INTO `personen` (`id`, `vorname`, `nachname`, `email`, `permission`, `passwort`) VALUES
+(1, 'Admin', 'Admin', 'admin@example.com', 2, '$2y$12$K3cZIQz4/BN7tDIfrgsiQu9D9T7Hgypl1351O9E95WIdBRhK7HvyS');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +83,15 @@ CREATE TABLE `spalten` (
   `spaltenbeschreibung` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Seed data for table `spalten` (three classic Kanban columns for the starter board)
+--
+
+INSERT INTO `spalten` (`id`, `boardsid`, `sortid`, `spalte`, `spaltenbeschreibung`) VALUES
+(1, 1, 1, 'To Do', 'Aufgaben, die noch nicht begonnen wurden'),
+(2, 1, 2, 'In Arbeit', 'Aufgaben, die gerade bearbeitet werden'),
+(3, 1, 3, 'Erledigt', 'Abgeschlossene Aufgaben');
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +103,20 @@ CREATE TABLE `taskarten` (
   `taskart` varchar(50) NOT NULL,
   `taskartenicon` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Seed data for table `taskarten`
+--
+-- At least one Taskart is REQUIRED: every Task needs a `taskartenid`
+-- (NOT NULL foreign key) and Taskarten can only be created by an
+-- administrator. The icons are Font Awesome CSS classes.
+--
+
+INSERT INTO `taskarten` (`id`, `taskart`, `taskartenicon`) VALUES
+(1, 'Aufgabe', 'fa-solid fa-list-check'),
+(2, 'Bug', 'fa-solid fa-bug'),
+(3, 'Feature', 'fa-solid fa-lightbulb'),
+(4, 'Meeting', 'fa-solid fa-users');
 
 -- --------------------------------------------------------
 
