@@ -39,7 +39,7 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             // 'honeypot',
-            // 'csrf',
+            'csrf',
             // 'invalidchars',
             // 'secureheaders',
             'loginAuthentification' => [

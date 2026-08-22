@@ -4,6 +4,10 @@ const BASE_URL     Declared in head.php
  */
 let formRequest;  // current running crud ajax request
 
+// Send the CSRF token with every AJAX request. The csrf filter rejects
+// mutating requests without it.
+$.ajaxSetup({ headers: { [CSRF_HEADER]: CSRF_HASH } });
+
 // Call functions after DOM is loaded
 $(document).ready(function () {
     handleCrud('Task', 'Tasks');

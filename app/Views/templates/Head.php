@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.css" integrity="sha512-zlYhSecphd+kwRzeCOyj7/u3HZIQ3Q0NP7AN7ZEKhYTdi0AQOGGbc7eA3I/mUffqjdr8G1/9xoS478h+I0MQGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
         const BASE_URL = "<?= base_url() ?>"; // Set baseURL for all scripts
+        const CSRF_HEADER = "<?= csrf_header() ?>"; // CSRF header name, sent with every AJAX request
+        const CSRF_HASH = "<?= csrf_hash() ?>";
     </script>
     <script defer src="<?php echo base_url();?>resources/js/main.js"></script>
 <!-- Page specific scripts   -->
