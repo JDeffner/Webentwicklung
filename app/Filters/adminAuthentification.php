@@ -11,7 +11,7 @@ class adminAuthentification implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // Do something here
-        if ($_COOKIE['permissionLevel'] != '2') {
+        if (session()->get('permissionLevel') != '2') {
             // Redirect to denied page
             return redirect()->to('/denied');
         }

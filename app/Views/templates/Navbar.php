@@ -18,7 +18,7 @@
                     <a class="nav-link <?php echo ($title == 'Spalten') ? 'active" aria-current="page"' : '"' ?> href="<?php echo base_url('spalten');?>">Spalten</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?= $_COOKIE['permissionLevel'] == '2' ? '' : 'disabled' ?> <?php echo ($title == 'Personen' || $title == 'Taskarten' || $title == 'Tasks-Admin') ? 'active" aria-current="page"' : '"' ?> role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle <?= session()->get('permissionLevel') == '2' ? '' : 'disabled' ?> <?php echo ($title == 'Personen' || $title == 'Taskarten' || $title == 'Tasks-Admin') ? 'active" aria-current="page"' : '"' ?> role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin
                     </a>
                     <ul class="dropdown-menu">
@@ -31,11 +31,11 @@
         </div>
         <div class="navbar-text me-4">
             <div class="dropdown">
-                <?php if (isset($_COOKIE['userid'])) : ?>
-                <?= $_COOKIE['username'].' '.$_COOKIE['userlastname'] ?>
-                <?php if($_COOKIE['permissionLevel'] == '2') { ?>
+                <?php if (session()->has('userid')) : ?>
+                <?= esc(session()->get('username').' '.session()->get('userlastname')) ?>
+                <?php if(session()->get('permissionLevel') == '2') { ?>
                     <i class="fa-solid fa-user-shield iconClickable dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #e21d1d;"></i>
-                <?php } else if($_COOKIE['permissionLevel'] == '1') { ?>
+                <?php } else if(session()->get('permissionLevel') == '1') { ?>
                     <i class="fa-solid fa-user iconClickable dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0d46d5;"></i>
                 <?php } ?>
                 <ul class="dropdown-menu dropdown-menu-end">
