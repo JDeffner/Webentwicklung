@@ -27,7 +27,8 @@ class PersonenController extends BaseController
     public function postPersonInfo($personid)
     {
         $personenModel = new PersonenModel();
-        $data['person'] = $personenModel->find($personid);
+        // Never ship the password hash to the client.
+        $data['person'] = $personenModel->getSecurePersonForEdit($personid);
         return json_encode($data);
     }
 
@@ -51,7 +52,12 @@ class PersonenController extends BaseController
     public function postPersonBearbeiten($personid)
     {
         $personenModel = new PersonenModel();
-        if($personenModel->update($personid, $_POST)){
+        $person = [
+            'vorname'    => $this->request->getPost('vorname'),
+            'nachname'   => $this->request->getPost('nachname'),
+            'permission' => $this->request->getPost('permission'),
+        ];
+        if($personenModel->update($personid, $person)){
             $data['tableName'] = 'personen';
             $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;

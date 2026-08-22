@@ -28,7 +28,7 @@ class BoardsController extends BaseController
     public function postBoardErstellen()
     {
         $boardsModel = new BoardsModel();
-        if($boardsModel->save($_POST)){
+        if($boardsModel->save(['board' => $this->request->getPost('board')])){
             $data['tableName'] = 'boards';
             $data['action'] = 'erstellt';
             $data['successfulValidation'] = true;
@@ -47,7 +47,7 @@ class BoardsController extends BaseController
     public function postBoardBearbeiten($boardid)
     {
         $boardsModel = new BoardsModel();
-        if($boardsModel->update($boardid, $_POST)){
+        if($boardsModel->update($boardid, ['board' => $this->request->getPost('board')])){
             $data['tableName'] = 'boards';
             $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;
