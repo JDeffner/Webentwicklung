@@ -27,6 +27,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'adminAuthentification'     => \App\Filters\adminAuthentification::class,
         'loginAuthentification'      => \App\Filters\loginAuthentification::class,
+        'benutzerAuthentification'  => \App\FiltersenutzerAuthentification::class,
     ];
 
     /**
@@ -79,5 +80,20 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        // Writing routes are for registered users only; guests get read access.
+        'benutzerAuthentification' => [
+            'before' => [
+                'tasks/erstellen',
+                'tasks/loeschen/*',
+                'tasks/bearbeiten/*',
+                'spalten/erstellen',
+                'spalten/bearbeiten/*',
+                'spalten/loeschen/*',
+                'boards/erstellen',
+                'boards/bearbeiten/*',
+                'boards/loeschen/*',
+            ],
+        ],
+    ];
 }

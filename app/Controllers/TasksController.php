@@ -16,6 +16,9 @@ class TasksController extends BaseController
     {
         $boardsModel = new BoardsModel();
         $firstBoard = $boardsModel->first();
+        if ($firstBoard === null) {
+            return redirect()->to(base_url('boards'));
+        }
         $data = [
             'title' => 'Tasks',
             'boardID' => $firstBoard['id'],
