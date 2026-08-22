@@ -11,7 +11,7 @@
         <select class="form-select boardSelect" id="boardsid" name="boardsid">
             <option selected>Board auswählen</option>
             <?php foreach (($boards ?? null) as $board): ?>
-                <option value="<?= $board['id'] ?>"><?= $board['board'] ?></option>
+                <option value="<?= esc($board['id']) ?>"><?= esc($board['board']) ?></option>
             <?php endforeach; ?>
         </select>
     </div>
