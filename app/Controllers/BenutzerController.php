@@ -11,11 +11,7 @@ class BenutzerController extends BaseController
         $data = [
             'title' => 'Login',
         ];
-        setcookie('userid', "", time() - 3600, "/");
-        setcookie('username', "", time() - 3600, "/");
-        setcookie('userlastname', "", time() - 3600, "/");
-        setcookie('useremail', "", time() - 3600, "/");
-        setcookie('permissionLevel', "", time() - 3600, "/");
+        session()->destroy();
         echo view('pages/user/BenutzerAnmelden', $data);
     }
 
@@ -23,14 +19,16 @@ class BenutzerController extends BaseController
     {
 
             $personenModel = new PersonenModel();
-            $person = $personenModel->getPersonenRowByEmail($_POST['email']);
+            $person = $personenModel->getPersonenRowByEmail($this->request->getPost('email'));
             if ($person != null) {
-                if (password_verify($_POST['passwort'], $person['passwort'])) {
-                    setcookie('userid', $person['id'], "0", "/");
-                    setcookie('username', $person['vorname'], "0", "/");
-                    setcookie('userlastname', $person['nachname'], "0", "/");
-                    setcookie('useremail', $person['email'], "0", "/");
-                    setcookie('permissionLevel', $person['permission'], "0", "/");
+                if (password_verify($this->request->getPost('passwort'), $person['passwort'])) {
+                    session()->set([
+                        'userid'          => $person['id'],
+                        'username'        => $person['vorname'],
+                        'userlastname'    => $person['nachname'],
+                        'useremail'       => $person['email'],
+                        'permissionLevel' => (string) $person['permission'],
+                    ]);
                     $data['redirect'] = base_url('profil');
                     $data['tableName'] = 'loginPersonen';
                     $data['successfulValidation'] = true;
@@ -63,15 +61,26 @@ class BenutzerController extends BaseController
     public function postBenutzerErstellen(){
 
         $personenModel = new PersonenModel();
-        if($personenModel->validate($_POST)){
-            $_POST['passwort'] = password_hash($_POST['passwort'], PASSWORD_DEFAULT);
-            $personenModel->save($_POST);
-            setcookie('username', $_POST['vorname'], "0", "/");
-            setcookie('userlastname', $_POST['nachname'], "0", "/");
-            setcookie('useremail', $_POST['email'], "0", "/");
-            setcookie('permissionLevel', "1", "0", "/");
+        // Only these four fields may come from the request. permission is set by
+        // the server so that nobody can register themselves as an administrator.
+        $person = [
+            'vorname'  => $this->request->getPost('vorname'),
+            'nachname' => $this->request->getPost('nachname'),
+            'email'    => $this->request->getPost('email'),
+            'passwort' => $this->request->getPost('passwort'),
+        ];
+        if($personenModel->validate($person)){
+            $person['passwort'] = password_hash($person['passwort'], PASSWORD_DEFAULT);
+            $person['permission'] = 1;
+            $personenModel->save($person);
             $userid = $personenModel->insertID();
-            setcookie('userid', $userid, "0", "/");
+            session()->set([
+                'userid'          => $userid,
+                'username'        => $person['vorname'],
+                'userlastname'    => $person['nachname'],
+                'useremail'       => $person['email'],
+                'permissionLevel' => '1',
+            ]);
             $data['redirect'] = base_url('willkommen');
             $data['tableName'] = 'loginPersonen';
             $data['successfulValidation'] = true;
@@ -90,11 +99,8 @@ class BenutzerController extends BaseController
     }
 
     public function getGastAnmelden(){
-        setcookie('userid', "", "0", "/");
-        setcookie('username', "", "0", "/");
-        setcookie('userlastname', "", "0", "/");
-        setcookie('useremail', "", "0", "/");
-        setcookie('permissionLevel', "0", "0", "/");
+        session()->destroy();
+        session()->set('permissionLevel', '0');
         return redirect()->to(base_url('tasks'));
     }
 

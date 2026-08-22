@@ -27,6 +27,14 @@ class PersonenModel extends Model
             ->get()->getRowArray();
     }
 
+    public function getSecurePersonForEdit($id): array | null
+    {
+        return $this->db->table($this->table)
+            ->select('id, vorname, nachname, email, permission')
+            ->where('id', $id)
+            ->get()->getRowArray();
+    }
+
     public function getSecurePerson($id): array
     {
         return $this->db->table($this->table)

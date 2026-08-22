@@ -11,7 +11,7 @@ class loginAuthentification implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // Do something here
-        if (!isset($_COOKIE['permissionLevel'])) {
+        if (! session()->has('permissionLevel')) {
             return redirect()->to('anmelden');
         }
     }

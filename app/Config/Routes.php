@@ -61,8 +61,8 @@ $routes->group('boards', function($routes) {
 $routes->get('denied', 'ErrorController::index');
 
 // Show Gruppennummer
-$routes->get('(:any)/gruppennummer', 'AdminController::viewGruppennummer');
-$routes->get('gruppennummer', 'AdminController::viewGruppennummer');
+$routes->get('(:any)/gruppennummer', 'Admin\AdminController::viewGruppennummer');
+$routes->get('gruppennummer', 'Admin\AdminController::viewGruppennummer');
 
 // Protected Admin routes
 $routes->group('/', ['filter' => 'adminAuthentification', 'namespace' => 'App\Controllers\Admin'], function($routes) {
@@ -83,9 +83,6 @@ $routes->group('/', ['filter' => 'adminAuthentification', 'namespace' => 'App\Co
     $routes->post('taskarten/taskart/(:num)', 'TaskartenController::postTaskartenInfo/$1');
 
     $routes->get('admin/tasks', 'TasksController::getTasks');
-
-    $routes->get('welcome', 'AdminController::index');
-    $routes->get('test', 'AdminController::test');
 });
 
 

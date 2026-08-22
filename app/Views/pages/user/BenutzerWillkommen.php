@@ -7,7 +7,7 @@
             <h3>
                 Willkommen
                 <?php
-                    echo $_COOKIE['username']. " " . $_COOKIE['userlastname'];
+                    echo esc(session()->get('username') . " " . session()->get('userlastname'));
                 ?>!
             </h3>
         </div>

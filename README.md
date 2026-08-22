@@ -2,6 +2,10 @@
 
 This is a project for the course "Webentwicklung" at the University of Trier. The goal of this project is to develop a Kanban Board as a web application. A Kanban Board is a project management tool that helps visualize work, limit work-in-progress, and maximize efficiency.
 
+## Project status
+
+This is coursework from the summer 2024 "Webentwicklung" course at the University of Trier. It is not maintained. The 2026 audit fixes in this branch close the authentication, mass assignment, XSS and CSRF findings, but the application was never written for production use. Do not deploy it on a public host.
+
 ## Table of Contents
 - [Description](#description)
 - [Important Note](#important-note)
@@ -148,9 +152,7 @@ Admin is a user that is logged in and has admin rights.
 
 ## Contributing
 
-Contributions are welcome. Please fork the repository and create a pull request with your changes. 
-For major changes, please open an issue first to discuss what you would like to change. 
-If you find a bug, please report it using the issue tracker.
+This is archived coursework and is not maintained, so pull requests will most probably not get a reply.
 
 ## License
 

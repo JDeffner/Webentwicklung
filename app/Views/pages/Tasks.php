@@ -19,13 +19,13 @@
             </div>
 
             <div class="dropdown" title="Board auswählen">
-                <input type="hidden" id="boardidDropdown" value="<?= $boardID ?>">
+                <input type="hidden" id="boardidDropdown" value="<?= esc($boardID) ?>">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="boardidDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span><?= $boardName ?></span>
+                    <span><?= esc($boardName) ?></span>
                 </button>
                 <ul class="dropdown-menu" id="boardidDropdownMenu">
                     <?php foreach (($boards ?? null) as $oneBoard): ?>
-                        <li><a class="dropdown-item" onclick="Boardupdate('<?= $oneBoard['id'] ?>','<?= $oneBoard['board'] ?>');"><?= $oneBoard['board'] ?></a></li>
+                        <li><a class="dropdown-item" onclick="Boardupdate('<?= esc($oneBoard['id'], 'js') ?>','<?= esc($oneBoard['board'], 'js') ?>');"><?= esc($oneBoard['board']) ?></a></li>
                     <?php endforeach; ?>
                     <li><a class="dropdown-item d-flex justify-content-center align-items-center py-2 createBoardButton" data-bs-toggle="modal" data-bs-target="#createBoardModal"><i class="fa-solid fa-plus"></i></a></li>
                 </ul>

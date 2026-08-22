@@ -16,6 +16,9 @@ class TasksController extends BaseController
     {
         $boardsModel = new BoardsModel();
         $firstBoard = $boardsModel->first();
+        if ($firstBoard === null) {
+            return redirect()->to(base_url('boards'));
+        }
         $data = [
             'title' => 'Tasks',
             'boardID' => $firstBoard['id'],
@@ -43,10 +46,21 @@ class TasksController extends BaseController
     public function postTaskErstellen()
     {
 
+        // Only the fields the task form actually offers; geloescht, erledigt and
+        // sortid stay under server control.
+        $task = [
+            'task'             => $this->request->getPost('task'),
+            'taskartenid'      => $this->request->getPost('taskartenid'),
+            'spaltenid'        => $this->request->getPost('spaltenid'),
+            'personenid'       => $this->request->getPost('personenid'),
+            'erinnerung'       => $this->request->getPost('erinnerung') ?? '0',
+            'erinnerungsdatum' => $this->request->getPost('erinnerungsdatum'),
+            'notizen'          => $this->request->getPost('notizen'),
+        ];
         $taskModel = new TasksModel();
-        if($taskModel->save($_POST)){
+        if($taskModel->save($task)){
             $data['taskid'] = $taskModel->getInsertID();
-            $data['spaletenid'] = $_POST['spaltenid'];
+            $data['spaletenid'] = $task['spaltenid'];
             $data['tableName'] = 'tasks';
             $data['action'] = 'erstellt';
             $data['successfulValidation'] = true;
@@ -81,14 +95,21 @@ class TasksController extends BaseController
      */
     public function postTaskBearbeiten($taskid)
     {
-        if (!isset($_POST['erinnerung'])) {
-            // If 'erinnerung' is not set, set it to 0
-            $_POST['erinnerung'] = '0';
-        }
+        // Only the fields the task form actually offers; geloescht, erledigt and
+        // sortid stay under server control.
+        $task = [
+            'task'             => $this->request->getPost('task'),
+            'taskartenid'      => $this->request->getPost('taskartenid'),
+            'spaltenid'        => $this->request->getPost('spaltenid'),
+            'personenid'       => $this->request->getPost('personenid'),
+            'erinnerung'       => $this->request->getPost('erinnerung') ?? '0',
+            'erinnerungsdatum' => $this->request->getPost('erinnerungsdatum'),
+            'notizen'          => $this->request->getPost('notizen'),
+        ];
         $taskModel = new TasksModel();
-        if($taskModel->update($taskid, $_POST)){
+        if($taskModel->update($taskid, $task)){
             $data['taskid'] = $taskid;
-            $data['spaletenid'] = $_POST['spaltenid'];
+            $data['spaletenid'] = $task['spaltenid'];
             $data['tableName'] = 'tasks';
             $data['action'] = 'bearbeitet';
             $data['successfulValidation'] = true;

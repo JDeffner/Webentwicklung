@@ -10,7 +10,7 @@
             <ul class="dropdown-menu dropdown-menu-end">
                 <?php foreach (($taskarten ?? null) as $taskart): ?>
                 <li>
-                <a class="dropdown-item" onclick="Taskartupdate('<?= $taskart['id'] ?>','<?= $taskart['taskartenicon'] ?>','<?= $taskart['taskart'] ?>');"><i class="<?= $taskart['taskartenicon'] ?>"></i> <?= $taskart['taskart'] ?></a>
+                <a class="dropdown-item" onclick="Taskartupdate('<?= esc($taskart['id'], 'js') ?>','<?= esc($taskart['taskartenicon'], 'js') ?>','<?= esc($taskart['taskart'], 'js') ?>');"><i class="<?= esc($taskart['taskartenicon'], 'attr') ?>"></i> <?= esc($taskart['taskart']) ?></a>
                 </li>
                 <?php endforeach; ?>
             </ul>
@@ -27,7 +27,7 @@
             <?php foreach (($boards ?? null) as $board): ?>
                 <?php foreach (($spalten ?? null) as $spalte): ?>
                     <?php if ($spalte['boardsid'] == $board['id']): ?>
-                        <option value="<?= $spalte['id'] ?>"><?= $board['board'] . ' - ' . $spalte['spalte'] ?></option>
+                        <option value="<?= esc($spalte['id']) ?>"><?= esc($board['board'] . ' - ' . $spalte['spalte']) ?></option>
                     <?php endif; ?>
                 <?php endforeach; ?>
             <?php endforeach; ?>
@@ -41,7 +41,7 @@
         <select class="form-select" id="personenid" name="personenid">
             <option selected>Person auswählen</option>
             <?php foreach (($personen ?? null) as $item): ?>
-                <option value="<?= $item["id"] ?>"><?= $item["vorname"] ?> <?= $item["nachname"] ?></option>
+                <option value="<?= esc($item["id"]) ?>"><?= esc($item["vorname"]) ?> <?= esc($item["nachname"]) ?></option>
             <?php endforeach; ?>
         </select>
     </div>

@@ -7,18 +7,8 @@ use ReflectionException;
 
 class AdminController extends BaseController
 {
-    public function index()
-    {
-        echo view('pages/dev/welcome_message');
-    }
-
     public function viewGruppennummer(){
-        var_dump(04);
-    }
-
-    public function test()
-    {
-        var_dump('test');
+        return '04';
     }
 
     public function abweisung()

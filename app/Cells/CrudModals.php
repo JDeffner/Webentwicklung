@@ -10,7 +10,7 @@ class CrudModals
     {
         $data = [
             'modalType' => $type,
-            'modalMessage' => 'Neues ??? erstellen',
+            'modalMessage' => 'Neues '.$type.' erstellen',
             'modalAction' => 'create',
         ];
         return view('components/CrudModal', $data);
@@ -20,7 +20,7 @@ class CrudModals
     {
         $data = [
             'modalType' => $type,
-            'modalMessage' => $type.' ??? bearbeiten',
+            'modalMessage' => $type.' bearbeiten',
             'modalAction' => 'edit',
         ];
         return view('components/CrudModal', $data);
@@ -30,7 +30,7 @@ class CrudModals
     {
         $data = [
             'modalType' => $type,
-            'modalMessage' => $type.' ??? löschen',
+            'modalMessage' => $type.' löschen',
             'modalAction' => 'delete',
         ];
         return view('components/CrudModal', $data);
@@ -40,7 +40,7 @@ class CrudModals
     {
         $data = [
             'modalType' => $type,
-            'modalMessage' => $type.' ??? kopieren',
+            'modalMessage' => $type.' kopieren',
             'modalAction' => 'copy',
         ];
         return view('components/CrudModal', $data);

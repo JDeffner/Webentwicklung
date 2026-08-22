@@ -6,13 +6,12 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class adminAuthentification implements FilterInterface
+class benutzerAuthentification implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        // Do something here
-        if (session()->get('permissionLevel') != '2') {
-            // Redirect to denied page
+        // Guests (permissionLevel 0) may read the boards but not change them.
+        if (session()->get('permissionLevel') < 1) {
             return redirect()->to('/denied');
         }
     }
