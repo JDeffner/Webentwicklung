@@ -280,7 +280,7 @@ function reloadTaskBoard(boardId) {
             response.boards.forEach((oneBoard) => {
                 // Dropdown aktualisieren
                 boardDropdownMenu.append(`
-                    <li><a class="dropdown-item" onclick="Boardupdate('${oneBoard.id}', '${oneBoard.board}')">${oneBoard.board}</a></li>
+                    <li><a class="dropdown-item selectBoardButton" data-board-id="${oneBoard.id}" data-board-name="${oneBoard.board}">${oneBoard.board}</a></li>
                 `);
 
                 // Board Select aktualisieren
@@ -298,7 +298,7 @@ function reloadTaskBoard(boardId) {
                 <option selected>Spalte auswählen</option>
             `);
             response.boards.forEach((oneBoard) => {
-                response.boardSpalten.forEach((oneSpalte) => {
+                response.spalten.forEach((oneSpalte) => {
                     if (oneSpalte.boardsid === oneBoard.id) {
                         spaltenSelectElement.append(`
                             <option value="${oneSpalte.id}">${oneBoard.board} - ${oneSpalte.spalte}</option>
@@ -313,7 +313,7 @@ function reloadTaskBoard(boardId) {
 function Boardupdate(id, board) {
     $('#boardidDropdown').val(id);
 
-    $("#boardidDropdownButton span").html(board);
+    $("#boardidDropdownButton span").text(board);
 
     reloadTaskBoard(id);
 }
@@ -329,44 +329,8 @@ function updateTaskSpaltenId(taskId, spaltenId) {
     });
 }
 
-// Erinnerung Checkbox disable/enable Erinnerungsdatum
-$('.form-check-input').on('change', function() {
-
-    if ($(this).prop('checked')) {
-        $('.erinnerungsdatum').removeAttr('disabled');
-    } else {
-
-        $('.erinnerungsdatum').attr('disabled', '');
-    }
-});
-
-// Delete Task ajax
-$(document).on('submit', '#deleteTaskForm', function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: $(this).attr('data-delete-at'),
-        dataType: 'json',
-        data: $(this).serialize(),
-        success: function (response) {
-            $('.alert').remove();
-            if (response.successfulValidation) {
-                showToast(response.tableName, response.action);
-                $('#deleteTaskModal').modal('hide');
-                $(`#task${response.taskid}`).remove();
-            } else {
-                $('#deleteTaskModal').modal('hide');
-                // Create a Bootstrap alert dynamically
-                const alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>');
-                const closeButton = $('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-                const messageDiv = $('<div></div>').text(response.error.deletion);
-                alertDiv.append(messageDiv);
-                alertDiv.append(closeButton);
-                // Append the alert above the buttons
-                $('#tasks-table-toolbar').before(alertDiv);
-            }
-        }
-    });
+$(document).on('click', '.selectBoardButton', function () {
+    Boardupdate($(this).attr('data-board-id'), $(this).attr('data-board-name'));
 });
 
 function updateTaskSortIds(tasks) {
@@ -394,11 +358,12 @@ $(document).on('click', '.personenkuerzel', function (e) {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')
+    if (document.querySelector('.modal.show') || document.activeElement.matches('input, textarea, select, button, a, [contenteditable]'))
         return;
     if (event.key === 'Escape') {
         document.getElementById('suchetasks').value = '';
-    } else if (!event.key.startsWith('F')) {
+        Suche();
+    } else if (event.key.length === 1 && !event.ctrlKey && !event.altKey && !event.metaKey) {
         // Set focus to the #suchetasks search field
         document.getElementById('suchetasks').focus();
     }

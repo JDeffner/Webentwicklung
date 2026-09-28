@@ -45,6 +45,8 @@
 <!-- Edit Spalte Modal -->
 <?= view_cell('CrudModals::editModal','type=Spalte') ?>
 
+<?= view_cell('CrudModals::copyModal','type=Spalte') ?>
+
 <!-- Delete Spalte Modal -->
 <?= view_cell('CrudModals::deleteModal','type=Spalte') ?>
 

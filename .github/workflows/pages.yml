@@ -21,8 +21,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
       - name: Test demo behavior
-        run: node --test tests/demo/store.test.mjs
+        run: node --test tests/demo/*.test.mjs
       - name: Build static demo
         run: node scripts/build-demo.mjs
       - uses: actions/upload-pages-artifact@v4

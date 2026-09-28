@@ -45,7 +45,7 @@ $(document).on('submit', '#deletePersonForm', function (e) {
             } else {
                 $('#deletePersonModal').modal('hide');
                 // Create a Bootstrap alert dynamically
-                $('#spalten-table-toolbar').before(`
+                $('#personenTable').before(`
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         ${response.error.deletion}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
