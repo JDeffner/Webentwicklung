@@ -105,6 +105,13 @@
         }
         function currentUser() { return state.personen.find(person => person.id === session) ?? null; }
         function permission() { return currentUser()?.permission ?? (session === 'guest' ? '0' : null); }
+        function loginAsDemo(role) {
+            refresh();
+            if (!['1', '2'].includes(role)) throw new Error('Ungültige Demo-Rolle.');
+            const person = state.personen.find(person => person.permission === role);
+            if (!person) throw new Error('Für diese Rolle gibt es kein Konto mehr. Bitte die Demo zurücksetzen.');
+            setSession(person.id);
+        }
         function snapshot() { return structuredClone({ ...state, personen: state.personen.map(publicPerson) }); }
         function validate(table, data, update = false) {
             const errors = {};
@@ -227,7 +234,7 @@
             persist(next);
             return { successfulValidation: true, tableName: table, action: update ? 'bearbeitet' : 'erstellt', taskid: recordId, taskartenid: recordId, spaletenid: record.spaltenid };
         }
-        return { request, snapshot, currentUser, permission, guest: () => setSession('guest'), logout: () => setSession(null), reset: () => { persist(seedState()); setSession(null); } };
+        return { request, snapshot, currentUser, permission, loginAsDemo, guest: () => setSession('guest'), logout: () => setSession(null), reset: () => { persist(seedState()); setSession(null); } };
     }
     const api = { STORAGE_KEY, SESSION_KEY, seedState, validateState, createBackend };
     if (typeof module !== 'undefined' && module.exports) module.exports = api;

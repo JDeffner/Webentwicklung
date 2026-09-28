@@ -3,35 +3,37 @@
     const { route, navbars, rules } = window.MINMAX_DEMO;
     const root = new URL(BASE_URL, location.href);
     const warnings = [];
-    let storage, sessionStorage;
+    let storage, sessionStorage, demoPanel;
     try { storage = window.localStorage; sessionStorage = window.sessionStorage; } catch { /* Report through the backend warning callback. */ }
     const backend = MinMaxDemo.createBackend({ storage, sessionStorage, rules, onWarning: message => {
         warnings.push(message);
-        const notice = document.getElementById('demo-warning');
-        if (notice) { notice.textContent = message; notice.hidden = false; }
+        demoPanel?.showWarning(message);
     } });
     const go = path => location.replace(new URL(path, root));
-    if (route === '' || route === 'anmelden') backend.logout();
+    if (route === 'anmelden') backend.logout();
     if (route === 'benutzer/gast') { backend.guest(); go('tasks/'); return; }
-    const publicPage = ['', 'anmelden', 'benutzer/erstellen'].includes(route);
-    if (!publicPage && backend.permission() === null) { go('anmelden/'); return; }
+    const publicPage = ['anmelden', 'benutzer/erstellen'].includes(route);
+    if (!publicPage && backend.permission() === null) {
+        try { backend.loginAsDemo('1'); }
+        catch { backend.guest(); }
+    }
     if (route.startsWith('admin/') && backend.permission() !== '2') { go('denied/'); return; }
 
-    const banner = document.createElement('aside');
-    banner.className = 'demo-notice mx-4 mb-3';
-    banner.setAttribute('aria-label', 'Lokale Demo');
-    banner.innerHTML = '<div><strong>Lokale Demo</strong> · Alle Änderungen und Demo-Accounts bleiben in diesem Browser. Bitte keine echten Passwörter verwenden.<div id="demo-warning" role="alert" hidden></div></div><button type="button" class="btn btn-sm btn-secondary" id="demo-reset">Demo zurücksetzen</button>';
-    document.querySelector('main').before(banner);
-    if (warnings.length) { document.getElementById('demo-warning').textContent = warnings.at(-1); document.getElementById('demo-warning').hidden = false; }
-    document.getElementById('demo-reset').addEventListener('click', () => {
-        if (window.confirm('Alle lokalen Demo-Daten durch die Beispieldaten ersetzen?')) { backend.reset(); go('anmelden/'); }
+    demoPanel = DemoPanel.mount({
+        project: 'Kanban',
+        homeUrl: 'https://jdeffner.com',
+        roles: [{ id: '0', label: 'Guest' }, { id: '1', label: 'User' }, { id: '2', label: 'Admin' }],
+        help: route === 'anmelden'
+            ? 'Choose a role for instant access, or sign in with user@example.com or admin@example.com and password demo. Changes stay in this browser. Reset restores the sample data.'
+            : 'Switch roles to try different permissions. Changes stay in this browser. Reset restores the sample data.',
+        onRole(role) {
+            role === '0' ? backend.guest() : backend.loginAsDemo(role);
+            if (publicPage || route === 'denied' || (route.startsWith('admin/') && backend.permission() !== '2')) go('tasks/');
+            else location.reload();
+        },
+        onReset() { backend.reset(); go('tasks/'); },
     });
-    if (route === '' || route === 'anmelden') {
-        const help = document.createElement('p');
-        help.className = 'small mt-3 mb-0';
-        help.textContent = 'Demo-Admin: admin@example.com · Demo-Benutzer: user@example.com · Passwort jeweils: demo';
-        document.querySelector('.minMaxForm').after(help);
-    }
+    if (warnings.length) demoPanel.showWarning(warnings.at(-1));
     function syncNavbar() {
         if (!publicPage) {
             const navbar = document.querySelector('nav.navbar');
@@ -41,6 +43,7 @@
         }
         const user = backend.currentUser();
         document.querySelectorAll('[data-demo-user]').forEach(element => { element.textContent = user?.[element.dataset.demoUser] ?? ''; });
+        demoPanel.setRole(backend.permission());
     }
     function fillSelect(select, rows, label, placeholder) {
         const previous = select.value;
@@ -116,14 +119,12 @@
                     if (response.redirect) response.redirect = new URL(response.redirect, root).href;
                     if (response.successfulValidation && options.type.toUpperCase() === 'POST') { hydrateForms(); syncNavbar(); }
                     if (response.error?.authorization || response.error?.record) {
-                        const message = document.getElementById('demo-warning');
-                        message.textContent = response.error.authorization ?? response.error.record; message.hidden = false;
+                        demoPanel.showWarning(response.error.authorization ?? response.error.record);
                     }
                     const rendered = /(?:^|\/)raw(?:\/|$)/.test(path) ? encodeRows(response) : response;
                     if (!aborted) complete(200, 'OK', { text: JSON.stringify(rendered) }, 'Content-Type: text/plain; charset=utf-8');
                 }).catch(error => {
-                    const notice = document.getElementById('demo-warning');
-                    notice.textContent = 'Die Aktion konnte nicht ausgeführt werden: ' + error.message; notice.hidden = false;
+                    demoPanel.showWarning('Die Aktion konnte nicht ausgeführt werden: ' + error.message);
                     if (!aborted) complete(500, 'Demo backend error', { text: JSON.stringify({ error: error.message }) });
                 });
             },

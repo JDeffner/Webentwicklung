@@ -18,6 +18,28 @@ function setup(options = {}) {
 const login = backend => backend.request('POST', 'benutzer/anmelden', { email: 'admin@example.com', passwort: 'demo' });
 const task = { task: 'Testaufgabe', taskartenid: '1', spaltenid: '1', personenid: '2', notizen: 'Eine Notiz' };
 
+test('demo role switches persist the session and preserve board changes', async () => {
+    const { backend, reload } = setup();
+    backend.loginAsDemo('1');
+    assert.equal(reload().permission(), '1');
+    await backend.request('POST', 'boards/bearbeiten/1', { board: 'Meine Änderungen' });
+    backend.loginAsDemo('2');
+    assert.equal(reload().permission(), '2');
+    assert.equal((await backend.request('GET', 'admin/personen/raw')).personen.length, 3);
+    backend.guest();
+    assert.equal(reload().permission(), '0');
+    assert.ok((await backend.request('GET', 'admin/personen/raw')).error.authorization);
+    assert.equal((await reload().request('POST', 'boards/board/1')).board.board, 'Meine Änderungen');
+    backend.loginAsDemo('2');
+    await backend.request('POST', 'personen/loeschen/1');
+    assert.throws(() => backend.loginAsDemo('2'), /zurücksetzen/);
+    assert.equal(backend.permission(), null);
+    backend.reset();
+    backend.loginAsDemo('2');
+    assert.equal(reload().permission(), '2');
+    assert.throws(() => backend.loginAsDemo('unknown'), /Ungültige/);
+});
+
 test('guest, user and admin access follows the original application roles', async () => {
     const { backend } = setup();
     assert.equal((await backend.request('GET', 'boards/raw')).successfulValidation, false);
