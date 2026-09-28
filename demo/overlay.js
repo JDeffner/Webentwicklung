@@ -1,14 +1,6 @@
 (function () {
     'use strict';
 
-    const icons = {
-        help: '<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3m.1 4h.01"/>',
-        down: '<path d="m6 9 6 6 6-6"/>',
-        up: '<path d="m18 15-6-6-6 6"/>',
-        back: '<path d="m12 19-7-7 7-7m-7 7h14"/>',
-    };
-    const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
-
     function mount({ project, homeUrl, roles, help, onRole, onReset }) {
         const listeners = new AbortController();
         const listen = (element, event, callback) => element.addEventListener(event, callback, { signal: listeners.signal });
@@ -21,11 +13,11 @@
                 <div class="demo-panel-identity">
                     <p><span class="demo-panel-project"></span><span class="demo-panel-label"> · Demo</span></p>
                     <div class="demo-panel-help-wrap">
-                        <button type="button" class="demo-panel-icon demo-panel-help" aria-label="About this demo" aria-describedby="demo-panel-help-text">${icon('help')}</button>
+                        <button type="button" class="demo-panel-icon demo-panel-help" aria-label="About this demo" aria-describedby="demo-panel-help-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3m.1 4h.01"/></svg></button>
                         <div class="demo-panel-tooltip" id="demo-panel-help-text" role="tooltip" hidden></div>
                     </div>
                 </div>
-                <button type="button" class="demo-panel-icon" data-demo-action="collapse" aria-controls="demo-panel-controls" aria-expanded="true" aria-label="Collapse demo controls">${icon('down')}</button>
+                <button type="button" class="demo-panel-icon" data-demo-action="collapse" aria-controls="demo-panel-controls" aria-expanded="true" aria-label="Collapse demo controls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             </div>
             <div class="demo-panel-controls" id="demo-panel-controls">
                 <div class="demo-panel-roles" role="group" aria-label="Try a role"></div>
@@ -36,9 +28,9 @@
                 </div>
             </div>
             <div class="demo-panel-footer">
-                <a class="demo-panel-home">${icon('back')}<span></span></a>
+                <a class="demo-panel-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span></span></a>
                 <button type="button" class="demo-panel-reset" data-demo-action="reset" aria-label="Reset demo data">Reset</button>
-                <button type="button" class="demo-panel-expand" data-demo-action="expand" aria-controls="demo-panel-controls" aria-expanded="false" hidden>Demo${icon('up')}</button>
+                <button type="button" class="demo-panel-expand" data-demo-action="expand" aria-controls="demo-panel-controls" aria-expanded="false" hidden>Demo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
             </div>
             <p class="demo-panel-warning" role="alert" hidden></p>`;
         const header = panel.querySelector('.demo-panel-header');
