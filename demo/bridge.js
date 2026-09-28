@@ -3,12 +3,11 @@
     const { route, navbars, rules } = window.MINMAX_DEMO;
     const root = new URL(BASE_URL, location.href);
     const warnings = [];
-    let storage, sessionStorage;
+    let storage, sessionStorage, demoPanel;
     try { storage = window.localStorage; sessionStorage = window.sessionStorage; } catch { /* Report through the backend warning callback. */ }
     const backend = MinMaxDemo.createBackend({ storage, sessionStorage, rules, onWarning: message => {
         warnings.push(message);
-        const notice = document.getElementById('demo-warning');
-        if (notice) { notice.textContent = message; notice.hidden = false; }
+        demoPanel?.showWarning(message);
     } });
     const go = path => location.replace(new URL(path, root));
     if (route === 'anmelden') backend.logout();
@@ -20,42 +19,21 @@
     }
     if (route.startsWith('admin/') && backend.permission() !== '2') { go('denied/'); return; }
 
-    const panel = document.createElement('aside');
-    panel.className = 'demo-panel';
-    panel.setAttribute('aria-label', 'Demo-Steuerung');
-    panel.innerHTML = `
-        <details>
-            <summary>Interaktive Demo · Beispieldaten</summary>
-            <p>Rolle per Klick wechseln. Änderungen bleiben in diesem Browser. Bitte nur erfundene Daten verwenden.</p>
-            <p>Auch das <a id="demo-login">Anmeldeformular</a> lässt sich testen. Demo-Konten: admin@example.com und user@example.com, Passwort: demo.</p>
-        </details>
-        <div class="demo-actions" role="group" aria-label="Demo-Rolle wählen">
-            <button type="button" data-demo-role="1" aria-label="Als Benutzer ausprobieren">Benutzer</button>
-            <button type="button" data-demo-role="2" aria-label="Als Admin ausprobieren">Admin</button>
-            <button type="button" data-demo-role="0" aria-label="Als Gast ausprobieren">Gast</button>
-            <button type="button" id="demo-reset">Zurücksetzen</button>
-        </div>
-        <p id="demo-status" aria-live="polite"></p>
-        <p id="demo-warning" role="alert" hidden></p>`;
-    document.body.append(panel);
-    document.getElementById('demo-login').href = new URL('anmelden/', root).href;
-    if (warnings.length) { document.getElementById('demo-warning').textContent = warnings.at(-1); document.getElementById('demo-warning').hidden = false; }
-    panel.querySelectorAll('[data-demo-role]').forEach(button => {
-        button.addEventListener('click', () => {
-            try {
-                button.dataset.demoRole === '0' ? backend.guest() : backend.loginAsDemo(button.dataset.demoRole);
-                panel.querySelectorAll('button').forEach(button => { button.disabled = true; });
-                if (publicPage || route === 'denied' || (route.startsWith('admin/') && backend.permission() !== '2')) go('tasks/');
-                else location.reload();
-            } catch (error) {
-                const notice = document.getElementById('demo-warning');
-                notice.textContent = error.message; notice.hidden = false;
-            }
-        });
+    demoPanel = DemoPanel.mount({
+        project: 'Kanban',
+        homeUrl: 'https://jdeffner.com',
+        roles: [{ id: '0', label: 'Guest' }, { id: '1', label: 'User' }, { id: '2', label: 'Admin' }],
+        help: route === 'anmelden'
+            ? 'Choose a role for instant access, or sign in with user@example.com or admin@example.com and password demo. Changes stay in this browser. Reset restores the sample data.'
+            : 'Switch roles to try different permissions. Changes stay in this browser. Reset restores the sample data.',
+        onRole(role) {
+            role === '0' ? backend.guest() : backend.loginAsDemo(role);
+            if (publicPage || route === 'denied' || (route.startsWith('admin/') && backend.permission() !== '2')) go('tasks/');
+            else location.reload();
+        },
+        onReset() { backend.reset(); go('tasks/'); },
     });
-    document.getElementById('demo-reset').addEventListener('click', () => {
-        if (window.confirm('Alle lokalen Demo-Daten durch die Beispieldaten ersetzen?')) { backend.reset(); go('tasks/'); }
-    });
+    if (warnings.length) demoPanel.showWarning(warnings.at(-1));
     function syncNavbar() {
         if (!publicPage) {
             const navbar = document.querySelector('nav.navbar');
@@ -65,13 +43,7 @@
         }
         const user = backend.currentUser();
         document.querySelectorAll('[data-demo-user]').forEach(element => { element.textContent = user?.[element.dataset.demoUser] ?? ''; });
-        const role = backend.permission();
-        document.getElementById('demo-status').textContent = user
-            ? `${user.vorname} ${user.nachname} · ${role === '2' ? 'Administrator' : 'Benutzer'}`
-            : role === '0' ? 'Als Gast unterwegs' : 'Nicht angemeldet';
-        panel.querySelectorAll('[data-demo-role]').forEach(button => {
-            button.setAttribute('aria-pressed', String(button.dataset.demoRole === role));
-        });
+        demoPanel.setRole(backend.permission());
     }
     function fillSelect(select, rows, label, placeholder) {
         const previous = select.value;
@@ -147,14 +119,12 @@
                     if (response.redirect) response.redirect = new URL(response.redirect, root).href;
                     if (response.successfulValidation && options.type.toUpperCase() === 'POST') { hydrateForms(); syncNavbar(); }
                     if (response.error?.authorization || response.error?.record) {
-                        const message = document.getElementById('demo-warning');
-                        message.textContent = response.error.authorization ?? response.error.record; message.hidden = false;
+                        demoPanel.showWarning(response.error.authorization ?? response.error.record);
                     }
                     const rendered = /(?:^|\/)raw(?:\/|$)/.test(path) ? encodeRows(response) : response;
                     if (!aborted) complete(200, 'OK', { text: JSON.stringify(rendered) }, 'Content-Type: text/plain; charset=utf-8');
                 }).catch(error => {
-                    const notice = document.getElementById('demo-warning');
-                    notice.textContent = 'Die Aktion konnte nicht ausgeführt werden: ' + error.message; notice.hidden = false;
+                    demoPanel.showWarning('Die Aktion konnte nicht ausgeführt werden: ' + error.message);
                     if (!aborted) complete(500, 'Demo backend error', { text: JSON.stringify({ error: error.message }) });
                 });
             },

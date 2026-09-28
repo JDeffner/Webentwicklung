@@ -1,33 +1,73 @@
-/* Demo controls only. The original main.css and custom.css style the application. */
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500&display=swap');
+
+/* Scoped to the reusable demo panel. The application's styles remain separate. */
 .demo-panel {
+    --demo-surface: light-dark(#fbf7ee, #000);
+    --demo-soft: light-dark(#f1eadb, #191919);
+    --demo-ink: light-dark(#2a2620, #f1f1f1);
+    --demo-muted: light-dark(#6f6557, #b0b0b0);
+    --demo-line: light-dark(#ddd0b8, #343434);
+    --demo-rust: light-dark(#7a5238, #d9a071);
+    --demo-active: light-dark(#2a2620, #f1f1f1);
+    --demo-active-text: light-dark(#fbf7ee, #000);
+    color-scheme: light;
     position: fixed;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    left: max(1rem, env(safe-area-inset-left));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: max(16px, env(safe-area-inset-left));
     z-index: 1040;
-    width: 21rem;
-    max-width: calc(100vw - 2rem);
-    max-height: calc(100dvh - 2rem);
-    overflow-y: auto;
-    padding: .75rem;
-    border: 1px solid #615376;
-    border-radius: 1rem;
-    background: rgba(28, 23, 43, .96);
-    color: #eeeaf6;
-    box-shadow: 0 .4rem 1.5rem #0004;
-    backdrop-filter: blur(12px);
-    font-size: .75rem;
-    line-height: 1.5;
+    width: 236px;
+    max-width: calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right));
+    border: 1px solid var(--demo-line);
+    border-radius: 9px;
+    background: var(--demo-surface);
+    color: var(--demo-ink);
+    box-shadow: 0 4px 16px light-dark(#2a262018, #00000048);
+    font: 13px/1.4 'Schibsted Grotesk', 'Segoe UI', sans-serif;
 }
-.demo-panel summary { cursor: pointer; font-weight: 600; }
-.demo-panel p { margin: .5rem 0 0; }
-.demo-panel details p { overflow-wrap: anywhere; }
-.demo-actions { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin-top: .25rem; }
-.demo-panel button { border: 0; padding: .25rem 0; background: none; color: inherit; font: inherit; cursor: pointer; }
-.demo-panel button, .demo-panel a { text-decoration: underline; text-underline-offset: .2em; }
-.demo-panel a { color: inherit; }
-.demo-panel button[aria-pressed="true"] { color: #fff; font-weight: 700; text-decoration-thickness: 2px; }
-.demo-panel button:hover, .demo-panel a:hover { color: #d7c3ff; }
+.dark .demo-panel, [data-bs-theme="dark"] .demo-panel { color-scheme: dark; }
+[data-bs-theme="light"] .demo-panel { color-scheme: light; }
+.demo-panel, .demo-panel * { box-sizing: border-box; }
+.demo-panel [hidden] { display: none !important; }
+.demo-panel p { margin: 0; }
+.demo-panel button, .demo-panel a { color: inherit; font: inherit; }
+.demo-panel button { appearance: none; margin: 0; border: 0; background: none; cursor: pointer; }
+.demo-panel a { text-decoration: none; }
 .demo-panel button:disabled { opacity: .5; cursor: wait; }
-.demo-panel :focus-visible { outline: 2px solid #cbb3fa; outline-offset: 3px; border-radius: .15rem; }
-#demo-status { margin-top: .25rem; color: #c2b7d2; }
-#demo-warning { color: #ffe0a0; }
+.demo-panel :focus-visible { outline: 2px solid var(--demo-rust); outline-offset: 2px; }
+.demo-panel svg { display: block; width: 14px; height: 14px; flex-shrink: 0; }
+.demo-panel-header { display: flex; justify-content: space-between; align-items: center; gap: 4px; padding: 2px 5px 2px 9px; }
+.demo-panel-identity { display: flex; align-items: center; min-width: 0; }
+.demo-panel-project { font-weight: 500; }
+.demo-panel-label { color: var(--demo-rust); }
+.demo-panel .demo-panel-icon { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border-radius: 5px; flex-shrink: 0; }
+.demo-panel .demo-panel-help { color: var(--demo-muted); }
+.demo-panel-icon:hover { background: var(--demo-soft); }
+.demo-panel-tooltip { position: absolute; bottom: 100%; left: -1px; width: 290px; max-width: calc(100vw - 32px); padding: 9px 11px; border: 1px solid var(--demo-line); border-radius: 7px; background: var(--demo-surface); color: var(--demo-ink); box-shadow: 0 4px 16px #0002; font-size: 12px; line-height: 1.5; }
+.demo-panel-controls { padding: 0 6px 6px; }
+.demo-panel-roles { display: flex; gap: 2px; padding: 2px; border-radius: 5px; background: var(--demo-soft); }
+.demo-panel-roles button { flex: 1; min-height: 28px; padding: 3px 7px; border-radius: 3px; }
+.demo-panel-roles button[aria-pressed="true"] { background: var(--demo-active); color: var(--demo-active-text); font-weight: 500; }
+.demo-panel-footer { display: flex; justify-content: space-between; align-items: center; min-height: 32px; padding: 0 8px 0 9px; border-top: 1px solid var(--demo-line); }
+.demo-panel-home { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; white-space: nowrap; }
+.demo-panel-home svg { color: var(--demo-rust); }
+.demo-panel .demo-panel-home:hover { color: var(--demo-rust); }
+.demo-panel .demo-panel-reset { min-height: 30px; padding: 0 2px; color: var(--demo-rust); font-size: 12px; }
+.demo-panel-reset:hover { text-decoration: underline; text-underline-offset: 3px; }
+.demo-panel-confirm { display: flex; align-items: center; gap: 4px; min-height: 32px; }
+.demo-panel-confirm p { flex: 1; padding-left: 3px; font-size: 12px; }
+.demo-panel-confirm button { min-height: 28px; padding: 3px 7px; border-radius: 4px; background: var(--demo-soft); font-size: 12px; }
+.demo-panel-confirm [data-demo-action="confirm"] { background: var(--demo-active); color: var(--demo-active-text); }
+.demo-panel .demo-panel-expand { display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 0 8px; border-left: 1px solid var(--demo-line); border-radius: 0 8px 8px 0; }
+.demo-panel-expand:hover { background: var(--demo-soft); }
+.demo-panel.is-collapsed { width: max-content; }
+.demo-panel.is-collapsed .demo-panel-footer { border-top: 0; padding: 0; min-height: 30px; }
+.demo-panel.is-collapsed .demo-panel-home { padding: 0 9px; }
+.demo-panel .demo-panel-warning { padding: 7px 9px; border-top: 1px solid var(--demo-line); color: var(--demo-rust); overflow-wrap: anywhere; }
+@media (pointer: coarse) {
+    .demo-panel .demo-panel-icon { width: 44px; height: 44px; }
+    .demo-panel-roles button,
+    .demo-panel-home,
+    .demo-panel .demo-panel-reset,
+    .demo-panel .demo-panel-expand,
+    .demo-panel-confirm button { min-height: 44px; min-width: 44px; }
+}

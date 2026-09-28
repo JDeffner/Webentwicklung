@@ -17,7 +17,7 @@ const files = [
     ...['main', 'tasks', 'tasks-admin', 'boards', 'spalten', 'personen', 'taskarten'].map(name => [`public/resources/js/${name}.js`, `resources/js/${name}.js`]),
     ...['main', 'custom'].map(name => [`public/resources/css/${name}.css`, `resources/css/${name}.css`]),
     ...['MinMaxLogo.svg', 'favicon.ico'].map(name => [`public/resources/images/${name}`, `resources/images/${name}`]),
-    ...['backend.js', 'bridge.js', 'demo.css'].map(name => [`demo/${name}`, `resources/demo/${name}`]),
+    ...['backend.js', 'overlay.js', 'bridge.js', 'demo.css'].map(name => [`demo/${name}`, `resources/demo/${name}`]),
 ];
 for (const [source, target] of files) {
     await mkdir(path.dirname(path.join(output, target)), { recursive: true });

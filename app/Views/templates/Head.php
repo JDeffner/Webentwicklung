@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="<?= base_url() ?>resources/demo/demo.css<?= $assetVersion ?>">
         <script>window.MINMAX_DEMO = <?= json_encode($demoConfig, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR) ?>;</script>
         <script defer src="<?= base_url() ?>resources/demo/backend.js<?= $assetVersion ?>"></script>
+        <script defer src="<?= base_url() ?>resources/demo/overlay.js<?= $assetVersion ?>"></script>
         <script defer src="<?= base_url() ?>resources/demo/bridge.js<?= $assetVersion ?>"></script>
     <?php endif; ?>
     <script defer src="<?php echo base_url();?>resources/js/main.js<?= $assetVersion ?>"></script>
