@@ -66,7 +66,7 @@ namespace {
     }
 
     $routes = [
-        '' => ['Login', 'pages/user/BenutzerAnmelden'],
+        '' => ['Tasks', 'pages/Tasks'],
         'anmelden' => ['Login', 'pages/user/BenutzerAnmelden'],
         'benutzer/erstellen' => ['Neuer Benutzer', 'pages/user/BenutzerErstellen'],
         'benutzer/gast' => ['Login', 'pages/user/BenutzerAnmelden'],

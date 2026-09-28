@@ -11,27 +11,51 @@
         if (notice) { notice.textContent = message; notice.hidden = false; }
     } });
     const go = path => location.replace(new URL(path, root));
-    if (route === '' || route === 'anmelden') backend.logout();
+    if (route === 'anmelden') backend.logout();
     if (route === 'benutzer/gast') { backend.guest(); go('tasks/'); return; }
-    const publicPage = ['', 'anmelden', 'benutzer/erstellen'].includes(route);
-    if (!publicPage && backend.permission() === null) { go('anmelden/'); return; }
+    const publicPage = ['anmelden', 'benutzer/erstellen'].includes(route);
+    if (!publicPage && backend.permission() === null) {
+        try { backend.loginAsDemo('1'); }
+        catch { backend.guest(); }
+    }
     if (route.startsWith('admin/') && backend.permission() !== '2') { go('denied/'); return; }
 
-    const banner = document.createElement('aside');
-    banner.className = 'demo-notice mx-4 mb-3';
-    banner.setAttribute('aria-label', 'Lokale Demo');
-    banner.innerHTML = '<div><strong>Lokale Demo</strong> · Alle Änderungen und Demo-Accounts bleiben in diesem Browser. Bitte keine echten Passwörter verwenden.<div id="demo-warning" role="alert" hidden></div></div><button type="button" class="btn btn-sm btn-secondary" id="demo-reset">Demo zurücksetzen</button>';
-    document.querySelector('main').before(banner);
+    const panel = document.createElement('aside');
+    panel.className = 'demo-panel';
+    panel.setAttribute('aria-label', 'Demo-Steuerung');
+    panel.innerHTML = `
+        <details>
+            <summary>Interaktive Demo · Beispieldaten</summary>
+            <p>Rolle per Klick wechseln. Änderungen bleiben in diesem Browser. Bitte nur erfundene Daten verwenden.</p>
+            <p>Auch das <a id="demo-login">Anmeldeformular</a> lässt sich testen. Demo-Konten: admin@example.com und user@example.com, Passwort: demo.</p>
+        </details>
+        <div class="demo-actions" role="group" aria-label="Demo-Rolle wählen">
+            <button type="button" data-demo-role="1" aria-label="Als Benutzer ausprobieren">Benutzer</button>
+            <button type="button" data-demo-role="2" aria-label="Als Admin ausprobieren">Admin</button>
+            <button type="button" data-demo-role="0" aria-label="Als Gast ausprobieren">Gast</button>
+            <button type="button" id="demo-reset">Zurücksetzen</button>
+        </div>
+        <p id="demo-status" aria-live="polite"></p>
+        <p id="demo-warning" role="alert" hidden></p>`;
+    document.body.append(panel);
+    document.getElementById('demo-login').href = new URL('anmelden/', root).href;
     if (warnings.length) { document.getElementById('demo-warning').textContent = warnings.at(-1); document.getElementById('demo-warning').hidden = false; }
-    document.getElementById('demo-reset').addEventListener('click', () => {
-        if (window.confirm('Alle lokalen Demo-Daten durch die Beispieldaten ersetzen?')) { backend.reset(); go('anmelden/'); }
+    panel.querySelectorAll('[data-demo-role]').forEach(button => {
+        button.addEventListener('click', () => {
+            try {
+                button.dataset.demoRole === '0' ? backend.guest() : backend.loginAsDemo(button.dataset.demoRole);
+                panel.querySelectorAll('button').forEach(button => { button.disabled = true; });
+                if (publicPage || route === 'denied' || (route.startsWith('admin/') && backend.permission() !== '2')) go('tasks/');
+                else location.reload();
+            } catch (error) {
+                const notice = document.getElementById('demo-warning');
+                notice.textContent = error.message; notice.hidden = false;
+            }
+        });
     });
-    if (route === '' || route === 'anmelden') {
-        const help = document.createElement('p');
-        help.className = 'small mt-3 mb-0';
-        help.textContent = 'Demo-Admin: admin@example.com · Demo-Benutzer: user@example.com · Passwort jeweils: demo';
-        document.querySelector('.minMaxForm').after(help);
-    }
+    document.getElementById('demo-reset').addEventListener('click', () => {
+        if (window.confirm('Alle lokalen Demo-Daten durch die Beispieldaten ersetzen?')) { backend.reset(); go('tasks/'); }
+    });
     function syncNavbar() {
         if (!publicPage) {
             const navbar = document.querySelector('nav.navbar');
@@ -41,6 +65,13 @@
         }
         const user = backend.currentUser();
         document.querySelectorAll('[data-demo-user]').forEach(element => { element.textContent = user?.[element.dataset.demoUser] ?? ''; });
+        const role = backend.permission();
+        document.getElementById('demo-status').textContent = user
+            ? `${user.vorname} ${user.nachname} · ${role === '2' ? 'Administrator' : 'Benutzer'}`
+            : role === '0' ? 'Als Gast unterwegs' : 'Nicht angemeldet';
+        panel.querySelectorAll('[data-demo-role]').forEach(button => {
+            button.setAttribute('aria-pressed', String(button.dataset.demoRole === role));
+        });
     }
     function fillSelect(select, rows, label, placeholder) {
         const previous = select.value;

@@ -27,6 +27,7 @@ test('static build renders all application routes and ships the original assets'
         }
     }
     assert.match(await readFile('_site/tasks/index.html', 'utf8'), /id="copyTaskModal"/);
+    assert.match(await readFile('_site/index.html', 'utf8'), /id="tasksBoard"/);
     assert.match(await readFile('_site/spalten/index.html', 'utf8'), /id="copySpalteModal"/);
     assert.match(await readFile('_site/admin/tasks/index.html', 'utf8'), /id="tasksTable"/);
     assert.equal((await readFile('_site/CNAME', 'utf8')).trim(), 'kanban.jdeffner.com');

@@ -358,7 +358,7 @@ $(document).on('click', '.personenkuerzel', function (e) {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (document.querySelector('.modal.show') || document.activeElement.matches('input, textarea, select, button, a, [contenteditable]'))
+    if (document.querySelector('.modal.show') || document.activeElement.matches('input, textarea, select, button, a, summary, [contenteditable]'))
         return;
     if (event.key === 'Escape') {
         document.getElementById('suchetasks').value = '';

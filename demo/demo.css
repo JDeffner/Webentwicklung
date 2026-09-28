@@ -1,5 +1,33 @@
 /* Demo controls only. The original main.css and custom.css style the application. */
-.demo-notice { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; border: 1px solid #615376; border-radius: .5rem; font-size: .85rem; color: #d0cce0; }
-.demo-notice button { flex-shrink: 0; }
-#demo-warning { margin-top: .5rem; color: #ffe0a0; }
-@media (max-width: 700px) { .demo-notice { flex-wrap: wrap; } }
+.demo-panel {
+    position: fixed;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: max(1rem, env(safe-area-inset-left));
+    z-index: 1040;
+    width: 21rem;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    padding: .75rem;
+    border: 1px solid #615376;
+    border-radius: 1rem;
+    background: rgba(28, 23, 43, .96);
+    color: #eeeaf6;
+    box-shadow: 0 .4rem 1.5rem #0004;
+    backdrop-filter: blur(12px);
+    font-size: .75rem;
+    line-height: 1.5;
+}
+.demo-panel summary { cursor: pointer; font-weight: 600; }
+.demo-panel p { margin: .5rem 0 0; }
+.demo-panel details p { overflow-wrap: anywhere; }
+.demo-actions { display: flex; flex-wrap: wrap; gap: .25rem .75rem; margin-top: .25rem; }
+.demo-panel button { border: 0; padding: .25rem 0; background: none; color: inherit; font: inherit; cursor: pointer; }
+.demo-panel button, .demo-panel a { text-decoration: underline; text-underline-offset: .2em; }
+.demo-panel a { color: inherit; }
+.demo-panel button[aria-pressed="true"] { color: #fff; font-weight: 700; text-decoration-thickness: 2px; }
+.demo-panel button:hover, .demo-panel a:hover { color: #d7c3ff; }
+.demo-panel button:disabled { opacity: .5; cursor: wait; }
+.demo-panel :focus-visible { outline: 2px solid #cbb3fa; outline-offset: 3px; border-radius: .15rem; }
+#demo-status { margin-top: .25rem; color: #c2b7d2; }
+#demo-warning { color: #ffe0a0; }
