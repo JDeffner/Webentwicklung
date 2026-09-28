@@ -38,8 +38,8 @@ $(document).on('submit', '#deleteSpalteForm', function (e) {
         data: $(this).serialize(),
         success: function (response) {
             $('.alert').remove();
-            showToast(response.tableName, response.action);
             if (response.successfulValidation) {
+                showToast(response.tableName, response.action);
                 $('#deleteSpalteModal').modal('hide');
                 $('#spaltenTable').bootstrapTable('refresh');
             } else {

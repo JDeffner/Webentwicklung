@@ -141,7 +141,7 @@ function handleCrud(typeName, pluralTypeName) {
                             editModal.find('#taskartenid').val(value);
                             let taskartenicon = response['taskarten']['taskartenicon'];
                             let taskart = response['taskarten']['taskart'];
-                            editModal.find('#btnTaskart span').html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+                            renderTaskart(editModal.find('#btnTaskart span'), taskartenicon, taskart);
                             break;
                         case 'erinnerung':
                             if (value === '1') {
@@ -193,7 +193,7 @@ function handleCrud(typeName, pluralTypeName) {
                             copyModal.find('#taskartenid').val(value);
                             let taskartenicon = response['taskarten']['taskartenicon'];
                             let taskart = response['taskarten']['taskart'];
-                            copyModal.find('#btnTaskart span').html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+                            renderTaskart(copyModal.find('#btnTaskart span'), taskartenicon, taskart);
                             break;
                         case 'erinnerung':
                             if (value === '1') {
@@ -218,8 +218,38 @@ function handleCrud(typeName, pluralTypeName) {
 function Taskartupdate(id, taskartenicon, taskart) {
     $('input[name="taskartenid"]').val(id);
 
-    $("#btnTaskart span").html('<i class="' + taskartenicon + '"></i>' + ' ' + taskart);
+    renderTaskart($("#btnTaskart span"), taskartenicon, taskart);
 }
+
+function renderTaskart(target, icon, name) {
+    target.empty().append($('<i>').attr('class', icon), document.createTextNode(' ' + name));
+}
+
+$(document).on('change', 'input[name="erinnerung"]', function () {
+    $(this).closest('form').find('.erinnerungsdatum').prop('disabled', !this.checked);
+});
+
+// Used by both the board and the admin task table.
+$(document).on('submit', '#deleteTaskForm', function (event) {
+    event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: $(this).attr('data-delete-at'),
+        dataType: 'json',
+        data: $(this).serialize(),
+        success: function (response) {
+            $('#deleteTaskModal .alert').remove();
+            if (response.successfulValidation) {
+                showToast(response.tableName, response.action);
+                $('#deleteTaskModal').modal('hide');
+                $(`#task${response.taskid}`).remove();
+                $('#tasksTable').bootstrapTable('refresh');
+            } else {
+                $('<div class="alert alert-danger" role="alert">').text(response.error.deletion).prependTo('#deleteTaskForm');
+            }
+        }
+    });
+});
 
 function showToast(tableName, action) {
     let toastElement = $('#crudToast');

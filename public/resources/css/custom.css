@@ -177,3 +177,11 @@ body {
 .editSpalteText {
     color: white;
 }
+
+@media (max-width: 767px) {
+    .task-toolbar { flex-wrap: wrap; gap: .5rem; }
+    .task-toolbar h4 { flex: 1; margin: 0 !important; }
+    .task-toolbar .task-search { flex: 1 1 100%; order: 1; margin: 0 !important; }
+    .task-toolbar > .dropdown { flex: 1 1 100%; order: 2; min-width: 0; }
+    .task-toolbar #boardidDropdownButton { width: 100%; overflow: hidden; text-overflow: ellipsis; }
+}

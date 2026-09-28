@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 <main class="container-fluid">
     <div class="card ms-3 me-3">
-        <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="card-header task-toolbar d-flex align-items-center justify-content-between">
             <h4 class="me-5">Tasks</h4>
             <a role="button" class="btn btn-secondary createSpalteButton ms-auto me-2 flex-nowrap d-flex align-items-center" title="Spalte erstellen" data-bs-toggle="modal" data-bs-target="#createSpalteModal">
                 <i class="fa-solid fa-square-plus py-1"></i> <span class="d-none d-md-block ms-2">Spalte</span>
@@ -11,10 +11,10 @@
             <a role="button" class="btn btn-secondary me-2 notizenButton" title="Notizen anzeigen/verstecken">
                 <i class="fa-solid fa-list-ul"></i>
             </a>
-            <a role="button" class="btn btn-secondary createTaskButton me-2" id="reload" title="Taskboard neu laden">
+            <a role="button" class="btn btn-secondary me-2" id="reload" title="Taskboard neu laden">
                 <i class="fa-solid fa-rotate-right"></i>
             </a>
-            <div class="me-2" style="width: 20em;">
+            <div class="task-search me-2" style="width: 20em;">
                 <input type="search" class="form-control " id="suchetasks" name="suchetasks" placeholder="Suchen">
             </div>
 

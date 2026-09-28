@@ -38,6 +38,8 @@ $(document).on('submit', '#deleteTaskartForm', function (e) {
                 showToast(response.tableName, response.action);
                 $('#deleteTaskartModal').modal('hide');
                 $('#taskartenTable').bootstrapTable('refresh');
+            } else {
+                $('<div class="alert alert-danger" role="alert">').text(response.error.deletion).prependTo('#deleteTaskartForm');
             }
         }
     });

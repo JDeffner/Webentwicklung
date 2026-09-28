@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark" class="custom-scrollbar">
+<html lang="de" data-bs-theme="dark" class="custom-scrollbar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +19,15 @@
     <script>
         const BASE_URL = "<?= base_url() ?>"; // Set baseURL for all scripts
     </script>
+    <?php if (isset($demoConfig)) : ?>
+        <link rel="stylesheet" href="<?= base_url() ?>resources/demo/demo.css">
+        <script>window.MINMAX_DEMO = <?= json_encode($demoConfig, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR) ?>;</script>
+        <script defer src="<?= base_url() ?>resources/demo/backend.js"></script>
+        <script defer src="<?= base_url() ?>resources/demo/bridge.js"></script>
+    <?php endif; ?>
     <script defer src="<?php echo base_url();?>resources/js/main.js"></script>
 <!-- Page specific scripts   -->
-    <?php if (isset($title)) : ?>
+    <?php if (isset($title) && is_file(dirname(__DIR__, 3) . '/public/resources/js/' . strtolower($title) . '.js')) : ?>
         <script defer src="<?php echo base_url();?>resources/js/<?= strtolower($title) ?>.js"></script>
     <?php endif; ?>
 </head>

@@ -24,14 +24,3 @@ function tasksAjaxRequest(params) {
 function reloadTaskBoard(currentBoardID) {
     $('#tasksTable').bootstrapTable('refresh')
 }
-
-
-$('.form-check-input').on('change', function() {
-
-    if ($(this).prop('checked')) {
-        $('.erinnerungsdatum').removeAttr('disabled');
-    } else {
-
-        $('.erinnerungsdatum').attr('disabled', '');
-    }
-});
