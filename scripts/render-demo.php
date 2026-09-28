@@ -81,6 +81,11 @@ namespace {
         'denied' => ['Zugriff verweigert', 'errors/AccessDenied'],
     ];
     $output = $argv[1] ?? throw new \RuntimeException('Output directory required.');
+    $assetHash = hash_init('sha256');
+    foreach (array_merge(glob($root . '/demo/*'), glob($root . '/public/resources/js/*.js'), glob($root . '/public/resources/css/*.css')) as $asset) {
+        hash_update_file($assetHash, $asset);
+    }
+    $assetVersion = substr(hash_final($assetHash), 0, 12);
     foreach ($routes as $route => [$title, $view]) {
         $prefix = $route === '' ? './' : str_repeat('../', count(explode('/', $route)));
         $pageData = ['title' => $title, 'boards' => [], 'spalten' => [], 'personen' => [], 'taskarten' => [], 'boardID' => '0', 'boardName' => 'Board auswählen'];
@@ -90,7 +95,7 @@ namespace {
             if ($role !== '0') $_COOKIE += ['userid' => '1', 'username' => '<span data-demo-user="vorname"></span>', 'userlastname' => '<span data-demo-user="nachname"></span>'];
             $navbars[$role] = view('templates/Navbar');
         }
-        $pageData['demoConfig'] = ['route' => $route, 'navbars' => $navbars, 'rules' => $rules];
+        $pageData['demoConfig'] = ['route' => $route, 'navbars' => $navbars, 'rules' => $rules, 'assetVersion' => $assetVersion];
         $directory = $output . ($route === '' ? '' : '/' . $route);
         if (!is_dir($directory)) mkdir($directory, 0777, true);
         file_put_contents($directory . '/index.html', view($view));

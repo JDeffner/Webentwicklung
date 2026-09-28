@@ -1,3 +1,4 @@
+<?php $assetVersion = isset($demoConfig) ? '?v=' . $demoConfig['assetVersion'] : ''; ?>
 <!DOCTYPE html>
 <html lang="de" data-bs-theme="dark" class="custom-scrollbar">
 <head>
@@ -8,8 +9,8 @@
     <link rel="icon" href="<?php echo base_url();?>resources/images/favicon.ico" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.22.1/bootstrap-table.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>resources/css/main.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url();?>resources/css/custom.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>resources/css/main.css<?= $assetVersion ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>resources/css/custom.css<?= $assetVersion ?>" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -20,15 +21,15 @@
         const BASE_URL = "<?= base_url() ?>"; // Set baseURL for all scripts
     </script>
     <?php if (isset($demoConfig)) : ?>
-        <link rel="stylesheet" href="<?= base_url() ?>resources/demo/demo.css">
+        <link rel="stylesheet" href="<?= base_url() ?>resources/demo/demo.css<?= $assetVersion ?>">
         <script>window.MINMAX_DEMO = <?= json_encode($demoConfig, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR) ?>;</script>
-        <script defer src="<?= base_url() ?>resources/demo/backend.js"></script>
-        <script defer src="<?= base_url() ?>resources/demo/bridge.js"></script>
+        <script defer src="<?= base_url() ?>resources/demo/backend.js<?= $assetVersion ?>"></script>
+        <script defer src="<?= base_url() ?>resources/demo/bridge.js<?= $assetVersion ?>"></script>
     <?php endif; ?>
-    <script defer src="<?php echo base_url();?>resources/js/main.js"></script>
+    <script defer src="<?php echo base_url();?>resources/js/main.js<?= $assetVersion ?>"></script>
 <!-- Page specific scripts   -->
     <?php if (isset($title) && is_file(dirname(__DIR__, 3) . '/public/resources/js/' . strtolower($title) . '.js')) : ?>
-        <script defer src="<?php echo base_url();?>resources/js/<?= strtolower($title) ?>.js"></script>
+        <script defer src="<?php echo base_url();?>resources/js/<?= strtolower($title) ?>.js<?= $assetVersion ?>"></script>
     <?php endif; ?>
 </head>
 <body class="bg-primary-subtle">
