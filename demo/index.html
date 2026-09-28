@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MinMax Kanban: interaktive Demo mit Boards, Aufgaben und Drag-and-drop. Ohne Anmeldung ausprobieren.">
+    <meta name="color-scheme" content="dark">
+    <title>MinMax Kanban | Demo</title>
+    <link rel="icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="./assets/main.css">
+    <link rel="stylesheet" href="./demo.css">
+    <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Zum Inhalt</a>
+    <header class="navbar">
+        <a href="#tasks" aria-label="MinMax Kanban, Tasks"><img src="./assets/MinMaxLogo.svg" alt="MinMax" width="160" height="60"></a>
+        <nav aria-label="Hauptnavigation">
+            <a href="#tasks">Tasks</a>
+            <a href="#boards">Boards</a>
+            <a href="#columns">Spalten</a>
+            <a href="#people">Personen</a>
+            <a href="#types">Taskarten</a>
+        </nav>
+        <span class="demo-tag">Demo</span>
+    </header>
+    <aside class="demo-notice" aria-label="Hinweis zur Demo">
+        <p>Einfach ausprobieren. Änderungen bleiben nur in diesem Browser. Keine Anmeldung, keine geteilten Daten.</p>
+        <button class="btn btn-sm btn-outline-light" id="reset">Demo zurücksetzen</button>
+    </aside>
+    <p id="storage-warning" class="storage-warning" role="alert" hidden></p>
+    <main id="main" tabindex="-1"></main>
+    <footer><span>MinMax Kanban · Studienprojekt Webentwicklung</span><a href="https://github.com/JDeffner/Webentwicklung" target="_blank" rel="noopener noreferrer">Quellcode auf GitHub ↗</a></footer>
+    <dialog id="editor" aria-labelledby="editor-title">
+        <form id="editor-form">
+            <div class="dialog-heading"><h2 id="editor-title"></h2><button type="button" class="btn-close" data-close aria-label="Schließen"></button></div>
+            <div id="editor-fields"></div>
+            <p id="form-error" class="text-danger" role="alert" hidden></p>
+            <div class="dialog-actions"><button class="btn btn-success" type="submit">Speichern</button><button class="btn btn-secondary" type="button" data-close>Abbrechen</button></div>
+        </form>
+    </dialog>
+    <dialog id="confirmation" aria-labelledby="confirmation-title">
+        <form method="dialog">
+            <h2 id="confirmation-title"></h2>
+            <p id="confirmation-message"></p>
+            <div class="dialog-actions"><button class="btn btn-danger" value="confirm">Bestätigen</button><button class="btn btn-secondary" value="cancel" autofocus>Abbrechen</button></div>
+        </form>
+    </dialog>
+    <p id="status" role="status" aria-live="polite"></p>
+    <noscript><p class="demo-notice">Bitte JavaScript aktivieren, um die Kanban-Demo zu verwenden.</p></noscript>
+</body>
+</html>

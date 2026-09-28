@@ -7,6 +7,8 @@
     "test": "tests"
   },
   "scripts": {
+    "build:demo": "node scripts/build-demo.mjs",
+    "test:demo": "node --test tests/demo/store.test.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "node-sass --watch public/resources/scss/main.scss -o public/resources/css/"
   },
