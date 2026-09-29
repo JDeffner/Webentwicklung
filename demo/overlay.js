@@ -32,6 +32,7 @@
                 <button type="button" class="demo-panel-reset" data-demo-action="reset" aria-label="Reset demo data">Reset</button>
                 <button type="button" class="demo-panel-expand" data-demo-action="expand" aria-controls="demo-panel-controls" aria-expanded="false" hidden>Demo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
             </div>
+            <nav class="demo-panel-legal" aria-label="Legal information"><a href="https://jdeffner.com/impressum">Impressum</a><a href="https://jdeffner.com/datenschutz#kanban">Datenschutz</a></nav>
             <p class="demo-panel-warning" role="alert" hidden></p>`;
         const header = panel.querySelector('.demo-panel-header');
         const controls = panel.querySelector('.demo-panel-controls');

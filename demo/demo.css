@@ -63,6 +63,8 @@
 .demo-panel.is-collapsed .demo-panel-footer { border-top: 0; padding: 0; min-height: 30px; }
 .demo-panel.is-collapsed .demo-panel-home { padding: 0 9px; }
 .demo-panel .demo-panel-warning { padding: 7px 9px; border-top: 1px solid var(--demo-line); color: var(--demo-rust); overflow-wrap: anywhere; }
+.demo-panel-legal { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 3px 9px; border-top: 1px solid var(--demo-line); font-size: 12px; }
+.demo-panel .demo-panel-legal a { display: inline-block; padding: 5px 0; text-decoration: underline; text-underline-offset: 3px; }
 @media (pointer: coarse) {
     .demo-panel .demo-panel-icon { width: 44px; height: 44px; }
     .demo-panel-roles button,
